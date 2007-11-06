@@ -1,0 +1,44 @@
+-----------------------------------------------------------------------------
+		$Id$
+-----------------------------------------------------------------------------
+
+Les choses qu'il reste a faire pour "Squeak par l'exemple" et le statut d'avancement de chacun des chapitres.
+
+-----------------------------------------------------------------------------
+
+Traducteurs :
+
+- Martial Boniou
+- Mathieu Chappuis
+- Rene Mages  (qui laisse des balises ZZZ en cas d'incertitude)
+- Nicolas Petton
+- Alain Plantec
+- Serge Stinckwich
+- Luc Fabresse
+- Benoît Tudiri
+
+TODO :
+
+
+-----------------------------------------------------------------------------
+L'etat des chapitres
+------------------
+Preface -- Traduit par Serge. A relire
+
+[GETTING STARTED]
+A Quick Tour of Squeak -- Mathieu travaille dessus (à traduire en UTF8)
+A First Application -- Serge travaille dessus
+Syntax in a Nutshell -- Traduit par René - René a laissé qq ZZZ
+Understanding Message Syntax -- Traduit par Serge - Figures à traduire
+
+[DEVELOPING IN SQUEAK]
+The Smalltalk Object Model -- Fini (exception faite de l'absence globale d'accent dans les codes) 
+The Squeak Programming Environment -- Fini
+SUnit -- Alain travaille dessus
+Basic Classes -- Nicolas travaille dessus - (à traduire en UTF8)
+Collections -- Fini
+Streams -- Martial travaille dessus
+Morphic -- A réécrire complètement
+[ADVANCED SQUEAK]
+Classes and Metaclasses -- Luc Fabresse travaille dessus
+FAQ -- Traduit par Benoit Tudiri

@@ -1,0 +1,389 @@
+% $Author: oscar $
+% $Date: 2007-09-23 11:56:47 +0200 (dim, 23 sep 2007) $
+% $Revision: 12130 $
+% Traduction : Benoît TUDURI 18-10-2007
+%=================================================================
+\ifx\wholebook\relax\else
+% --------------------------------------------
+% Lulu:
+	\documentclass[a4paper,10pt,twoside]{book}
+	\usepackage[
+		papersize={6in,9in},
+		hmargin={.75in,.75in},
+		vmargin={.75in,1in},
+		ignoreheadfoot
+	]{geometry}
+	\input{../common.tex}
+	\pagestyle{headings}
+	\setboolean{lulu}{true}
+% --------------------------------------------
+% A4:
+%	\documentclass[a4paper,11pt,twoside]{book}
+%	\input{../common.tex}
+%	\usepackage{a4wide}
+% --------------------------------------------
+    \graphicspath{{figures/} {../figures/}}
+	\begin{document}
+	\renewcommand{\nnbb}[2]{} % Disable editorial comments
+	\sloppy
+\fi
+  
+%=================================================================
+%\chapter{Frequently Asked Questions}
+\chapter{Questions Fr\'equemments Pos\'ees}
+\label{cha:faq}
+
+%\on{These should be *real* (not invented) FAQs.
+%Here are a few that I have collected.
+%Check the ST lecture notes for more FAQs.
+%We should also try to mine more from newbies.}
+\on{Ceci devrait \^etre une *vraie* FAQs.
+Celle-ci contient quelques questions que j'ai collect\'ees.
+Pour plus de FAQ, vous pouvez consulter les r\'ef\'erences de lectures sur ST.
+Nous devrions essayer de nous m\^emes pour les newbies...}
+
+%=================================================================
+%\section{Getting started}
+\section{Pr\'emice}
+\begin{faq}
+%Where do I get the latest Squeak?
+Ou puis-je trouver la derni\`ere version de Squeak
+\end{faq}
+\answer
+\url{ftp.squeak.org/current_development}
+\index{download}
+
+\begin{faq}
+%Where is the Squeak ``Development Image''?
+Ou est ``l'Image de D\'eveloppement'' de Squeak ?
+\end{faq}
+\answer
+\url{www.squeaksource.com/ImageForDevelopers}
+%This is a specially-prepared image including lots of useful packages pre-installed for developers.
+Ceci une image pr\'epar\'ee sp\'ecifiquement pour les d\'eveloppeurs. Elle contient de multiple paquets pr\'e-install\'es pour les d\'eveloppeurs.
+%=================================================================
+\section{Collections}
+
+\begin{faq}
+%How do I sort an \clsind{OrderedCollection}?
+Comment puis-je trier une \clsind{OrderedCollection} ?
+
+\end{faq}
+\answer
+%Send it the message \mthind{Collection}{asSortedCollection}.
+Envoyez le message suivant \mthind{Collection}{asSortedCollection}.
+
+\begin{code}{@TEST}
+#(7 2 6 1) asSortedCollection --> a SortedCollection(1 2 6 7)
+\end{code}
+
+\begin{faq}
+%How do I convert a collection of characters to a \clsind{String}?
+Comment puis-je convertir une collection de caract\`eres en une \clsind{String} ?
+\end{faq}
+\answer
+\begin{code}{@TEST}
+String streamContents: [:str | str nextPutAll: 'hello' asSet] --> 'hleo'
+\end{code}
+
+%=================================================================
+%\section{Browsing the system}
+\section{Naviguer dans le syst\`eme}
+
+\begin{faq}
+%How to I search for a class?
+Comment puis-je chercher une classe ?
+\end{faq}
+\answer
+%\short{b} (browse) on the class name, or \short{f} in the category pane of the class browser.
+\short{b} (parcourez) via le nom de la classe, ou \short{f} dans le panneau de navigation des cat\'egories de classes.
+\index{keyboard shortcut!browse it}
+\index{keyboard shortcut!find ...}
+
+\begin{faq}
+%How do I find/browse all sends to super?
+Comment puis-je trouver/naviguer dans tous les envois de super ?
+\end{faq}
+\answer
+%The second solution is much faster:
+La deuxi\`eme solution est la plus rapide :
+\begin{code}{}
+SystemNavigation default browseMethodsWithSourceString: 'super'.
+SystemNavigation default browseAllSelect: [:method | method sendsToSuper ].
+\end{code}
+%\index{browsing programmatically}
+\index{naviguer de mani\`ere pragmatique}
+\clsindex{SystemNavigation}
+
+\begin{faq}
+%How do I browse all super \subind{super}{send}{}s within a hierarchy?
+Comment puis-je naviguer dans toute la hi\'erarchie des messages de toutes les superclasses  \subind{super}{send}{} ?
+\end{faq}
+\answer
+\begin{code}{}
+browseSuperSends := [:aClass | SystemNavigation default
+	browseMessageList: (aClass withAllSubclasses gather: [ :each |
+		(each methodDict associations
+			select: [ :assoc | assoc value sendsToSuper ])
+				collect: [ :assoc | MethodReference class: each selector: assoc key ] ])
+	name: 'Supersends of ' , aClass name , ' and its subclasses'].
+browseSuperSends value: OrderedCollection.
+\end{code}
+
+\begin{faq}
+%How do I find out which are the new methods implemented in a class?
+Comment puis-je d\'ecouvrir quelles sont les nouvelles m\'ethodes impl\'ement\'ees dans une classe?
+\end{faq}
+\answer
+%Here we ask which new methods are introduced by \ct{True}:
+Dans le cas pr\'esent nous demandons quelles sont les nouvelles m\'ethodes introduites par \ct{True} :
+\begin{code}{@TEST | newMethods |}
+newMethods := [:aClass| aClass methodDict keys select:
+	[:aMethod | (aClass superclass canUnderstand: aMethod) not ]].
+newMethods value: True --> an IdentitySet(#asBit)
+\end{code}
+
+\begin{faq}
+%How do I tell which methods of a class are abstract?
+Comment puis-je rapporter quelles sont les m\'ethodes d'une classe qui sont abstraites ?
+\end{faq}
+\answer
+\begin{code}{@TEST | abstractMethods |}
+abstractMethods :=
+	[:aClass | aClass methodDict keys select:
+		[:aMethod | (aClass>>aMethod) isAbstract ]].
+abstractMethods value: Collection --> an IdentitySet(#remove:ifAbsent: #add: #do:)
+\end{code}
+
+\begin{faq}
+%How do I generate a view of the \ind{AST} of an expression?
+Comment puis-je cr\'eer une vue de l'\ind{AST} d'une expression ?
+\end{faq}
+\answer
+%Load AST from squeaksource.com. Then evaluate:
+Charger l'AST de squeaksource.com. Ensuite evaluer :
+\begin{code}{}
+(RBParser parseExpression: '3+4') explore
+\end{code}
+%(Alternatively \emph{explore it}.)
+(D'autre part \emph{explorer le}.)
+\clsindex{RBParser}
+
+\begin{faq}
+%How do I find all the Traits in the system?
+Comment puis-je trouver tout les Traits dans le syst\`eme ?
+\end{faq}
+\answer
+\begin{code}{}
+Smalltalk allTraits
+\end{code}
+
+\begin{faq}
+%How do I find which classes use traits?
+Comment puis-je trouver quelles classes utilises les traits ?
+\end{faq}
+\answer
+\begin{code}{}
+Smalltalk allClasses select: [:each | each hasTraitComposition ]
+\end{code}
+
+%=================================================================
+%\section{Using Monticello and SqueakSource}
+\section{Utilisation de Monticello et SqueakSource}
+
+\begin{faq}
+%How do I load a \ind{Squeaksource} project?
+Comment puis-je charger un projet du \ind{Squeaksource} ?
+\index{Monticello}
+\end{faq}
+\answer
+\begin{enumerate}
+%  \item Find the project you want in \url{squeaksource.com}
+  \item Trouvez le projet que vous souhaitez via \url{squeaksource.com}
+%  \item Copy the registration code snippet
+  \item Copiez le code d'enregistrement
+%  \item Select \menu{open \go Monticello browser}
+  \item S\'electionnez \menu{open \go Monticello browser}
+%  \item Select \menu{+Repository \go HTTP}
+  \item S\'electionnez \menu{+Repository \go HTTP}
+%  \item Paste and accept the Registration code snippet; enter your password
+  \item Collez et acceptez le code d'enregistrement ; entrer votre mot de passe
+%  \item Select the new repository and \menu{Open} it
+  \item S\'electionnez le nouveau d\'epot et \menu{Open} le
+%  \item Select and load the latest version
+  \item S\'electionnez et charger la version la plus r\'ecente
+\end{enumerate}
+
+\begin{faq}
+%How do I create a SqueakSource project?
+Comment puis-je cr\'eer un projet SqueakSource ?
+\end{faq}
+\answer
+\begin{enumerate}
+%  \item Go to \url{squeaksource.com}
+  \item Allez à \url{squeaksource.com}
+%  \item Register yourself as a new member
+  \item Enregistrez-vous comme un nouveau membre
+%  \item Register a project (name = category)
+  \item Enregistrez un projet (nom = cat\'egorie)
+%  \item Copy the Registration code snippet
+  \item Copiez le code d'enregistrement
+%  \item \menu{open \go Monticello browser}
+  \item \menu{open \go Monticello browser}
+%  \item \menu{+Package} to add the category
+  \item \menu{+Package} pour ajouter une cat\'egorie
+%  \item Select the package
+  \item S\'electionnez le package
+%  \item \menu{+Repository \go HTTP}
+  \item \menu{+Repository \go HTTP}
+%  \item Paste and accept the Registration code snippet; enter your password
+  \item Collez et acceptez le code d'enregistrement ; entrer votre mot de passe
+%  \item \menu{Save} to save the first version
+  \item \menu{Save} pour enregistrer la premi\`ere version
+\end{enumerate}
+
+\begin{faq}
+%How do I extend \ct{Number} with \ct{Number>>>chf} but have Monticello recognize it as being part of my \ct{Money} project?
+Comment puis-je \'etendre \ct{Number} avec \ct{Number>>>chf} mais Monticello reconnait comme \'etant une partie de mon projet \ct{Money} ?
+\end{faq}
+\answer
+%Put it in a method-category named \ct{*Money}.
+Mettez le dans une cat\'egorie de m\'ethode nomm\'ee \ct{*Money}.
+%Monticello gathers all methods that are in other categories named like *package and includes them in your package.
+Monticello r\'euni toutes les m\'ethodes qui sont dans des cat\'egories nomm\'ees autrement telles que *package est inclus lui m\^eme dans ton package.
+
+%=================================================================
+%\section{Tools}
+\section{Outils}
+
+\begin{faq}
+%How do I programmatically open the \ind{SUnit} \ind{TestRunner}?
+Comment puis-je ouvrir de mani\`ere pragmatique le \ind{SUnit} \ind{TestRunner} ?
+\end{faq}
+\answer
+%Evaluate \ct{TestRunner open}.
+Evaluer \ct{TestRunner open}.
+
+\begin{faq}
+%Where can I find the \ind{Refactoring Browser}?
+O\`u puis-je trouver le \ind{Refactoring Browser} ?
+\end{faq}
+\answer
+%Load AST then Refactoring Engine from squeaksource.com:
+Chargez l'AST puis le moteur de refrabrication du squeaksource.com :
+\url{www.squeaksource.com/AST}
+\url{www.squeaksource.com/RefactoringEngine}
+
+\begin{faq}
+%How do I register the browser that I want to be the default?
+Comment puis-je enregistrer le naviguateur comme naviguateur par d\'efaut ?
+\end{faq}
+\answer
+%Click the menu icon in the top left of the Browser window.
+Cliquez sur l'ic\^one du menu \'etant situ\'e en haut à gauche de la fen\^etre Browser.
+
+%=================================================================
+%\section{Regular expressions and parsing}
+\section{Expressions r\'eguli\`eres et analyse grammaticale}
+
+\begin{faq}
+%How can I work with regular expressions?
+Comment puis-je travailler avec les expressions r\'eguli\`eres ?
+\index{regular expression package}
+\end{faq}
+\answer
+\ifluluelse
+%	{Load Vassili Bykov's RegEx package from: \\
+	{Chargez le paquet de RegEx Vassili Bykov's RegEx sur : \\
+	\url{www.squeaksource.com/Regex.html}}
+%	{Load Vassili Bykov's RegEx package from:
+	{Chargez le paquet de RegEx Vassili Bykov's RegEx sur :
+	\url{www.squeaksource.com/Regex.html}}
+\index{Bykov, Vassili}
+
+\begin{faq}
+%Where is the documentation for the RegEx package?
+O\`u est la documentation pour le paquet RegEx ?
+\end{faq}
+\answer
+%Look at the \menu{DOCUMENTATION} protocol of \ct{RxParser class} in the \menu{VB-Regex} category.
+Cherchez dans le protocole de \ct{RxParser class} dans \menu{DOCUMENTATION} situ\'e dans la cat\'egorie \menu{VB-Regex}.
+
+\begin{faq}
+%Are there tools for writing parsers?
+Y a t'il des outils pour l'\'ecriture d'un outil d'analyse grammaticale ?
+\end{faq}
+\answer
+%Use \ind{SmaCC}\,---\,the Smalltalk Compiler Compiler.
+Utilisez \ind{SmaCC}\,---\,le compilateur Smalltalk Compiler.
+%You should install at least SmaCC-lr.13.
+Vous devrez installer au moins SmaCC-lr.13.
+%Load it from \url{www.squeaksource.com/SmaccDevelopment.html}.
+Chargez le du \url{www.squeaksource.com/SmaccDevelopment.html}.
+%There is a nice tutorial online:
+Il y a un bon tutoriel en ligne, \`a l'adresse :
+\url{www.refactory.com/Software/SmaCC/Tutorial.html}
+
+\begin{faq}
+%Which packages should I load from SqueakSource SmaccDevelopment to write parsers?
+Quels paquets devrais-je charger du SqueakSource SmaccDevelopment pour \'ecrire un analyseur grammatical ?
+\end{faq}
+\answer
+%Load the latest version of \ind{SmaCCDev}{}\,---\,the runtime is already there.
+Chargez la derni\`ere version du \ind{SmaCCDev}{}\,---\,le lanceur de programme est d\'ej\`a actif.
+(SmaCC-Development is for \sq 3.8)
+
+%=================================================================
+\ifx\wholebook\relax\else\end{document}\fi
+%=================================================================
+
+%\begin{faq}
+%How do I run a headless image with a file argument?
+%\end{faq}
+%\answer
+%Right now you can't do it with the MacOSX VM.
+
+%\begin{faq}
+%How do I find out which methods access the Smalltalk dictionary?
+%\end{faq}
+%\answer
+%???
+
+%\begin{faq}
+%How do I get the tree view of an AST?
+%\end{faq}
+%\answer
+%???
+
+%\begin{faq}
+%How do I browse all references to a given class?
+%\end{faq}
+%\answer
+%???
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  Benoît
+
+% Rappel LaTeX:
+%  é    \'e
+%  è    \`e
+%  ê    \^e
+%  ë    \"e
+%  ç    \c{c}
+%  $    \$
+%  &    \&
+%  %    \%
+%  #    \#
+%  _    \_
+%  {    \{
+%  }    \}
+%  ~    \~
+%  ^    \^
+%  \    $\backslash$
+
+% Paramètre VIM 7.1
+% pour l'édition de ce document
+% :set encoding=UTF-8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
