@@ -37,8 +37,8 @@ The Squeak Programming Environment -- Fini
 SUnit -- Alain travaille dessus
 Basic Classes -- Nicolas travaille dessus - (à traduire en UTF8)
 Collections -- Fini
-Streams -- Martial travaille dessus
+Streams -- Fini
 Morphic -- A réécrire complètement
 [ADVANCED SQUEAK]
-Classes and Metaclasses -- Luc Fabresse travaille dessus
-FAQ -- Traduit par Benoit Tudiri
+Classes and Metaclasses -- Luc Fabresse travaille dessus; relu par Martial; considere comme fini
+FAQ -- Traduit par Benoit Tudiri; relu par Martial

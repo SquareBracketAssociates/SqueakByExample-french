@@ -2,10 +2,14 @@
 % $Date: 2007-09-23 11:56:47 +0200 (Sun, 23 Sep 2007) $
 % $Revision: 12130 $
 %=================================================================
-% Luc Fabresse (LF) 
+% Luc Fabresse (LF)
+%% relecture (et reponse): Martial Boniou (remarque: j'ai mis les morphs au masculin apres mure reflexion.
 % respecter la typographie française ? si oui, alors il faut revoir tous les itemize car il ne doit pas y avoir de majuscule après un ":"
+%% reponse: normalement il ne doit pas y avoir de majuscules
 % "System browser" laissé tel quel comme dans les autres chapitres ddéjà traduits
-%  traduction de "class side"?  j'ai mis "côté classe"
+%% reponse: parfait
+%  traduction de "class side"  j'ai mis "côté classe"
+%% reponse: c'est ce que j'ai mis aussi
 % problème de sens dans le SBE anglais: caption fig 12.3 : "The metaclasses of Translucent its superclasses"
 %   traduit par : "Les méta-classes de TranslucentColor ET ses super-classes"
 
@@ -102,7 +106,8 @@ Pour expliquer correctement les classes et les méta-classes, nous devons étend
 \end{enumerate}
 
 % \noindent
-Ensembles, ces 10 règles complètent le modèle objet de \st.
+%%Ensembles, 
+Ensemble, ces 10 règles complètent le modèle objet de \st.
 Nous allons tout d'abord revoir les 5 règles issues du chapitre~\ref{cha:model} à travers un exemple simple.
 Ensuite, nous examinerons ces nouvelles règles à travers le même exemple.
 
@@ -129,7 +134,7 @@ Toutefois, si l'on fixe la valeur \emph{alpha} d'une couleur, nous obtenons une 
 \end{code}
 
 \noindent
-Nous pouvons créer une morph et fixer sa couleur à cette couleur translucide:
+Nous pouvons créer un morph et fixer sa couleur à cette couleur translucide:
 \begin{code}{}
 EllipseMorph new color: (Color blue alpha: 0.4); openInWorld
 \end{code}
@@ -141,21 +146,23 @@ Vous pouvez voir l'effet produit dans la \figref{translucentEllipse}.
 \ifluluelse
 	{\centerline {\includegraphics[scale=0.7]{TranslucentEllipse}}}
 	{\centerline {\includegraphics[width=8cm]{TranslucentEllipse}}}
-\caption{Une ellipse translucide\label{fig:translucentEllipse}}
+\caption{Une ellipse translucide\label{fig:translucentEllipse}.}
 \end{figure}
 \end{center}
 
-Par la \ref{rule:inheritance}, tout classe possède une super-classe.
-La super-classe de \clsind{TranslucentColor} est \clsind{Color}, et la super-classe de \ct{Color} est \clsind{Object}:
+%%Par la \ref{rule:inheritance}, 
+D'apr\`es la \ref{rule:inheritance},
+tout classe possède une super-classe.
+La super-classe de \clsind{TranslucentColor} est \clsind{Color} et la super-classe de \ct{Color} est \clsind{Object}:
 \begin{code}{@TEST}
 TranslucentColor superclass --> Color
 Color superclass                   --> Object
 \end{code}
 
-Comme tout se produit par \ind{envoi de message}{}s (\ref{rule:message}), on peut déduire que \mthind{Color class}{blue} est un message à destination de \ct{Color}, \mthind{Object}{class} et \mthind{Color}{alpha:} sont des messages à destination de la couleur bleue, \mthind{Morph}{openInWorld} est un message à destination d'une ellipse morph, et \mthind{Behavior}{superclass} est un message à destination de \ct{TranslucentColor} et \ct{Color}.
+Comme tout se produit par \ind{envoi de message}{}s (\ref{rule:message}), on peut déduire que \mthind{Color class}{blue} est un message à destination de \ct{Color}; \mthind{Object}{class} et \mthind{Color}{alpha:} sont des messages à destination de la couleur bleue; \mthind{Morph}{openInWorld} est un message à destination d'une ellipse morph et \mthind{Behavior}{superclass} est un message à destination de \ct{TranslucentColor} et \ct{Color}.
 Dans chaque cas, le receveur est un objet puisque tout est un objet bien que certains de ces objets soient aussi des classes.
 
-La recherche de méthodes suit la chaîne d'héritage (\ref{rule:lookup}), donc quand on envoi le message \ct{class} au résultat de 
+La recherche de méthodes suit la chaîne d'héritage (\ref{rule:lookup}), donc quand on envoie le message \ct{class} au résultat de 
 \ct{Color blue alpha: 0.4}, le message est traité quand la méthode correspondante est trouvée dans la classe \ct{Object}, comme illustré par \figref{classmessage}.
 
 \begin{center}
@@ -163,7 +170,7 @@ La recherche de méthodes suit la chaîne d'héritage (\ref{rule:lookup}), donc 
 \ifluluelse
 	{\centerline{\includegraphics[width=\textwidth]{TranslucentClassMessage}}}
 	{\centerline{\includegraphics[width=0.8\textwidth]{TranslucentClassMessage}}}
-\caption{Envoyer un message à une couleur translucide\label{fig:classmessage}}
+\caption{Envoyer un message à une couleur translucide\label{fig:classmessage}.}
 \end{figure}
 \end{center}
 
@@ -190,7 +197,7 @@ Comme nous l'avons mentionné dans \secref{metaclassIntro}, les classes dont les
 \paragraph{Les méta-classes sont implicites.}
 Les méta-classes sont automatiquement créées quand une classe est définie.
 On dit qu'elles sont \emph{implicites} car en tant que programmeur, vous n'avez jamais à vous en soucier.
-Une méta-classe \subind{méta-classe}{implicite} est créée pour chaque classe que vous créez, donc chaque méta-classe n'a qu'une seule instance.
+Une méta-classe \subind{méta-classe}{implicite} est créée pour chaque classe que vous créez donc chaque méta-classe n'a qu'une seule instance.
 
 Alors que les classes ordinaires sont nommées par des variables globales, les méta-classes sont anonymes.
 Cependant, on peut toujours les référencer à travers la classe qui est leur instance.
@@ -208,7 +215,7 @@ Object class --> Object class
 \ifluluelse
 	{\centerline {\includegraphics[width=\textwidth]{TranslucentMetaclasses}}}
 	{\centerline {\includegraphics[width=0.8\textwidth]{TranslucentMetaclasses}}}
-\caption{Les méta-classes de TranslucentColor et ses super-classes\label{fig:translucentmetaclasses}}
+\caption{Les méta-classes de TranslucentColor et ses super-classes\label{fig:translucentmetaclasses}.}
 \end{figure}
 \end{center}
 
@@ -260,12 +267,12 @@ TranslucentColor class superclass superclass --> Object class
 
 \paragraph{L'uniformité entre les Classes et les Objets.}
 Il est intéressant de revenir en arrière un moment et de réaliser qu'il n'y a pas de différence entre envoyer un message à un objet et à une classe.
-Dans les deux cas, la recherche de la méthode correspondante commence dans la classe du receveur, et chemine le long de le chaîne d'héritage.
+Dans les deux cas, la recherche de la méthode correspondante commence dans la classe du receveur et chemine le long de le chaîne d'héritage.
 
 Ainsi, les messages envoyés à des classes doivent suivre la chaîne d'héritage des méta-classes. 
 Considérons, par exemple, la méthode \mthind{Color class}{blue} qui est implémentée du \subind{System Browser}{côté classe} de \ct{Color}.
 Si nous envoyons le message \ct{blue} à \ct{TranslucentColor}, alors il sera traité de la même façon que les autres messages.
-La recherche commence dans \ct{TranslucentColor class}, et continue dans la hiérarchie des méta-classes jusqu'à trouver dans  \ct{Color class} (see \figref{metaclasslookup}).
+La recherche commence dans \ct{TranslucentColor class} et continue dans la hiérarchie des méta-classes jusqu'à trouver dans  \ct{Color class} (see \figref{metaclasslookup}).
 
 \begin{code}{@TEST}
 TranslucentColor blue --> Color blue
@@ -283,19 +290,24 @@ Notons que l'on obtient comme résultat un \ct{Color blue}  ordinaire, et non pa
 \end{center}
 
 Nous voyons donc qu'il y a une \subind{méthode}{recherche} de méthode uniforme en \st.
-Les classes sont juste des objets, et se comportent comme tous les autres objets.
+Les classes sont juste des objets et se comportent comme tous les autres objets.
 Les classes ont le pouvoir de créer de nouvelles instances uniquement parce qu'elles répondent au message \ct{new} et que la méthode pour \ct{new} sait créer de nouvelles instances.
 Normalement, les objets qui ne sont pas des classes ne comprennent ce message, mais si vous avez une bonne raison pour faire cela, il n'y a rien qui vous empêche d'ajouter une méthode \ct{new} à une classe qui n'est pas une méta-classe.
 
 Comme les classes sont des objets, on peut aussi les inspecter.
 \index{inspecteur}
 
-\dothis{Inspect \ct{Color blue} and \ct{Color}.}
+\dothis{Inspectez \ct{Color blue} et \ct{Color}.}
 
 \noindent
 Notons que dans un cas, vous inspectez une instance de \ct{Color} et que dans l'autre cas la classe \ct{Color} elle-même.
 Cela peut prêter à confusion parce que la barre de titre de l'inspecteur contient le nom de la \emph{classe} de l'objet en cours d'inspection.
-L'inspecteur sur \ct{Color} vous permet de voir la super-classe, les variables d'instances, le \subind{méthode}{dictionnaire} des méthodes, etc., de  la classe \ct{Color}, comme montré dans \figref{inspectingColor}.
+L'inspecteur sur \ct{Color} vous permet de voir 
+%% ojout
+entre autre
+la super-classe, les variables d'instances, le \subind{méthode}{dictionnaire} des méthodes 
+%% etc.
+de  la classe \ct{Color}, comme montré dans \figref{inspectingColor}.
 
 \begin{center}
 \begin{figure}[!ht]
@@ -327,14 +339,17 @@ Nous pouvons voir le schéma complet dans \figref{inheritbehavior}.
 
 
 \paragraph{Où est défini \lct{new}?}
-Pour comprendre l'importance du fait que les méta-classes héritent de \ct{Class} et de \ct{Behavior}, cela aide de demander où est défini \ct{new} et comment cette définition est trouvée.
+Pour comprendre l'importance du fait que les méta-classes héritent de \ct{Class} et de \ct{Behavior}, 
+%% cela aide de demander 
+demandons-nous
+où est défini \ct{new} et comment cette définition est trouvée.
 Quand le message \ct{new} est envoyé à une classe, il est recherché dans sa chaîne de méta-classes et finalement dans ses super-classes \ct{Class}, \ct{ClassDescription} et \ct{Behavior} comme montré dans \figref{sendingnew}.
 
 La question «~\emph{Où est défini \ct{new}?}~» est cruciale.
-\mthind{Behavior}{new} est défini en premier dans la classe \ct{Behavior}, et peut être redéfini dans ses sous-classes, ce qui inclu toutes les méta-classes des classes que nous avons définies, si cela est nécessaire.
-Maintenant, quand un message \ct{new} est envoyé à une classe, il est recherché, comme d'habitude, dans la méta-classe de cette classe, en continuant le long de la chaîne de super-classes, jusqu'à la classe \ct{Behavior} si aucune redéfinition n'a été rencontrée sur le chemin.
+\mthind{Behavior}{new} est défini en premier dans la classe \ct{Behavior} et peut être redéfini dans ses sous-classes, ce qui inclut toutes les méta-classes des classes que nous avons définies, si cela est nécessaire.
+Maintenant, quand un message \ct{new} est envoyé à une classe, il est recherché, comme d'habitude, dans la méta-classe de cette classe, en continuant le long de la chaîne de super-classes jusqu'à la classe \ct{Behavior} si aucune redéfinition n'a été rencontrée sur le chemin.
 
-Notons que le résultat de l'envoi de message \ct{TranslucentColor new} est une instance de  \clsind{TranslucentColor}  et \emph{non} de \ct{Behavior}, même si la méthode est trouvée dans la classe \ct{Behavior}!  \ct{new} retourne toujours une instance de \self{}, la classe qui a reçu le message, même si cela est implémenté dans une autre classe.
+Notons que le résultat de l'envoi de message \ct{TranslucentColor new} est une instance de  \clsind{TranslucentColor}  et \emph{non} de \ct{Behavior}, même si la méthode est trouvée dans la classe \ct{Behavior}!  \ct{new} retourne toujours une instance de \self , la classe qui a reçu le message, même si cela est implémenté dans une autre classe.
 
 \begin{code}{@TEST}
 TranslucentColor new class --> TranslucentColor    "not Behavior!"
@@ -352,37 +367,40 @@ TranslucentColor new class --> TranslucentColor    "not Behavior!"
 Une erreur courante est de rechercher \ct{new} dans la super-classe de la classe du receveur.
 La même chose se produit pour \ct{new:}, le message standard pour créer un objet d'une taille donnée.
 Par exemple, \lct{Array new: 4} créer un tableau de 4 éléments.
-Vous ne trouverez pas la définition de cette méthode dans \ct{Array} ni aucune de ses super-classes.
+Vous ne trouverez pas la définition de cette méthode dans \ct{Array} ni 
+%% ajout
+dans
+aucune de ses super-classes.
 À la place, vous devriez regarder dans \ct{Array class} et ses super-classes puisque c'est là que la recherche commence.
 
 \on{The text below needs more details and convincing examples ...}
 
-\paragraph{Les responsabilités de \lct{Behavior}{}, \lct{ClassDescription} et \lct{Class}{}.}
+\paragraph{Les responsabilités de \lct{Behavior}, \lct{ClassDescription} et \lct{Class}.}
 \clsind{Behavior} fournit l'état minimum et nécessaire à des objets possédant des instances: cela inclut un lien super-classe, un dictionnaire de méthodes et une description des instances (\ie représentation et nombre).
 \on{not sure I understand the last point}% LF same for me...
 \ct{Behavior} hérite de \ct{Object}, donc elle, ainsi que toutes ses sous-classes peuvent se comporter comme des objets. 
 
 \ct{Behavior} est aussi l'interface basique pour le compilateur.
-Elle fournie des méthodes pour créer un dictionnaire de méthodes, compiler des méthodes, créer des instances (\ie \mthind{Behavior}{new}, \mthind{Behavior}{basicNew}, \mthind{Behavior}{new:}, et \mthind{Behavior}{basicNew:}),
+Elle fournit des méthodes pour créer un dictionnaire de méthodes, compiler des méthodes, créer des instances (\ie \mthind{Behavior}{new}, \mthind{Behavior}{basicNew}, \mthind{Behavior}{new:}, et \mthind{Behavior}{basicNew:}),
 manipuler la hiérarchie de classes (\ie \mthind{Behavior}{superclass:}, \mthind{Behavior}{addSubclass:}), 
 accéder aux méthodes (\ie \mthind{Behavior}{selectors}, \lmthind{Behavior}{allSelectors}, \mthind{Behavior}{compiledMethodAt:}),
 accéder aux instances et aux variables (\ie \mthind{Behavior}{allInstances}, \mthind{Behavior}{instVarNames}\ldots),
-accéder à la hiérarchie de classes (\ie \mthind{Behavior}{superclass}, \mthind{Behavior}{subclasses}),
+accéder à la hiérarchie de classes (\ie \mthind{Behavior}{superclass}, \mthind{Behavior}{subclasses})
 et interroger  (\ie \mthind{Behavior}{hasMethods}, \mthind{Behavior}{includesSelector}, \mthind{Behavior}{canUnderstand:}, \mthind{Behavior}{inheritsFrom:}, \mthind{Behavior}{isVariable}).
 
 \clsind{ClassDescription} est une classe abstraite qui fournit des facilités utilisées par ses deux sous-classes directes,  \clsind{Class} et \clsind{Metaclass}.
-\clsind{ClassDescription} ajoute des facilités fournie à la base par \ct{Behavior}:
+\clsind{ClassDescription} ajoute des facilités fournies à la base par \ct{Behavior}:
 des variables d'instances nommées,
 la catégorisation des méthodes dans des protocoles,
 la notion de nom (abstrait),
-la maintenance de change sets et la journalisation des changements,
-et la plupart des mécanismes requis pour l'exportation de change sets.
+la maintenance de \changesets, la journalisation des changements
+et la plupart des mécanismes requis pour l'exportation de \changesets.
 
 
 \clsind{Class} représente le comportement commun de toutes les classes.
 Elle fournit un nom de classe, des méthodes de compilation, des méthodes de stockage et des variables d'instance.
 Elle fournit aussi  une représentation concrète pour les noms des variables de classe et des variables de pool (\mthind{Class}{addClassVarName:}, \mthind{Class}{addSharedPool:}, \mthind{Class}{initialize}).
-\ct{Class} sait comment créer des instances, donc toutes les méta-classes doivent finalement hériter de \ct{Class}.
+\ct{Class} sait comment créer des instances donc toutes les méta-classes doivent finalement hériter de \ct{Class}.
 
 
 %=================================================================
@@ -403,7 +421,7 @@ Les instances de la classe \ct{Metaclass} sont les méta-classes anonymes; chacu
 
 
 \ct{Metaclass} représente le comportement commun des méta-classes.
-Elle fournit des méthodes pour la création d'instance (\lct{sub\-class\-Of:}) permettant de créer des instances initialisées de l'unique instance \ct{Metaclass}, pour l'initialisation des variables de classe, la compilation de méthodes et l'obtiention d'informations à propos des classes (liens d'héritage, variables d'instance, \etc).
+Elle fournit des méthodes pour la création d'instance (\lct{sub\-class\-Of:}) permettant de créer des instances initialisées de l'unique instance \ct{Metaclass} pour l'initialisation des variables de classe, la compilation de méthodes et l'obtention d'informations à propos des classes (liens d'héritage, variables d'instance, \etc).
 
 % It provides methods for instance creation (\lct{sub\-class\-Of:})
 % creating initialized instances of the metaclass's sole instance,
@@ -471,7 +489,7 @@ Metaclass superclass --> ClassDescription
 \section{Résumé du chapitre}
 
 Maintenant, vous devriez mieux comprendre la façon dont les classes sont organisées et l'impact de l'uniformité du modèle objet.
-Si vous vous perdez ou vous embrouillez, vous devez toujours vous rappeler que l'envoi de messages est la clée: cherchez alors la méthode dans la classe du receveur.
+Si vous vous perdez ou vous embrouillez, vous devez toujours vous rappeler que l'envoi de messages est la clé: cherchez alors la méthode dans la classe du receveur.
 Cela fonctionne pour \emph{tous} les receveurs.
 Si une méthode n'est pas trouvée dans la classe du receveur, elle est recherchée dans ses super-classes.
 
@@ -484,7 +502,7 @@ Une méta-classe est créée automatiquement à chaque fois que vous créez une 
 
 
 \item La \subind{méta-classe}{hiérarchie} des méta-classes est parallèle à celle des classes.
-La recherche de méthodes pour les classes est analogue à la recherche de méthodes pour les objets ordinaires, et suit la chaîne des super-classes entre méta-classes.
+La recherche de méthodes pour les classes est analogue à la recherche de méthodes pour les objets ordinaires et suit la chaîne des super-classes entre méta-classes.
 
 
 \item Toute méta-classe hérite de \clsind{Class} et de \clsind{Behavior}.
@@ -493,7 +511,7 @@ Puisque les méta-classes sont aussi des classes, elles doivent hériter de  \ct
 	\ct{Behavior} fournit un comportement commun à toutes les entités ayant des instances.
 
 \item Toute méta-classe est une instance de \clsind{Metaclass}.
-	\ct{ClassDescription} fournit tout ce qui est commun à \ct{Class} et \ct{Metaclass}.
+	\ct{ClassDescription} fournit tout ce qui est commun à \ct{Class} et \`a \ct{Metaclass}.
 	
 
 \item La méta-classe de \ct{Metaclass} est une instance de \ct{Metaclass}.
