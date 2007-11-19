@@ -33,7 +33,6 @@
 % remarque generale: beaucoup de commentaires et de chaines de caracteres dans les codes ont ete traduites dans ce chapitre
 \chapter{Stream: les flux de donn\'ees}\label{cha:streams}
 
-\clsindmain{Stream}
 Les flux de donn\'ees ou \streams sont utilis\'es pour it\'erer dans
 une s\'equence d'\'el\'ements comme des
 % sequenced
@@ -56,8 +55,9 @@ et une s\'equence d'\'el\'ements future.
 Le \stream est positionn\'e entre les deux s\'equences.
 Comprendre ce mod\`ele est important car toutes les op\'erations
 sur les \streams en \st en d\'ependent.
-C'est pour cette raison que la plus part des 
-classes \clsind{Stream} sont des sous-classes de \clsind{PositionableStream}.
+C'est pour cette raison que la plus part des
+% Attention \clsindmain n'est pas au tout debut 
+classes \clsindmain{Stream} sont des sous-classes de \clsind{PositionableStream}.
 \Figref{_abcde} pr\'esente un flux de donn\'ees contenant cinq caract\`eres.
 Ce \stream est dans sa position originale \ie qu'il n'y a aucun \'el\'ement
 dans le pass\'e. Vous pouvez revenir \`a cette position en envoyant le 
