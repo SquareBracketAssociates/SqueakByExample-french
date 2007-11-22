@@ -143,13 +143,13 @@ Un receveur peut \^etre une expression qui peut retourner un objet. Dans \ct{Pen
 \begin{itemize}
 \item \emph{Les messages unaires} sont des messages qui sont envoy\'es \`a un objet sans autre information. Par exemple dans \ct{3 factorial}, \ct{factorial} est un message unaire. 
 \item  \emph{Les messages binaires} sont des messages form\'es avec des op\'erateurs (souvent arithm\'etiques). Ils sont binaires car ne concernant que deux objets : le receveur et l'objet argument objet. Par exemple dans \ct{10 + 20}, \ct{+} est un message binaire qui est envoy\'e au receveur \ct{10} avec l'argument \ct{20}. 
-\item  \emph{Les messages \`a mot-cl\'e} sont des messages form\'es avec plusieurs mot-cl\'es, chacun d'entre eux se finissant par deux points (\ct{\:}) et prenant un param\`etre.
+\item  \emph{Les messages \`a mot-cl\'e} sont des messages form\'es avec plusieurs mot-cl\'es, chacun d'entre eux se finissant par deux points (\ct{:}) et prenant un param\`etre.
 Par exemple dans \ct{anArray at: 1 put: 10}, le mot-cl\'e \ct{at:} prend un argument \ct{1} et le mot-cl\'e \ct{put:} l'argument \ct{10}.
 \end{itemize}
 
 %-------------------------------------------------------------
 \subsection{Messages unaires}
-Les messages unaires sont des messages qui ne n\'ecessitent aucun argument. Ils suivent le mod\`ele syntaxique suivant : \ct{receveur nomMessage}. Le s\'electeur est constitu\'e d'une s\'erie de caract\`ere ne contenant pas deux points (\ct{\:}) (\eg \ct{factorial}, \ct{open}, \ct{class}).
+Les messages unaires sont des messages qui ne n\'ecessitent aucun argument. Ils suivent le mod\`ele syntaxique suivant : \ct{receveur nomMessage}. Le s\'electeur est constitu\'e d'une s\'erie de caract\`ere ne contenant pas deux points (\ct{:}) (\eg \ct{factorial}, \ct{open}, \ct{class}).
 \needlines{4}
 \begin{code}{@TEST}
 89 sin           --> 0.860069405812453
@@ -169,12 +169,12 @@ Ils suivent le moule syntaxique : \lct{receveur \textbf{s\'electeur}}}
 Les messages binaires sont des messages qui n\'ecessitent exactement un argument \emph{et} dont le s\'electeur consiste en une s\'equence de un ou plusieurs caract\`eres de l'ensemble : \ct{+}, \ct{-}, \ct{*}, \ct{/}, \ct{&}, \ct{=}, \ct{>}, \ct{|}, \ct{<}, \ct{~}, et \ct{@}. Notez que \ct{--} n'est pas autoris\'e.
 
 \begin{code}{@TEST}
-100@100      --> 100@100  "cr\'{e}\'{e} un objet Point"
+100@100      --> 100@100  "!cr\'e\'e! un objet Point"
 3 + 4              --> 7
 10 - 1            --> 9
 4 <= 3            --> false
-(4/3) * 3 = 4   --> true  "l'\'egalit\'e est juste un message binaire et les fractions sont exactes"
-(3/4) == (3/4) --> false  "deux fractions \'egales ne sont pas le m\^eme objet"
+(4/3) * 3 = 4   --> true  "!l'\'egalit\'e! est juste un message binaire et les fractions sont exactes"
+(3/4) == (3/4) --> false  "!deux fractions \'egales ne sont pas le m\^eme objet!"
 \end{code}
 
 \important{Les messages binaires sont des messages qui n\'ecessite exactement un argument \emph{et} dont le s\'electeur est compos\'e d'une s\'equence de caract\`eres parmi : \ct{+}, \ct{-}, \ct{*}, \ct{/}, \ct{\&}, \ct{=}, \ct{>}, \ct{|}, \ct{<}, \ct{\~}, et \ct{@}. \ct{--} n'est pas possible.\\
@@ -183,7 +183,7 @@ Ils suivent le mod\`ele syntaxique : \lct{receveur \textbf{s\'electeur} argument
 %-------------------------------------------------------------
 \subsection{Messages \`a mots cl\'es}
 
-Les messages \`a mot-cl\'e sont des messages qui n\'ecessitent un ou plusieurs arguments et dont le s\'electeur consiste en un ou plusieurs mot-cl\'es se finissant par deux points \ct{\:}.  Les messages \`a mot-cl\'es suivent le mod\`ele suivant : 
+Les messages \`a mot-cl\'es sont des messages qui n\'ecessitent un ou plusieurs arguments et dont le s\'electeur consiste en un ou plusieurs mot-cl\'es se finissant par deux points \ct{:}.  Les messages \`a mot-cl\'es suivent le mod\`ele suivant : 
 \lct{receveur \textbf{selecteurMotUn:} argument\-Un \textbf{motDeux:} argumentDeux}
 
 Chaque mot-cl\'e utilise un argument. Ainsi \ct{r:g:b:} est une m\'ethode avec 3 arguments, \ct{playFileNamed:} et \ct{at:} sont des m\'ethodes avec un argument, et \ct{at:put:} est une m\'ethode avec deux arguments. Pour cr\'eer une instance de la classe \ct{Color} on peut utiliser la m\'ethode \ct{r:g:b:} comme dans \ct{Color r: 1 g: 0 b: 0}, qui cr\'ee la couleur rouge. Notez que les deux points ne font pas partie du s\'electeur.
@@ -191,8 +191,8 @@ Chaque mot-cl\'e utilise un argument. Ainsi \ct{r:g:b:} est une m\'ethode avec 3
 \important{En \ind{Java} ou \ind{C++}, l'invocation de m\'ethode \st \ct{Color r: 1 g: 0 b: 0} serait \'ecrite \ct{Color.rgb(1,0,0)}.}
 
 \begin{code}{@TEST | nums |}
-1 to: 10                        --> (1 to: 10)  "cr\'eation d'un intervalle"
-Color r: 1 g: 0 b: 0       --> Color red  "cr\'eation d'une nouvelle couleur"
+1 to: 10                        --> (1 to: 10)  "!cr\'eation! d'un intervalle"
+Color r: 1 g: 0 b: 0       --> Color red  "!cr\'eation! d'une nouvelle couleur"
 12 between: 8 and: 15 --> true
 
 nums := Array newFrom: (1 to: 5).
@@ -229,7 +229,7 @@ Ces r\`egles ont un ordre de lecture tr\`es naturel. Maintenant si vous voulez \
 Les messages unaires sont d'abord envoy\'es, puis les messages binaires et enfin les messages \`a mots-cl\'e. On peut \'egalement dire que les messages unaires ont une priorit\'e plus importante que les autres types de messages.
 
 \important{\textbf{R\`egle  une.} Les messages unaires sont envoy\'es en premier, puis les messages binaires et finalement les messages \`a mot-cl\'es.\\
-\centerline{\ct{Unaire > Binaire > Mot-cl\'e}}
+\centerline{\lct{Unaire > Binaire > Mot-cl\'e}}
 }
 
 Comme ces exemples le montrent, les r\`egles de syntaxe de \st permettent d'assurer une certaine lisibilit\'e des expressions :
@@ -275,9 +275,9 @@ Dans le message \ct{aPen color: Color yellow}, il y a un message \emph{unaire} \
 \needlines{5}
 \begin{example}[decColor]{D\'ecomposition de l'\'evaluation de \ct{aPen color: Color yellow}}{}
         aPen color: Color yellow
-(1)                       Color yellow        "message unaire envoy\'e en premier"
+(1)                       Color yellow        "message unaire !envoy\'e! en premier"
                         --> aColor
-(2)   aPen color: aColor                 "puis le message \`a mot-cl\'e"
+(2)   aPen color: aColor                 "puis le message !\`a mot-cl\'e!"
 \end{example}
 
 \paragraph{Exemple.} Dans le message \ct{aPen go: 100 + 20}, il y a le message \emph{binaire} \ct{+ 20} et un message \`a \emph{mot-cl\'e} \ct{go:}. Les messages binaires sont d'abord envoy\'es avant les messages \`a mot-cl\'es, ainsi \ct{100 + 20} est envoy\'e en premier (1) : le message \ct{+ 20} est envoy\'e \`a l'objet \ct{100} et retourne le nombre \ct{120}. Puis le message \ct{aPen go: 120} est envoy\'e avec comme argument \ct{120} (2).
@@ -287,7 +287,7 @@ Dans le message \ct{aPen color: Color yellow}, il y a un message \emph{unaire} \
       aPen go: 100 + 20   
 (1)                 100 + 20           "le message binaire en premier"
                    -->   120
-(2)  aPen go: 120                   "puis le message \`a mot-cl\'e"
+(2)  aPen go: 120                   "puis le message !\`a mot-cl\'e!"
 \end{example}
 
 \begin{figure}[htb]
@@ -344,10 +344,10 @@ Dans le message \ct{aPen color: Color yellow}, il y a un message \emph{unaire} \
 \subsection{Les parenth\`eses en premier}
 
 \important{\textbf{R\`egle deux.} Les messages parenth\'es\'es sont envoy\'es avant tout autre message.\\
-\centerline{\ct{(Msg) > Unaire > Binaire > Mot-cl\'e}}}
+\centerline{\lct{(Msg) > Unaire > Binaire > Mot-cl\'e}}}
 
 \begin{code}{@TEST}
-1.5 tan rounded asString = (((1.5 tan) rounded) asString) --> true    "les parenth\`eses sont n\'ecessaires ici"
+1.5 tan rounded asString = (((1.5 tan) rounded) asString) --> true    "!les parenth\`eses sont n\'ecessaires ici!"
 3 + 4 factorial   --> 27    "(et pas 5040)"
 (3 + 4) factorial --> 5040
 \end{code}
@@ -355,9 +355,9 @@ Dans le message \ct{aPen color: Color yellow}, il y a un message \emph{unaire} \
 Ici nous avons besoin des \ind{parenth\`eses} pour forcer l'envoi de \ct{lowMajorScaleOn:} avant \ct{play}.
 \begin{code}{}
 (FMSound lowMajorScaleOn: FMSound clarinet) play 
-"(1) envoie le message clarinet \`a la classe FMSound pour cr\'eer le son de clarinette.
- (2) envoie le son \`a FMSound comme argument du message \`a mots-cl\'es lowMajorScaleOn:.
- (3) joue le son r\'esultant."
+"(1) envoie le message clarinet !\`a! la classe FMSound pour !cr\'eer! le son de clarinette.
+ (2) envoie le son !\`a! FMSound comme argument du message !\`a mots-cl\'es! lowMajorScaleOn:.
+ (3) joue le son !r\'esultant!."
 \end{code}
 
 % ON: This has nothing to do with parentheses!
@@ -379,7 +379,7 @@ Le message \ct{(65@325 extent: 134 @ 100) center} retourne le centre du rectangl
     --> aPoint
 (2)                                134@100                     "binaire"
                                  --> anotherPoint
-(3)   aPoint extent: anotherPoint                       "mot-cl\'e"
+(3)   aPoint extent: anotherPoint                       "!mot-cl\'e!"
       --> aRectangle
 (4)   aRectangle center                                     "unaire"
       --> 132@375
@@ -408,7 +408,7 @@ Maintenant nous savons comment les messages de diff\'erentes natures ou priorit\
 Les r\`egles de composition des messages sont simples mais peuvent engendrer des incoh\'erences dans l'\'evaluation des expressions arithm\'etiques qui sont exprim\'ees sous forme de messages binaires. Voici des situations habituelles o\`u des parenth\`eses suppl\'ementaires sont n\'ecessaires.
 
 \begin{code}{@TEST}
-3 + 4 * 5      --> 35    "(pas 23)  les messages binaires sont envoy\'es de gauche \`a droite"
+3 + 4 * 5      --> 35    "!(pas 23)  les messages binaires sont envoy\'es de gauche \`a droite!"
 3 + (4 * 5)    --> 23
 1 + 1/3         --> (2/3)    "et pas 4/3"
 1 + (1/3)       --> (4/3)
@@ -420,7 +420,7 @@ Les r\`egles de composition des messages sont simples mais peuvent engendrer des
 Dans l'expression \ct{20 + 2 * 5}, il y a seulement les messages binaires \ct{+} et \ct{*}. En \st il n'y a pas de priorit\'e sp\'ecifique pour les op\'erations \ct{+} et \ct{*}. Ce sont juste des messages binaires, ainsi \ct{*} n'a pas priorit\'e sur \ct{+}. Ici le message le plus \`a gauche \ct{+} est envoy\'e en premier (1) et ensuite \ct{*} est envoy\'e au r\'esultat comme on le voit dans \egref{binaryMessages1}.  
 
 \begin{example}[binaryMessages1]{D\'ecomposer \ct{20 + 2 * 5}}{}
-"Comme il n'y a pas de priorit\'e entre les messages binaires, le message le plus \`a gauche + est \'evalu\'e en premier m\^eme si d'apr\`es les r\`egles de l'arithm\'etique le * devrait d'abord \^etre envoy\'e."
+"!Comme il n'y a pas de priorit\'e entre les messages binaires, le message le plus \`a gauche + est \'evalu\'e en premier m\^eme si d'apr\`es les r\`egles de l'arithm\'etique le * devrait d'abord \^etre envoy\'e.!"
 
       20 + 2 * 5 
 (1)  20 + 2 --> 22
@@ -435,7 +435,7 @@ Comme il est montr\'e dans \egref{binaryMessages1} le r\'esultat de cette expres
 
 \needlines{4}
 \begin{example}[mathcorrect]{D\'ecomposition de \ct{20 + (2 * 5)}}{}
-"Les messages entour\'es de parenth\`eses sont \'evalu\'es en premier ainsi * est envoy\'e avant + afin de produire le comportement souhait\'e."
+"!Les messages entour\'es de parenth\`eses sont \'evalu\'es en premier ainsi * est envoy\'e avant + afin de produire le comportement souhait\'e.!"
 
     20 + (2 * 5) 
 (1)        (2 * 5) --> 10
@@ -495,7 +495,7 @@ Souvent les d\'ebutants ont des probl\`emes pour comprendre quand ils doivent aj
 %-------------------------------------------------------------
 \subsection{Des parenth\`eses ou pas ?}
 Les caract\`eres \ct{[}, \ct{]}, and \ct{(}, \ct{)} 
-d\'elimite des zones distinctes. Dans ces zones, un message \`a mot-cl\'e est la plus longue s\'equence de mots termin\'es par (\ct{\:}) qui n'est pas coup\'e par les caract\`eres (\ct{.}), ou (\ct{\;}). 
+d\'elimite des zones distinctes. Dans ces zones, un message \`a mot-cl\'e est la plus longue s\'equence de mots termin\'es par (\ct{:}) qui n'est pas coup\'e par les caract\`eres (\ct{.}), ou (\ct{;}). 
 Lorsque les caract\`eres \ct{[}, \ct{]}, et \ct{(}, \ct{)} entourent des mots avec des deux points, ces mots participent au message \`a mot-cl\'e \emph{local} \`a la zone d\'efinie.
 
 Dans cet exemple, il y a deux mot-cl\'es distincts : \ct{rotatedBy:magnify:smoothing:} et \ct{at:put:}.
@@ -515,9 +515,9 @@ Lorsque les caract\`eres \ct{[}, \ct{]}, et \ct{(}, \ct{)} entourent des mots av
 
 \on{Sounds terribly complicated.}
 
-\paragraph{Astuces.} Si vous avez des probl\`emes avec ces r\`egles de priorit\'e, vous pouvez commencer simplement en entourant avec des parenth\`eses chaque fois que vous voulez distinguer deux messages avec la m\^eme priorit\'e.
+\hint{Si vous avez des probl\`emes avec ces r\`egles de priorit\'e, vous pouvez commencer simplement en entourant avec des parenth\`eses chaque fois que vous voulez distinguer deux messages avec la m\^eme priorit\'e.}
 
-L'expression qui suit ne n\'ecessite pas de parenth\`eses car l'expression \ct{x isNil} est unaire donc envoy\'ee avant le message \`a mot-cl\'e \lct{ifTrue:}.
+L'expression qui suit ne n\'ecessite pas de parenth\`eses car l'expression \ct{x isNil} est unaire donc envoy\'ee avant le message \`a mot-cl\'e \mbox{\lct{ifTrue:}.}
 \begin{code}{}
 (x isNil)
    ifTrue:[...]
@@ -546,9 +546,9 @@ Les parenth\`eses quant \`a elles n'affectent que l'ordre d'envoi des messages.
 Aucun objet n'est cr\'e\'e, ainsi dans \lct{(\emph{expression})}, \lct{\emph{expression}} sera \emph{toujours} \'evalu\'ee exactement une fois (en supposant que le code du son est \'evalu\'e une fois).
 
 \begin{code}{}
-[ x isReady ] whileTrue: [ y doSomething ]   "\`a la fois le receveur et l'argument doivent \^etre des blocs"
-4 timesRepeat: [ Beeper beep ]                   "l'argument est \'evalu\'e plus d'une fois, donc doit \^etre un bloc"
-(x isReady) ifTrue: [ y doSomething ]           "le receveur est \'evalu\'e qu'une fois, donc n'est pas un block"
+[ x isReady ] whileTrue: [ y doSomething ]   "!\`a la fois le receveur et l'argument doivent \^etre des blocs!"
+4 timesRepeat: [ Beeper beep ]                   "!l'argument est \'evalu\'e plus d'une fois, donc doit \^etre un bloc!"
+(x isReady) ifTrue: [ y doSomething ]           "!le receveur est \'evalu\'e qu'une fois, donc n'est pas un bloc!"
 \end{code}
 
 %=============================================================
@@ -565,7 +565,7 @@ box containsPoint: 40@50 --> true
 
 %=============================================================
 \section{Cascades de messages}
-\st offre la possibilit\'e d'envoyer plusieurs messages aux m\^eme receveur en utilisant le point-virgule (\ct{\;}). Ceci s'appelle la \emphind{cascade} dans le jargon \st.
+\st offre la possibilit\'e d'envoyer plusieurs messages aux m\^eme receveur en utilisant le point-virgule (\ct{;}). Ceci s'appelle la \emphind{cascade} dans le jargon \st.
 
 \important{Expression Msg1 ; Msg2}
 
@@ -604,7 +604,7 @@ Ils sont de la forme \lct{receveur \textbf{s\'electeur}}.
 
 \item Les messages binaires sont des messages qui concernent deux objets, le receveur et un autre objet \emph{et} dont le s\'electeur est compos\'e de un ou deux caract\`eres de la liste suivante : \ct{+}, \ct{-}, \ct{*}, \ct{/}, \ct{|}, \texttt{\&}, \ct{=}, \ct{>}, \ct{<}, \texttt{\~}, et \ct{@}.
 Ils sont de la forme : \lct{receveur \textbf{s\'electeur} argument}
-\item Les messages \`a mots-cl\'es sont des messages qui concernent plus d'un objet et qui contiennent au moins un caract\`ere deux points (\ct{\:}). \\
+\item Les messages \`a mots-cl\'es sont des messages qui concernent plus d'un objet et qui contiennent au moins un caract\`ere deux points (\ct{:}). \\
 Ils sont de la forme : 
 \lct{receveur \textbf{s\'electeurMotUn:} argumentUn \textbf{motDeux:} argumentDeux}
 

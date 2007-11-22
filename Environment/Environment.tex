@@ -32,9 +32,7 @@
 \fi
 %=================================================================
 \newcommand{\debugHandle}{\raisebox{-0.4ex}{\includegraphics[width=1em]{debugHandle}}}
-% [squeak-fr]
-\newcommand{\changeset}{\emph{change set}\xspace}
-\newcommand{\changesets}{\emph{change sets}\xspace}
+
 %=================================================================
 \chapter{L'environnement de programmation de Squeak}
 \label{cha:env}
@@ -1365,7 +1363,7 @@ Pour d\'emontrer la richesse du Debugger, commen\c{c}ons par
 \needspace{10ex}
 \begin{method}[buggy]{Une m\'ethode bogu\'ee}
 suffix
-	"disons que je suis un nom de fichier et que je fournis mon suffixe, parie suivant le dernier point"
+	"disons que je suis un nom de fichier et que je fournis mon suffixe, la partie suivant le dernier point"
 	| dot dotPosition |
 	dot := FileDirectory dot.
 	dotPosition := (self size to: 1 by: -1) detect: [ :i | (self at: i) = dot ].
@@ -1688,7 +1686,7 @@ Ainsi, par exemple, nous pourrions \'editer la m\'ethode \ct{suffix} comme suit:
 \needspace{11ex}
 \begin{method}[suffix]{Ins\'erer une pause par \ct{halt} dans la m\'ethode \ct{suffix}.}
 suffix
-	"disons que je suis un nom de fichier et que je fournis mon suffixe, parie suivant le dernier point"
+	"disons que je suis un nom de fichier et que je fournis mon suffixe, la partie suivant le dernier point"
 	| dot dotPosition |
 	dot := FileDirectory dot asCharacter.
 	dotPosition := (self size to: 1 by: -1) detect: [ :i | (self at: i) = dot ].

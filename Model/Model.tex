@@ -76,7 +76,7 @@ Apr\`es seulement peu de temps pass\'e avec \st, vous serez progressivement surp
 Par exemple, les entiers sont v\'eritablement des objets (de classe Integer). D\`es lors vous pouvez leur envoyer des messages, comme vous feriez avec n'importe quel autre objet.
 
 \begin{code}{@TEST}
-3 + 4            --> 7    "envoie '+ 4' \`a 3, donnant 7"
+3 + 4            --> 7    "!envoie '+ 4' \`a 3, donnant 7!"
 20 factorial  --> 2432902008176640000   "envoie factorial, donnant un grand nombre"
 \end{code}
 
@@ -241,10 +241,10 @@ Vous trouverez donc la m\'ethode \ct{blue} d\'efini c\^ot\'e classe de la classe
 
 \needlines{5}
 \begin{code}{@TEST | aColor |}
-aColor := Color blue.               "Methode de classe blue"
+aColor := Color blue.               "!M\'ethode! de classe blue"
 aColor        --> Color blue
-aColor red  --> 0.0         "Methode d'acces red (rouge) cote instance"
-aColor blue --> 1.0        "Methode d'acces blue (bleu) cote instance"
+aColor red  --> 0.0         "!M\'ethode d'acc\`es red (rouge) c\^ot\'e instance!"
+aColor blue --> 1.0        "!M\'ethode d'acc\`es blue (bleu) c\^ot\'e instance!"
 \end{code}
 
 Vous d\'efinissez une classe en remplissant le patron (ou \emph{template} en anglais) propos\'e
@@ -605,7 +605,7 @@ Le receveur d\'ecide alors de comment y r\'epondre en s\'electionnant en retour
 sa propre m\'ethode correspondant \`a ce qui a \'et\'e demand\'e.
 Puisque des objets distincts peuvent avoir diff\'erentes m\'ethodes pour r\'epondre \`a un m\^eme message, le choix de la m\'ethode doit se faire \emph{dynamiquement} \`a la r\'eception du message.
 \begin{code}{@TEST}
-3 + 4         --> 7          "envoie le message + d'argument 4 \`a l'entier  3"
+3 + 4         --> 7          "!envoie le message + d'argument 4 \`a l'entier  3!"
 (1@2) + 4 --> 5@6    "envoie le message + d'argument 4 au point (1@2)"
 \end{code}
 \noindent
@@ -618,7 +618,7 @@ Joseph Pelrine
 \ab{Citation?}
 \on{d\'esol\'e, simple communiqu\'e personel de l'auteur et notes de lecture!}
 dit succintement le principe suivant:
-\important{Ne fais rien que tu ne peux d\'el\'eguer \`a quelqu'un d'autre. (Don't do anything that you can push off onto someone else.)}
+\important{Ne fais rien que tu ne peux d\'el\'eguer \`a quelqu'un d'autre~\traduit{Don't do anything that you can push off onto someone else.}.}
 \index{Pelrine, Joseph}
 
 Beaucoup de langages orient\'es objets disposent \`a la fois d'op\'erations statiques et dynamiques pour les objets; en \st il n'y a qu'envois de message dynamiques. Au lieu de fournir des op\'erations statiques sur les classes, nous leur envoyons simplement des messages, puisque les classes sont aussi des objets. 
@@ -642,7 +642,7 @@ Beaucoup de langages orient\'es objets disposent \`a la fois d'op\'erations stat
 En particulier, la seule fa\c{c}on de mettre \`a jour une \ind{variable d'instance} d'un autre objet est de lui envoyer un message r\'eclamant le changement de son propre attribut (ou champ) car ces derniers ne sont pas des ``attributs publics'' en \st.
 Bien entendu, offrir des m\'ethodes d'acc\`es dites accesseurs (\emph{getter}, en anglais, retournant l'\'etat de la variable) et mutateurs (\emph{setter} en anglais, changeant la variable) pour chaque variable d'instance d'un objet n'est pas une bonne m\'ethodologie orient\'ee objet.
 Joseph Pelrine annonce aussi \`a juste titre:
-\important{Ne laissez jamais personne d'autre jouer avec vos donn\'ees. (Don't let anyone else play with your data.)}
+\important{Ne laissez jamais personne d'autre jouer avec vos donn\'ees~\traduit{Don't let anyone else play with your data.}.}
 
 %=========================================================
 \section{La recherche de m\'ethode suit la cha\^{\i}ne d'h\'eritage} 
@@ -756,7 +756,7 @@ Puisque ce n'est pas le cas ici, il est pr\'ef\'erable de ne pas renvoyer explic
 C'est une convention en \st, ainsi r\'esum\'e par Kent Beck se r\'ef\'erant \`a la \emph{valeur de retour importante} ``Interesting return value'' \cite{Beck97a}:
 \index{Beck, Kent}
 
-\important{Renvoyez une valeur seulement quand votre objet exp\'editeur en a l'usage. (Return a value only when you intend for the sender to use the value.)}
+\important{Renvoyez une valeur seulement quand votre objet exp\'editeur en a l'usage~\traduit{Return a value only when you intend for the sender to use the value.}.}
 
 %---------------------------------------------------------
 \subsection{Surcharge et extension.}
@@ -860,7 +860,7 @@ receveur, \ie la classe de
 \begin{method}[fullPrintOn]{Combiner l'usage de \super et \self}
 BorderedMorph>>>fullPrintOn: aStream
 	aStream nextPutAll: '('.
-	!\textbf{super fullPrintOn: aStream.}!
+	!\emcode{super fullPrintOn: aStream.}!
 	aStream nextPutAll: ') setBorderWidth: '; print: borderWidth;
 		nextPutAll: ' borderColor: ' , (self colorString: borderColor)
 \end{method}
@@ -1148,7 +1148,7 @@ Ce dictionnaire a une cl\'e \ct{#CR} \`a laquelle est affect\'ee la valeur
 ArrayedCollection subclass: #Text
         instanceVariableNames: 'string runs' 	
         classVariableNames: '' 	
-        !\textbf{poolDictionaries: 'TextConstants'}!
+        !\emcode{poolDictionaries: 'TextConstants'}!
         category: 'Collections-Text'
 \end{classdef}
    

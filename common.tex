@@ -75,6 +75,9 @@
 
 \def\url@leostyle{%
   \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\sffamily}}}
+% ajouter par Martial pour \traduit (met une dague dans les \doublebox
+\def\thempfootnote{\fnsymbol{mpfootnote}}
+
 \makeatother
 % Now actually use the newly defined style.
 \urlstyle{leo}
@@ -197,7 +200,7 @@
 %:Reader hints (hint)
 %
 % Indicates a non-obvious consequence 
-\newcommand{\hint}[1]{\vspace{1ex}\noindent\fbox{\textsc{Hint}} \emph{#1}}
+\newcommand{\hint}[1]{\vspace{1ex}\noindent\fbox{\textsc{Astuce}} \emph{#1}}
 %=============================================================
 %:Highlighting Important stuff (doublebox)
 %
@@ -299,6 +302,7 @@ pdfsubject={Informatique, Computer Science}
   morecomment=[s]{"}{"},
   alsoletter={\#:},
   escapechar={!},
+  escapebegin=\itshape, % comment-like by default (Martial 11/2007)
   literate=
     {BANG}{!}1
     {UNDERSCORE}{\_}1
@@ -314,11 +318,14 @@ pdfsubject={Informatique, Computer Science}
 	, % Don't forget the comma at the end!
   tabsize=4
 }[keywords,comments,strings]
-
+% ajout pour les échappements dans les codes
+% indispensable pour mettre le code en emphase (cf. Model.tex) 
+\newcommand{\emcode}[1]{\emph{\textbf{\NoAutoSpaceBeforeFDP#1\AutoSpaceBeforeFDP}}} % Martial 11/2007
 \lstset{language=Smalltalk,
 	basicstyle=\sffamily,
 	keywordstyle=\color{black}\bfseries,
 	% stringstyle=\ttfamily, % Ugly! do we really want this? -- on
+	%commentstyle=\itshape,
 	mathescape=true,
 	showstringspaces=false,
 	keepspaces=true,
@@ -500,7 +507,13 @@ pdfsubject={Informatique, Computer Science}
 \setcounter{totalnumber}{20}
 \setcounter{dbltopnumber}{9}
 %=============================================================
-% [Squeak-fr]
+%% [Squeak-fr]
+% \traduit utilisé dans Model.tex
+\newcommand{\traduit}[1]{\footnote[2]{#1}}
+% changeset alias
+\newcommand{\changeset}{\emph{change set}\xspace}
+\newcommand{\changesets}{\emph{change sets}\xspace}
+% césure
 \hyphenation{Omni-Brow-ser}
 \hyphenation{m\'e-tho-de} % erreur de cesure commune
 \hyphenation{m\'e-tho-des}

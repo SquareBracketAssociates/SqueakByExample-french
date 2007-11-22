@@ -139,7 +139,7 @@ si vous essayez d'utiliser les \streams avec un autre type de collection:
 \needlines{3}
 \begin{code}{}
 w := WriteStream on: (OrderedCollection new: 20).
-w nextPut: 12. -->  raises an error
+w nextPut: 12. -->  !\emph{l\`eve une erreur}!
 \end{code}
 
 Les \streams ne sont pas seulement destin\'es aux collections mais
@@ -201,9 +201,9 @@ conna\^{\i}tre l'\'el\'ement suivant dans le \stream sans avancer dans le flux.
 
 \begin{code}{@TEST |stream negative number|}
 stream := ReadStream on: '-143'.
-negative := (stream peek = $-).    "regardez le premier element sans le lire"
+negative := (stream peek = $-).    "regardez le premier !\'el\'ement! sans le lire"
 negative. --> true
-negative ifTrue: [stream next].       "ignore le caractere moins"
+negative ifTrue: [stream next].       "ignore le !caract\`ere! moins"
 number := stream upToEnd.
 number. --> '143'
 \end{code}
@@ -255,14 +255,14 @@ le \stream apr\`es l'\'el\'ement identifi\'e.
 
 \begin{code}{@TEST |stream|}
 stream := 'abcdef' readStream.
-stream next.        --> $a    "le flux est a la position juste apres a"
-stream skip: 3.                           "le flux est apres d"
+stream next.        --> $a    "!le flux est \`a la position juste apr\`es a!"
+stream skip: 3.                           "le flux est !apr\`es! d"
 stream position.  -->   4
-stream skip: -2.                          "le flux est apres b"
+stream skip: -2.                          "le flux est !apr\`es! b"
 stream position.  --> 2
 stream reset.
 stream position.  --> 0
-stream skipTo: $e.                      "le flux est apres e"
+stream skipTo: $e.                      "le flux est !apr\`es! e"
 stream next.        --> $f
 stream contents. --> 'abcdef'
 \end{code}
@@ -281,15 +281,15 @@ Voici une impl\'ementation possible d'un algorithme utilisant \ct{atEnd} et pren
 stream1 := #(1 4 9 11 12 13) readStream.
 stream2 := #(1 2 3 4 5 10 13 14 15) readStream.
 
-"Le variable resultante contiendra la collection triee."
+"!La variable r\'esultante contiendra la collection tri\'ee.!"
 result := OrderedCollection new.
 [stream1 atEnd not & stream2 atEnd not]
   whileTrue: [stream1 peek < stream2 peek
-    "Enleve le plus petit element de chaque flux et l'ajoute au resultat"
+    "!Enl\`eve le plus petit \'el\'ement de chaque flux et l'ajoute au r\'esultat!"
     ifTrue: [result add: stream1 next]
     ifFalse: [result add: stream2 next]].
 
-"Un des deux flux peut ne pas etre a la position finale. Copie ce qu'il reste."
+"!Un des deux flux peut ne pas \^etre \`a la position finale. Copie ce qu'il reste!"
 result
   addAll: stream1 upToEnd;
   addAll: stream2 upToEnd.
@@ -480,11 +480,11 @@ Nous avons besoin d'ajouter les m\'ethodes \ct{goBackward} et \ct{goForward} pou
 
 \begin{code}{}
 History>>goBackward
-  self canGoBackward ifFalse: [self error: 'Already on the first element'].
+  self canGoBackward ifFalse: [self error: '!\emph{D\'ej\`a sur le premier \'el\'ement}!'].
   ^ stream back
 
 History>>goForward
-  self canGoForward ifFalse: [self error: 'Already on the last element'].
+  self canGoForward ifFalse: [self error: '!\emph{D\'ej\`a sur le dernier \'el\'ement}!'].
   ^ stream next
 \end{code}
 
@@ -603,12 +603,12 @@ Vous devez vous rem\'emorer de fermer le \stream sur fichier que vous avez ouver
 \begin{code}{@TEST |stream|}
 stream := FileStream forceNewFileNamed: 'test.txt'.
 stream
-    nextPutAll: 'Ce texte est ecrit dans un fichier nomme ';
+    nextPutAll: '!\emph{Ce texte est \'ecrit dans un fichier nomm\'e}! ';
     print: stream localName.
 stream close.
 
 stream := FileStream readOnlyFileNamed: 'test.txt'.
-stream contents. --> 'Ce fichier est ecrit dans un fichier nomme ''test.txt'''
+stream contents. --> '!\emph{Ce fichier est \'ecrit dans un fichier nomm\'e}! ''test.txt'''
 stream close.
 \end{code}
 
@@ -633,12 +633,12 @@ FileStream
     forceNewFileNamed: 'test.txt'
     do: [:stream |
         stream
-            nextPutAll: 'Ce texte est ecrit dans un fichier nomme ';
+            nextPutAll: '!\emph{Ce texte est \'ecrit dans un fichier nomm\'e}! ';
             print: stream localName].
 string := FileStream
             readOnlyFileNamed: 'test.txt'
             do: [:stream | stream contents].
-string --> 'Ce fichier est ecrit dans un fichier nomme ''test.txt'''
+string --> '!\emph{Ce fichier est \'ecrit dans un fichier nomm\'e}! ''test.txt'''
 \end{code}
 
 Les m\'ethodes de cr\'eation de flux de donn\'ees prenant un bloc comme

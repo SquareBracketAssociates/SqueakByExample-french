@@ -352,7 +352,7 @@ Maintenant, quand un message \ct{new} est envoyé à une classe, il est recherch
 Notons que le résultat de l'envoi de message \ct{TranslucentColor new} est une instance de  \clsind{TranslucentColor}  et \emph{non} de \ct{Behavior}, même si la méthode est trouvée dans la classe \ct{Behavior}!  \ct{new} retourne toujours une instance de \self , la classe qui a reçu le message, même si cela est implémenté dans une autre classe.
 
 \begin{code}{@TEST}
-TranslucentColor new class --> TranslucentColor    "not Behavior!"
+TranslucentColor new class --> TranslucentColor    "et non pas Behavior!"
 \end{code}
 
 \begin{center}
@@ -464,10 +464,11 @@ Color superclass							-->		Object
 \end{example}
 
 \needlines{4}
+% Martial: trouver mieux que "saute". Les ! sont nécessaires pour l'espace avant le : 
 \begin{example}{La hi{\'e}rarchie parall{\`e}le des méta-classes}{@TEST}
 TranslucentColor class superclass   --> Color class
 Color class superclass                     --> Object class
-Object class superclass superclass --> Class    "NB: skip ProtoObject class"
+Object class superclass superclass --> Class    "!Attention: saute ProtoObject class!"
 Class superclass                              --> ClassDescription
 ClassDescription superclass            --> Behavior
 Behavior superclass                         --> Object
