@@ -40,7 +40,7 @@
 pour la création et le déploiement de tests.
 Comme son nom l'indique, \sunit est conçu plus particulièrement pour les \emph{tests unitaires},
 mais en fait, il peut être aussi utilisé pour des tests d'intégration ou des tests fonctionnels. 
-\sunit a été développé par Ken Beck et ensuite grandement étendu par d'autres développeurs, dont notamment Joseph Pelrine, avec la prise en compte de la notion de ressource décrite dans la \secref{resource}. 
+\sunit a été développé par Ken Beck et ensuite grandement étendu par d'autres développeurs, dont notamment Joseph Pelrine, avec la prise en compte de la notion de ressource décrite dans \secref{resource}. 
 %\indmain{SUnit} is a minimal yet powerful framework that supports the
 %creation and deployment of tests.
 %but in fact it can be used for integration tests and functional tests as well.
@@ -107,7 +107,7 @@ Les tests qui ne sont pas exécutés ne vous aident pas à trouver les bugs~! De
 % \sunit, so instead of writing small code snippets in a workspace, we encourage you
 % to use \sunit and get all the
 % advantages of stored and automatically executable tests.
-Dans ce chapitre, nous commençons par discuter de pourquoi nous testons et de quoi est fait un bon test. Nous présentons alors une séries de petits exemples montrant comment utiliser \sunit. Finalement, nous étudions l'implémentation de \sunit, de façon à ce que vous compreniez comme \st utilise la puissance de la \ind{réflexivité} pour la mise en oeuvre de ses outils.
+Dans ce chapitre, nous commençons par discuter de pourquoi nous testons et de quoi est fait un bon test. Nous présentons alors une séries de petits exemples montrant comment utiliser \sunit. Finalement, nous étudions l'implémentation de \sunit, de façon à ce que vous compreniez comment \st utilise la puissance de la \ind{réflexivité} pour la mise en oeuvre de ses outils.
 
 % In this chapter we start by discussing why we test, and what makes a good test. We then present a series of small 
 % examples showing how to use \sunit.
@@ -514,7 +514,7 @@ Premièrement, \mthind{TestCase}{assert:description:} et \mthind{TestCase}{deny:
 
 % First, \mthind{TestCase}{assert:description:} and \mthind{TestCase}{deny:description:} take a second argument which is a message string that can be used to describe the reason for the failure, if it is not obvious from the test itself.   These methods are described in~\secref{descriptionStrings}.
 
-Ensuite, \sunit dispose de deux méthodes supplémentaires, \mthind{TestCase}{should:raise:} et \mthind{TestCase}{should:raise:}  pour la propagation des exceptions de test. Par exemple, vous utiliseriez \ct{(self should: aBlock raise: anException)} pour tester si une exception particulière est levée pendant l'exécution de \ct{aBlock}. \Mthref{ESTtestIllegal} illustre l'utilisation de \mbox{\ct{should:raise:}}.
+Ensuite, \sunit dispose de deux méthodes supplémentaires, \mthind{TestCase}{should:raise:} et \mthind{TestCase}{shouldnt:raise:}  pour la propagation des exceptions de test. Par exemple, vous utiliseriez \ct{(self should: aBlock raise: anException)} pour tester si une exception particulière est levée pendant l'exécution de \ct{aBlock}. \Mthref{ESTtestIllegal} illustre l'utilisation de \mbox{\ct{should:raise:}}.
 % Next, \sunit provides two additional methods, \mthind{TestCase}{should:raise:} and
 % \mthind{TestCase}{shouldnt:raise:} for testing exception propagation.
 % For example, you would use 
@@ -1149,11 +1149,11 @@ Ne vous placez jamais dans une situation où vous ne voulez pas lancer votre sui
 %   \end{quotation}
 % Never get yourself into a situation where you don't want to run your unit test suite because it takes too long.   
  
-\item[Tests unitaire \textit{vs.}\ \aconfirmer{tests de qualification}.] 
-Des tests unitaires capturent une partie de fonctionnalité et, comme tels, permettent de faciliter l'identification des bugs de cette fonctionnalité. Autant que possible, essayez d'avoir des tests unitaires pour chaque méthode pouvant potentiellement poser problème, et regroupez les par classe. Cependant, pour des situations profondément récursives ou complexes à installer, il est plus facile d'écrire des tests qui représentent un scénario cohérent pour l'application visée; ce sont des tests de \aconfirmer{qualification} ou tests fonctionnels.
-Des tests qui violent les principes de  Feathers peuvent faire de bon tests de \aconfirmer{qualification}.
-Groupez les tests de \aconfirmer{qualification} en cohérence avec la fonctionnalité qu'ils testent.
-Par exemple, si vous écrivez un compilateur, vous pourriez écrire des tests de \aconfirmer{qualification} avec des assertions qui concernent le code généré pour chaque instruction utilisable du langage source.
+\item[Tests unitaire \textit{vs.}\ tests d'acceptation.] 
+Des tests unitaires capturent une partie de fonctionnalité et, comme tels, permettent de faciliter l'identification des bugs de cette fonctionnalité. Autant que possible, essayez d'avoir des tests unitaires pour chaque méthode pouvant potentiellement poser problème, et regroupez les par classe. Cependant, pour des situations profondément récursives ou complexes à installer, il est plus facile d'écrire des tests qui représentent un scénario cohérent pour l'application visée; ce sont des tests d'acceptation ou tests fonctionnels.
+Des tests qui violent les principes de  Feathers peuvent faire de bon tests d'acceptation.
+Groupez les tests d'acceptation en cohérence avec la fonctionnalité qu'ils testent.
+Par exemple, si vous écrivez un compilateur, vous pourriez écrire des tests d'acceptation avec des assertions qui concernent le code généré pour chaque instruction utilisable du langage source.
 De tels tests pourraient concerner beaucoup de classes, et pourraient prendre beaucoup de temps pour s'exécuter parce qu'ils modifient le système de fichiers.
 Vous pouvez les écrire avec \sunit, mais vous ne voudriez pas les exécuter à chaque modification mineure, ainsi, ils doivent être séparés des vrais tests unitaires.
 % \item[Unit Tests \textit{vs.}\ Acceptance Tests.] Unit tests capture one piece of
