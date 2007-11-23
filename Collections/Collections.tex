@@ -1100,9 +1100,9 @@ Les m\'ethodes appropri\'ees sont \mthind{Dictionary}{keysDo:}, \mthind{Dictiona
 
 \begin{code}{}
 colors := Dictionary newFrom: { #yellow -> Color yellow. #blue -> Color blue. #red -> Color red }.
-colors keysDo: [:key | Transcript show: key; cr].                    "displays the keys"
-colors valuesDo: [:value | Transcript show: value;cr].            "displays the values"
-colors associationsDo: [:value | Transcript show: value;cr].  "displays the associations"
+colors keysDo: [:key | Transcript show: key; cr].                    "affiche les !cl\'es!"
+colors valuesDo: [:value | Transcript show: value;cr].            "affiche les valeurs"
+colors associationsDo: [:value | Transcript show: value;cr].  "affiche les associations"
 \end{code}
 
 %---------------------------------------------------------

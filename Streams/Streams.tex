@@ -139,7 +139,7 @@ si vous essayez d'utiliser les \streams avec un autre type de collection:
 \needlines{3}
 \begin{code}{}
 w := WriteStream on: (OrderedCollection new: 20).
-w nextPut: 12. -->  !\emph{l\`eve une erreur}!
+w nextPut: 12. -->  !\normcomment{l\`eve une erreur}!
 \end{code}
 
 Les \streams ne sont pas seulement destin\'es aux collections mais
@@ -480,11 +480,11 @@ Nous avons besoin d'ajouter les m\'ethodes \ct{goBackward} et \ct{goForward} pou
 
 \begin{code}{}
 History>>goBackward
-  self canGoBackward ifFalse: [self error: '!\emph{D\'ej\`a sur le premier \'el\'ement}!'].
+  self canGoBackward ifFalse: [self error: '!\normcode{D\'ej\`a sur le premier \'el\'ement}!'].
   ^ stream back
 
 History>>goForward
-  self canGoForward ifFalse: [self error: '!\emph{D\'ej\`a sur le dernier \'el\'ement}!'].
+  self canGoForward ifFalse: [self error: '!\normcode{D\'ej\`a sur le dernier \'el\'ement}!'].
   ^ stream next
 \end{code}
 
@@ -603,12 +603,12 @@ Vous devez vous rem\'emorer de fermer le \stream sur fichier que vous avez ouver
 \begin{code}{@TEST |stream|}
 stream := FileStream forceNewFileNamed: 'test.txt'.
 stream
-    nextPutAll: '!\emph{Ce texte est \'ecrit dans un fichier nomm\'e}! ';
+    nextPutAll: '!\normcode{Ce texte est \'ecrit dans un fichier nomm\'e}! ';
     print: stream localName.
 stream close.
 
 stream := FileStream readOnlyFileNamed: 'test.txt'.
-stream contents. --> '!\emph{Ce fichier est \'ecrit dans un fichier nomm\'e}! ''test.txt'''
+stream contents. --> '!\normcode{Ce fichier est \'ecrit dans un fichier nomm\'e}! ''test.txt'''
 stream close.
 \end{code}
 
@@ -633,12 +633,12 @@ FileStream
     forceNewFileNamed: 'test.txt'
     do: [:stream |
         stream
-            nextPutAll: '!\emph{Ce texte est \'ecrit dans un fichier nomm\'e}! ';
+            nextPutAll: '!\normcode{Ce texte est \'ecrit dans un fichier nomm\'e}! ';
             print: stream localName].
 string := FileStream
             readOnlyFileNamed: 'test.txt'
             do: [:stream | stream contents].
-string --> '!\emph{Ce fichier est \'ecrit dans un fichier nomm\'e}! ''test.txt'''
+string --> '!\normcode{Ce fichier est \'ecrit dans un fichier nomm\'e}! ''test.txt'''
 \end{code}
 
 Les m\'ethodes de cr\'eation de flux de donn\'ees prenant un bloc comme

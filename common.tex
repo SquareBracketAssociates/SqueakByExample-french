@@ -320,7 +320,10 @@ pdfsubject={Informatique, Computer Science}
 }[keywords,comments,strings]
 % ajout pour les échappements dans les codes
 % indispensable pour mettre le code en emphase (cf. Model.tex) 
-\newcommand{\emcode}[1]{\emph{\textbf{\NoAutoSpaceBeforeFDP#1\AutoSpaceBeforeFDP}}} % Martial 11/2007
+\newcommand{\codeify}[1]{\NoAutoSpaceBeforeFDP#1\AutoSpaceBeforeFDP}
+\newcommand{\normcomment}[1]{\emph{#1}} %cf. Streams
+\newcommand{\normcode}[1]{\emph{\codeify{#1}}} %cf. Streams
+\newcommand{\emcode}[1]{\textbf{\normcode{#1}}} % Martial 11/2007
 \lstset{language=Smalltalk,
 	basicstyle=\sffamily,
 	keywordstyle=\color{black}\bfseries,
