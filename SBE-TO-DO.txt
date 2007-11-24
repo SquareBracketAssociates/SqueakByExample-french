@@ -34,11 +34,11 @@ Understanding Message Syntax -- Traduit par Serge - Figures à traduire
 [DEVELOPING IN SQUEAK]
 The Smalltalk Object Model -- Fini (exception faite de l'absence globale d'accent dans les codes) 
 The Squeak Programming Environment -- Fini
-SUnit -- Alain travaille dessus
+SUnit -- Fini. redaction: Alain. relecture: martial
 Basic Classes -- Nicolas travaille dessus - (à traduire en UTF8)
 Collections -- Fini
 Streams -- Fini
 Morphic -- A réécrire complètement
 [ADVANCED SQUEAK]
-Classes and Metaclasses -- Luc Fabresse travaille dessus; relu par Martial; considere comme fini
-FAQ -- Traduit par Benoit Tudiri; relu par Martial
+Classes and Metaclasses -- Fini. redaction: Luc Fabresse; relu par Martial
+FAQ -- Fini. Traduit par Benoit Tudiri; relu par Martial
