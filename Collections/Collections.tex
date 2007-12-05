@@ -1193,13 +1193,13 @@ une condition particuli\`ere:
 \end{code}
 
 %---------------------------------------------------------
-\subsection{Identifier un \'el'ement avec \lct{detect:}}
+\subsection{Identifier un \'el\'ement avec \lct{detect:}}
 
 La m\'ethode \mthind{OrderedCollection}{detect:} renvoie le premier
 \'el\'ement du receveur qui affirme le test pass\'e en bloc-argument.
 %ajout
-(\ct{isVowel} retourne vrai \cad \ct{true} si le receveur est une voyelle~\footnote{Note du traducteur: les voyelles accentu\'ees ne sont pas pas consid\'er\'ees par d\'efaut comme des voyelles; \st-80 a la m\^eme tare que la plupart des vieux langages de programmation n\'es dans la culture anglosaxonne.}.)
-%note de martial: cette remarque ne concerne que moi. Elle pourrait etre enlevee si elle pose probleme; par contre il est bon de dire les limites des manipulations de string en ST.
+\ct{isVowel} retourne vrai \cad \ct{true} si le receveur est une
+voyelle non-accentu\'ee (pour plus d'explications, voir page~\pageref{def:isVowel}.
 \begin{code}{@TEST}
 'through' detect: [:each | each isVowel] --> $o
 \end{code}
