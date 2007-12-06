@@ -15,7 +15,7 @@ Traducteurs :
 - Alain Plantec
 - Serge Stinckwich
 - Luc Fabresse
-- Benoît Tudiri
+- Beno?t Tudiri
 
 TODO :
 
@@ -26,19 +26,19 @@ L'etat des chapitres
 Preface -- Traduit par Serge. A relire
 
 [GETTING STARTED]
-A Quick Tour of Squeak -- Mathieu travaille dessus (à traduire en UTF8)
+A Quick Tour of Squeak -- Mathieu travaille dessus (? traduire en UTF8)
 A First Application -- Serge travaille dessus
-Syntax in a Nutshell -- Traduit par René - René a laissé qq ZZZ
-Understanding Message Syntax -- Traduit par Serge - Figures à traduire
+Syntax in a Nutshell -- Traduit par Ren? et Martial -- Fini - A relire
+Understanding Message Syntax -- Traduit par Serge - Figures ? traduire
 
 [DEVELOPING IN SQUEAK]
-The Smalltalk Object Model -- Fini (exception faite de l'absence globale d'accent dans les codes) 
+The Smalltalk Object Model -- Fini  
 The Squeak Programming Environment -- Fini
 SUnit -- Fini. redaction: Alain. relecture: martial
-Basic Classes -- Nicolas travaille dessus - (à traduire en UTF8)
+Basic Classes -- Nicolas travaille dessus - (? traduire en UTF8)
 Collections -- Fini
 Streams -- Fini
-Morphic -- A réécrire complètement
+Morphic -- A r??crire compl?tement
 [ADVANCED SQUEAK]
 Classes and Metaclasses -- Fini. redaction: Luc Fabresse; relu par Martial
 FAQ -- Fini. Traduit par Benoit Tudiri; relu par Martial
