@@ -225,7 +225,7 @@ Notez que l'origine de l'écran \sq est en \emph{haut à gauche} et que les coor
 
 Le reste de la méthode doit être compréhensible d'elle même.
 Une partie de l'art d'écrire du bon code \st est de choisir les bons noms de méthodes de telle sorte que le code \st peut être lu comme du pidgin anglais.
-Vous devriez être capable d'imaginer l'objet se parlant à lui-même et dire :  ``\ct{Utilise des bords carr\e's!}'', ``\ct{\'Eteinds les cellules!}''.
+Vous devriez être capable d'imaginer l'objet se parlant à lui-même et dire :  ``\ct{Utilise des bords carr\'es!}'', ``\ct{Eteinds les cellules!}''.
 
 %=================================================================
 \section{Inspecter un objet}
@@ -327,7 +327,7 @@ Mais \ct{cellsPerSide} n'est pas une erreur \,---\, c'est juste le nom d'une mé
 
 \dothis{Sélectionner le premier élément du menu, afin de confirmer que nous parlons bien de \ct{cellsPerSide}.}
 
-Puis, \squeak va se plaindre de ne pas connaître la signification \ct{cells}. Il vous offre plusieurs possibilités de le corriger.
+Puis, \squeak va se plaindre de ne pas connaître la signification de \ct{cells}. Il vous offre plusieurs possibilités de le corriger.
 
 \dothis{Choisir \menu{declare instance} parce que nous souhaitons que \ct{cells} soit une variable d'instance.}
 Enfin, \squeak va se plaindre à propos du message \ct{newCellAt:at:} envoyé à la dernière ligne; ce n'est toujours pas une erreur, confirmez donc ce message également.
@@ -339,7 +339,7 @@ Si vous regardez maintenant de nouveau la définition de classe (en cliquant sur
 Examinons plus précisemment cette méthode \ct{initialize}.
 La ligne \ct{| sampleCell width height n |} déclare 4 variables temporaires. Elles sont appellées variables temporaires car leur portée et leur durée de vie sont limitées à cette méthode. Des variables temporaires avec des noms explicites sont utiles afin de rendre le code plus lisible. \st n'a pas de syntaxe spéciale pour distinguer les constantes et les variables et en fait ces 4 ``variables'' sont en fait des constantes. Les lignes 4 à 7 définissent les constantes.
 
-Quelle taille doit faire notre plateau de jeu ? Big enough to hold some integral number of cells, and big enough to draw a border around them.
+Quelle taille doit faire notre plateau de jeu ? Assez grand pour pouvoir contenir un certain nombre de cellules et assez grand pour pouvoir dessiner un bord autour d'elles.
 Quel est le bon nombre de cellules ? 5 ? 10 ? 100 ? Nous ne le savons pas pour l'instant et si nous savions, il y aurait des chances pour que nous changions par la suite d'idée par la suite. Nous déléguons donc la responsabilité de connaître ce nombre à une autre méthode, que nous appellons \ct{cellsPerSide}, et que nous écrirons dans une minute ou deux.
 C'est parce que nous envoyons le message \ct{cellsPerSide} avant de définir une méthode avec ce nom que \squeak nous demande ``confirm, correct, or cancel'' lorsque nous acceptons le corps de la méthode \ct{initialize}.
 Ne soyez pas inquiété par cela : c'est en fait une bonne pratique d'écrire en fonction d'autres méthodes qui ne sont pas encore définies.
@@ -352,22 +352,24 @@ Les trois lignes suivantes créent un nouvel objet \ct{SBECell} et assigne sa la
 %The eighth line sends the message \ct{bounds:} to \self.
 %\ct{bounds:} is a method that we inherit from our superclass; it is used to define the space on the screen that this Morph will occupy.  
 %The single colon (\ct{:}) at the end of the name says that \ct{bounds:} expects a single parameter, which should be a rectangle object.
-La ligne 8 fixe la valeur de \ct{bounds} du nouvel objet.
-Without worrying too much about the details just yet, just believe us that the expression in parentheses creates a square with its origin (\ie its top-left corner) at the point (5,5) and its bottom-right corner far enough away to allow space for the right number of cells.
+La ligne 8 fixe la valeur de \ct{bounds} du nouvel objet. Ne vous inquiétez pas trop sur les détails pour l'instant. Croyez nous que l'expression entre parenthèses créé un carré avec comme origine (\ie son coin haut à gauche) le point (5,5) et son coin bas droit suffisamment loin afin d'avoir de l'espace pour le bon nombre de cellules.
 
-The last line sets the \ct{SBEGame} object's instance variable \ct{cells} to a newly created \clsind{Matrix} with the right number of rows and columns.   We do this by sending the message \ct{new:tabulate:} to the \ct{Matrix} class (classes are objects too, so we can send them messages).  We know that \mthind{Matrix class}{new:tabulate:} takes two arguments because it has two colons (\ct{:}) in its name.   The arguments go right after the colons.
-If you are used to languages that put all of the arguments together inside parentheses, this may seem weird at first.  Don't panic, it's only syntax!
-It turns out to be a very good syntax because the name of the method can be used to explain the roles of the arguments.  For example, it is pretty clear that \ct{Matrix rows: 5 columns: 2} has 5 rows and 2 columns, and not 2 rows and 5 columns.
+La dernière ligne fixe la variable d'instance \ct{cells} de l'objet \ct{SBEGame} avec un nouvel objet \clsind{Matrix} avec le bon nombre de lignes et de colonnes.
+Nous réalisons cela en envoyant le message \ct{new:tabulate:} à la classe \ct{Matrix} (les classes sont des objets aussi, nous pouvons leur envoyer des messages).
+
+Nous savons que \mthind{Matrix class}{new:tabulate:} prend deux arguments parce qu'il y a deux fois deux points (\ct{:}) dans son nom. Les arguments arrive à droite après les deux points.
+Si vous êtes habitué à des langages de programmation où les arguments sont tous mis à l'intérieur de parenthèses, ceci peut sembler surprenant dans un premier temps. Ne vous inquiétez pas, c'est juste de la syntaxe !
+
+Cela s'avère être une excellente syntaxe car le nom de la méthode peut être utiliser pour expliquer le rôle des arguments. Par exemple, il est très clair que \ct{Matrix rows:5 columns:2} a 5 lignes et 2 colonnes et non pas 2 lignes et 5 colonnes.
 \cmindex{Matrix class}{rows:columns:}
 
-\ct{Matrix new: n tabulate: [ :i :j | self newCellAt: i at: j ]} créée une nouvelle matrice de taille \ct{n}{$\times$}\ct{n} et initialise ses éléments. La valeur initiale de chaque élément dépend de ses coordonnées. L'élément \ct{(i,j)}\textsuperscript{th} sera initialisé avec le résultat de l'évaluation de \ct{self newCellAt: i at: j}.  
+\ct{Matrix new: n tabulate: [ :i :j | self newCellAt: i at: j ]} créée une nouvelle matrice de taille \ct{n}{$\times$}\ct{n} et initialise ses éléments. La valeur initiale de chaque élément dépend de ses coordonnées. L'élément \ct{(i,j)} sera initialisé avec le résultat de l'évaluation de \ct{self newCellAt: i at: j}.  
 
-Voilà pour \ct{initialize}.  When you accept this message body, you might want to take the opportunity to pretty-up the formatting.  You don't have to do this by hand: from the the yellow-button menu select \menu{more \ldots \go prettyprint}, and the browser will do it for you\damien{this didn't do anything to me}.  You have to \menu{accept} again after you have \subind{method}{pretty-print}{}ed a method, or of course you can \subind{keyboard shortcut}{cancel} 
-(\short{l}\,---\,that's a lower-case letter \emph{L}) if you don't like the result.
-Alternatively, you can set up the browser to use the pretty-printer automatically whenever it shows you code: use the the right-most button in the button bar to adjust the view.
+Voilà pour \ct{initialize}.  Lorsque vous acceptez cette méthode, vous pouvez également simultanément en profiter pour formatter proprement votre code. Vous n'avez pas besoin de faire cela à la main : à partir du menu du bouton jaune sélectionner \menu{more \ldots \go prettyprint}, et le navigateur vous formattera le code pour vous. Vous avez à faire \menu{accept} après avoir \subind{method}{pretty-print} ou vous pouvez utiliser le raccourci clavier \subind{keyboard shortcut}{cancel} (\short{l}\,---\, ceci est un \emph{L} en minuscule) si le résultat ne vous plait pas.
+Vous pouvez également configurer votre navigateur de code de telle sorte à formatter le code chaque fois qu'il vous montre du code : utiliser le bouton le plus à droite dans la barre de bouton afin d'ajuster la vue.
 \seeindex{pretty-print}{method}
 
-If you find yourself using \menu{more\,\ldots} a lot, it's useful to know that you can hold down the {\sc shift} key when you click to directly bring up the \menu{more \ldots} menu.
+Si vous utilisez beaucoup le menu \menu{more\, \ldots}, il est utile de savoir que vous pouvez appuyez sur la touche {\sc shift} lorsque vous cliquez afin de le faire apparaître directement.
 
 %=================================================================
 \section{Organiser les méthodes en protocoles}
@@ -390,17 +392,16 @@ C'est pour cela que le navigateur offre un protocole virtuel \prot{-{}-all-{}-},
 Si vous avez suivi l'exemple jusqu'à présent, le troisième panneau doit contenir le protocole \protind{as yet unclassified}\footnote{NdT : non encore classifié}.
 
 \dothis{Sélectionner avec le \ind{button jaune} l'élément du menu \menu{categorize all uncategorized} afin de régler ce problème et déplacer les méthodes \ct{initialize} vers un nouveau protocole appelé \protind{initialization}.}
-Comment \squeak{} sait que c'est le bon protocole ? Well, in general \squeak{} can't know, but in this case there is also an \ct{initialize} method in a superclass, and \squeak assumes that our \ct{initialize} method should go in the same category as the one that it overrides.
+Comment \squeak{} sait que c'est le bon protocole ? En général, \squeak{} ne peut pas le savoir mais ce cas, il y a aussi une méthode \ct{initialize} dans la superclasse et \squeak suppose que notre méthode \ct{initialize} doit être rangé dans la même catégorie que celle qu'elle surcharge.
 \index{method!categorize}
 
-You may find that \squeak has already put your \ct{initialize} method into the \protind{initialization} protocol.
-If so, it's probably because you have loaded a package called \ct{AutomaticMethodCategorizer} into your image.
+Vous pouvez également vous rendre contre que \squeak a déjà rangé votre méthode \ct{initialize} dans le protocole \protind{initialization}. Si c'est le cas, c'est probablement que vous avez chargé un paquet nommé \ct{AutomaticMethodCategorizer} dans votre image.
 
 \paragraph{Une convention typographique.} Les Smalltalkiens utilisent fréquement la notation ``\verb|>>|'' afin d'identifier la classe à laquelle la méthode appartient, ainsi par exemple la méthode \ct{cellsPerSide} de la classe \ct{SBEGame} sera référencé comme \ct{SBEGame>>cellsPerSide}.
 Afin d'indiquer que cela ne fait pas parti de la syntaxe de \st, nous utiliserons plutôt le symbole spécial \ct{>>>} de telle sorte que cette méthode apparaîtra dans le texte comme \ct{SBEGame>>>cellsPerSide}
 \cmindex{Behavior}{>>}
 
-From now on, when we show a method in this book, we will write the name of the method in this form.  Of course, when you actually type the code into the browser, you don't have to type the class name or the \ct{>>>}; instead, you just make sure that the appropriate class is selected in the class pane.  
+\'A partir de maintenant, lorsque nous voudrons montrer une méthode dans ce livre, nous écrirons le nom de cette méthode sous cette forme. Bien sur, lorsque vous tapez le code dans un navigateur, vous n'avez pas à taper le nom de la classe ou le \ct{>>>}; vous devrez juste vous assurez que la classe appropriée est sélectionnée dans le panneau des classes.
 
 Définissons maintenant les autres méthodes qui sont utilisées par la méthode \ct{SBEGame>>>initialize}. Les deux peuvent être mises dans le protocole \prot{initialization}.
 
@@ -432,13 +433,13 @@ SBEGame>>>newCellAt: i at: j
 \dothis{Ajouter les méthodes \ct{SBEGame>>>cellsPerSide} et \ct{SBEGame>>>newCellAt:at:}.}
 Confirmer que les sélecteurs \ct{toggleNeighboursOfCellAt:at:} et \ct{mouseAction:} s'épellent correctement.
 
-\Mthref{newCellAt:at:} answers a new SBECell, specialized to position \ct{(i, j)} in the \clsind{Matrix} of cells.
-The last line defines the new cell's \ct{mouseAction} to be the \emph{block}
-\mbox{\lct{[self toggleNeighboursOfCellAt: i at: j ]}.}
- In effect, this defines the callback behaviour to perform when the mouse is clicked.
-The corresponding method also needs to be defined.
+\Mthref{newCellAt:at:} retourne une nouvelle SBECell à la position \ct{(i,j)} dans la matrice (\clsind{Matrix}) de cellules.
+La dernière ligne définit l'action souris (\ct{mouseAction}) associée à la cellule comme le \emph{bloc}
+\mbox{\lct{[self toggleNeighboursOfCellAt:i at:j]}.}
+En effet, ceci définit le comportement de callback à effectuer lorsque l'on clique sur la souris.
+La méthode correspondante doit être aussi définie.
 
-\begin{method}[toggleNeighboursOfCellAt:at:]{The callback method}
+\begin{method}[toggleNeighboursOfCellAt:at:]{La méthode callback}
 SBEGame>>>toggleNeighboursOfCellAt: i at: j
    (i > 1) ifTrue: [ (cells at: i - 1 at: j ) toggleState].
    (i < self cellsPerSide) ifTrue: [ (cells at: i + 1 at: j) toggleState].
@@ -447,10 +448,11 @@ SBEGame>>>toggleNeighboursOfCellAt: i at: j
 \end{method}
 \cmindex{SBEGame}{toggleNeighboursOfCellAt:at:}
 
-\Mthref{toggleNeighboursOfCellAt:at:} toggles the state of the four cells to the north, south, west and east of cell (\ct{i}, \ct{j}).  The only complication is that the board is finite, so we have to make sure that a neighboring cell exists before we toggle its state.
+\Mthref{toggleNeighboursOfCellAt:at:} change l'état des 4 cellules au nord, sud, ouest et est de la cellule (\ct{i}, \ct{j}). La seule complication est que le plateau de jeu est fini. Il faut donc s'assurer qu'une cellule voisine existe avant de changer son état.
 
-\dothis{Place this method in a new protocol called \prot{game logic}.\damien{this has to be explained. There were no explications before on how to create a new protocol.}}
-To move the method, you can simply click on its name and drag it to the newly-created protocol (\figref{dragMethod}).
+\dothis{Placer cette méthode dans un nouveau protocole appelé \prot{game logic}.}
+
+Pour déplacer cette méthode, vous avez simplement à cliquer sur son nom et à la glisser sur le nouveau protocole (\figref{dragMethod}).
 
 \begin{figure}[htbp]
    \centering
@@ -460,30 +462,29 @@ To move the method, you can simply click on its name and drag it to the newly-cr
    \caption{Faire un glisser-déposer de la méthode dans un protocole.\label{fig:dragMethod}}
 \end{figure}
 
-To complete the Quinto game, we need to define two more methods in class \ct{SBECell} to handle mouse events.
+Afin de compléter le jeu de Quinto, nous avons besoin de définir encore deux méthodes dans la classe \ct{SBECell} afin de gérer les événements souris.
 \begin{method}[mouseAction:]{A typical setter method}
 SBECell>>>mouseAction: aBlock
    ^ mouseAction := aBlock
 \end{method}
 \cmindex{SBECell}{mouseAction:}
 
-\Mthref{mouseAction:} does nothing more than set the cell's \ct{mouseAction} variable to the argument, and then answers the new value.
-Any method that \emph{changes} the value of an instance variable in this way is called a \emph{setter method}; a method that \emph{answers} the current value of an instance variable is called a \emph{getter method}.
+\Mthref{mouseAction:} ne fait rien d'autre que donner comme valeur à la variable \ct{mouseAction} celle de l'argument et retourner la nouvelle valeur. Toute méthode qui \emph{change} la valeur d'une variable d'instance de cette façon est appelée une \emph{méthode setter}; une méthode qui \emph{retourne} la valeur courante d'une variable d'instance est appelée une \emph{méthode getter}.
 \seeindex{setter method}{accessor}
 \seeindex{getter method}{accessor}
 
-If you are used to getters and setters in other programming languages, you might expect these methods to be called \ct{setmouseAction} and \ct{getmouseAction}.
-The \st convention is different.
-A getter always has the same name as the variable it gets, and a setter is named similarly, but with a trailing ``\ct{:}'', hence \ct{mouseAction} and \ct{mouseAction:}.
+Si vous êtes habitués aux setters et getter dans d'autres langages de programmation, vous vous attendez à avoir deux méthodes nommées \ct{setmouseAction} et \ct{getmouseAction}.
+La convention \st est différente.
+Un getter a toujours le même nom que la variable correspondante et le setter est nomme de la même manière avec un ``\ct{:}" à la fin, ici nous avons \ct{mouseAction} et \ct{mouseAction:}.
 
-Collectively, setters and getters are called  \emphind{accessor} methods, and by convention they should be placed in the \protind{accessing} protocol.
-In Smalltalk, \emph{all} instance variables are private to the object that owns them, so the only way for another object to read or write those variables in the Smalltalk language is through accessor methods like this one\footnote{In fact, the instance variables can be accessed in subclasses too.}.
+Setters et getters sont appelés des méthodes \emphind{accessor} et par convention elles doivent être placé dans le protocole \protind{accessing}.
+En Smalltalk, \emph{toutes} les variables d'instances sont privés à l'objet qui les possède, ainsi la seule façon pour un autre objet de lire ou de modifier ces variables en Smalltalk est à travers ces méthodes d'accès comme ici\footnote{En fait, les variables d'instances peuvent être accédés dans les sous-classes également}.
 
-\dothis{Go to the class \ct{SBECell}, define \ct{SBECell>>>mouseAction:} and put it in the \prot{accessing} protocol.}
+\dothis{Aller à la classe \ct{SBECell}, définir \ct{SBECell>>>mouseAction:} et la mettre dans le protocole \prot{accessing}.}
 
-Finally, we need to define a method \ct{mouseUp:}; this will be called automatically by the GUI framework if the mouse button is released while the mouse is over this cell on the screen.
+Finalement, nous avez besoin de définir la méthode \ct{mouseUp:}; elle sera appelée automatiquement par le framework graphique si le bouton de la souris est pressé lorsque la souris est au dessus d'une cellule sur l'écran.
 
-\begin{method}[sbecellmouseup]{Un gestionnaire d'évènement.}
+\begin{method}[sbecellmouseup]{Un gestionnaire d'événement.}
 SBECell>>>mouseUp: anEvent
    mouseAction value
 \end{method}
@@ -492,28 +493,28 @@ SBECell>>>mouseUp: anEvent
 \dothis{Ajouter la méthode \ct{SBECell>>>mouseUp:} ensuite faire \menu{categorize all uncategorized}.}
 \index{method!categorize}
 
-What this method does is to send the message \ct{value} to the object stored in the instance variable \ct{mouseAction}. 
-Recall that in \ct{SBEGame>>>newCellAt: i at: j} we assigned the following code fragment to \ct{mouseAction}:
+Ce que cette méthode fait : elle envoie le message \ct{value} à l'objet stocké dans la variable d'instance \ct{mouseAction}. 
+Rappelez vous que dans la méthode \ct{SBEGame>>>newCellAt: i at: j} nous avons affecté le code fragment de code qui suit à \ct{mouseAction}:
 
 \ct{[self toggleNeighboursOfCellAt: i at: j ]} 
 
 \noindent
-Sending the \ct{value} message causes this code fragment to be evaluated, and consequently the state of the cells will toggle.
+Envoyer le message \ct{value} cause l'évaluation de ce fragment de code et par voie de conséquence le changement d'état des cellules.
 
 %=================================================================
 \section{Essayons notre code}
 
 Voila, le jeu de Quinto est complet!
 
-Si vous avez suivi toutes les étapes, vous devez pouvoir jouer au jeu qui consistent en 2 classes et 7 méthodes.
+Si vous avez suivi toutes les étapes, vous devez pouvoir jouer au jeu qui comprend 2 classes et 7 méthodes.
 
 \dothis{Dans un espace de travail, tappez \ct{SBEGame new openInWorld} et faire \menu{do it}.}
 
-The game will open, and you should be able to click on the cells and see how it works.
+Le jeu devrait s'ouvrir et vous devriez pouvoir cliquer sur les cellules et vérifier si le jeu fonctionne.
 
-Well, so much for theory\ldots{}
-When you click on a cell, a \emphind{notifier} window called the \clsind{PreDebugWindow}window appears with an error message!
-As depicted in \figref{quintoError}, it says \ct{MessageNotUnderstood: SBEGame>>>toggleState}.
+Du moins en théorie\ldots{}
+Lorsque vous cliquez sur une cellule une fenêtre de \emphind{notification} appelée la fenêtre \clsind{PreDebugWindow} devrait apparaître avec un message d'erreur!
+Comme il est montré dans la figure \figref{quintoError}, elle dit \ct{MessageNotUnderstood: SBEGame>>>toggleState}.
 
 \begin{figure}[ht]
 \ifluluelse
@@ -524,15 +525,15 @@ As depicted in \figref{quintoError}, it says \ct{MessageNotUnderstood: SBEGame>>
 \end{figure}
 
 \noindent
-What happened? To find out, let's use one of Smalltalk's more powerful tools: the \ind{debugger}.
+Que se passe-t-il ? Afin de le découvrir, utilisons l'un des outils les plus puissants de Smalltalk, le \ind{débogueur}.
 
-\dothis{Click on the \menu{debug} button in the notifer window.}
-The debugger will appear.
-In the upper part of the debugger window you can see the execution stack, showing all the active methods; selecting any one of them will show, in the middle pane, the Smalltalk code being executed in that method, with the part that triggered the error highlighted.
+\dothis{Cliquer sur le bouton \menu{debug} de la fenêtre de notification.}
+Le débogueur devrait apparaître.
+Dans la partie haute de la fenêtre du débogueur, nous pouvons voir la pile d'exécution, montrant toutes les méthodes actives; en sélectionnant l'une d'entre elles, on voit dans le panneau du milieu le code Smalltalk en cours d'exécution dans cette méthode, avec la partie qui a déclenchée l'erreur mis en gras.
 
-\dothis{Click on the line labelled
-\ct{SBEGame>>>toggleNeighboursOfCellAt:at:} (near the top).}
-The debugger will show you the \ind{execution context} within this method where the error occurred (\figref{debugToggle}).
+\dothis{Cliquer sur la ligne nommée
+\ct{SBEGame>>>toggleNeighboursOfCellAt:at:} (près du haut).}
+Le débogueur vous montrera le \ind{contexte d'exécution} à l'intérieur de la méthode où l'erreur s'est déclenchée (\figref{debugToggle}).
 
 \begin{figure}[ht]
 \ifluluelse
@@ -542,15 +543,15 @@ The debugger will show you the \ind{execution context} within this method where 
 \label{fig:debugToggle}}
 \end{figure}
 
-At the bottom of the debugger are two small inspector windows.  On the left, you can inspect the object that is the receiver of the message that caused the selected method to execute, so you can look here to see the values of the instance variables.
-On the right you can inspect an object that represents the currently executing method itself, so you can look here to see the values of the method's parameters and temporary variables.
+En bas du débogueur il y a deux petites fenêtres d'inspection. Sur la gauche, vous pouvez inspecter l'objet qui est le receveur du message qui cause l'exécution de la méthode sélectionnée. Vous pouvez voir ici les valeurs des variables d'instances.
+Sur la droite, vous pouvez inspecter l'objet qui représente la méthode en cours d'exécution. Il est possible d'examiner ici les valeurs des paramètres et les variables temporaires.
 
-Using the debugger, you can execute code step by step, inspect objects in parameters and local variables, evaluate code just as you can in a workspace, and, most surprisingly to those used to other debuggers, change the code while it is being debugged! Some Smalltalkers program in the debugger almost all the time, rather than in the browser.  The advantage of this is that you see the method that you are writing as it will be executed, with real parameters in the actual execution context.
+En utilisant le débogueur, vous pouvez exécuter du code pas à pas, inspecter les objets dans les paramètres et les variables locales, évaluer du code comme vous le faites dans le workspace, et, de manière surprenante pour ceux qui déjà habitués à d'autres débogueurs, il es possible de modifier le code en cours de déboguage ! Certains Smalltakers programment la plupart du temps dans le débogueur, plutôt que dans le navigateur de code. L'avantage de faire cela est que vous voyez la méthode que vous écrivez comme elle sera exécutée, avec de paramètres dans son contexte actuel d'exécution.
 
-In this case we can see in the first line of the top panel that the \ct{toggleState} message has been sent to an instance of \ct{SBEGame}, while it should clearly have been an instance of \lct{SBECell}.
-The problem is most likely with the initialization of the \ct{cells} matrix.
-Browsing the code of \cmind{SBEGame}{initialize} shows that \ct{cells} is filled with the return values of \ct{newCellAt:at:}, but when we look at that method, we see that there is no return statement there!
-By default, a method returns \ct{self}, which in the case of \ct{newCellAt:at:} is indeed an instance of \ct{SBEGame}.
+Dans notre cas, vous pouvez voir dans la première ligne du panneau du baut que le message \ct{toggleState} a été envoyé à une instance de \ct{SBEGame}, alors qu'il était clairement destiné à une instance de \lct{SBECell}.
+Le problème se situe vraisemblablement dans l'initialisation de la matrice \ct{cells}.
+En parcourant le code de \cmind{SBEGame}{initialize} on voit que \ct{cells} est rempli avec les valeurs retournés par \ct{newCellAt:at:}, mais lorsque l'on regarde cette méthode, on s'aperçoit qu'il n'y a pas de valeur retournée ici !
+Par défaut, une méthode retourne \ct{self}, ce qui dans le cas de \ct{newCellAt:at:} est effectivement une instance de \ct{SBEGame}.
 \index{method!returning self}
 
 \dothis{Fermer la fen\^etre du d\'ebogueur.
@@ -578,8 +579,8 @@ Recall from \charef{quick} that the construct to \ind{return} a \subind{method}{
 % \index{^@\verb|^|}
 \index{^@{$\uparrow$}|see{return}}
 
-Often, you can fix the code directly in the debugger window and click \menu{Proceed} to continue running the application.
-In our case, because the bug was in the initialization of an object, rather than in the method that failed, the easiest thing to do is to close the debugger window, destroy the running instance of the game (with the \subind{Morphic}{halo}), and create a new one.
+Il est souvent possible de corriger le code directement dans la fenêtre du débogueur et de poursuivre l'application en faisant \menu{Proceed}.
+Dans notre cas, parce que le bug se situe dans l'initialisation de l'objet, plutôt qu'une méthode qui est erronée, la chose la plus simple à faire est de fermer la fenêtre du débogeur, détruire l'instance en cours d'exécution (avec le halo \subind{Morphic}) et d'en créer une nouvelle.
 
 %Indeed, even in this case it would be possible to \menu{do} \ct{self initialize} and then \menu{Proceed} the \ct{toggleNeighboursOfCellAt:at:} method.
 %\ab{St\'eph, did you try this?  It seems to me that it ought to work, but when I tried it, it messed up my image.}
@@ -598,19 +599,18 @@ Le jeu doit maintenant se dérouler sans problèmes.
 Maintenant que nous avons un jeu de Quinto qui fonctionne, vous avez probablement envie de le sauvegarder quelque part de telle sorte à pouvoir le partager avec des amis. Bien sur, vous pouvez sauvegarder l'ensemble de votre image \squeak et montrer votre premier programme en l'exécutant, mais vos amis ont probablement leur propre code dans leurs images et ne veulent pas sans passer pour utiliser votre image.
 Ce dont nous avons besoin est de pouvoir extraire le code source d'une image \squeak afin que d'autres développeurs puissent le charger dans leurs images.
 
-The simplest way of doing this is by \emph{filing out} the code.  The yellow-button menu in the System Categories pane will give you the option to file out the whole of category \scat{SBE-Quinto}.
-The resulting file is more or less human readable, but is really intended for computers, not humans.
-You can email this file to your friends, and they can file it into their own \squeak images using the file list browser.
+La façon la plus simple de le faire est d'effectuer une sortie fichier (\emph{filing out}) de votre code. Le menu activé par le bouton jaune dans le système de catégories vous permet de générer un fichier correspondant à l'ensemble de la catégorie \scat{SBE-Quinto}.
+Le fichier résultant est plus lisible par tout un chacun, même s'il est plus destiné à des machines, qu'à des hommes.
+Vous pouvez envoyer par email ce fichier à vos amis et ils peuvent le charger dans leurs propres images \squeak en utilisant le navigateur de fichier (file list browser).
 \seeindex{saving code}{categories}
 \seeindex{category!filing out}{file, filing out}
 \seeindex{class!filing out}{file, filing out}
 \seeindex{method!filing out}{file, filing out}
 \index{file!filing out}
 
-\dothis{Yellow-click on the \scat{SBE-Quinto} category and \menu{fileOut} the contents.}
-You should now find a file called ``SBE-Quinto.st'' in the same folder on disk where your image is saved.
-Have a look at this file with a text editor.
-
+\dothis{Sélectionner avec un clic jaune la catégorie \scat{SBE-Quinto}, puis faire un \menu{fileOut} du contenu.}
+Vous devriez trouver maintenant un fichier SBE-Quinto.st dans le même répertoire où votre image a été sauvegardé.
+Jeter un coup à ce fichier avec un éditeur de texte. a look at this file with a text editor.
 \dothis{Open a fresh \squeak image and use the File List tool to \menu{file in} the SBE-Quinto.st fileout.
 Verify that the game now works in the new image.}
 \seeindex{category!filing in}{file, filing in}
@@ -620,7 +620,7 @@ Verify that the game now works in the new image.}
 
 \begin{figure}[ht]
 \centerline {\includegraphics[width=\textwidth]{FileIn}}
-\caption{Filing in \squeak source code.
+\caption{Charger le code source dans \squeak.
 \label{fig:filein}}
 \end{figure}
 
@@ -680,8 +680,8 @@ SqueakSource va vous montrer l'information que vous devez utiliser lorsque on aj
 
 Une fois que votre projet a été créé sur SqueakSource, vous devez indiquer au système \squeak comment l'utiliser.
 
-\dothis{Avec le paquetage \ct{SBE-Quinto} sélectionné, cliquer le boutton \button{+Repository} dans le navigateur Monticello.}  Vous verrez une liste des différents type de dépôts disponible; pour ajouter un dépôt SqueakSource, sélectionner le menu \menu{HTTP}. You will be presented with a dialog in which you can provide the necessary information about the server.
-You should copy the presented template to identify your SqueakSource project, paste it into Monticello and supply your initials and password:
+\dothis{Avec le paquetage \ct{SBE-Quinto} sélectionné, cliquer le boutton \button{+Repository} dans le navigateur Monticello.}  Vous verrez une liste des différents type de dépôts disponibles; pour ajouter un dépôt SqueakSource, sélectionner le menu \menu{HTTP}. Une boite de dialogue vous permettra de rentrer les informations nécessaires pour le serveur.
+Vous devez copier le modèle ci-dessous pour identifier votre projet SqueakSource, copiez le dans Monticello en y ajoutant vos initalies et mot de passe :
 
 \needlines{5}
 \begin{code}{}
@@ -692,7 +692,7 @@ MCHttpRepository
 \end{code}   
 
 \noindent
-If you provide empty initials and password strings, you can still load the project, but you will not be able to update it:
+Si vous passez en paramètre des initiales et un mot de passe vide, vous pouvez toujours charger le projet, mais vous ne serez pas autorisé à le mettre à jour :
 
 \needlines{5}
 \begin{code}{}
