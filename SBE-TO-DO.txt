@@ -33,8 +33,8 @@ Understanding Message Syntax -- Traducteur : Serge, Relecteur : ?
 
 [DEVELOPING IN SQUEAK]
 The Smalltalk Object Model -- Traducteur : ?, Relecteur : ? 
-The Squeak Programming Environment -- Traducteur : ?, Relecteur : ?
-SUnit -- Traducteur : Alain, Relecteur : martial
+The Squeak Programming Environment -- Traducteur : ?, Relecteur : Serge
+SUnit -- Traducteur : Alain, Relecteur : Martial
 Basic Classes -- Traducteur : Nicolas
 Collections -- Auteur : Martial, Relecteur : Serge
 Streams -- Auteur : ? , Relecteur : ?
