@@ -469,15 +469,15 @@ SBECell>>>mouseAction: aBlock
 \end{method}
 \cmindex{SBECell}{mouseAction:}
 
-\Mthref{mouseAction:} ne fait rien d'autre que donner comme valeur à la variable \ct{mouseAction} celle de l'argument et retourner la nouvelle valeur. Toute méthode qui \emph{change} la valeur d'une variable d'instance de cette façon est appelée une \emph{méthode setter}; une méthode qui \emph{retourne} la valeur courante d'une variable d'instance est appelée une \emph{méthode getter}.
+\Mthref{mouseAction:} ne fait rien d'autre que donner comme valeur à la variable \ct{mouseAction} celle de l'argument et retourner la nouvelle valeur. Toute méthode qui \emph{change} la valeur d'une variable d'instance de cette façon est appelée une \emph{méthode d'accès en lecture}; une méthode qui \emph{retourne} la valeur courante d'une variable d'instance est appelée une \emph{méthode d'accès en écriture}.
 \seeindex{setter method}{accessor}
 \seeindex{getter method}{accessor}
 
-Si vous êtes habitués aux setters et getter dans d'autres langages de programmation, vous vous attendez à avoir deux méthodes nommées \ct{setmouseAction} et \ct{getmouseAction}.
+Si vous êtes habitués aux méthodes d'accès en lecture et écriture (setter et getter) dans d'autres langages de programmation, vous vous attendez à avoir deux méthodes nommées \ct{setmouseAction} et \ct{getmouseAction}.
 La convention \st est différente.
-Un getter a toujours le même nom que la variable correspondante et le setter est nomme de la même manière avec un ``\ct{:}" à la fin, ici nous avons \ct{mouseAction} et \ct{mouseAction:}.
+Une méthode d'accès en lecture a toujours le même nom que la variable correspondante et la méthode d'accès en écriture est nommé de la même manière avec un ``\ct{:}" à la fin, ici nous avons \ct{mouseAction} et \ct{mouseAction:}.
 
-Setters et getters sont appelés des méthodes \emphind{accessor} et par convention elles doivent être placé dans le protocole \protind{accessing}.
+Méthodes d'accès en lecture et écriture sont appelés des méthodes \emphind{accesseurs} et par convention elles doivent être placées dans le protocole \protind{accessing}.
 En Smalltalk, \emph{toutes} les variables d'instances sont privés à l'objet qui les possède, ainsi la seule façon pour un autre objet de lire ou de modifier ces variables en Smalltalk est à travers ces méthodes d'accès comme ici\footnote{En fait, les variables d'instances peuvent être accédés dans les sous-classes également}.
 
 \dothis{Aller à la classe \ct{SBECell}, définir \ct{SBECell>>>mouseAction:} et la mettre dans le protocole \prot{accessing}.}
@@ -546,7 +546,7 @@ Le débogueur vous montrera le \ind{contexte d'exécution} à l'intérieur de la
 En bas du débogueur il y a deux petites fenêtres d'inspection. Sur la gauche, vous pouvez inspecter l'objet qui est le receveur du message qui cause l'exécution de la méthode sélectionnée. Vous pouvez voir ici les valeurs des variables d'instances.
 Sur la droite, vous pouvez inspecter l'objet qui représente la méthode en cours d'exécution. Il est possible d'examiner ici les valeurs des paramètres et les variables temporaires.
 
-En utilisant le débogueur, vous pouvez exécuter du code pas à pas, inspecter les objets dans les paramètres et les variables locales, évaluer du code comme vous le faites dans le workspace, et, de manière surprenante pour ceux qui déjà habitués à d'autres débogueurs, il es possible de modifier le code en cours de déboguage ! Certains Smalltakers programment la plupart du temps dans le débogueur, plutôt que dans le navigateur de code. L'avantage de faire cela est que vous voyez la méthode que vous écrivez comme elle sera exécutée, avec de paramètres dans son contexte actuel d'exécution.
+En utilisant le débogueur, vous pouvez exécuter du code pas à pas, inspecter les objets dans les paramètres et les variables locales, évaluer du code comme vous le faites dans le workspace, et, de manière surprenante pour ceux qui déjà habitués à d'autres débogueurs, il es possible de modifier le code en cours de déboguage ! Certains Smalltalkers programment la plupart du temps dans le débogueur, plutôt que dans le navigateur de code. L'avantage de faire cela est que vous voyez la méthode que vous écrivez comme elle sera exécutée, avec de paramètres dans son contexte actuel d'exécution.
 
 Dans notre cas, vous pouvez voir dans la première ligne du panneau du baut que le message \ct{toggleState} a été envoyé à une instance de \ct{SBEGame}, alors qu'il était clairement destiné à une instance de \lct{SBECell}.
 Le problème se situe vraisemblablement dans l'initialisation de la matrice \ct{cells}.
@@ -575,12 +575,12 @@ SBEGame>>>newCellAt: i at: j
 \cmindex{SBEGame}{newCellAt:at:}
 
 \noindent
-Recall from \charef{quick} that the construct to \ind{return} a \subind{method}{value} from a method in Smalltalk is \ct{^}, which you obtain by typing \verb|^|.
+Rappelez vous ce que nous avons vu dans le chapitre \charef{quick} : pour retourner une valeur d'une méthode en Smalltalk est \ct{^}, que vous pouvez obtenir en tapant \verb|^|.
 % \index{^@\verb|^|}
 \index{^@{$\uparrow$}|see{return}}
 
 Il est souvent possible de corriger le code directement dans la fenêtre du débogueur et de poursuivre l'application en faisant \menu{Proceed}.
-Dans notre cas, parce que le bug se situe dans l'initialisation de l'objet, plutôt qu'une méthode qui est erronée, la chose la plus simple à faire est de fermer la fenêtre du débogeur, détruire l'instance en cours d'exécution (avec le halo \subind{Morphic}) et d'en créer une nouvelle.
+Dans notre cas, parce que le bug se situe dans l'initialisation de l'objet, plutôt qu'une méthode qui est erronée, la chose la plus simple à faire est de fermer la fenêtre du débogueur, détruire l'instance en cours d'exécution (avec le halo \subind{Morphic}) et d'en créer une nouvelle.
 
 %Indeed, even in this case it would be possible to \menu{do} \ct{self initialize} and then \menu{Proceed} the \ct{toggleNeighboursOfCellAt:at:} method.
 %\ab{St\'eph, did you try this?  It seems to me that it ought to work, but when I tried it, it messed up my image.}
@@ -610,9 +610,9 @@ Vous pouvez envoyer par email ce fichier à vos amis et ils peuvent le charger d
 
 \dothis{Sélectionner avec un clic jaune la catégorie \scat{SBE-Quinto}, puis faire un \menu{fileOut} du contenu.}
 Vous devriez trouver maintenant un fichier SBE-Quinto.st dans le même répertoire où votre image a été sauvegardé.
-Jeter un coup à ce fichier avec un éditeur de texte. a look at this file with a text editor.
-\dothis{Open a fresh \squeak image and use the File List tool to \menu{file in} the SBE-Quinto.st fileout.
-Verify that the game now works in the new image.}
+Jeter un coup à ce fichier avec un éditeur de texte.
+
+\dothis{Ouvrir une nouvelle image \squeak et utiliser l'outil File List pour faire un \menu{file in} dans le fichier SBE-Quinto.st. Vérifiez que le jeu fonctionne maintenant dans une nouvelle image.}
 \seeindex{category!filing in}{file, filing in}
 \seeindex{class!filing in}{file, filing in}
 \seeindex{method!filing in}{file, filing in}
@@ -625,44 +625,42 @@ Verify that the game now works in the new image.}
 \end{figure}
 
 \subsection{Les paquetages Monticello}
-Although fileouts are a convenient way of making a snapshot of the code you have written, they are decidedly ``old school''.
-Just as most open-source projects find it much more convenient to maintain their code in a repository using \ind{CVS}\footnote{\url{www.nongnu.org/cvs}} or \ind{Subversion}\footnote{\url{subversion.tigris.org}},
-so \squeak programmers find it more convenient to manage their code using \ind{Monticello} packages. 
-These packages are represented as files with names ending in \ct{.mcz}; they are actually zip-compressed bundles that contain the complete code of your \ind{package}.
+Bien que les sorties fichiers sont une façon convenable de faire des sauvegardes du code que vous avez écrit, elles font maintenant parti du passé.
+Tout comme la plupart des projets open-source qui trouve plus utile de maintenir leur code dans des dépôts en utilisant \ind{CVS}\footnote{\url{www.nongnu.org/cvs}} ou \ind{Subversion}\footnote{\url{subversion.tigris.org}}, les développeurs \squeak gèrent maintenant leur code au moyen de paquetages \ind{Monticello}. 
+Ces paquetages sont représentés comme des fichiers dont le nom se termine en \ct{.mcz}; ce sont en fait des fichiers compressés avec zip qui contiennent le code complet de votre paquetage.
 
-Using the Monticello package browser, you can save packages to repositories on various types of server, including FTP and HTTP servers; you can also just write the packages to a repository in a local file system directory.
-A copy of your package is also always cached on your local hard-disk in the \emph{package-cache} folder. 
-Monticello lets you save multiple versions of your program, merge versions, go back to an old version, and browse the differences between versions. 
-In fact, it supports the same sort of operations that you are used to if you share your work using CVS or Subversion.
+En utilisant le navigateur de paquetage Monticello, vous pouvez sauver les paquetages dans des dépôts en utilisant de nombreux types de serveurs, notament des serveurs FTP et HTTP; vous pouvez également écrire vos paquetage dans un dépôt qui se trouve dans un répertoire de votre système local de fichiers.
+Une copie de votre paquetage est toujours en cache sur disque local dans le répertoire \emph{package-cache}. 
+Monticello vous permet de sauver de multiples versions de votre programme, fusionner des versions, revenir à une ancienne version et voir les différences entre plusieurs versions.
+En fait, on retrouve les mêmes types d'opérations que vous avez l'habitude d'utiliser pour partager votre travail avec CVS ou Subversion.
 \seeindex{package browser}{Monticello}
 
-A good trick is to always develop in the same folder. This way you get a copy of all the code that you publish on squeaksource on your local machine. You can then backup and browse at will.
+Une bonne astuce est de toujours développer dans le même répertoire. De cette façon vous pouvez obtenir une copie de tout le code que vous avez publié sur squeaksource sur votre machine locale. Vous alors faire un sauvegarde et naviguer dans le code à votre convenance.
 
-You can also send a \ct{.mcz} file by email. 
-The recipient will have to place it in her \emph{package-cache} folder; she will then be able to use Monticello to browse and load it. 
+Vous pouvez également envoyer un fichier \ct{.mcz} par email.
+Le destinataire devra le placer dans son répertoire \emph{package-cache}; il sera alors capable d'utiliser Monticello pour le parcourir et le charger. 
 %(It is also possible to load it using the file list, but there is a difference between loading a \ct{.mcz} file using a file list and using Monticello \sd{check}.)
 
-\dothis{Open the Monticello browser by selecting \menu{World \go open\,\ldots \go Monticello browser}.}
-In the right-hand pane of the browser (see \figref{monticello1}) is a list of Monticello repositories, which will include all of the repositories from which code has been loaded into the image that you are using.  
+\dothis{Ouvrir le navigateur Monticello en sélectionnant le menu \menu{World \go open\,\ldots \go Monticello browser}.}
+Dans la partie droite du navigateur (see \figref{monticello1}), il y a une liste des dépôts Monticello, qui inclue tous les dépôts desquels du code à été chargé dans l'image que vous utilisez. 
 %In addition to SqueakSource servers, Monticello repositories can live in a variety of other places, the simplest being a directory on your local disk.
 
 \begin{figure}[hbt]
 \ifluluelse
 	{\centerline {\includegraphics[width=\textwidth]{MonticelloBrowser}}}
 	{\centerline {\includegraphics[scale=0.7]{MonticelloBrowser}}}
-\caption{The Monticello browser.
+\caption{Le navigateur Monticello.
 \label{fig:monticello1}}
 \end{figure}
 
-At the top of the list in the Monticello browser is a repository in a local directory called the \emphind{package cache}, which caches copies of the packages that you have loaded or published over the network. This local cache is really handy because it lets you keep your own local history; it also allows you to work in places where you do not have internet access, or where access is slow enough that you do not want to save to a remote repository very frequently.
-
+En haut de la liste dans le navigateur Monticello, il y a un dépôt dans un répertoire local appelé \emphind{package cache}, qui est un cache pour des copies de paquetages que vous avez chargé ou publié sur le réseau. Ce cache est vraiment utile car il vous permet de garder votre historique local. Il vous permet également de trouver à des endroits où vous n'avez pas d'accès Internet ou l'accès est si lent que vous n'avez pas envie de sauver sur un dépôt distant très fréquemment.
 
 \subsection{Sauvegarder et charger du code avec Monticello.}
-On the left-hand side of the Monticello browser is a list of packages that have a version loaded into the image; packages that have been modified since they were loaded are marked with an asterisk.  (These are sometimes referred to as \subind{package}{dirty} packages.)  If you select a package, the list of repositories is restricted to just those repositories that contain a copy of the selected package.
+Dans la partie gauche du navigateur Monticello, il y a une liste de paquetages dont vous avez une version chargée dans votre image; les paquetages qui ont été modifié depuis qu'ils ont été chargés sont marqué d'une étoile (ils sont parfois appelés des paquetages \subind{package}{dirty}.) Si vous sélectionner un paquetage, la liste des dépôts est restreinte à ceux qui contiennent une copie du paquetage sélectionné.
 \seeindex{*}{package, dirty}
 \seeindex{dirty package}{package, dirty}
 
-What is a package?  For now, you can think of a package as a group of  class and method categories that share the same prefix.  Since we put all of the code for the Quinto game into the class category called \scat{SBE-Quinto}, we can refer to it as the \ct{SBE-Quinto} package.
+Qu'est-ce qu'un paquetage ? Pour l'instant, vous pouvez penser le paquetage comme un groupe de classes et de catégories de méthodes qui partagent le même préfixe. Comme nous avons mis tout le code du jeu Quinto dans la catégorie de classe appelée \scat{SBE-Quinto}, nous pouvons le désigner comme le paquetage \ct{SBE-Quinto}.
 
 \dothis{Ajouter le paquetage \ct{SBE-Quinto} à votre navigateur Monticello en utilisant le boutton \button{+Package}.}
 
