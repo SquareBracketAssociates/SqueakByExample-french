@@ -18,7 +18,7 @@ Traducteurs :
 - Benoit Tudiri
 
 TODO :
-- Expliquer un peu mieux le role des méthodes hash pour les collections à clés.
+- Expliquer un peu mieux le role des m?thodes hash pour les collections ? cl?s.
 
 -----------------------------------------------------------------------------
 L'etat des chapitres
@@ -28,16 +28,16 @@ Preface -- Traduit par Serge. A relire
 [GETTING STARTED]
 A Quick Tour of Squeak -- Traducteur : Mathieu (en cours)
 A First Application -- Traducteur : Serge, Relecteur : Martial
-Syntax in a Nutshell -- Traducteur : Rene, Relecteur : Martial
+Syntax in a Nutshell -- Traducteur : Rene/Martial, Relecteur : ?
 Understanding Message Syntax -- Traducteur : Serge, Relecteur : ?
 
 [DEVELOPING IN SQUEAK]
-The Smalltalk Object Model -- Traducteur : ?, Relecteur : ? 
-The Squeak Programming Environment -- Traducteur : ?, Relecteur : Serge
+The Smalltalk Object Model -- Traducteur : Martial, Relecteur : ? 
+The Squeak Programming Environment -- Traducteur : Martial, Relecteur : Serge
 SUnit -- Traducteur : Alain, Relecteur : Martial
-Basic Classes -- Traducteur : Nicolas
+Basic Classes -- Traducteur : Nicolas (en cours), Relecteur : ?
 Collections -- Auteur : Martial, Relecteur : Serge
-Streams -- Auteur : ? , Relecteur : ?
+Streams -- Auteur : Martial , Relecteur : ?
 Morphic -- En attente reponse Denis Bodor (LinuxMag)
 [ADVANCED SQUEAK]
 Classes and Metaclasses -- Auteur : Luc, Relecteur : Martial
