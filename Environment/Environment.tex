@@ -46,7 +46,7 @@ de nouveaux navigateurs.
 Bien entendu, vous pouvez occasionnellement rencontrer
 des situations dans lesquelles votre programme ne marche pas comme voulu.
 Squeak a un excellent d\'ebogueur, mais comme la plupart des outils puissants, il peut s'av\'erer d\'eroutant au d\'ebut.
-Nous vous en parlerons au travers de session de d\'ebogage et vous
+Nous vous en parlerons au travers de sessions de d\'eboguages et vous
 montrerons certaines de ses possibilit\'es.
 
 Lorsque vous programmez, vous le faites dans un monde d'objets vivants et
@@ -57,7 +57,7 @@ Elle permet d'obtenir une r\'eponse tr\`es rapide de vos programmes et vous rend
 La programmation dans un monde d'objets vivants plut\^ot qu'avec des fichiers et un \'editeur de texte vous oblige \`a agir explicitement pour exporter votre programme depuis l'image \st.
 
 La technique traditionnelle, aussi support\'ee par tous les dialectes \st consiste \`a cr\'eer un fichier d'exportation \emph{fileout} ou une archive d'\'echange dit \changeset. Il s'agit principalement de fichiers textes encod\'es pouvant \^etre import\'es dans un autre syst\`eme.
-La technique plus r\'ecente en \Squeak est le chargement de code dans un d\'ep\^ot de versions sur un serveur.
+Une technique plus r\'ecente de \Squeak est le chargement de code dans un d\'ep\^ot de versions sur un serveur.
 Elle est plus efficace surtout en travail coop\'eratif et est rendu possible via un outil nomm\'e \ind{Monticello}.
 %\seeindex{change set}{file, filing out}
 \seeindex{change set}{fichier, exportation}
@@ -76,15 +76,14 @@ et comment soumettre les corrections de bugs ou \emph{bug fixes}.
 
 Smalltalk et les interfaces graphiques modernes ont \'et\'e d\'evelop\'ees ensemble.
 Bien avant la premi\`ere sortie publique de Smalltalk en 1983, Smalltalk
-avait un environnement de d\'eveloppement graphique auto-h\'eberg\'e et
-tout le d\'eveloppement en Smalltalk se d\'eroulait dessus.
+avait un environnement de d\'eveloppement graphique écrit lui-même en Smalltalk et
+tout le d\'eveloppement est intégré à cet environnement.
 Commen\c{c}ons par jeter un \oe il sur les principaux outils de \Squeak,
 tous pouvant \^etre gliss\'e-d\'epos\'e (drag) depuis \toolsflapind
 dans l'image \emph{Squeak-dev} (voir \secref{squeakDev}).
 Selon vos r\'eglages personnels, \toolsflap{} pourra \^etre ouvert
 par d\'eplacement de la souris avec ou sans clic sur l'onglet orange
 dans le c\^ot\'e droit de la fen\^etre principale de \Squeak.
-
 
 \begin{itemize}
 	\item Le {\menu{Browser}} ou \emph{navigateur de classes} est l'outil de d\'eveloppement central.
@@ -94,10 +93,10 @@ Vous l'utiliserez pour cr\'eer, d\'efinir et organiser vos classes et vos m\'eth
 	\item L'outil {\menu{Message Names}} sert \`a voir toutes les m\'ethodes ayant un s\'electeur (noms de messages sans argument) sp\'ecifique ou dont le s\'electeur contient une certaine sous-cha\^{\i}ne de caract\`eres.
 	\index{message name finder}
 	
-	\item Le {\menu{Method Finder}} vous permet aussi de trouver des m\'ethodes mais, soit selon leur \emph{action}, soit en fonction de leur nom.
+	\item Le {\menu{Method Finder}} vous permet aussi de trouver des m\'ethodes, soit selon leur \emph{comportement}, soit en fonction de leur nom.
 	\index{method finder}
 	
-	\item Le {\menu{Monticello Browser}} est le point de d\'epart pour le chargement ou la sauvegarde de code via des paquetages \ind{Monticello} dit aussi packages.
+	\item Le {\menu{Monticello Browser}} est le point de d\'epart pour le chargement ou la sauvegarde de code via des paquetages \ind{Monticello} dit aussi paquetages.
 	
 	\item Le {\menu{Process Browser} offre une vue sur l'ensemble des processus (threads) ex\'ecut\'es dans \st.}
 	\index{process browser}
@@ -110,13 +109,12 @@ Vous l'utiliserez pour cr\'eer, d\'efinir et organiser vos classes et vos m\'eth
 	
 	\item Le {\menu{Workspace}} ou \emph{espace de travail} est une fen\^etre dans laquelle vous pouvez entrer des commandes.  
 	Il peut \^etre utilis\'e dans plusieurs buts mais il l'est plus g\'en\'eralement pour taper des expressions Smalltalk et les ex\'ecuter avec 
-\menu{do it}~\footnote{En anglais, \emph{do it} correspond \`a l'exclamation ``fais-le!''.}. L'utilisation de \ind{Workspace} a aussi fait l'objet d'une \'etude dans \secref{transcript}.
+\menu{do it}~\footnote{En anglais, \emph{do it} correspond \`a l'exclamation ``fais-le!''.}. L'utilisation de \ind{Workspace} a déjà été vu dans \secref{transcript}.
 \end{itemize}
 
-L'outil \menu{Debugger} a un r\^ole \'evident, 
-mais vous d\'ecouvrirez qu'il a une place plus centrale en comparaison
+L'outil \menu{Debugger} a un r\^ole \'evident, mais vous d\'ecouvrirez qu'il a une place plus centrale en comparaison
 des d\'ebogueurs dans d'autres langages de programmation car en \st
-vous pouvez \emph{programmer} dans \ind{Debugger}.  Il n'est pas
+vous pouvez \emph{programmer} dans le débogueur..  Il n'est pas
 lanc\'e depuis un menu ou via \toolsflap; 
 il appara\^{\i}t normalement en situation d'erreur,
 en tapant \short{\textbf{.}} pour interrompre un processus lanc\'e ou
@@ -154,7 +152,7 @@ Nous voyons dans \figref{SystemBrowser0} le navigateur tel qu'il appara\^{\i}t l
    \ifluluelse
 	 {\includegraphics[width=\textwidth]{SystemBrowser0} }
 	 {\includegraphics[scale=.7]{SystemBrowser0} }
-   \caption{Le navigateur de classes: System Browser.}
+   \caption{Le navigateur de classes : System Browser.}
    \label{fig:SystemBrowser0}
 \end{figure}
 
@@ -164,7 +162,7 @@ mani\`ere que le \textit{File Viewer} de \ind{NeXTstep} et le
 \textit{Finder} de Mac OS X fournissent une vue en colonnes 
 des fichiers du disque.
 
-Le premier panneau de gauche liste les \emph{cat\'egories} des classes;
+Le premier panneau de gauche liste les \emph{cat\'egories} de classes;
 s\'electionnez-en une (disons \scat{Kernel-Objects}) et alors le
 panneau imm\'ediatemment \`a droite affichera toutes les classes incluses
 dans cette cat\'egorie.
@@ -208,7 +206,7 @@ Si vous s\'electionnez la classe
 
 Contrairement aux r\'epertoires du \emph{Finder} de Mac OS X, les quatre panneaux sup\'erieurs ne sont aucunement \'egaux.
 L\`a o\`u les classes et les m\'ethodes font partie du langage \st,
-Les cat\'egories syst\`eme et les protocoles de message ne sont
+les cat\'egories syst\`eme et les protocoles de message ne sont
 que des convenances introduites par le navigateur pour limiter la quantit\'e d'information que chaque panneau pourrait pr\'esenter.
 Par exemple, s'il n'y avait pas de protocoles, le navigateur devrait afficher
 la liste de toutes les m\'ethodes dans la classe choisie; pour la plupart des classes, cette liste sera trop importante pour \^etre parcourue ais\'ement.

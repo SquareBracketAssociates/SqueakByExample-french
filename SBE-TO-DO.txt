@@ -23,7 +23,7 @@ TODO :
 -----------------------------------------------------------------------------
 L'etat des chapitres
 ------------------
-Preface -- Traduit par Serge. A relire
+Preface -- Traducteur : Serge, Relecteur : ?
 
 [GETTING STARTED]
 A Quick Tour of Squeak -- Traducteur : Mathieu (en cours)
