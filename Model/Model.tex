@@ -272,7 +272,7 @@ comme \cmind{Color class}{showColorCube}.
 Ceci est courant, bien que vous trouverez occasionnellement des m\'ethodes
 de classe utilis\'ees d'une autre mani\`ere.
 
-Il est coutumier de placer des m\'ethodes utilitaires dans le \subind{system browser}{c\^ot\'e classe} parce qu'elles peuvent \^etre ex\'ecut\'ees
+Il est coutumier de placer des m\'ethodes utilitaires dans le \subind{System Browser}{c\^ot\'e classe} parce qu'elles peuvent \^etre ex\'ecut\'ees
 sans avoir \`a cr\'eer un objet additionnel dans un premier temps.
 En fait, beaucoup d'entre elles contiennent un commentaire pour les rendre plus compr\'ehensible pour l'utilisateur qui les ex\'ecute.
 
@@ -352,7 +352,7 @@ il en r\'esulte que:
 \important{Une classe n'a pas acc\`es aux variables d'instance de ses propres instances.}
 \important{Une instance d'une classe n'a pas acc\`es aux variables d'instance de classe de sa classe.}
 C'est pour cette raison que les m\'ethodes d'initialisation d'instance doivent 
-toujours \^etre d\'efinies dans le \subind{system browser}{c\^ot\'e instance}\,---\,le \subind{system browser}{c\^ot\'e classe} n'ayant pas acc\`es aux variables d'instance, il ne pourrait y avoir initiali\-sation!  
+toujours \^etre d\'efinies dans le \subind{System Browser}{c\^ot\'e instance}\,---\,le \subind{System Browser}{c\^ot\'e classe} n'ayant pas acc\`es aux variables d'instance, il ne pourrait y avoir initiali\-sation!  
 % 2007-11-05 correction errata SBE
 Tout ce que peut faire la classe, c'est d'envoyer des messages d'\ind{initialisation} \`a des instances nouvellement cr\'e\'ees; ces messages pouvant bien s\^ur utiliser les m\'ethodes d'acc\`es.
 
@@ -377,7 +377,7 @@ Object subclass: #WebServer
 	category: 'Web'
 \end{classdef}
 
-Ensuite, en cliquant sur le bouton \button{class}, nous pouvons ajouter une variable d'instance \ct{uniqueInstance} au \subind{system browser}{c\^ot\'e classe}.
+Ensuite, en cliquant sur le bouton \button{class}, nous pouvons ajouter une variable d'instance \ct{uniqueInstance} au \subind{System Browser}{c\^ot\'e classe}.
 
 \begin{classdef}[webserver]{Le c\^ot\'e classe de la classe Singleton}
 WebServer class 	
@@ -568,7 +568,7 @@ En cas de conflit (\ie quand plusieurs \emph{traits} d\'efinissent des m\'ethode
 Il est possible aussi de cr\'eer un \emph{alias} des m\'ethodes (avec \ct{@}) 
 leur fournissant ainsi un nouveau nom.
 
-Les \emph{traits} sont employ\'es dans le noyau du syst\`eme~\footnote{System kernel.}.
+Les \emph{traits} sont employ\'es dans le noyau du syst\`eme~\footnote{En anglais, System kernel.}.
 Un bon exemple est la classe \clsind{Behavior}.
 
 \needlines{8}
@@ -1120,7 +1120,7 @@ Color class>>>initialize
 Si vous adoptez cette solution, vous devez vous rappeler qu'il faut
 invoquer la m\'ethode \ct{initialize} apr\`es que vous l'ayez d\'efinie,
 \eg en utilisant \ct{Color initialize}.
-Bien que les m\'ethodes \subind{system browser}{c\^ot\'e classe} \ct{initialize} soient ex\'ecut\'ees automatiquement lorsque le code est charg\'e en m\'emoire,
+Bien que les m\'ethodes \subind{System Browser}{c\^ot\'e classe} \ct{initialize} soient ex\'ecut\'ees automatiquement lorsque le code est charg\'e en m\'emoire,
 elles ne sont \emph{pas} ex\'ecut\'ees durant leur saisie et leur compilation dans le navigateur Browser ou en phase d'\'edition et de recompilation.
 
 %---------------------------------------------------------

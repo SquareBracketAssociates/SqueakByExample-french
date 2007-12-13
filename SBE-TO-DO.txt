@@ -29,7 +29,7 @@ Preface -- Traducteur : Serge, Relecteur : ?
 A Quick Tour of Squeak -- Traducteur : Mathieu (en cours)
 A First Application -- Traducteur : Serge, Relecteur : Martial
 Syntax in a Nutshell -- Traducteur : Rene/Martial, Relecteur : ?
-Understanding Message Syntax -- Traducteur : Serge, Relecteur : ?
+Understanding Message Syntax -- Traducteur : Serge, Relecteur : Martial 
 
 [DEVELOPING IN SQUEAK]
 The Smalltalk Object Model -- Traducteur : Martial, Relecteur : ? 
