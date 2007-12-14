@@ -242,36 +242,51 @@ marquer votre souris des couleurs, comme vous pouvez le voir sur \figref{coloure
 Le \emphind{bouton jaune} est l'autre bouton le plus employé dans \sq, vous l'utiliserez pour afficher les menus contextuels qui présentent des options selon le contexte ou plus précisement selon l'endroit et les objets sur lesquels vous cliquez. Voyez \figref{threeButtons:yellow}.
 
 
-\dothis{Saisissez \ct{Time now} dans le Workspace.
-Puis cliquez avec le bouton jaune dans le Workspace
-et sélectionnez \menu{print it} (en fran\c{c}ais, ``affichez-le'') dans le menu qui apparaît.}
+\dothis{Saisissez \ct{Time now}
+%ajout 
+(expression retournant le temps pr\'esent) dans le Workspace.
+Puis cliquez avec le bouton jaune dans le Workspace et sélectionnez
+\menu{print it} 
+%ajout
+(en fran\c{c}ais, ``affichez-le'')
+dans le menu qui apparaît.}
 
-Enfin, le \emphind{bouton bleu} est utilisé pour activer le ``
-\subind{Morphic}{halo}'', une constellation  d'ic\^ones autour de l'objet
+Enfin, le \emphind{bouton bleu} est utilisé pour activer le
+``\subind{Morphic}{halo}'', une constellation d'ic\^ones autour de l'objet
 actif de l'écran; chaque ic\^one repr\'esentant une poign\'ee de contr\^ole
-permettant des actions telles que changer la taille ou faire pivoter
-l'objet, comme le montre \figref{threeButtons:blue}.
+permettant des actions telles que \emph{changer la taille} ou
+\emph{faire pivoter l'objet}, comme le montre \figref{threeButtons:blue}.
 En survolant lentement les poignées avec le pointeur de votre souris,
 une bulle d'aide en affichera un descriptif
 %ajout
-(en anglais, dans la version d'origine
-de \sq).
+(en anglais, dans la version d'origine de \sq).
 
 \dothis{Cliquez avec le bouton bleu sur le Workspace.
 Déplacez la poignée \raisebox{-0.4ex}{\includegraphics[width=1em]{morphicRotate}} située à proximité du coin inférieur gauche pour faire pivoter le Workspace.}
 
 Nous recommandons aux personnes gauchères de configurer leur souris et d'affecter le \ind{button rouge} à la gauche de leur souris, le \ind{bouton jaune} à droite et d'utiliser la molette de défilement (si elle est disponible) comme \ind{bouton bleu}.
-Avec une souris sans molette il est possible d'invoquer le menu halo en maintenant 
-\ct{alt}, \ct{ctrl} ou \ct{option} pendant que vous cliquez sur le \ind{bouton rouge}.
-Si vous utilisez un Macintosh avec une souris à un bouton, vous pouvez simuler le second bouton en maintenant la touche \clover{} enfoncée et en cliquant. Si vous prévoyez d'utiliser \sq souvent, nous vous recommandons d'investir dans un modèle à deux boutons.
+Avec une souris sans molette il est possible d'invoquer le menu halo
+en maintenant \ct{alt}, \ct{ctrl}
+ou \ct{option} pendant que vous cliquez sur le \ind{bouton rouge}.
+Si vous utilisez un Macintosh avec une souris à un bouton, vous pouvez
+simuler le second bouton en maintenant la touche \clover{} enfoncée et
+en cliquant. Cependant, si vous prévoyez d'utiliser \sq souvent, nous
+vous recommandons d'investir dans un modèle à deux boutons au minimum.
 
-%  j'ai ajouté CTRL car sur mon linux ni alt ni fn.. ne marchent pour ça. seul ctrl le fait..
-
+%  j'ai ajouté CTRL car sur mon linux ni alt ni fn.. ne marchent pour
+%  ça. seul ctrl le fait..
+% note de martial: ca depend aussi du windowmanager; c'est une bonne
+% idee de le mettre en tout cas 
 Vous pouvez configurer votre souris selon vos souhaits en utilisant les préférences de votre système ou le pilote de votre dispostif de pointage.
-\sq vous propose des réglages pour adapter votre souris et les touches spéciales de votre clavier. Vous trouverez le \ind{Preference Browser} dans l'option \menu{open} du menu \menu{World}.
-Dans le Preference Browser, la catégorie \menu{general} contient une option \menu{swapMouseButtons} qui permute les boutons jaune et bleu (voir \menu{swapMouseButtons}). Le \menu{keyboard} a une catégorie pour dupliquer les touches de commandes et rendre équivalent une pression sur \ct{alt} à une pression sur \ct{ctrl}.
+\sq vous propose des réglages pour adapter votre souris et les touches spéciales de votre clavier. Vous trouverez le \ind{Preference Browser} dans l'option \menu{open...} du menu \menu{World}.
+Dans l'outil de r\'eglage des pr\'ef\'erences nomm\'e Preference
+Browser, la catégorie \menu{general} contient une option
+\menu{swapMouseButtons} qui permute les boutons jaune et bleu (voir
+\figref{prefBrowser}). La cat\'egorie \menu{keyboard} (clavier)
+propose des options afin de dupliquer les touches de commandes et 
+rendre une pression sur \ct{alt} \'equivalente à une pression sur \ct{ctrl}.
 
-\dothis{Ouvrez le Preference Browser en cliquant avec le bouton rouge dans l'arrière plan de la fenêtre de \sq et cherchez l'option \menu{swapMouseButtons} en utilisant la zone de recherche.}
+\dothis{Ouvrez le Preference Browser en cliquant avec le bouton rouge dans l'arrière-plan de la fenêtre de \sq et cherchez l'option \menu{swapMouseButtons} en utilisant la zone de recherche.}
 
 \begin{figure}[htb]
 \ifluluelse
@@ -282,26 +297,35 @@ Dans le Preference Browser, la catégorie \menu{general} contient une option \me
 
 %=================================================================
 \section{Le menu World}
-\index{menu world}
+\index{menu World}
 
 \dothis{Cliquez avec le bouton rouge dans l'arrière plan de \sq.}
-
 Le menu \menu{World} apparaît à nouveau.
+La plupart des menus de \sq ne sont pas modaux, tout comme, par
+%ajout par mathieu; correct
+exemple, une fenêtre de dialogue pour la sauvegarde d'un fichier que
+vous devez soit compléter, soit annuler, sans pouvoir travailler en même temps dans l'application. 
+Avec \sq vous pouvez maintenir ces menus sur l'écran en cliquant sur
+l'icône en forme d'épingle au coin supérieur droit. Essayez! Vous
+remarquerez que les menus apparaissent  quand  vous cliquez  mais ne
+disparaissent pas quand vous relâchez votre bouton, ils restent
+visibles jusqu'à que vous ayez fait une sélection ou que vous ayez
+cliqué en dehors du menu. Tous les menus affichés à l'écran peuvent se déplacer en glissant leur barre de titre, comme n'importe quelle fenêtre.
 
-La plupart des menus de \sq ne sont pas modaux comme une fenêtre de dialogue pour la sauvegarde d'un fichier que vous devez soit compléter, soit annuler, sans pouvoir travailler en même temps dans l'application. Avec \sq vous pouvez maintenir ces menus sur l'écran en cliquant sur l'icône en forme d'épingle au coin supérieur droit. Essayez! Vous remarquerez que les menus apparaissent  quand  vous cliquez  mais ne disparaissent pas quand vous relâchez votre bouton, ils restent visibles jusqu'à que vous ayez fait une sélection ou cliqué en dehors du menu. Et tous les menus affichés à l'écrans peuvent se déplacer en glissant leur barre de titre, comme n'importe quelle fenêtre.
+Le menu World vous offre un moyen simple d'accéder à la plupart des
+outils disponibles dans \sq.
 
-Le menu World vous offre un moyen d'accéder à la plupart des outils de \sq.
-
-\dothis{Regardez attentivement le menu \menu{world\go{}open \ldots}. }
-
-Vous verrez  les les principaux outils de \sq, et surtout le System Browser (l'un des nombreux navigateurs de classes) et le Workspace. Nous aurons affaire à eux dans les prochains chapitres.
+\dothis{Regardez attentivement le menu \menu{world\go{}open\ldots}.}
+Vous verrez  les principaux outils de \sq dont le System Browser (l'un
+des nombreux navigateurs de classes) et l'espace de travail
+Workspace. Nous aurons affaire à eux dans les prochains chapitres.
 
 \begin{figure}[htb]
 \ifluluelse
 	%{\centerline {\includegraphics[width=0.3\textwidth]{OpenMenu}}}
 	{\centerline {\includegraphics[scale=0.5]{OpenMenu}}}
 	{\centerline {\includegraphics[scale=0.7]{OpenMenu}}}
-\caption{L'option  \menu{open \ldots} dans le menu World.\label{fig:openmenu}}
+\caption{L'option \menu{open\ldots} dans le menu World.\label{fig:openmenu}}
 \end{figure}
 
 %=================================================================
@@ -386,13 +410,14 @@ Une seule fenêtre est active à la fois, son titre est alors affiché en gras. 
 Le Transcript est un objet qui est couramment utilisé pour afficher des messages du système.
 C'est un genre de ``console''.
 L'affichage dans la fenêtre Transcript est très lent, si vous la conservez ouverte et que vous affichez le résultat de certaines opérations celles-ci peuvent ralentir plus de 10 fois.
-De plus la fenêtre Transcript n'est pas conçue pour recevoir simultanément des messages à afficher provenant de plusieurs objets. %protegé contre acces concurrents
+De plus la fenêtre Transcript n'est pas conçue pour recevoir
+simultanément des messages à afficher provenant de plusieurs objets. 
+%protegé contre acces concurrents
 
-%Workspaces are useful for typing snippets of \st code that you would like to experiment with.
-%You can also use workspaces simply for typing arbitrarily text that you would like to remember, such as to-do lists or instructions for anyone who will use your image.
-%Workspaces are often used to hold documentation about a captured image, as is the case with the standard image that we downloaded earlier (see \figref{startup}).
-
-
+%%%% a traduire
+Workspaces are useful for typing snippets of \st code that you would like to experiment with.
+You can also use workspaces simply for typing arbitrarily text that you would like to remember, such as to-do lists or instructions for anyone who will use your image.
+Workspaces are often used to hold documentation about a captured image, as is the case with the standard image that we downloaded earlier (see \figref{startup}).
 
 \dothis{Type the following text into the workspace:}
 \begin{code}{}
@@ -670,8 +695,8 @@ The method finder can still help!  For example, suppose that you would like to f
 \noindent
 The method finder will suggest a method that does what you want.
 
-A star at the beginning of a line in the right pane of the method finder indicates that this method is the one that was actually used to obtain the requested result. 
-So, the star in front of \ct{String asUppercase} lets us know that the method \mthind{String}{asUppercase} defined on the class \clsind{String} was executed and returned the result we wanted. The methods that do not have a star are just the other methods that have the same name as the ones that returned the expected result. So \cmind{Character}{asUppercase} was not executed on our example, because \ct{'eureka'} is not a \clsind{Character} object.
+An asterisk at the beginning of a line in the right pane of the method finder indicates that this method is the one that was actually used to obtain the requested result. 
+So, the asterisk in front of \ct{String asUppercase} lets us know that the method \mthind{String}{asUppercase} defined on the class \clsind{String} was executed and returned the result we wanted. The methods that do not have an asterisk are just the other methods that have the same name as the ones that returned the expected result. So \cmind{Character}{asUppercase} was not executed on our example, because \ct{'eureka'} is not a \clsind{Character} object.
 
 \begin{figure}[hbt]
 \ifluluelse
@@ -687,7 +712,7 @@ You can also use the method finder for methods with arguments; for example, if y
 \section{Defining a new method}
 
 The advent of \ind{Test Driven Development}\cite{Beck03a} has changed the way that we write code.  
-The idea behind Test Driven Development, also called TDD or Behavior Driven Development, is that we write a test that defines the desired behavior of our code \emph{before} we write the code itself.
+The idea behind Test Driven Development, also called TDD or Behaviour Driven Development, is that we write a test that defines the desired behaviour of our code \emph{before} we write the code itself.
 Only then do we write the code that satisfies the test.
 \seeindex{Behavior Driven Development}{Test Driven Development}
 \orla{describe the technique where we write a test hat ... subsequently we write ...}
