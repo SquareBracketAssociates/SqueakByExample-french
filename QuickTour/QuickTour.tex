@@ -1,6 +1,11 @@
-% $Author$
+% $Author$ mathieu chappuis + martial boniou
 % $Date$
-% $Revision$
+% $Revision$ fini le: 
+%%%%%%%%%%%%%%%%%%%%%%
+% note temporaire de Martial destine aux relectures:
+% collapse a window --> ranger la fenetre (et pas reduire, si vous
+% voyez cette erreur, SVP merci de corriger)
+%%%%%%%%%%%%%%%%%%%%%%
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -37,19 +42,18 @@
 %In this chapter we will give you a high-level tour of \sq to help you get comfortable with the environment.
 %There will be plenty of opportunities to try things out, so it would be a good idea if you have a computer handy when you read this chapter.
 
-Nous vous proposons dans ce chapitre une visite de \sq afin de vous familiariser avec son environnement.
-De nombreux aspects seront abordés, il est conseillé d'avoir une machine prète pour suivre ce chapitre. 
+Nous vous proposons dans ce chapitre une premi\`ere visite de \sq afin de vous familiariser avec son environnement.
+De nombreux aspects seront abordés; il est conseillé d'avoir une
+machine pr\^ete \`a l'emploi pour suivre ce chapitre. 
 
 
 %We will use this icon: \dothisicon{} to mark places in the text where you should try something out in \sq.
 %In particular, you will fire up \sq, learn about the different ways of interacting with the system, and discover some of the basic tools.
 %You will also learn how to define a new method, create an object and send it messages.
 
-Cet icône \dothisicon{} signalera dans le texte les étapes où vous devrez essayer quelque chose vous-même.
-Vous apprendez à démarrer \sq, les différentes manières d'utiliser l'environnement et les outils de base.
+Cet icône \dothisicon{} dans le texte signalera les étapes où vous devrez essayer quelque chose vous-même.
+Vous apprendez à démarrer \sq et les différentes manières d'utiliser l'environnement et les outils de base.
 La création des méthodes, des objets et les envois de messages seront également abordés.
-
-
 
 %=================================================================
 \section{Premiers pas}
@@ -57,8 +61,9 @@ La création des méthodes, des objets et les envois de messages seront égaleme
 %\sq is available as a free \ind{download} from \url{www.squeak.org}.
 %There are three parts that you will need to download, consisting of four files (see \figref{download}).
 
-\sq est librement disponible depuis le site principal de \sq : \url{www.squeak.org}.
-Vous devez y télécharger 3 archives (pour 4 fichiers principaux qui constituent une installation courante de \sq) 
+\sq est librement disponible depuis le site principal de \sq: \url{www.squeak.org}.
+Vous devez y télécharger 3 archives (pour 4 fichiers principaux qui
+constituent une installation courante de \sq; voir \figref{download}) 
 
 \begin{figure}[htb]
 \centerline {\includegraphics[width=\textwidth]{annotatedDownload}}
@@ -69,58 +74,78 @@ Vous devez y télécharger 3 archives (pour 4 fichiers principaux qui constituen
 
   %\item The \emphind{virtual machine} (VM) is the only part of the system that is different for each operating system and processor.  Pre-compiled virtual machines are available for all the major computing environments.  In \figref{download} we see the VM for the Mac is called \textit{\sq 3.8.15beta1U.app}.
 
-\item La \emphind{machine virtuelle} (VM) est la seule partie de l'environnement qui est particulière à chaque système d'exploitation. Des machines virtuelles pré-compilées sont disponibles pour la plupart des systèmes (Linux, OS/X, Win32).Dans la \figref{download} vous remarquerez par exemple la machine virtuelle pour le Macintosh : \textit{\sq 3.8.15beta1U.app}.
+\item La \emphind{machine virtuelle} (agr\'eg\'e en VM pour
+  \emph{virtual machine}) est la seule partie de l'environnement qui
+  est particulière à chaque système d'exploitation. Des machines
+  virtuelles pré-compilées sont disponibles pour la plupart des
+  systèmes (Linux, OS/X, Win32). Dans \figref{download}, vous
+  remarquerez par exemple la machine virtuelle pour le syst\`eme MacOSX: \textit{\sq 3.8.15beta1U.app}.
+%martial: ajout des index dans la vf
+\index{machine virtuelle}
+\seeindex{VM}{machine virtuelle}
 
 %  \item The \emphind{sources} file contains the source code for all of the parts of \sq that don't change very frequently. In \figref{download} it is called \emph{SqueakV39.sources}. Note that the file SqueakV39.sources is only for versions 3.9 and later of \sq. For earlier versions, use a sources file corresponding to the main version \eg \textit{SqueakV3.sources} for versions of \sq from 3.0 up to 3.8.
 
-  \item Le fichier \emphind{source} contient le code source du système \sq qui change peu. Dans la \figref{download} il correspond à \emph{SqueakV39.sources}. Le fichier source SqueakV39.sources est destiné aux versions 3.9 ou supérieures de \sq. Pour des versions antérieures vous devez utiliser un fichier source (par exemple SqueakV39.sources) de même version que \sq (de 3.0 à 3.8). 
+  \item Le fichier \emphind{source} contient le code source du système
+    \sq qui ne change pas tr\`es souvent. Dans \figref{download}, il
+    correspond au fichier \emph{SqueakV39.sources}. Le fichier-source SqueakV39.sources n'est destiné qu'aux versions 3.9 ou supérieures de \sq. Pour des versions antérieures vous devez utiliser un fichier-source (par exemple SqueakV3.sources) de même version que \sq (de 3.0 à 3.8). 
+%ajout fr index
+\index{fichier!source}
+\seeindex{fichier-source}{fichier, source}
+\seeindex{SqueakV39.sources}{fichier, source}
+\seeindex{SqueakV3.sources}{fichier, source}
 
 %  \item The current \emph{system \ind{image}} is a snapshot of a running \sq system, frozen in time.  It consists of two files: an \emph{.}\emphind{image} file, which contains the state of all of the objects in the system (including classes and methods, since they are objects too), and a \emph{.}\emphind{changes} file, which contains a log of all of the changes to the source code of the system.
 
 \item Le fichier \emph{\ind{image}} est un cliché d'un système en fonctionnement, figé à un instant donné. 
-Il est composé de deux fichiers : le premier nommé avec l'extension \emph{.}\emphind{image} contient l'état de tous les objets du système ainsi que les classes et les méthodes puisque ce sont aussi des objets. Le second avec l'extention \emph{.}\emphind{changes} contient les changements apportés au code source, ils y sont journalisés.
-
+Il est composé de deux fichiers: le premier nommé avec l'extension
+\emph{.}\emphind{image} contient l'état de tous les objets du système
+ainsi que les classes et les méthodes puisque ce sont aussi des
+objets. Le second avec l'extension \emph{.}\emphind{changes} contient
+toutes les modifications apportées au code source; elles y sont journalisées.
+%ajout fr index
+\index{fichier!image}
+\index{fichier!changes}
 
 %In \figref{download}, we see that we have grabbed the \textit{Squeak3.9-final-7067} image and sources files.
 \end{enumerate}
 
-\dothis{Téléchargement et installation de \sq.}
-\index{download}
+\dothis{Téléchargez et installez \sq sur votre ordinateur.}
+\index{t\'el\'echargement}
 
 %The version of \sq that we have used for developing the examples in this book is \emphind{Squeak-dev}, available from \url{http://damien.cassou.free.fr/squeak-dev}.
 %\label{sec:squeakDev}
 
-Dans ce livre et pour tous les exemples nous avons utilisé \emphind{Squeak-dev}, cette image est disponible sur \url{http://damien.cassou.free.fr/squeak-dev}.
+Dans ce livre, nous avons utilisé pour d\'evelopper tous les exemples
+la version \emphind{Squeak-dev} de \sq; cette image est disponible sur
+\squeakdev. 
+%\url{http://damien.cassou.free.fr/squeak-dev}.
 \label{sec:squeakDev}
-
 %We chose this image because it has a wider variety of programming tools pre-installed, and because additional packages can be loaded with a single click.  
-
-Elle contient une large collection d'outils de développement et permet d'installer très facilement des paquets complémentaires.
-
-
+Elle contient une large collection d'outils de développement et permet d'installer très facilement des paquetages complémentaires.
 %Most of the introductory material in this book will work with any version, so if you already have one installed, you may as well continue to use it.  
-
-Si vous avez déjà une autre version de \sq qui fonctionne sur votre machine, la plupart des exemples d'introduction de ce livre fonctionneront et il n'est pas nécessaire de mettre à jour \sq.
-
+Si vous avez déjà une autre version de \sq qui fonctionne sur votre
+machine, la plupart des exemples d'introduction de ce livre
+fonctionneront. Il n'est donc pas nécessaire de mettre à jour \sq.
 %However, if you notice differences between the appearance or behavior of your system and what is described here, do not be surprised. 
-
-Mais vous constaterez peut-être des différences dans l'apparence ou le comportement que nous décrirons.
-
+D\`es lors, ne soyez pas surpris de constater parfois des différences dans l'apparence ou le comportement que nous décrirons.
 %On the other hand, if you are about to download \sq for the first time, you may as well grab the \emph{Squeak-dev} image.
-
-De toute façon, si vous téléchargez \sq pour la première fois, vous devriez utiliser l'image \emph{Squeak-dev}.
+D'un autre c\^ot\'e, si vous téléchargez \sq pour la première fois,
+vous devriez rapatrier et utiliser l'image \emph{Squeak-dev}.
 
 %As you work in \sq, the image and changes files are modified, so you need to make sure that they are writable.
-
 Pendant que vous travaillez avec \sq les fichiers \emph{.image} et \emph{.changes} sont modifiés, vous devez vous assurer qu'ils sont accessibles en écriture.
-Conservez toujours ces deux fichiers ensemble, càd dans le même dossier.
+Conservez toujours ces deux fichiers ensemble, \cad dans le même dossier.
 Et surtout, ne tentez pas de les modifier avec un éditeur de texte, \sq les utilise pour stocker vos objets de travail et vos changements dans le code source.
-Sauvegardez vos images téléchargées et vos fichiers changes, vous pourrez ainsi toujours démarrer à partir d'une image propre et recharger votre code.
+Faire une copie de sauvegarde de vos images téléchargées et de vos
+fichiers \emph{changes} est une bonne id\'ee; vous pourrez ainsi
+toujours démarrer à partir d'une image propre et y recharger votre code.
 
-
-Les fichiers \emphind{sources} et l'éxécutable de la VM peuvent être en lecture seul, il est donc possible de les partager pour plusieurs utilisateurs.
-Ces quatre fichiers peuvent résider dans le même dossier, mais vous pouvez également placer la Machine virtuelle et les fichiers sources dans un dossier partagé et distinct.
-Vous pouvez adapter l'installation de \sq à vos habitudes de travail et votre système d'exploitation.
+Les fichiers \emphind{sources} et l'exécutable de la VM peuvent être
+en lecture seule\,---\,il est donc possible de les partager entre plusieurs utilisateurs.
+Ces quatre fichiers peuvent résider dans le même dossier, mais vous pouvez également placer la machine virtuelle et les fichiers sources dans un dossier partagé distinct.
+Vous pouvez adapter l'installation de \sq à vos habitudes de travail
+et \`a votre système d'exploitation.
 
 \sd{it would be really nice to have a setup and startup section on PC, Mac and Linux}
 \ab{I agree entirely; the reason that this is not here is because I could do only the Mac section.  Damien can probably do Windoze.  Perhaps we can ask on the list for a Linux volunteer?}
@@ -132,21 +157,38 @@ Vous pouvez adapter l'installation de \sq à vos habitudes de travail et votre s
 % \caption{A fresh \sq image.\label{fig:startup}}
 % \end{figure}
 
-\index{lancement de Squeak}
+\index{Lancer Squeak}
 
-\paragraph{Lancement.} Pour lancer \sq, selon votre système : glissez un le fichier \emph{.}\emphind{image} sur l'icône de l'éxécutable de la machine virtuelle, sinon double-cliquez sur le fichier \emph{.}\emphind{image}, ou depuis une ligne de commande tapez le nom de l'éxécutable de la machine virtuelle suivi par le chemin d'accès au fichier  \emph{.}\emphind{image}. (Si vous avez installé plusieurs machines virtuelles, le système ne choisira pas forcément celle qui convient, il sera préférable de travailler par glisser-déposer sur la VM ou d'utiliser la ligne de commande)
+\paragraph{Lancement.} Pour lancer \sq, selon votre système: glissez
+le fichier \emph{.}\emphind{image} sur l'icône de l'exécutable de la
+machine virtuelle, ou double-cliquez sur le fichier
+\emph{.}\emphind{image}, ou encore, depuis une ligne de commande,
+tapez le nom du fichier binaire correspondant \`a la machine virtuelle
+suivi du le chemin d'accès au fichier \emph{.}\emphind{image} (si vous
+avez installé plusieurs machines virtuelles, le système ne choisira
+pas forcément celle qui convient, il sera préférable de
+glisser-déposer l'image sur la VM ou d'utiliser la ligne de commande).
 
-Une fois lancé, \sq vous présente une large fenêtre qui contient des espaces de travail (voir la \figref{startup}). Notez qu'il n'y a pas de barre de menu, à la place \sq utilise des menus contextuels. 
+Une fois lancé, \sq vous présente une large fenêtre qui contient des espaces de travail (voir \figref{startup}). Notez qu'il n'y a pas de barre de menu, à la place \sq utilise des menus contextuels. 
 
-\dothis{Lancez \sq. Vous pouvez fermer des Workspace (espaces de travail) en cliquant sur l'icône {\sf X} au coin supérieur gauche des fenêtres ou les replier en cliquant sur le symbole \raisebox{-0.2ex}{{\Large $\circ$}} au coin supérieur droit.}
+%martial: j'ai mis 'normalement les reduit' parce que si la barre des
+%taches est chargee, la fenetre est minimisee a la OS/2
+\dothis{Lancez \sq. Vous pouvez fermer les fen\^etres d\'ej\`a
+  ouvertes en cliquant sur l'icône {\sf X} situ\'e sur le coin
+  supérieur gauche des fenêtres ou les ranger (ce qui normalement les
+  r\'eduit \`a  leur barre de titre) en cliquant sur le symbole \raisebox{-0.2ex}{{\Large $\circ$}} au coin supérieur droit.}
 
 %-----------------------------------------------------------------
 %\paragraph{First Interaction.}
-\paragraph{Première interaction}
+\paragraph{Première interaction.}
 
-Une bon point de départ est le contenu du menu World (Monde) présenté dans la \figref{threeButtons:red}. 
+Les options du menu World (``Monde'' en anglais) pr\'esent\'e dans
+\figref{threeButtons:red} sont un bon point de d\'epart.
 
-\dothis{Cliquez à l'aide de la souris dans l'arrière plan de la fenêtre principale pour afficher le menu World, puis sélectionnez \menu{open \ldots \go workspace} pour créer un nouveau Workspace.}
+\dothis{Cliquez à l'aide de la souris dans l'arrière plan de la
+  fenêtre principale pour afficher le menu World, puis sélectionnez
+  \menu{open \ldots \go workspace} pour créer un nouvel espace de
+  travail ou Workspace.}
 
 
 \begin{figure}[tbh]
@@ -157,12 +199,15 @@ Une bon point de départ est le contenu du menu World (Monde) présenté dans la
 		\includegraphics[width=0.25\linewidth]{yellowButtonMenuOnWorkspace}}\hfill
 	\subfigure[Le halo]{\label{fig:threeButtons:blue}%FIXFR
 		\includegraphics[width=0.25\linewidth]{morphicHaloOnWorkspace}}% these braces needed (else no whitespace at end of line)
-	\caption{Le menu World (affiché avec le bouton rouge de la souris), un menu contextuel (bouton jaune de la souris), et un halo \subind{Formes}{halo} (bouton bleu).\label{fig:threeButtons}}
+	\caption{Le menu World (affiché avec le bouton rouge de la
+      souris), un menu contextuel (bouton jaune de la souris) et un
+      \subind{Morphic}{halo} Morphic (bouton bleu de la souris).\label{fig:threeButtons}}
 \end{figure}
 \index{bouton rouge}
 \index{bouton jaune}
 \index{bouton bleu}
-\seeindex{formes halo}{Formes}
+%\seeindex{morphic halo}{Morphic}
+\seeindex{halo}{Morphic}
 
 % ON: I had to shrink this and move it up to avoid
 % it running over the end of the page.
@@ -171,8 +216,7 @@ Une bon point de départ est le contenu du menu World (Monde) présenté dans la
 % the placement {r} for right, and the width of the figure. Capital R will allow some float.
 % Inside the wrapfig environment, linewidth is special --- the width of the figure.
 \includegraphics[width=0.95\linewidth]{colouredMouse}
-\caption{La souris de l'auteur. La molette correspond au bouton bleu.}
-\label{fig:colouredMouse}
+\caption{La souris de l'auteur. Le clic avec la molette correspond au bouton bleu.\label{fig:colouredMouse}}
 \end{wrapfigure}
 
 \sq a été conçu à l'origine pour être utilisé avec une souris à trois boutons. Si votre souris en a moins vous pourrez utiliser des touches du clavier en complément de la souris pour simuler les boutons manquants. Une souris à deux boutons fonctionne bien avec \sq, mais si la votre n'a qu'un seul bouton vous devriez songez à adopter un modèle récent avec une molette, qui fera office de troisième bouton : votre travail avec \sq n'en sera que plus agréable.

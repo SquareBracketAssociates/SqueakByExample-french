@@ -101,7 +101,14 @@
 %\newcommand{\sbe}{\url{scg.unibe.ch/SBE}\xspace}
 %\newcommand{\sbe}{\url{squeakbyexample.org}\xspace}
 \newcommand{\sbe}{\url{SqueakByExample.org}\xspace}
+% squeak-fr: adresse de la version francaise
+\newcommand{\spe}{\url{SqueakByExample.org}\xspace} % ?/FR
 \newcommand{\sba}{\url{SquareBracketAssociates.org}\xspace}
+
+% squeak-fr: ajout de la \squeakdev pour eviter les problemes de
+% changements d'url rencontres dans la VO:
+\newcommand{\squeakdev}{\url{www.squeaksource.com/ImageForDevelopers}\xspace} %ou
+%\newcommand{\squeakdev}{\url{squeak.ofset.org/squeak-dev}\xspace}
 
 %=============================================================
 %:Editorial comment macros
@@ -116,7 +123,8 @@
 \newcommand{\damien}[1]{\nnbb{Damien}{#1}}
 \newcommand{\lr}[1]{\nnbb{Lukas}{#1}}
 \newcommand{\orla}[1]{\nnbb{Orla}{#1}}
-\newcommand{\here}{\nnbb{CONTINUE}{HERE}}
+%\newcommand{\here}{\nnbb{CONTINUE}{HERE}}
+\newcommand{\here}{\nnbb{CONTINUE}{ICI}}
 
 %=============================================================
 %:Abbreviation macros
@@ -153,6 +161,7 @@
 %
 \newcommand{\scrref}[1]{script~\ref{scr:#1}\xspace}
 \newcommand{\Scrref}[1]{Script~\ref{scr:#1}\xspace}
+% t = the
 \newcommand{\tscrref}[1]{le script~\ref{scr:#1}\xspace}
 \newcommand{\Tscrref}[1]{Le script~\ref{scr:#1}\xspace}
 %
@@ -204,6 +213,11 @@
 %
 % Indicates a non-obvious consequence 
 \newcommand{\hint}[1]{\vspace{1ex}\noindent\fbox{\textsc{Astuce}} \emph{#1}}
+%=================================================================
+% graphics for Morphic handles
+%\newcommand{\grabHandle}{\raisebox{-0.2ex}{\includegraphics[width=1em]{blackHandle}}}
+%\newcommand{\moveHandle}{\raisebox{-0.2ex}{\includegraphics[width=1em]{moveHandle}}}
+%\newcommand{\debugHandle}{\raisebox{-0.2ex}{\includegraphics[width=1em]{debugHandle}}}
 %=============================================================
 %:Highlighting Important stuff (doublebox)
 %
@@ -354,6 +368,7 @@ pdfsubject={Informatique, Computer Science}
 
 % Use these for system categories and protocols:
 \newcommand{\scat}[1]{\emph{\textsf{#1}}\xspace}
+\newcommand{\pkg}[1]{\emph{\textsf{#1}}\xspace}
 \newcommand{\prot}[1]{\emph{\textsf{#1}}\xspace}
 % Code environments
 % NB: the arg is for tests

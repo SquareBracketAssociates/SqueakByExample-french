@@ -1,6 +1,9 @@
-% $Author$
+% $Author$ serge
 % $Date$
 % $Revision$
+% relecture et synchro avec la version originale: martial boniou
+% Fri Dec 14 14:05:59 CET 2007
+% note: j'ai corrige l'url de telechargement/commande de SBE
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -25,91 +28,124 @@
 \chapter{Pr\'eface}\label{cha:intro}
 
 %=================================================================
-\section*{Qu'est ce que \sq ?}
+\section*{Qu'est ce que \sq?}
 
-\sq est une impl\'ementation moderne, libre et compl\'ete du langage de programmation \st et de son environnement.
+\sq est une impl\'ementation moderne, libre et compl\`ete du langage de programmation \st et de son environnement.
 
-\sq est extr\^emement portable --- m\^eme sa machine virtuelle est \'egalement \'ecrite avec \st, ce qui facilite son d\'eboguage, son analyse et des modifications. \sq est le v\'ehicule de tout un ensemble de projets innovants des applications multim\'edias et \'educatives aux environnements de d\'eveloppement pour le web.
+\sq est extr\^emement portable --- m\^eme sa machine virtuelle est \'egalement \'ecrite avec \st, ce qui facilite son d\'eboguage, son analyse et les modifications. \sq est le v\'ehicule de tout un ensemble de projets innovants, des applications multim\'edias et \'educatives aux environnements de d\'eveloppement pour le web.
 
 %=================================================================
-\section*{Qui doit lire ce livre ?}
+\section*{Qui devrait lire ce livre?}
 
-Ce livre pr\'esente diff\'erents aspects de \sq, en commen\c{c}ant par les concepts de base et en poursuivant vers les aspects plus avanc\'es.
+Ce livre pr\'esente diff\'erents aspects de \sq, en commen\c{c}ant par les concepts de base et en poursuivant vers des sujets plus avanc\'es.
 
 Ce livre ne vous apprendra pas \`a programmer. Le lecteur doit avoir quelques notions concernant les langages de programmation. Quelques connaissances sur la programmation objet seront utiles.
 
-Ce livre introduit l'environnement de programmation, le language et les outils de Squeak. Vous serez confront\'e \`a de nombreuses bonnes pratiques de Smalltalk, mais l'accent est mis plus particuli\`erement sur les aspects techniques et pas la conception orient\'e-objet. Autant que possible, nous vous montrerons beaucoup d'exemples. (Nous avons \'et\'e inspir\'e par l'excellent livre de Alex Shartp sur Smalltalk\cite{Shar97a}.)
+Ce livre introduit l'environnement de programmation, le language et
+les outils de \sq. Vous serez confront\'e \`a de nombreuses bonnes
+pratiques de Smalltalk, mais l'accent sera mis plus particuli\`erement
+sur les aspects techniques et non sur la conception orient\'ee
+objet. Nous vous pr\'esenterons, autant que possible, une foule 
+d'exemples (nous avons \'et\'e inspir\'e par l'excellent livre de Alex
+Sharp sur Smalltalk\cite{Shar97a}).
 \index{Sharp, Alex}
 
-Il y a plusieurs autres livres sur \st disponibles gratuitement sur  le web mais aucun d'entre eux ne se concentrent sur \sq. Voir par exemple :
+Il y a plusieurs autres livres sur \st disponibles gratuitement sur le web mais aucun d'entre eux ne se concentrent sur \sq. Voyez par exemple:
 \url{stephane.ducasse.free.fr/FreeBooks.html}
 
 \ifluluelse{}{\newpage} % layout hint
 %=================================================================
-\section*{Quelques mots de conseils}
+\section*{Un petit conseil}
 
 % http://www.surfscranton.com/architecture/KnightsPrinciples.htm
 
 Ne soyez pas frustr\'e par des \'el\'ements de \st que vous ne comprenez pas imm\'ediatement.
 Vous n'avez pas tout \`a conna\^itre!
-Alan Knight exprime ce principe comme suit\footnote{\url{www.surfscranton.com/architecture/KnightsPrinciples.htm}} :
+Alan Knight exprime ce principe comme suit~\footnote{\url{www.surfscranton.com/architecture/KnightsPrinciples.htm}}:
 \index{Knight, Alan}
-\important{{\bf Ne vous en pr\'eoccupez pas.}
-Les d\'eveloppeurs \st d\'ebutants ont souvent beaucoup de difficult\'es car ils pensent qu'il est n\'ecessaire de conna\^itre tous les d\'etails d'une chose avant de l'utiliser. Cela signifie qu'il leur faut un moment avant de maitriser un simple : \ct{Transcript show: 'Hello World'}. Une des grandes avanc\'ees de la programmation par objet est de pouvoir r\'epondre \`a la question ``Comment ceci marche ?'' avec  ``Je ne m'en pr\'eoccupe pas''.}
+\important{{\bf Ne vous en pr\'eoccupez pas!}%
+%\important{{\bf Moquez-vous en!}%
+~\footnote{Dans sa version originale: ``Try not to care''.}
+Les d\'eveloppeurs \st d\'ebutants ont souvent beaucoup de
+difficult\'es car ils pensent qu'il est n\'ecessaire de conna\^itre
+tous les d\'etails d'une chose avant de l'utiliser. Cela signifie
+qu'il leur faut un moment avant de ma\^{\i}triser un simple: \ct{Transcript show: 'Hello World'}. Une des grandes avanc\'ees de la programmation par objets est de pouvoir r\'epondre \`a la question ``Comment ceci marche?'' avec  ``Je ne m'en pr\'eoccupe pas''.}
 
 %=================================================================
 \section*{Un livre ouvert}
 
-Ce livre est ouvert dans plusieurs sens :
+Ce livre est ouvert dans plusieurs sens:
 
 \begin{itemize}
 
 \item	Le contenu de ce livre est diffus\'e sous la licence Creative Commons Paternit\'e - Partage des Conditions Initiales \`a l'Identique.
-		En r\'esum\'e, vous \^etes autoris\'e \`a partager librement et \`a adapter ce livre, tant que vous respectez les conditions de la licence disponible \`a l'adresse suivante : 
+		En r\'esum\'e, vous \^etes autoris\'e \`a partager librement et \`a adapter ce livre, tant que vous respectez les conditions de la licence disponible \`a l'adresse suivante: 
 		\url{creativecommons.org/licenses/by-sa/3.0/}.
 
-\item	Ce livre d\'ecrit juste les concepts de base de \sq.
+\item	Ce livre d\'ecrit simplement les concepts de base de \sq.
 		Id\'ealement, nous voulons encourager de nouvelles personnes \`a contribuer \`a des chapitres sur des parties de \sq qui ne sont pas encore d\'ecrites.
-		Si vous voulez participer \`a ce travail, merci de nous contacter. Nous voulons voir ce livre se d\'evelopper.!
+		Si vous voulez participer \`a ce travail, merci de nous contacter. Nous voulons voir ce livre se d\'evelopper!
 \end{itemize}
 
-Plus de d\'etails concernant ce livre sont disponibles sur le site web : 
-\url{scg.unibe.ch/SBE}.
+Plus de d\'etails concernant ce livre sont disponibles sur le site
+web, \spe, h\'eberg\'e par l' \emph{Institute of Computer Science and
+  Applied Mathematics} de l'Universit\'e de Bern en Suisse.
 
 %=================================================================
 \section*{La communaut\'e \sq}
 
 La communaut\'e \sq est amicale et active.
-Voici une liste de ressources qui vous pourrez trouver utile :
+Voici une courte liste de ressources que vous pourrez vous \^etre utile:
 
 \begin{itemize}
-\item \url{www.squeak.org} est le site web principal de \sq. (A ne pas confondre avec  \url{www.squeakland.org} qui est consacr\'e \`a l'environnement EToy, construit au dessus de \sq mais dont le public privil\'egi\'e sont les enseignants d'\'ecoles \'el\'ementaires.)
+\item \url{www.squeak.org} est le site web principal de \sq (\`a ne
+  pas confondre avec  \url{www.squeakland.org} qui est consacr\'e \`a
+  l'environnement EToy, construit au-dessus de \sq mais pour qui
+  les enseignants d'\'ecoles \'el\'ementaires sont le public vis\'e).
 
-\item \url{www.squeaksource.com} est l'\'equivalent de sourceforce pour les projets \sq.
+\item \url{www.squeaksource.com}: \squeaksource est l'\'equivalent de \sourceforge pour les projets \sq.
 \end{itemize}
 
-\paragraph{\`A propos des listes de diffusion.} Il y a de nombreuses listes de diffusion mais qui sont g\'en\'eralement un petit trop active. Si vous ne voulez pas \^etre submerg\'e par les messages mais vous souhaitez n\'eanmoins participer nous vous conseillons d'utiliser \url{news.gmane.org} ou \url{www.nabble.com/Squeak-f14152.html} pour parcourir les listes.
+\paragraph{\`A propos des listes de diffusion.} Il y a de nombreuses listes de diffusion qui sont parfois un petit trop active. Si vous ne voulez pas \^etre submerg\'e par les messages mais vous souhaitez n\'eanmoins participer nous vous conseillons d'utiliser \url{news.gmane.org} ou \url{www.nabble.com/Squeak-f14152.html} pour parcourir les listes.
 
-Vous pouvez trouver la liste compl\`ete des listes de diffusion de \sq \`a l'adresse \url{lists.squeakfoundation.org/mailman/listinfo}.
+Vous pouvez trouver l'ensemble complet des listes de diffusion de \sq \`a l'adresse \url{lists.squeakfoundation.org/mailman/listinfo}.
 
 \begin{itemize}
-\item Notez que \emph{\sq-dev} fait r\'ef\'erence \`a la liste de diffusion des d\'eveloppeurs  que l'on peut parcourir ici :\\
+\item Notez que \emph{\sq-dev} fait r\'ef\'erence \`a la liste de diffusion des d\'eveloppeurs  que l'on peut parcourir ici:\\
 \url{news.gmane.org/gmane.comp.lang.smalltalk.squeak.general}
-\item \emph{Newbies} fait r\'ef\'erence \`a une liste de diffusion pour les d\'ebutants o\`u les questions peuvent \^etre pos\'ees :\\
-\url{news.gmane.org/gmane.comp.lang.smalltalk.squeak.beginners}\\
-(Il y a tant \`a apprendre que nous sommes tous des d\'ebutants d'un aspect de \sq!)
+\item \emph{Newbies} fait r\'ef\'erence \`a une liste de diffusion
+  pour les d\'ebutants o\`u les questions peuvent \^etre pos\'ees (il
+  y a tant \`a apprendre que nous sommes tous des d\'ebutants d'un
+  aspect de \sq!):\\
+\url{news.gmane.org/gmane.comp.lang.smalltalk.squeak.beginners}
+%note de martial: -- ajout -- IMPORTANT -- a confirmer
+\item Les listes de diffusion pr\'ec\'edentes sont anglophones. La
+  liste de diffusion francophone de \sq, \emph{Squeak-fr}, peut se
+  lire \`a l'adresse:\\
+\url{news.gmane.org/gmane.comp.lang.smalltalk.squeak.french}
 \end{itemize}
 
 \paragraph{IRC.}
-Vous avez une question dont voulez trouver la r\'eponse rapidement ? Vous voulez rencontrer d'autres squeakers de part le monde ? Un bon endroit pour participer \`a des discutions est le canal IRC ``\#squeak'' sur \url{irc.freenode.net}. Venez faire un tour pour dire ``Bonjour!''
+Vous avez une question dont vous voulez trouver la r\'eponse
+rapidement? Vous voulez rencontrer d'autres \emph{squeakers} de part
+le monde? Un bon endroit pour participer \`a des discutions est le
+canal IRC ``\#squeak'' sur \url{irc.freenode.net}. 
+Venez y faire un tour pour dire ``Bonjour!''.
 
-\paragraph{Autres sites.} Il y a de nombreux autres sites web supportant la communaut\'e \sq d'une mani\`ere ou d'une autre. En voici quelques uns : 
+\paragraph{Autres sites.} Il y a de nombreux autres sites web supportant la communaut\'e \sq d'une mani\`ere ou d'une autre. En voici quelques-uns:
 \begin{itemize}
-  \item \url{people.squeakfoundation.org} est le site SqueakPeople, qui est une sorte de  ``\url{advogato.org}'' pour les squeakers. Il offre des articles, carnets et un syt\`eme int\'eressant de mesure de confiance.
+  \item \url{people.squeakfoundation.org} est le site
+    \textsf{SqueakPeople}, qui est une sorte de
+    ``\url{advogato.org}'' pour les utilisateurs de \sq. Il offre des
+    articles, des journaux et un syt\`eme int\'eressant de mesure de confiance.
 
-  \item \url{planet.squeak.org} est le site de PlanetSqueak, un aggr\'egateur de fils RSS concernant \sq. C'est le bon endroit pour d\'ecouvrir des nouvelles sur Squeak. Ceci inclue les derniers billets des blogs des d\'eveloppeurs et de tous ceux qui s'int\'eresse \`a \sq.
+  \item \url{planet.squeak.org} est le site de \textsf{PlanetSqueak},
+    un aggr\'egateur de fils RSS concernant \sq. C'est le bon endroit
+    pour d\'ecouvrir des nouvelles sur \sq comme les derniers billets
+    des blogs des d\'eveloppeurs et de tous ceux qui s'int\'eressent \`a \sq.
 
-  \item \url{www.frappr.com/squeak} est un site qui r\'epertorie les diff\`erents utilisateurs de \sq dans le monde.
+  \item \url{www.frappr.com/squeak} est un site qui r\'epertorie les
+    diff\`erents utilisateurs de \sq dans le monde.
 
 \end{itemize}
 
@@ -118,18 +154,27 @@ Vous avez une question dont voulez trouver la r\'eponse rapidement ? Vous voulez
 % planet-fr.squeak.org
 
 %=================================================================
-\section*{Exemples et exercises}
+\section*{Exemples et exercices}
 
 Nous utilisons deux conventions typographiques dans ce livre.
 
 Nous avons essay\'e de fournir autant d'exemples que possible.
-Il y a notamment plusieurs exemples avec des fragments de code qui peuvent \^etre \'evalu\'es. Nous utilisons le symbole \ct{-->} afin d'indiquer le r\'esultat qui peut \^etre obtenu en s\'electionnant l'expression et \menu{print it}:
+Il y a notamment plusieurs exemples avec des fragments de code qui
+peuvent \^etre \'evalu\'es. Nous utilisons le symbole \ct{-->} afin
+d'indiquer le r\'esultat qui peut \^etre obtenu en s\'electionnant
+l'expression et en utilisant l'option \menu{print it} du menu contextuel:
 
 \begin{code}{@TEST}
-3 + 4 --> 7    "Si vous s\'electionner 3+4 et 'print it', 7 s'affichera"
+3 + 4 --> 7    "Si vous !s\'electionner! 3+4 et 'print it', 7 s'affichera"
 \end{code}
 
-La deuxi\`eme convention que nous utilisons est l'ic\^one \dothisicon{} pour vous indiquer que vous quelque chose \`a faire : 
+% mise a jour (12/2007)
+Si vous voulez d\'ecouvrir \sq en vous amusant avec ces morceaux de
+code, sachez que vous pouvez charger un fichier texte avec la
+totalit\'e des codes d'exemple via le site web du livre: \spe. 
+
+La deuxi\`eme convention que nous utilisons est l'ic\^one
+\dothisicon{} pour vous indiquer que vous avez quelque chose \`a faire: 
 
 \dothis{Avancez et lisez le prochain chapitre!}
 
@@ -167,9 +212,26 @@ La deuxi\`eme convention que nous utilisons est l'ic\^one \dothisicon{} pour vou
 
 % We would like to thank various people who have contributed to this book.
 % In particular, we thank
-Nous voulons remercier Hilaire Fernandes et Serge Stinckwich qui nous ont autoris\'e \`a traduire des parties de leurs articles sur \st et Damien Cassou pour sa contribution au chapitre sur les flux.
 
-Nous voulons \'egalement remercier Tim Rowledge pour pouvoir utiliser le logo \sq logo et Frederica Nierstrasz pour le dessin de la couverture.
+%martial: a reformuler - mettre 'les auteurs' a la place de nous
+Nous voulons remercier Hilaire Fernandes et Serge Stinckwich qui nous
+ont autoris\'e \`a traduire des parties de leurs articles sur \st et
+Damien Cassou pour sa contribution au chapitre sur les flots de
+donn\'ees ou \emph{streams}.
+Nous voulons \'egalement remercier Tim Rowledge pour l'utilisation
+du logo \sq et Frederica Nierstrasz pour le dessin de la couverture.
+
+%  update (12/2007) - a relire
+Nous remercions particuli\`erement Lukas Renggli et Orla Greevy pour leurs
+commentaires sur les copies de la premi\`ere \'edition
+%ajout
+originale.
+
+Nous remercions l'Universit\'e de Bern en Suisse pour le soutien
+gracieusement offert \`a cette entreprise \emph{Open Source} et pour
+les facilit\'es d'h\'ebergement web de ce livre.
+
+% note sur les traducteurs ?
 
 %=============================================================
 \ifx\wholebook\relax\else
