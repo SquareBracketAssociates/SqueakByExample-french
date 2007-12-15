@@ -689,7 +689,7 @@ est un panneau de recherche pour vous aider \`a trouver ce que vous
 cherchez dans la liste.
 
 Saisissez ``\ind{Sokoban}'' dans ce champ de recherche et
-  tapez sur la touche entr\'ee.
+  tapez sur la touche \textsc{Entr\'ee}.
 Cliquer sur le triangle dirig\'e vers le nom du paquetage vous
 r\'ev\`ele une liste des versions disponibles. Quand un paquetage ou
 une version est s\'electionn\'e, des informations \`a leur sujet sont
@@ -798,56 +798,107 @@ les objets
 %=================================================================
 \section{Trouver les classes}
 
-There are several ways to find a class in \sq.  The first, as we have just seen above, is to know (or guess) what category it is in, and to navigate to it using the browser.
+Ils existent plusieurs moyens de trouver une classe dans \sq.
+Tout d'abord, comme nous l'avons vu plus haut, nous pouvons savoir (ou
+deviner) dans quelle cat\'egorie elle se trouve et, de l\`a, naviguer
+jusqu'\`a elle via le navigateur de classes.
 \index{System Browser}
-\seeindex{system browser!finding classes}{class, finding}
+\seeindex{System Browser!trouver une classe}{classe, recherche}
 \index{classe!recherche}
 \seeindex{classe!trouver}{classe, recherche}
 
-A second way is to send the \ct{browse} message to the class, asking it to open a browser on itself.  Suppose we want to browse the class \clsind{Boolean}.
+Une seconde technique consiste \`a envoyer le message \ct{browse}
+(ce mot a le sens de ``naviguer'') \`a la classe, ce qui a pour effet
+d'ouvrir un navigateur de classes sur celle-ci
+%ajout
+(si elle existe bien s\^ur).
+Supposons que nous voulions naviguer dans la classe \clsind{Boolean}
+(la classe des bool\'eens).
 
-\dothis{Type \ct{Boolean browse} into a workspace and \menu{do it}.}
-A browser will open on the Boolean class (\figref{browseBoolean}).
-There is also a \ind{keyboard shortcut} \short{b} (browse) that you can use in any tool where you find a class name;
+\dothis{Saisissez \ct{Boolean browse} dans un Workspace et faites un \menu{do it}.}
+Un navigateur s'ouvrira sur la classe \ct{Boolean} (voir \figref{browseBoolean}).
+Il existe aussi un \ind{raccourci-clavier} \short{b} (browse) que vous
+pouvez utiliser dans n'importe quel outil o\`u vous trouvez un nom de
+classe;
 \index{raccourci-clavier!browse it}
-select the name and type \short{b}.
+s\'electionnez le nom de la classe 
+%ajout
+(\parex \ct{Boolean})
+puis tapez \short{b}.
 
-\dothis{Use the keyboard shortcut to browse the class \ct{Boolean}.}
+\dothis{Utilisez le raccourci-clavier pour naviguer dans la classe \ct{Boolean}.}
 
 \begin{figure}[hbt]
 \ifluluelse
 	{\centerline {\includegraphics[width=\textwidth]{Kernel-objects-boolean}}}
 	{\centerline {\includegraphics[scale=0.7]{Kernel-objects-boolean}}}
-\caption{The system browser showing the definition of class Boolean.
-\label{fig:browseBoolean}}
+\caption{Le navigateur de classes affichant la d\'efinition de la
+  classe Boolean.\label{fig:browseBoolean}}
 \end{figure}
 
-Notice that when the \ct{Boolean} class is selected but no protocol or method is selected, two panes rather than one appear below the four panes at the top
-(\figref{browseBoolean}).
-The upper one contains the \emph{class definition}.
-This is nothing more than an ordinary \st message that is sent to the parent class, asking it to create a subclass.
-Here we see that the class \ct{Object} is being asked to create a subclass named \ct{Boolean} with no instance variables, class variables or ``pool dictionaries'', and to put the class \ct{Boolean} in the \scatind{Kernel-Objects} category.
+Remarquez qu'un panneau suppl\'ementaire appara\^{\i}t sous les quatre
+colonnes sup\'erieures du navigateur quand la classe \ct{Boolean} est
+s\'electionn\'ee mais qu'aucun protocole ni aucune m\'ethode n'est choisi
+(voir \figref{browseBoolean}).
+Des deux panneaux inf\'erieurs, le panneau du haut contient la 
+\emph{d\'efinition de la classe}.
+Ce n'est rien de plus qu'un message \st ordinaire qui est envoy\'e \`a
+la classe parente lui r\'eclamant de cr\'eer une sous-classe.
+Ici nous voyons qu'il est demand\'e \`a la classe \ct{Object} de
+cr\'eer une sous-classe nomm\'ee \ct{Boolean} sans aucune variables
+d'instance, ni variables de classe ou ``pool dictionaries'' et de 
+mettre la \ct{Boolean} dans la cat\'egorie \scatind{Kernel-Objects}.
 
-The lower pane shows the \emph{class comment} --- a piece of plain text describing the class.
-If you click on the \button{?} at the bottom of the class pane, you can see the class \subind{class}{comment} in a dedicated pane.
+Le nouveau panneau en dessous nous montre le \emph{commentaire de
+  classe}\,---\,quelques paragraphes de texte d\'ecrivant la classe.
+Si vous cliquez sur le bouton \button{?} \`a la base du panneau des
+classes 
+%ajout
+(\cad le second),
+vous pouvez voir le \subind{classe}{commentaire} de classe dans un
+panneau d\'edi\'e.
 
 \ab{I thought that this was supposed to be a \emph{Quick} tour!  And here we are describing a tool that I have used maybe twice in 10 years!   In any case, this description should be deferred to the \textbf{Environment} chapter}
 \on{I don't see why.  I use the hierarchy browser a lot!  I think it is really useful to know from the beginning, to help you find your through the hierarchy.}
-If you would like to explore \sq's inheritance hierarchy, the \emphind{hierarchy browser} can help you.  
-This can be useful if you are looking for an unknown subclass or superclass of a known class.
-The hierarchy browser is like the system browser, except that the list of classes is arranged as an indented tree mirroring the inheritance hierarchy.
 
-\dothis{Click on \button{hierarchy} in the browser while the class \ct{Boolean} is selected.}
+Si vous souhaitez explorer la hi\'erarchie des h\'eritages de \sq, le
+navigateur nomm\'e \emphind{Hierarchy Browser} vous y aidera.
+Ça peut \^etre utile si vous \^etes en train de chercher une
+sous-classe ou une super-classe inconnue d'une classe connue.
+Le Hierarchy Browser ou navigateur hi\'erarchique se confond avec le
+System Browser except\'e que la liste des classes est arrang\'ee comme
+une arborescence indent\'ee refl\'etant l'h\'eritage.
+
+\dothis{Cliquez sur le bouton \button{hierarchy} dans le navigateur de
+  classes lorsque la classe \ct{Boolean} est s\'electionn\'ee.}
 \noindent
-This will open a hierarchy browser showing the superclasses and subclasses of \clsind{Boolean}.
+Il est r\'esulte l'ouverture d'un Hierarchy Browser affichant les
+super-classes et les sous-classes de \clsind{Boolean}.
 % (\figref{booleanhierarchybrowser}).
-Navigate to the immediate superclass and subclasses of \ct{Boolean}.
+Naviguez un peu dans la super-classe et les sous-classes imm\'ediates
+de \ct{Boolean}.
 
-Often, the fastest way to find a class is to search for it by name.  For example, suppose that you are looking for some unknown class that represents dates and times.
+Souvent, la m\'ethode la plus rapide de trouver une classe consiste
+\'a la rechercher par son nom. Par exemple, supposons que vous \^etes
+\`a la recherche d'une classe inconnue qui repr\'esente les jours et
+les heures.% dates and times.
 
-\dothis{Put the mouse in the system category pane of the system browser and type \short{f}, or select \menu{find class \ldots (f)} from the yellow-button menu.  Type ``time'' in the dialog box and accept it.} 
+\dothis{Placez la souris dans le panneau des cat\'egories-syst\`eme
+  d'un System Browser et tapez \short{f} ou s\'electionnez \menu{find
+    class\ldots (f)} dans le menu contextuel accessible avec le
+  \ind{bouton jaune}. Saisissez ``time'' 
+%ajout
+(\cad le temps, puisque c'est l'objet de notre qu\^ete) 
+dans la bo\^{\i}te de dialogue et acceptez cette entr\'ee.} 
 \noindent
-You will be presented with a list of classes whose names contain ``time'' (see \figref{findit}).  Choose one, say, \ct{Time}, and the browser will show it, along with a class comment that suggests other classes that might be useful.  If you want to browse one of the others, select its name (in any text pane), and type \short{b}.
+Une liste de classes dont le nom contient ``time'' vous sera
+pr\'esent\'ee (voir \figref{findit}). Choisissez-en une, disons,
+\ct{Time}; 
+%martial: ca fait longtemps qu'il n'y a plus ce comportement
+un navigateur l'affichera avec un commentaire de classe
+sugg\'erant d'autres classes pouvant \^etre utiles. Si vous voulez
+naviguer dans l'une des autres classes, s\'electionnez son nom (dans
+n'importe quel zone de texte) et tapez \short{b}.
 \index{raccourci-clavier!find\ldots}
 \index{raccourci-clavier!browse it}
 
@@ -863,42 +914,84 @@ You will be presented with a list of classes whose names contain ``time'' (see \
 	\includegraphics[width=0.3\textwidth]{TimeClasses}
 }
 }
-\caption{Searching for a class by name.
-\label{fig:findit}}
+\caption{Recherche une classe d'apr\`es son nom.\label{fig:findit}}
 \end{figure}
 
-Note that if you type the complete (and correctly capitalized) name of a class in the find dialog, the browser will go directly to that class without showing you the list of options.
+Notez que si vous tapez le nom complet (et correctement capitalis\'e 
+%ajout
+\cad en respectant la casse)
+de la classe dans la bo\^{\i}te de dialogue de recherche (find), le
+navigateur ira directement \`a cette classe sans montrer aucune liste
+de classes \`a choisir.
 
 %=================================================================
 \section{Trouver les m\'ethodes}
 \label{sec:quick:methodFinder}
 
-Sometimes you can guess the name of a method, or at least part of the name of a method, more easily than the name of a class.  For example, if you are interested in the current time, you might expect that there would be a method called ``now'', or containing ``now'' as a substring.   But where might it be?
-The \emphind{method finder} can help you.
-\seeindex{system browser!finding methods}{method, finding}
+Vous pouvez parfois deviner le nom de la m\'ethode ou, tout au moins,
+une partie de son nom plus facilement que le nom d'une classe.
+Par exemple, si vous \^etes int\'eress\'e par la connaissance du temps
+actuel, vous pouvez vous attendre \`a ce qu'il y ait 
+%martial: phrase differente pour le sens en francais
+une m\'ethode affichant le temps \emph{maintenant}: comme la langue de \st
+est l'anglais et que \emph{maintenant} se dit ``now'', une m\'ethode
+contenant le mot ``now'' a de forte chance d'exister.
+Mais o\`u pourrait-elle \^etre?
+L'outil \emphind{Method Finder} peut vous aider \`a la trouver.
+\seeindex{System Browser!trouver une m\'ethode}{m\'ethode, recherche}
 \index{m\'ethode!recherche}
 \seeindex{m\'ethode!trouver}{m\'ethode, recherche}
 
-\dothis{Drag the \menu{method finder} icon out of the  \toolsflapind.
-Type ``now'' in the top left pane, and \menu{accept} it (or just press the \textsc{return} key).}
-The method finder will display a list of all the method names that contain the substring ``now''.  
-To scroll to \ct{now} itself, type ``\ct{n}''; this trick works in all scrolling windows.  Select ``now'' and the right-hand pane shows you the three classes that define a method with this name, as shown in \figref{MethodFinder}.  Selecting any one of them will open a browser on it.
+\dothis{Faites un gliss\'e-d\'epos\'e de l'ic\^one \menu{Method
+    Finder} depuis  \toolsflapind.
+Saisissez ``now'' dans le panneau sup\'erieur gauche et cliquez sur
+\menu{accept} (ou tapez simplement la touche \textsc{Entr\'ee}).}
+Le chercheur de m\'ethodes Method Finder affichera une liste de toutes
+les noms de m\'ethodes contenant la sous-cha\^{\i}ne de caract\`eres ``now''.  
+
+Pour d\'efiler jusqu'\`a \ct{now} lui-m\^eme, tapez ``\ct{n}''; cette
+astuce fonctionne sur toutes les zones \`a d\'efilement de n'importe
+quelle fen\^etre. En s\'electionnant ``now'', le panneau de droite
+vous pr\'esentera les trois classes qui d\'efinissent une m\'ethode
+avec ce nom, comme le montre \figref{MethodFinder}.
+S\'electionner une de ces classes vous ouvrira un navigateur sur
+celle-ci.
 
 \begin{figure}[hbt]
 \centerline {\includegraphics[scale=0.7]{methodFinder-now}}
-\caption{The method finder showing three classes that define a method named \ct{now}.
+\caption{Le Method Finder affichant les trois classes qui
+  d\'efinissent une m\'ethode appel\'ee \ct{now}.
 \label{fig:MethodFinder}}
 \end{figure}
 
-At other times you may have a good idea that a method exists, but will have no idea what it might be called.
-The method finder can still help!  For example, suppose that you would like to find a method that turns a string into upper case, for example, it would translate \ct{'eureka'} into \ct{'EUREKA'}.
+\`A d'autres moments, vous pourriez avoir en t\^ete qu'une m\'ethode
+existe bien sans savoir comment elle s'appelle.
+Le Method Finder peut encore vous aider! Par exemple, partons de la
+situation suivante: vous voulez trouvez une m\'ethode qui transforme
+une cha\^{\i}ne de caract\`eres en sa version majuscule, \cad qui
+transforme \ct{'eureka'} en \ct{'EUREKA'}.
 
-\dothis{Type \ct{'eureka' . 'EUREKA'} into the method finder, as shown in \figref{methodFinder-example1}.}
+\dothis{Saisissez \ct{'eureka' . 'EUREKA'} dans le Method Finder,
+  comme le montre \figref{methodFinder-example1}.}
 \noindent
-The method finder will suggest a method that does what you want.
+Le Method Finder vous sugg\`ere une m\'ethode qui fait ce
+que vous voulez.
 
-An asterisk at the beginning of a line in the right pane of the method finder indicates that this method is the one that was actually used to obtain the requested result. 
-So, the asterisk in front of \ct{String asUppercase} lets us know that the method \mthind{String}{asUppercase} defined on the class \clsind{String} was executed and returned the result we wanted. The methods that do not have an asterisk are just the other methods that have the same name as the ones that returned the expected result. So \cmind{Character}{asUppercase} was not executed on our example, because \ct{'eureka'} is not a \clsind{Character} object.
+Une ast\'erisque au d\'ebut d'une ligne dans le panneau de droite du
+Method Finder vous indique que cette m\'ethode est celle qui a \'et\'e
+effectivement utilis\'e pour obtenir le r\'esultat requis.
+Ainsi, l'ast\'erisque devant \ct{String asUppercase} vous fait savoir
+que la m\'ethode \mthind{String}{asUppercase} 
+%ajout
+(traduisible par ``en tant que majuscule'')
+d\'efinie dans la classe \clsind{String} 
+%ajout
+(la classe des cha\^{\i}nes de caract\'eres)
+a \'et\'e ex\'ecut\'ee et a renvoy\'e le r\'esultat voulu.
+Les m\'ethodes qui n'ont pas d'ast\'erisque ne sont que d'autres
+m\'ethodes que celles qui retournent le r\'esultat attendu.
+\cmind{Character}{asUppercase} n'a pas \'et\'e ex\'ecut\'ee dans notre
+exemple, parce que \ct{'eureka'} n'est pas un caract\'ere de classe \clsind{Character}.
 
 \begin{figure}[hbt]
 \ifluluelse
@@ -908,21 +1001,38 @@ So, the asterisk in front of \ct{String asUppercase} lets us know that the metho
 \label{fig:methodFinder-example1}}
 \end{figure}
 
-You can also use the method finder for methods with arguments; for example, if you are looking for a method that will find the greatest common factor of two integers, you might try \ct{25. 35. 5} as an example.  You can also give the method finder multiple examples to narrow the search space; the help text in the bottom pane explains more.
+Vous pouvez aussi utiliser le Method Finder pour trouver des
+m\'ethodes avec plusieurs arguments; par exemple, si vous recherchez
+une m\'ethode qui trouve le plus grand commun diviseur de deux
+entiers, vous pouvez essayer de saisir \ct{25. 35. 5} comme exemple.
+Vous pouvez aussi donner au Method Finder de multiples exemples pour
+restreindre le champ des recherches; le texte d'aide situ\'e dans le
+panneau inf\'erieure vous apprendra plus.
 
 %=================================================================
 \section{D\'efinir une nouvelle m\'ethode}
-
-The advent of \ind{Test Driven Development}\cite{Beck03a} has changed the way that we write code.  
-The idea behind Test Driven Development, also called TDD or Behaviour Driven Development, is that we write a test that defines the desired behaviour of our code \emph{before} we write the code itself.
-Only then do we write the code that satisfies the test.
+\seeindex{d\'eveloppement orient\'e tests}{Test Driven Development}
+L'av\'enement de la m\'ethodologie de d\'eveloppement orient\'e tests
+ou \emphind{Test Driven Development}\cite{Beck03a} a chang\'e la
+fa\c{c}on d'\'ecrire du code.
+L'id\'ee derri\`ere cette technique aussi appel\'ee TDD ou
+mod\`ele centr\'e sur le comportement~\footnote{En anglais,
+  \emph{Behaviour Driven Development}.} se r\'esume par le fait
+d'\'ecrire un test qui d\'efinit le comportement d\'esir\'e de notre
+code \emph{avant} d'\'ecrire le code proprement dit.
+\`A partir de l\`a seulement, nous \'ecrivons le code qui satisfait au
+test.
+\seeindex{mod\`ele centr\'e sur le comportement}{Test Driven Development} 
 \seeindex{Behavior Driven Development}{Test Driven Development}
 \orla{describe the technique where we write a test hat ... subsequently we write ...}
-
+%%% a traduire
 Suppose that our assignment is to write a method that ``says something loudly and with emphasis''.  What exactly could that mean?  What would be a good name for such a method?  How can we make sure  that programmers who may have to maintain our method in the future have an unambiguous description of what it should do?   We can answer all of these questions by giving an example:
 
+%martial: j'ai change figures/testShoutConfirm.png et j'ai remplace
+%"Don't panic" par "Pas de panique"
 \begin{quote}
-When we send the message \ct{shout} to the string ``Don't panic'' the result should be ``DON'T PANIC!''.
+When we send the message \ct{shout} to the string ``Pas de panique''
+the result should be ``PAS DE PANIQUE!''.
 \end{quote}
 
 \noindent
@@ -933,7 +1043,7 @@ To make this example into something that the system can use, we turn it into a t
 \needlines{3}
 \begin{method}[testShout]{A test for a shout method}
 testShout
-	self assert: ('Don''t panic' shout = 'DON''T PANICBANG')
+	self assert: ('Pas de panique' shout = 'PAS DE PANIQUEBANG')
 \end{method} % BANG is the escape for !
 
 How do we create a new method in \sq?   First, we have to decide which class the method should belong to.
@@ -1083,7 +1193,7 @@ syntaxe sans que vous puissiez encore la comprendre suffisamment \`a ce stade.
     d\'evelopper du nouveau code.
   \item Le \emph{Test Runner} permet d'effectuer des tests
     unitaires. Il supporte pleinement la m\'ethodologie de
-    programmation orient\'ee test connus sous le nom de \emph{Test
+    programmation orient\'ee tests connus sous le nom de \emph{Test
       Driven Development}.
 \end{itemize}
 
