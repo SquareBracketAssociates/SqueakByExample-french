@@ -732,60 +732,84 @@ ou qui sont de la famille des jeux
 \etc.
 
 %=================================================================
-\section{The System Browser}
+\section{Le System Browser}
 
-The \ind{system browser} is one of the key tools used for programming.
-As we shall see, there are several interesting browsers available for \sq, but this is the basic one you will find in any image.
-\seeindex{class browser}{system browser}
-\seeindex{browser}{system browser}
+Le navigateur de classes nomm\'e \ind{System Browser} est un des
+outils-cl\'e pour programmation.
+Comme nous le verrons bient\^ot, il y a plusieurs navigateurs ou
+\emph{browsers} int\'eressants disponibles pour \sq, mais c'est le
+plus simple que vous pourrez trouver dans n'importe quelle image.
+\seeindex{navigateur de classe}{System Browser}
+\seeindex{Class Browser}{System Browser}
+\seeindex{browser}{System Browser}
 
-\dothis{Open a browser by selecting \menu{World \go open \ldots \go class browser}, or by dragging a Browser from the \toolsflapind.}
+\dothis{Ouvrir un navigateur de classes en s\'electionnant \menu{World
+    \go{} open\ldots \go Class Browser} ou en faisant un
+  gliss\'e-d\'epos\'e de l'ic\^one Browser depuis \toolsflapind.}
 
 \begin{figure}[htb]
 \ifluluelse
 	{\centerline {\includegraphics[width=\textwidth]{ClassBrowser1}}}
 	{\centerline {\includegraphics[scale=0.7]{ClassBrowser1}}}
-\caption{The system browser showing the \ct{printString} method of class object.
+\caption{Le navigateur de classes System Browser affichant la
+  m\'ethode \ct{printString} de la classe Object.
 \label{fig:classBrowser}}
 \end{figure}
 
-We can see a system browser in \figref{classBrowser}.
-The title bar indicates that we are browsing the class \clsind{Object}.
+Nous pouvons voir un navigateur de classes sur \figref{classBrowser}.
+La barre de titre indique que nous sommes en train de parcourir la
+classe \clsind{Object}.
 
-When the browser first opens, all panes are empty but the leftmost one.
-This first pane lists all known \emph{system categories}, which are groups of related classes.
-\index{category}
+\`A l'ouverture du Browser, tous les panneaux sont vides exc\'ept\'e
+le premier \`a gauche.
+Ce premier panneau liste toutes les \emph{cat\'egories-syst\`eme}
+connues; elles groupent des classes connexes.
+\index{cat\'egorie}
 
-\dothis{Click on the category \scatind{Kernel-Objects}.}
-This causes the second pane to show a list of all of the classes in the selected category.
+\dothis{Cliquez sur la cat\'egorie \scatind{Kernel-Objects}.}
+Cette manipulation est responsable de l'affichage de toutes les
+classes de la cat\'egorie s\'electionn\'ee dans la seconde colonne.
 
-\dothis{Select the class \clsind{Object}.}
-Now the remaining two panes will be filled with text.
-The third pane displays the \emph{protocols} of the currently selected class.
-These are convenient groupings of related methods.
-If no \ind{protocol} is selected you should see all methods in the fourth pane.
+\dothis{S\'electionnez la classe \clsind{Object}.}
+D\'esormais les deux panneaux restants se remplissent.
+Le troisi\`eme panneau affiche les \emph{protocoles} de la classe
+s\'electionn\'ee.
+Ce sont des regroupements commodes pour relier des m\'ethodes
+connexes. Si aucun \ind{protocole} n'est s\'electionn\'e, vous devriez
+voir toutes les m\'ethodes disponibles de la classe dans le
+quatri\`eme panneau.
 
-\dothis{Select the \protind{printing} protocol.}
-You may have to scroll down to find it.
-Now you will see in the fourth pane only methods related to printing.
+\dothis{S\'electionnez le protocole \protind{printing}, 
+%ajout
+protocole de l'affichage.}
+Vous pourriez avoir besoin de faire d\'efiler (avec la barre de
+d\'efilement) la liste des protocoles pour le trouver.
+Vous ne verrez maintenant que les m\'ethodes relatives \`a
+l'affichage.
 
-\dothis{Select the \mthind{Object}{printString} method.}
-Now we see in the bottom pane the source code of the \ct{printString} method, shared by all objects in the system (except those that override it).
+\dothis{S\'electionnez la m\'ethode \mthind{Object}{printString}.}
+D\`es lors, vous verrez dans la partie inf\'erieure du System Browser
+le code source de la m\'ethode \ct{printString} partag\'ee par tous
+les objets 
+%ajout
+(tous h\'eritiers de la classe Object)
+(exception faite de ceux qui la surcharge).
 
 %=================================================================
-\section{Finding classes}
+\section{Trouver les classes}
 
 There are several ways to find a class in \sq.  The first, as we have just seen above, is to know (or guess) what category it is in, and to navigate to it using the browser.
-\index{system browser}
+\index{System Browser}
 \seeindex{system browser!finding classes}{class, finding}
-\index{class!finding}
+\index{classe!recherche}
+\seeindex{classe!trouver}{classe, recherche}
 
 A second way is to send the \ct{browse} message to the class, asking it to open a browser on itself.  Suppose we want to browse the class \clsind{Boolean}.
 
 \dothis{Type \ct{Boolean browse} into a workspace and \menu{do it}.}
 A browser will open on the Boolean class (\figref{browseBoolean}).
 There is also a \ind{keyboard shortcut} \short{b} (browse) that you can use in any tool where you find a class name;
-\index{keyboard shortcut!browse it}
+\index{raccourci-clavier!browse it}
 select the name and type \short{b}.
 
 \dothis{Use the keyboard shortcut to browse the class \ct{Boolean}.}
@@ -824,8 +848,8 @@ Often, the fastest way to find a class is to search for it by name.  For example
 \dothis{Put the mouse in the system category pane of the system browser and type \short{f}, or select \menu{find class \ldots (f)} from the yellow-button menu.  Type ``time'' in the dialog box and accept it.} 
 \noindent
 You will be presented with a list of classes whose names contain ``time'' (see \figref{findit}).  Choose one, say, \ct{Time}, and the browser will show it, along with a class comment that suggests other classes that might be useful.  If you want to browse one of the others, select its name (in any text pane), and type \short{b}.
-\index{keyboard shortcut!find ...}
-\index{keyboard shortcut!browse it}
+\index{raccourci-clavier!find\ldots}
+\index{raccourci-clavier!browse it}
 
 \begin{figure}[hbt]
 \centerline{
@@ -846,13 +870,14 @@ You will be presented with a list of classes whose names contain ``time'' (see \
 Note that if you type the complete (and correctly capitalized) name of a class in the find dialog, the browser will go directly to that class without showing you the list of options.
 
 %=================================================================
-\section{Finding methods}
+\section{Trouver les m\'ethodes}
 \label{sec:quick:methodFinder}
 
 Sometimes you can guess the name of a method, or at least part of the name of a method, more easily than the name of a class.  For example, if you are interested in the current time, you might expect that there would be a method called ``now'', or containing ``now'' as a substring.   But where might it be?
 The \emphind{method finder} can help you.
 \seeindex{system browser!finding methods}{method, finding}
-\index{method!finding}
+\index{m\'ethode!recherche}
+\seeindex{m\'ethode!trouver}{m\'ethode, recherche}
 
 \dothis{Drag the \menu{method finder} icon out of the  \toolsflapind.
 Type ``now'' in the top left pane, and \menu{accept} it (or just press the \textsc{return} key).}
@@ -886,7 +911,7 @@ So, the asterisk in front of \ct{String asUppercase} lets us know that the metho
 You can also use the method finder for methods with arguments; for example, if you are looking for a method that will find the greatest common factor of two integers, you might try \ct{25. 35. 5} as an example.  You can also give the method finder multiple examples to narrow the search space; the help text in the bottom pane explains more.
 
 %=================================================================
-\section{Defining a new method}
+\section{D\'efinir une nouvelle m\'ethode}
 
 The advent of \ind{Test Driven Development}\cite{Beck03a} has changed the way that we write code.  
 The idea behind Test Driven Development, also called TDD or Behaviour Driven Development, is that we write a test that defines the desired behaviour of our code \emph{before} we write the code itself.
@@ -927,9 +952,11 @@ The highlighted text in the bottom pane is a template that reminds you what a \s
 Delete this and enter the code from  \mthref{testShout}.}
 Once you have typed the text into the browser, notice that the bottom pane is outlined in red.  This is a reminder that the pane contains unsaved changes.
 So select \menu{accept (s)} from the yellow-button menu in the bottom pane, or just type \short{s}, to compile and save your method.
-\index{keyboard shortcuts}
-\index{keyboard shortcut!accept}
-\seeindex{accept it}{keyboard shortcut, accept}
+\index{raccourci-clavier}
+\index{raccourci-clavier!accept}
+\seeindex{accept it}{raccourci-clavier, accept}
+%ajout
+\seeindex{m\'ethode!accepter}{raccourci-clavier, accept}
 
 Because there is as yet no method called \ct{shout}, the browser will ask you to confirm that this is the name that you really want\,---\,and it will suggest some other names that you might have intended (\figref{testShoutConfirm}).
 This can be quite useful if you have merely made a typing mistake, but in this case, we really \emph{do} mean \ct{shout}, since that is the method we are about to create, so we have to confirm this by selecting the first option from the menu of choices, as shown in \figref{testShoutConfirm}. 
@@ -991,7 +1018,7 @@ shout
 The comma is the string concatenation operation, so the body of this method appends an exclamation mark to an upper-case version of whatever \ct{String} object the \ct{shout} message was sent to.
 The $\uparrow$ tells \sq that the expression that follows is the answer to be returned from the method, in this case the new concatenated string.
 \seeindex{comma}{Collection, comma operator}
-\index{Collection!comma operator}
+\index{Collection!op\'erateur virgule}
 
 Does this method work?  Let's run the tests and see.
 
@@ -1014,19 +1041,50 @@ Don't worry about this.
 \end{figure}
 
 %=================================================================
-\section{Chapter summary}
-This chapter has introduced you to the \sq environment and shown you how to use some of the major tools, such as the system browser, the method finder, and the test runner.   You have also seen a little of \sq's syntax, even though you may not understand it all yet.
+\section{R\'esum\'e du chapitre}
+%martial: j'ai mis 'intronise' si trop solennel, corriger par 'presente'
+Dans ce chapitre, nous vous avons intronis\'e \`a l'environnement de
+\sq et nous vous avons montr\'e comment utiliser certains des
+principaux outils comme le  System Browser, le
+Method Finder et le Test Runner. Vous avez pu voir un aper\c{c}u de la
+syntaxe sans que vous puissiez encore la comprendre suffisamment \`a ce stade.
 
 \begin{itemize}
-  \item A running \sq system consists of a \emph{virtual machine}, a \emph{sources} file, and \emph{image} and \emph{changes} files. Only these last two change, as they record a snapshot of the running system.
-  \item When you restore a \sq image, you will find yourself in exactly the same state\,---\,with the same running objects\,---\,that you had when you last saved that image.
-  \item \sq is designed to work with a three-button mouse. The buttons are known as the \emph{red}, the \emph{yellow} and the \emph{blue} buttons. If you don't have a three-button mouse, you can use modifier keys to obtain the same effect.
-  \item You use the \ind{red button} on the \sq background to bring up the \emph{World menu} and launch various tools. You can also launch tools from the \toolsflapind at the right of the \sq screen.
-  \item A \emph{workspace} is a tool for writing and evaluating snippets of code. You can also use it to store arbitrary text.
-  \item You can use \ind{keyboard shortcuts} on text in the workspace, or any other tool, to evaluate code. The most important of these are \menu{do it} (\short{d}), \menu{print it} (\short{p}), \menu{inspect it} (\short{i}) and \menu{explore it} (\short{I}).
-  \item \sqmap is a tool for loading useful packages from the Internet.
-  \item The \emph{system browser} is the main tool for browsing \sq code, and for developing new code.
-  \item The \emph{test runner} is a tool for running unit tests. It also supports Test Driven Development.
+  \item Un syst\`me \sq fonctionnel comprend une \emph{machine
+      virtuelle} (souvent abr\'eg\'ee par VM), une fichier
+    \emph{sources} et un couple de fichiers: une \emph{image} et un
+    fichier \emph{changes}. Ces deux derniers sont les seuls \`a
+    \^etre susceptible de changer, puisqu'ils sauvegardent un clich\'e
+    du syst\`eme actif.
+  \item Quand vous restorez une image \sq, vous vous retrouvez
+    exactement dans le m\^eme \'etat\,---\,avec les m\^eme objets
+    lanc\'es\,---\,que vous l'aviez laiss\'e lors de votre derni\`ere
+    sauvegarde de cette image.
+  \item \sq est destin\'e \`a fonctionner avec une souris \`a trois
+    boutons. Par convention, nous disons qu'il y a un bouton \emph{rouge}, un bouton
+    \emph{jaune} et un bouton \emph{bleu}. Si vous n'avez pas de
+    souris \`a trois boutons, vous pouvez utiliser des touches de
+    modifications au clavier pour obtenir le m\^eme effet.
+  \item Vous utilisez le \ind{bouton rouge} sur l'arri\`ere-plan de
+    \sq pour faire appara\^{\i}tre le \emph{menu World} et pouvoir
+    lancer depuis celui-ci divers outils. Vous pouvez aussi trouver
+    les outils principaux dans \toolsflapind situ\'e \`a droite de
+    l'\'ecran \sq.
+  \item Un \emph{Workspace} ou espace de travail est un outil
+    destin\'e \`a \'ecrire et \'evaluer des fragments de code. Vous
+    pouvez aussi l'utiliser pour y stocker un texte quelconque.
+  \item Vous pouvez utiliser des \ind{raccourcis-clavier} sur du texte
+    dans un Workspace ou tout autre outil pour en
+    \'evaluer le code. Les plus importants sont \menu{do it} (\short{d}), \menu{print it} (\short{p}), \menu{inspect it} (\short{i}) et \menu{explore it} (\short{I}).
+  \item \sqmap est un outil pour t\'el\'echarger des paquetages utiles
+    depuis Internet.
+  \item Le navigateur de classes \emph{System Browser} est le
+    principal outil pour naviguer dans le code \sq et pour
+    d\'evelopper du nouveau code.
+  \item Le \emph{Test Runner} permet d'effectuer des tests
+    unitaires. Il supporte pleinement la m\'ethodologie de
+    programmation orient\'ee test connus sous le nom de \emph{Test
+      Driven Development}.
 \end{itemize}
 
 %=================================================================
