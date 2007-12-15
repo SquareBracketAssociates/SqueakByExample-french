@@ -2,7 +2,7 @@
 % $Translate: mathieu chappuis + martial boniou $
 % $Date: 2007-12-13 15:59:51 +0100 (Thu, 13 Dec 2007) $
 % $Revision$
-% $french: Fri Dec 14 21:51:14 CET 2007$ 
+% $french: Sat Dec 15 21:51:14 CET 2007$ 
 %%%%%%%%%%%%%%%%%%%%%%
 % note temporaire de Martial destine aux relectures:
 % collapse a window --> ranger la fenetre (et pas reduire, si vous
@@ -153,11 +153,11 @@ et \`a votre système d'exploitation.
 \ab{I agree entirely; the reason that this is not here is because I could do only the Mac section.  Damien can probably do Windoze.  Perhaps we can ask on the list for a Linux volunteer?}
 
 % %-----------------------------------------------------------------
-% \begin{figure}[htb]
+\begin{figure}[htb]
 % %\centerline {\includegraphics[width=0.6\textwidth]{download}}
-% \centerline {\includegraphics[width=0.95\textwidth]{startup}}
-% \caption{A fresh \sq image.\label{fig:startup}}
-% \end{figure}
+\centerline {\includegraphics[width=0.95\textwidth]{startup}}
+\caption{Une image \sq fra\^{\i}chement d\'emarr\'ee.\label{fig:startup}}
+\end{figure}
 
 \index{Lancer Squeak}
 
@@ -181,7 +181,6 @@ Une fois lancé, \sq vous présente une large fenêtre qui contient des espaces 
   r\'eduit \`a  leur barre de titre) en cliquant sur le symbole \raisebox{-0.2ex}{{\Large $\circ$}} au coin supérieur droit.}
 
 %-----------------------------------------------------------------
-%\paragraph{First Interaction.}
 \paragraph{Première interaction.}
 
 Les options du menu World (``Monde'' en anglais) pr\'esent\'e dans
@@ -213,13 +212,8 @@ Les options du menu World (``Monde'' en anglais) pr\'esent\'e dans
 
 % ON: I had to shrink this and move it up to avoid
 % it running over the end of the page.
-\begin{wrapfigure}[19]{r}{0.25\linewidth}
-% The parameters are the number of narrow lines to the right of the figure [19],
-% the placement {r} for right, and the width of the figure. Capital R will allow some float.
-% Inside the wrapfig environment, linewidth is special --- the width of the figure.
-\includegraphics[width=0.95\linewidth]{colouredMouse}
-\caption{La souris de l'auteur. Le clic avec la molette correspond au bouton bleu.\label{fig:colouredMouse}}
-\end{wrapfigure}
+% position d'origine de la figure colouredMouse
+
 
 \sq a été conçu à l'origine pour être utilisé avec une souris à trois
 boutons. Si votre souris en a moins, vous pourrez utiliser des touches
@@ -235,7 +229,17 @@ réglages utilisateur. \sq désigne les boutons avec des couleurs. Le
 bouton avec lequel vous obtenez le menu World est intitulé le
 \emphind{bouton rouge}; il est employé le plus souvent pour
 s\'electionner du texte, des \'el\'ements de listes ou des choix de
-menus et pour déplacer des fenêtres. 
+menus et pour déplacer des fenêtres.
+
+%martial: j'ai mis 14 au lieu de 19 
+\begin{wrapfigure}[14]{r}{0.25\linewidth}
+% The parameters are the number of narrow lines to the right of the figure [19],
+% the placement {r} for right, and the width of the figure. Capital R will allow some float.
+% Inside the wrapfig environment, linewidth is special --- the width of the figure.
+\includegraphics[width=0.95\linewidth]{colouredMouse}
+\caption{La souris de l'auteur. Le clic avec la molette correspond au bouton bleu.\label{fig:colouredMouse}}
+\end{wrapfigure}
+ 
 Lors de vos premiers pas avec \sq, il vous sera sûrement utile de
 marquer votre souris des couleurs, comme vous pouvez le voir sur \figref{colouredMouse}.
 
@@ -331,8 +335,15 @@ Workspace. Nous aurons affaire à eux dans les prochains chapitres.
 %=================================================================
 \section{Enregistrer, quitter et redémarrer une session \sq.}
 
-\dothis{Affichez le menu World, puis sélectionnez \menu{new morph \ldots} et défilez jusqu'à \menu{from alphabetical list{\go}A-C{\go}BlobMorph}. Vous avez maintenant un Blob (Forme) ``en main'' . Positionnez-le où vous le souhaitez (bouton rouge). Votre forme s'animera.}
-\index{Formes}
+\dothis{Affichez le menu World, puis sélectionnez \menu{new
+    morph\ldots} et défilez 
+%ajout
+dans le nouveau menu flottant ``Add a new morph'' (ajouter un nouveau morph)
+jusqu'à \menu{from alphabetical list{\go}A-C{\go}BlobMorph}. Vous avez
+maintenant un \blobmorph ``dans la main''. Positionnez-le où vous le
+souhaitez (en cliquant avec le bouton rouge). Votre forme Morphic s'animera.}
+%\index{Formes}
+\index{Morphic}
 
 \begin{figure}[htb]
 \begin{minipage}[b]{0.48\textwidth}
@@ -346,139 +357,241 @@ Workspace. Nous aurons affaire à eux dans les prochains chapitres.
 \ifluluelse
 	{\centerline {\includegraphics[scale=0.5]{saveAs}}}
 	{\centerline {\includegraphics[scale=0.7]{saveAs}}}
-	\caption{Le choix de menu \menu{save as \ldots}.\label{fig:saveas}}
+	\caption{La bo\^{\i}te de dialogue \menu{save as\ldots}.\label{fig:saveas}}
 \end{minipage}
 \end{figure}
 
-\dothis{Sélectionnez \menu{World\go{}save as \ldots} et entrez le nom ``SBE'', puis cliquez sur le bouton \menu{Accept(s)}. Pour finir, sélectionnez \menu{World\go{}save and quit}.}
+\dothis{Sélectionnez \menu{World\go{}save as\ldots} et entrez le nom
+  ``SBE'', puis cliquez sur le bouton \menu{Accept(s)} 
+%ajout
+pour sauvegarder sous un nouveau nom d'image. 
+Pour quitter, sélectionnez \menu{World\go{}save and quit}.}
 
-Le dossier qui contenait les fichiers .image et .changes lorsque vous avez lancé cette session de travail avec \sq contient maintenant deux nouveaux fichiers : ``SBE.\ind{image}'' and ``SBE.\ind{changes}''. Ils contiennent l'image ``vivante'' de votre session \sq au moment qui précédait votre enregistrement avec \menu{save and quit}.
-Ces deux fichiers peuvent être copiés à votre convenance dans les dossiers  de votre disque pour être utilisés plus tard. A vous de les invoquer depuis un lien, un glisser-déposer sur la machine virtuelle ou à partir de la ligne de commande.
+Le dossier qui contenait les fichiers image et \emph{changes} lorsque
+vous avez lancé cette session de travail avec \sq contient d\'esormais
+deux nouveaux fichiers: ``SBE.\ind{image}'' et ``SBE.\ind{changes}''. 
+%image vivante = working state of the squeak image
+Ils repr\'esentent l'image ``vivante'' de votre session \sq au moment qui précédait votre enregistrement avec \menu{save and quit}.
+Ces deux fichiers peuvent être copiés à votre convenance dans les
+dossiers  de votre disque pour y être utilisés plus tard. \`A vous de
+les invoquer en prenant soin (selon votre syst\`eme de fichiers) de
+%note de martial: j'ai transforme pour plus de logique mais c'est
+%lourd: a revoir
+d\'eplacer, copier ou lier le fichier \emph{.source} correspondant,
+tout en veillant \`a ex\'ecuter la bonne machine virtuelle.
 
-\dothis{Lancez \sq avec cette image que vous venez de créer : ``SBE.image'' file.}
+\dothis{Lancez \sq avec l'image que vous venez de créer \cad le
+  fichier ``SBE.image''.}
 
-Vous retrouvez l'état de votre session exactement tel qu'il était avant que vous quittiez \sq. Le Blob est toujours sur votre fenêtre de travail, en train de se déplacer, au pixel près comme vous l'avez abandonné.
+Vous retrouvez l'état de votre session exactement tel qu'il était
+avant que vous quittiez \sq. Le \blobmorph est toujours sur votre
+fenêtre de travail, en train de se déplacer d'o\`u vous l'aviez abandonné.
 
-%When you start \sq for the first time, the \sq \ind{virtual machine} loads the image file that you provide. This file contains a snapshot of a large number of objects, including a vast amount of pre-existing code and a large number of programming tools (all of which are objects). As you work with \sq, you will send messages to these objects, you will create new objects, and some of these objects will die and their memory will be reclaimed (\ie garbage-collected).
+En lançant pour la première fois \sq, la \ind{machine virtuelle}
+charge le fichier image que vous spécifiez. Ce fichier contient
+l'instantané d'un grand nombre d'objets et surtout le code
+pré-existant accompagné des outils de développement qui sont
+d'ailleurs des objets comme les autres. En travaillant dans \sq, vous
+allez envoyer des messages à ces objets, en créer de nouveaux, et
+certains seront supprimés et l'espace-mémoire utilisé sera récupéré
+(\ie pass\'e au ramasse-miettes ou \emph{garbage collector}).
 
-En lançant pour la première fois \sq, la machine virtuelle charge le fichier image que vous spécifiez. Ce fichier contient l'instantané d'un grand nombre d'objets et surtout le code pré-existant accompagné des outils de développement qui sont d'ailleurs des objets comme les autres. En travaillant dans \sq, vous allez envoyer des messages à ces objets, en créer de nouveaux, et certains seront supprimés et l'espace mémoire utilisé sera récupéré. (\ie ramasse-miettes)..
-
-En quittant \sq vous sauvegardez un instantané (image) de tous les objets, les votres et ceux de \sq. En sauvegardant (par ``save''), vous remplacerez l'image courante par l'instantané de votre session. Pour préserver l'image courante, vous devez enregister sous un nouveau nom comme nous venons de le faire.
+En quittant \sq vous sauvegardez un instantané de tous vos objets. En sauvegardant (par ``save''), vous remplacerez l'image courante par l'instantané de votre session. Pour préserver l'image courante, vous devez enregister sous un nouveau nom comme nous venons de le faire.
 
 Chaque fichier \emph{.image} est accompagné d'un fichier \emph{.changes}.
-Ce fichier contient un journal de toutes les modifications que vous auriez faites en utilisant l'environnement de développement.
-Vous n'avez pas à vous soucier de ce fichier, la plupart du temps.
+Ce fichier contient un journal de toutes les modifications que vous avez faites en utilisant l'environnement de développement.
+Vous n'avez pas à vous soucier de ce fichier la plupart du temps.
 Mais comme nous allons le voir plus tard, le fichier \emph{.changes} pourra être utilisé pour rétablir votre système \sq à la suite d'erreurs.
 
 L'image sur laquelle vous travaillez provient d'une image de \st-80 créée à la fin des années 1970.
-Beaucoup des objets qu'elle contient sont là depuis des décénnies!
+Beaucoup des objets qu'elle contient sont là depuis des décennies!
 
 Vous pourriez penser que l'utilisation d'une image est incontournable pour stocker et gérer des projets, mais comme nous le verrons bientôt il existe des outils plus adaptés pour gérer le code et travailler en équipe sur des projets.
-Les images sont très utiles mais on considère comme une pratique plutôt brusque de les employer pour diffuser et partager vos projets alors qu'il existe des outils tel que Monticello qui proposent de biens meilleurs moyens de suivre les évolutions du code et de le partager entre plusieurs développeurs.
+Les images sont très utiles mais on considère comme une pratique plutôt brusque de les employer pour diffuser et partager vos projets alors qu'il existe des outils tels que Monticello qui proposent de biens meilleurs moyens de suivre les évolutions du code et de le partager entre plusieurs développeurs.
 
+\dothis{Cliquez avec le bouton bleu sur le \blobmorph}
 
-\dothis{Cliquez avec le bouton bleu sur le Blob}
-
-Vous verrez tout autour une collection d'icônes colorées, on les appelle \emph{Handle}(Poignées).  
-Cliquez sur la poignée rose qui contient une croix ; le Blob disparaît.
-
-(Pour réussir cette manipulation, vous devrez peut-être faire plusieurs tentatives car le Blob se déplace et peut fuir votre souris et vous empêcher de cliquer à l'endroit attendu.)
-
+%martial: le choix des noms 'poignee' 'icone' ... pourra etre change
+Vous verrez tout autour une collection d'icônes colorées nomm\'ee
+\subind{Morphic}{halo}; l'\emphsubind{halo}{ic\^one}
+\subind{Morphic}{halo} est aussi appel\'ee \emphsubind{halo}{poignée}.
+Cliquez sur la poignée rose p\^ale qui contient une croix; le
+\blobmorph disparaît (pour réussir cette manipulation, vous pourriez
+peut-être avoir besoin de faire plusieurs tentatives car le \blobmorph
+se déplace et peut fuir votre souris et vous empêcher de cliquer à
+l'endroit attendu).
+%(index Morphic vs halo) a revoir?
+\seeindex{poign\'ee}{halo, poign\'ee}
+\seeindex{Morphic!poign\'ee}{halo, poign\'ee}
+\seeindex{ic\^one}{halo, ic\^one}
+\seeindex{Morphic!ic\^one}{halo, ic\^one}
+\seeindex{halo}{Morphic, halo}
 
 \begin{figure}[htb]
 \ifluluelse
 	{\centerline {\includegraphics[width=\textwidth]{Tools}}}
 	{\centerline {\includegraphics[width=0.8\textwidth]{Tools}}}
-\caption{The \sq \toolsflap.\label{fig:tools}}
+\caption{\Toolsflap dans \sq.\label{fig:tools}}
 \end{figure}
 
 %=================================================================
-\section{Les Workspaces et les fenêtres Transcripts}
+\section{Les fenêtres Workspace et Transcript}
 \label{sec:transcript}
 
-\dothis{Fermez toutes fenêtres. Cliquez sur l'onglet \menu{Tools} à la droite de la fenêtre principale de \sq pour ouvrir le volet des outils(Tools Flap).}
+\dothis{Fermez toutes fenêtres actuellement ouvertes. Cliquez sur
+  l'onglet \menu{Tools} à la droite de la fenêtre principale de \sq
+  pour ouvrir le volet des outils (Tools Flap).}
+L'onglet s'élargira et présentera les icônes de certains outils importants de \sq (\figref{tools}). Glissez alors l'icône \ind{Transcript} puis l'icône \ind{Workspace}.
 
-L'onglet s'élagira et présentera les icônes de certains outils importants de \sq (\figref{tools}). Glissez alors l'icône \ind{Transcript} puis l'icône Workspace.
+\dothis{Positionnez et redimensionnez le Transcript et le Workspace
+  pour que ce dernier recouvre le Transcript.}
+Vous pouvez redimensionner les fenêtres en glissant l'un de leurs
+coins ou en cliquant avec le bouton bleu qui affiche les poignées
+\emph{halo}: utilisez alors l'icône jaune situé en bas à droite.
 
-\dothis{Positionnez et redimensionnez le Transcript et le Workspace pour que dernier recouvre le Transcript.}
+Une seule fenêtre est active à la fois; elle s'affiche au premier plan
+et son titre est alors mis en relief. Notez que le pointeur de la
+souris doit être dans la fenêtre dans laquelle vous souhaitez saisir du texte.
 
-Vous pouvez redimensionner les fenêtres en glissant l'un de leurs coins, ou avec le bouton bleu qui affiche les poignées. Utilisez alors l'icône jaune située en bas à droite.
+Le Transcript est un objet qui est couramment utilisé pour afficher
+des messages du système. C'est un genre de ``console''.
+Sachez que l'affichage dans la fenêtre Transcript est extr\^ement
+lent, donc si vous la conservez ouverte et que vous y affichez des
+résultats, certaines opérations peuvent \^etre 10 fois plus lentes.
+De plus, le Transcript n'est pas conçu pour recevoir
+simultanément des messages à afficher provenant de plusieurs objets:
+il n'est pas prot\'eg\'e contre les acc\`es concourrants (en anglais,
+\emph{thread-safe}), donc vous pourriez \^etre t\'emoin de
+comportements \'etranges si plusieurs objets tentent d'\'ecrire de
+mani\`ere concourrante dans le Transcript. 
 
-Une seule fenêtre est active à la fois, son titre est alors affiché en gras. Et surtout le pointeur de la souris doit être dans la fenêtre si vous devez entrer du texte.
+%%%% martial: Sat Dec 15 14:13:47 CET 2007
+Les fen\^etres de Workspace ou espace de travail sont destin\'ees \`a
+y saisir vos expressions de code \st \`a exp\'erimenter.
+Vous pouvez aussi les utiliser simplement pour taper une quelconque
+note de texte \`a retenir, comme une liste de choses \`a faire (en
+anglais, \emph{todo-list}) ou des instructions pour quiconque est
+amen\'e \`a utiliser votre image.
+Les Workspaces sont souvent employ\'es pour maintenir une
+documentation \`a propos de l'image captur\'ee, comme c'est le cas
+dans l'image standard pr\'ec\'edemment charg\'ee (voir
+\figref{startup}).
 
-
-Le Transcript est un objet qui est couramment utilisé pour afficher des messages du système.
-C'est un genre de ``console''.
-L'affichage dans la fenêtre Transcript est très lent, si vous la conservez ouverte et que vous affichez le résultat de certaines opérations celles-ci peuvent ralentir plus de 10 fois.
-De plus la fenêtre Transcript n'est pas conçue pour recevoir
-simultanément des messages à afficher provenant de plusieurs objets. 
-%protegé contre acces concurrents
-
-%%%% a traduire
-Workspaces are useful for typing snippets of \st code that you would like to experiment with.
-You can also use workspaces simply for typing arbitrarily text that you would like to remember, such as to-do lists or instructions for anyone who will use your image.
-Workspaces are often used to hold documentation about a captured image, as is the case with the standard image that we downloaded earlier (see \figref{startup}).
-
-\dothis{Type the following text into the workspace:}
+% originellement 'hello world'
+\dothis{Saisissez le texte suivant dans l'espace de travail Workspace:}
 \begin{code}{}
-Transcript show: 'hello world'; cr.
+Transcript show: 'bonjour squeak'; cr.
 \end{code}
 
-%\begin{figure}[htb]
-%\centerline {\includegraphics[width=0.6\textwidth]{HelloWorld}}
-%\caption{Overlapping windows. The workspace is active.\label{fig:helloworld}}
-%\end{figure}
+%ajout
+Exp\'erimentez la s\'election
+en double-cliquant dans l'espace de travail \`a diff\'erents points dans
+le texte que vous venez de saisir.
+% entire word, entire string, or the whole text ((diff: string and word?))
+Remarquez comment un mot entier ou une tout un texte est
+s\'electionn\'e selon l'endroit o\`u vous cliquez.
 
-Try double-clicking in the workspace at various points in the text you have just typed.
-Notice how an entire word, entire string, or the whole text is selected, depending on where you click.
+\dothis{S\'electionnez le texte que vous avez saisi puis cliquez \`a
+  l'aide du bouton jaune.
+Choisissez \menu{do it (d)} 
+%ajout
+(dans le sens ``faites-le!'', \cad \emph{\'evaluer le code
+  s\'electionn\'e})
+dans le menu contextuel.}
+Notez l'apparition du texte ``bonjour squeak'' appara\^{\i}t dans la
+fen\^etre Transcript (voir \figref{doit}).
+Refaites encore un \menu{do it (d)}
+(Le \menu{(d)} dans l'option de menu \menu{do it (d)} vous indique que
+le raccourci-clavier correspondant est \short{d}. Pour plus
+d'informations, rendez-vous dans la prochaine section!).
 
-\dothis{Select the text you have typed and yellow-click.
-Select \menu{do it (d)}.}
-Notice how the text ``hello world'' appears in the transcript window
-(\figref{doit}).
-Do it again.
-(The \menu{(d)} in the menu item \menu{do it (d)} tells you that the keyboard shortcut to \emph{do it} is \short{d}. More on this in the next section!)
-
+% Doit en version francisee: 'bonjour squeak' plutot que 'hello world'
+% attention: l'image figures/HelloWorld.png est obsolete 
 \begin{figure}[htb]
 \ifluluelse
 	{\centerline {\includegraphics[width=\textwidth]{Doit}}}
 	{\centerline {\includegraphics[scale=0.7]{Doit}}}
-\caption{``Doing'' an expression\label{fig:doit}}
+\caption{Ex\'ecuter une expression.\label{fig:doit}}
 \end{figure}
 
-You have just evaluated your first \st expression!
-You just sent the message \ct{show: 'hello world'} to the \ct{Transcript} object, followed by the message \ct{cr} (carriage return).
-The \ct{Transcript} then decided what to do with this message, that is, it looked up its \emph{methods} for handling \ct{show:} and \ct{cr} messages and reacted appropriately.
+Vous venez d'\'evaluer votre premi\`ere~\footnote{NdT: les anglosaxons
+auraient remplac\'e le ``bonjour squeak'' par ``hello world'' qui a le
+sens de ``salut le monde'' dans la plus pur tradition de la
+programmation; celle-ci veut que le premier programme
+dans un nouveau langage consiste \`a afficher la phrase ``hello
+world''.}
+expression \st!
+Vous avez seulement envoyer le message \ct{show: 'bonjour squeak'} \`a
+l'objet \ct{Transcript} (\ct{show:} veut dire: afficher), suivi du
+message \ct{cr} 
+%ajout
+(qui a le sens de \emph{carriage return}, \cad retour-chariot
+permettant de forcer le passage \`a la ligne suivante).
+Le \ct{Transcript} d\'ecide ensuite de quoi faire avec ce message; il
+cherche parmi ses \emph{m\'ethodes} celles qui g\`ere une r\'eponse
+aux messages \ct{show:} et \ct{cr} et qui r\'eagissent de fa\c{c}on
+appropri\'ee.
 
-If you talk to Smalltalkers for a while, you will quickly notice that they generally do not use expressions like ``call an operation'' or ``invoke a method'', but instead they will say ``send a message''.
-This reflects the idea that objects are responsible for their own actions. 
-You never \emph{tell} an object what to do\,---\,instead you politely \emph{ask} it to do something by sending it a message. 
-The object, not you, selects the appropriate method for responding to your message.
-
+Si vous discutez un peu avec un Smalltalkien, vous remarquerez
+rapidement qu'il n'emploie g\'en\'eralement pas des expressions
+telles que ``appeler un op\'erateur'' ou ``invoquer une m\'ethode'',
+mais qu'il dit plut\^ot ``envoyer un message''.
+Cette formule refl\`ete l'id\'ee que les objets sont responsables de
+leurs propres actions. Vous ne pourrez jamais \emph{dire} \`a un objet
+ce qu'il doit faire\,---\,vous devrez lui \emph{demander} de mani\`ere
+courtoise de faire quelque chose en lui envoyant un message.
+C'est l'objet, et non vous, qui choisissez la m\'ethode appropri\'ee
+pour r\'epondre \`a votre message.
 
 %=================================================================
-\section{Keyboard shortcuts}
+\section{Les raccourcis-clavier}
 
-If you want  to evaluate an expression, you do not always have to bring up the yellow-button menu. Instead, you can use \ind{keyboard shortcuts}. These are the parenthesized expressions in the menu.  Depending on your platform, you may have to press one of the modifier keys (control, alt, command, or meta).
-(We will indicate these generically as \short{\emph{key}}.)
+Si vous voulez \'evaluer une expression, vous n'avez pas besoin de
+toujours passer par le menu accessible via le bouton jaune: les
+\ind{raccourcis-clavier} sont l\`a pour vous. Ils sont mentionn\'es
+dans les expressions parenth\'es\'ees des options des menus. Selon
+votre plateforme, vous pouvez \^etre amen\'e \`a presser l'une des
+touches de modifications soit \texttt{Control}, \texttt{Alt},
+\texttt{Command} ou \texttt{Meta} (nous les indiquerons de mani\`ere
+g\'en\'erique par \short{\emph{touche}}).
 
-\dothis{Evaluate the expression in the workspace again, but using the keyboard shortcut: \short{d}.}
-\index{keyboard shortcut!do it}
+\dothis{R\'e\'evaluez l'expression dans le Workspace en utilisant
+  cette fois-ci le raccourci-clavier: \short{d}.}
+\index{raccourci-clavier!do it}
 
-In addition to \menu{do it}, you will have noticed \menu{print it}, \menu{inspect it} and \menu{explore it}. Let's have a quick look at each of these.
+En plus de \menu{do it}, vous aurez not\'e la pr\'esence de
+\menu{print it} 
+%ajout
+(pour \'evaluer et afficher le r\'esultat dans le m\^eme espace de travail), 
+de \menu{inspect it} (pour inspecter) et de \menu{explore it} (pour
+explorer). 
+Jetons un \oe il \`a ceux-ci.
 
-\dothis{Type the expression \ct{3 + 4} into the workspace. Now \menu{do it} with the keyboard shortcut.}
+\dothis{Entrez l'expression \ct{3 + 4} dans le Workspace. Maintenant
+  \'evaluez en faisant un \menu{do it} avec le raccourci-clavier.}
 
-Do not be surprised if you saw nothing happen! What you just did is send the message \ct{+} with argument \ct{4} to the number \ct{3}. Normally the result \ct{7} will have been computed and returned to you, but since the workspace did not know what to do with this answer, it simply threw the answer away.  If you want to see the result, you should \menu{print it} instead. \menu{print it} actually compiles the expression, executes it, sends the message \ct{printString} to the result, and displays the resulting string.
+Ne soyez pas surpris si vous voyez que rien ne se passe!
+Ce qui vous venez de faire, c'est d'envoyer le message \ct{+} avec
+l'argument \ct{4} au nombre \ct{3}. Le r\'esultat \ct{7} aura
+normalement \'et\'e calcul\'e et retourn\'e, mais puisque votre espace de
+travail Workspace ne savait que faire de ce r\'esultat, la r\'eponse a
+simplement \'et\'e jet\'ee dans le vide. Si vous voulez voir le
+r\'esultat, vous devriez faire \menu{print it} au lieu
+de \menu{do it}. En fait, \menu{print it} compile l'expression,
+l'ex\'ecute et envoie le message \ct{printString} au r\'esultat puis
+affiche la cha\^{\i}ne de caract\`ere r\'esultante.
 
-\dothis{Select \ct{3+4} and \menu{print it} (\short{p}).}
-This time we see the result we expect (\figref{printit}).
-\index{keyboard shortcut!print it}
+\dothis{S\'electionnez \ct{3+4} et faites \menu{print it} (\short{p}).}
+Cette fois, nous pouvons lire le r\'esultat que nous attendions (voir
+\figref{printit}).
+\index{raccourci-clavier!print it}
 
 \begin{figure}[htb]
 % \centerline {\includegraphics[width=0.4\textwidth]{PrintIt}}
 \centerline {\includegraphics[scale=0.7]{PrintIt}}
-\caption{``Print it'' rather than ``do it''. \label{fig:printit}}
+\caption{Afficher le r\'esultat sous forme de cha\^{\i}ne de
+  caract\`eres avec \menu{print it} plut\^ot que de simplement
+  \'evaluer avec \menu{do it}. \label{fig:printit}}
 \end{figure}
 
 \needlines{3}
@@ -486,73 +599,137 @@ This time we see the result we expect (\figref{printit}).
 3 + 4 --> 7
 \end{code}
 \noindent
-We use the notation \ct{-->} as a convention in this book to indicate that a particular \sq expression yields a given result when you \menu{print it}.
+Nous utilisons la notation \ct{-->} comme convention dans tout le
+livre pour indiquer qu'une expression particuli\`ere donne un certain
+r\'esultat quand vous l'\'evaluez avec \menu{print it}.
 
-\dothis{Delete the highlighted text ``\ct{7}'' (\sq should have selected it for you, so you can just press the delete key). Select \ct{3+4} again and this time \menu{inspect it} (\short{i}).}
+\dothis{Effacez le texte surlign\'e ``\ct{7}''; comme \sq devrait l'avoir
+  s\'electionn\'e pour vous, vous n'avez qu'\`a presser sur la touche
+  de suppression (suivant votre type de clavier \texttt{Suppr.} ou
+  \texttt{Del.}). S\'electionnez \ct{3+4} \`a nouveau et, cette fois,
+  faites une inspection avec \menu{inspect it} (\short{i}).}
+%ajout
+\index{raccourci-clavier!inspect it}
+\index{inspecteur}
+\seeindex{Inspector}{inspecteur}
+
 \noindent
-Now you should see a new window, called an \emphind{inspector}, with the heading \ct{SmallInteger: 7} (\figref{inspectit}).
-The inspector is an extremely useful tool that will allow you to browse and interact with any object in the system.
-The title tells us that \ct{7} is an instance of the class \clsind{SmallInteger}.
-The left panel allows us to browse the instance variables of an object, the values of which are shown in the right panel.
-The bottom panel can be used to write expressions to send messages to the object.
+Vous devriez maintenant voir une nouvelle fen\^etre appel\'ee
+\emphind{inspecteur} avec pour titre 
+ \ct{SmallInteger: 7} (voir \figref{inspectit}).
+L'inspecteur ou (sous son nom de classe) Inspector est un outil
+extr\^emement utile: il vous permet de naviguer et d'interagir avec
+n'importe quel objet du syst\`eme.
+Le titre nous dit que \ct{7} est une instance de la classe
+\clsind{SmallInteger} 
+%ajout
+(classe des entiers sur 31 bits).
+Le panneau de gauche nous offre une vue des variables d'instance de
+l'objet en cours d'inspection. Nous pouvons naviguer entre ces
+variables et le panneau de droite nous affiche leur valeur.
+Le panneau inf\'erieur peut \^etre utilis\'e pour \'ecrire des
+expressions envoyant des messages \`a l'objet.
 
 \begin{figure}[htb]
 \centerline {\includegraphics[scale=0.7]{InspectIt}}
-\caption{Inspecting an object. \label{fig:inspectit}}
+\caption{Inspecter un objet.\label{fig:inspectit}}
 \end{figure}
 
-\dothis{Type \ct{self squared} in the bottom panel of the inspector on \ct{7} and \menu{print it}.}
+\dothis{Saisissez \ct{self squared} dans le panneau inf\'erieur de
+  l'inspecteur que vous aviez ouvert sur l'entier \ct{7} et faites un
+  \menu{print it}.
+%ajout
+Le message \ct{squared} (carr\'e) va \'elever le nombre \ct{7} lui-m\^eme (\ct{self}).}
 
 \needlines{2}
-\dothis{Close the inspector. Type the expression \ct{Object} in a workspace and this time \menu{explore it} (\short{I}, uppercased i).}
-\index{keyboard shortcut!explore it}
-\index{explorer}
+\dothis{Fermez l'inspecteur. Saisissez dans un Workspace le
+  mot-expression \ct{Object} et explorez-le via \menu{explore it}
+  (\short{I}, i majuscule).}
+\index{raccourci-clavier!explore it}
+\index{explorateur}
+\seeindex{Explorer}{explorateur}
 
-This time you should see a window labelled \clsind{Object} containing the text
-\mbox{$\triangleright$ \ct{root: Object}}.
-Click on the triangle to open it up (\figref{exploreit}).
+Vous devriez voir maintenant une fen\^etre intitul\'ee \clsind{Object}
+contenant le texte \mbox{$\triangleright$ \ct{root: Object}}.
+Cliquez sur le triangle pour l'ouvrir (voir \figref{exploreit}).
 
 \begin{figure}[htb]
 \centerline {\includegraphics[scale=0.7]{ExploreIt}}
-\caption{Exploring an object. \label{fig:exploreit}}
+\caption{Explorer un objet.\label{fig:exploreit}}
 \end{figure}
 
-The explorer is similar to the inspector, but it offers a tree view of a complex object.
-In this case the object we are looking at is the \ct{Object} class.
-We can see directly all the information stored in this class, and we can easily navigate to all its parts.
+Cette explorateur (ou Explorer) est similaire \`a l'inspecteur mais il
+offre une vue arborescente d'un objet complexe.
+Dans notre cas, l'objet que nous observons est la classe \ct{Object}.
+Nous pouvons voir directement toutes les informations stock\'ees dans
+cette classe et naviguer facilement dans toutes ses parties.
 
 %=================================================================
 \section{\sqmap}
 \index{SqueakMap}
 
-\sqmap is a web-based catalog of ``packages''\,---\,applications and libraries\,---\,that you can download to your image.
-The \ind{package}{}s are hosted in many different places in the world and maintained by many different people. Some of them may only work with a specific version of \sq.
+%web-based catalogue
+\sqmap est un catalogue web des ``\ind{package}{}s'' ou
+paquetages\,---\,applications et biblioth\`eques de programmes (dites
+aussi librairies)\,---\,que vous pouvez t\'el\'echarger dans votre
+image.
+Les \ind{paquetage}{}s sont h\'eberg\'es sur de nombreux serveurs de
+par le monde et sont maintenus par un grand nombre de personnes, dont
+certaines ne peuvent travailler seulement que sur une version
+sp\'ecifique de \sq.
 \lr{Maybe mention Package Universes (SqueakMap is not maintained anymore)}
 
-\dothis{Open \menu{World \go open... \go \sqmap package loader}.}
-You will need an Internet connection for this to work.  After some time, the \sqmap loader window should appear (\figref{sokoban}).
-On the left side is a very long list of packages.
-The field in the top-left corner is a search pane that can be used to find what you want in the list.
-Type ``\ind{Sokoban}'' in the search pane and hit the return key.
-Clicking on the right-pointing triangle by the name of a package reveals a list of available versions. When a package or a version is selected, information about it appears in the right-hand pane.
-Navigate to the latest version of \ct{Sokoban}.
-With the mouse in the list pane, use the yellow-button menu to \menu{install} the selected package.
-(If \sq complains that it is not sure this version of the game will work in your image, just say ``yes'' and go ahead.)
-Notice that once a package has been installed, it is marked with an asterisk in the list in the \sqmap package loader. 
+\dothis{Ouvrez \menu{World \go open\ldots \go \sqmap Package Loader}.}
+Vous aurez besoin d'une connection Internet pour que cela
+fonctionne. Au bout d'un certain temps, la fen\^etre du gestionnaire
+de chargement \sqmap devrait appara\^{\i}tre (voir \figref{sokoban}).
+Sur le c\^ot\'e gauche, vous pouvez voir une longue liste de
+paquetages. Le champ de saisie situ\'e dans le coin sup\'erieur gauche
+est un panneau de recherche pour vous aider \`a trouver ce que vous
+cherchez dans la liste.
+
+Saisissez ``\ind{Sokoban}'' dans ce champ de recherche et
+  tapez sur la touche entr\'ee.
+Cliquer sur le triangle dirig\'e vers le nom du paquetage vous
+r\'ev\`ele une liste des versions disponibles. Quand un paquetage ou
+une version est s\'electionn\'e, des informations \`a leur sujet sont
+affich\'ees dans le panneau de droite.
+Naviguez dans la derni\`ere version du jeu \ct{Sokoban}.
+Activez le menu contextuel du panneau de liste en cliquant dans cet
+espace avec le \ind{bouton jaune} et choisissez \menu{install} pour
+installer le paquetage s\'electionn\'e
+(si \sq se plaint qu'il n'est pas s\^ur que cette version du jeu
+fonctionne dans votre image, r\'epondez aux questions par ``yes'' 
+%ajout
+pour confirmer l'installation).
+Remarquez qu'une fois que le paquetage a \'et\'e install\'e, il est
+marqu\'e d'une ast\'erisque dans la liste du \sqmap Package Loader.
 
 \begin{figure}[htb]
 \ifluluelse
 	{\centerline {\includegraphics[width=\textwidth]{SqueakMap}}}
 	{\centerline {\includegraphics[scale=0.7]{SqueakMap}}}
-\caption{Using \sqmap to install the Sokoban game.\label{fig:sokoban}}
+\caption{Utiliser \sqmap pour installer le jeu Sokoban.\label{fig:sokoban}}
 \end{figure}
 
-\dothis{After installing this package, start up \ct{Sokoban} by evaluating \ct{SokobanMorph random openInWorld} in a workspace.}
+\dothis{Apr\`es avoir installer ce paquetage, d\'emarrez \ct{Sokoban}
+  en \'evaluant \ct{SokobanMorph random openInWorld} dans un Workspace
+%ajout
+(souvenez-vous de faire \menu{do it} sur toute la s\'election).}
 
 % You can also try the \ct{NsGame}; execute it using \ct{NsGame new openInWorld}.
 % ON: I could not find NsGame anywhere!
 
-The bottom-left pane in the \sqmap package loader provides various ways to filter the list of packages.   You can choose to see only those packages that are compatible with a particular version of \sq, or only games, and so on.
+Le panneau inf\'erieur gauche du \sqmap Package Loader fournit
+plusieurs possibilit\'es pour filtrer la liste des paquetages. Vous
+pouvez choisir de ne voir que les paquetages qui sont compatibles avec
+une version particuli\`ere de \sq
+%ajout
+(\emph{Squeak versions}), 
+ou qui sont de la famille des jeux
+%ajout
+(\emph{Entertainment\go{}Games}), 
+\etc.
 
 %=================================================================
 \section{The System Browser}
