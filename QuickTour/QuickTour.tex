@@ -2,7 +2,7 @@
 % $Translate: mathieu chappuis + martial boniou $
 % $Date: 2007-12-13 15:59:51 +0100 (Thu, 13 Dec 2007) $
 % $Revision$
-% $french: Sat Dec 15 21:51:14 CET 2007$ 
+% $french: Sun Dec 16 14:25:37 CET 2007$ 
 %%%%%%%%%%%%%%%%%%%%%%
 % note temporaire de Martial destine aux relectures:
 % collapse a window --> ranger la fenetre (et pas reduire, si vous
@@ -1017,127 +1017,226 @@ ou \emphind{Test Driven Development}\cite{Beck03a} a chang\'e la
 fa\c{c}on d'\'ecrire du code.
 L'id\'ee derri\`ere cette technique aussi appel\'ee TDD ou
 mod\`ele centr\'e sur le comportement~\footnote{En anglais,
-  \emph{Behaviour Driven Development}.} se r\'esume par le fait
-d'\'ecrire un test qui d\'efinit le comportement d\'esir\'e de notre
-code \emph{avant} d'\'ecrire le code proprement dit.
+  \emph{Behaviour Driven Development}.} se r\'esume par l'\'ecriture
+du test qui d\'efinit le comportement d\'esir\'e de notre
+code \emph{avant} celle du code proprement dit.
 \`A partir de l\`a seulement, nous \'ecrivons le code qui satisfait au
 test.
 \seeindex{mod\`ele centr\'e sur le comportement}{Test Driven Development} 
 \seeindex{Behavior Driven Development}{Test Driven Development}
-\orla{describe the technique where we write a test hat ... subsequently we write ...}
-%%% a traduire
-Suppose that our assignment is to write a method that ``says something loudly and with emphasis''.  What exactly could that mean?  What would be a good name for such a method?  How can we make sure  that programmers who may have to maintain our method in the future have an unambiguous description of what it should do?   We can answer all of these questions by giving an example:
+\orla{describe the technique where we write a test hat
+  ... subsequently we write ...}
+
+%says something loudly and with emphasis
+Supposons que nous voulons \'ecrire une m\'ethode qui ``hurle quelque
+chose''. Qu'est-ce que cela veut dire au juste? Quelle serait le nom
+le plus convenable pour une telle m\'ethode? Comment pourrions-nous
+\^etre s\^ur que les programmeurs en charge de la maintenance future
+du code auront une description sans ambigu\"{\i}t\'e de ce que ce code
+est sens\'e faire?
+Nous pouvons r\'epondre \`a toutes ces questions en proposant
+l'exemple suivant:
 
 %martial: j'ai change figures/testShoutConfirm.png et j'ai remplace
 %"Don't panic" par "Pas de panique"
 \begin{quote}
-When we send the message \ct{shout} to the string ``Pas de panique''
-the result should be ``PAS DE PANIQUE!''.
+Quand nous envoyons le message \ct{shout} (qui veut dire ``crier'' en anglais)
+\`a la cha\^{\i}ne de caract\`eres ``Pas de panique'', le r\'esultat
+devrait \^etre ``PAS DE PANIQUE!''.
 \end{quote}
 
 \noindent
-To make this example into something that the system can use, we turn it into a test method:
-\index{testing}
+Pour faire de cet exemple quelque chose que le syst\`eme peut
+utiliser, nous le transformons en m\'ethode de test:
+\index{test}
+\seeindex{testing}{test}
 \index{SUnit}
 
 \needlines{3}
-\begin{method}[testShout]{A test for a shout method}
+\begin{method}[testShout]{Un test pour la m\'ethode shout}
 testShout
 	self assert: ('Pas de panique' shout = 'PAS DE PANIQUEBANG')
 \end{method} % BANG is the escape for !
 
-How do we create a new method in \sq?   First, we have to decide which class the method should belong to.
-In this case, the \ct{shout} method that we are testing will go in class \clsind{String}, so the corresponding test will, by convention, go in a class called \clsind{StringTest}.
+Comment cr\'eons-nous une nouvelle m\'ethode dans \sq? Premi\`erement,
+nous devons d\'ecider quelle classe va accueillir la m\'ethode.
+Dans ce cas, la m\'ethode \ct{shout} que nous testons ira dans la
+classe \clsind{String}
+%ajout
+car c'est la classe des cha\^{\i}nes de caract\`eres et ``Pas de panique'' en est une.
+Donc, par convention, le test correspondant ira dans une classe
+nomm\'ee \clsind{StringTest}.
 
 \begin{figure}[hbt]
 \ifluluelse
 	{\centerline {\includegraphics[width=\textwidth]{StringTest-newMethodTemplate}}}
 	{\centerline {\includegraphics[width=0.7\textwidth]{StringTest-newMethodTemplate}}}
-\caption{The new method template in class \ct{StringTest}.
+\caption{Le patron de la nouvelle m\'ethode dans la classe \ct{StringTest}.
 \label{fig:newMethodTemplate}}
 \end{figure}
 
-\dothis{Open a browser on the class \ct{StringTest}, and select an appropriate protocol for our method, in this case \menu{tests - converting}, as shown in \figref{newMethodTemplate}.
-The highlighted text in the bottom pane is a template that reminds you what a \st method looks like.
-Delete this and enter the code from  \mthref{testShout}.}
-Once you have typed the text into the browser, notice that the bottom pane is outlined in red.  This is a reminder that the pane contains unsaved changes.
-So select \menu{accept (s)} from the yellow-button menu in the bottom pane, or just type \short{s}, to compile and save your method.
+\dothis{Ouvrez un navigateur de classes sur la classe
+  \ct{StringTest}. S\'electionnez un protocole appropri\'e pour notre
+  m\'ethode; dans notre cas, \menu{tests - converting} 
+%ajout
+(signifiant tests de conversion, puisque notre m\'ethode modifiera le texte en retour),
+comme nous pouvons le voir sur \figref{newMethodTemplate}.
+Le texte surlign\'e dans le panneau inf\'erieur est un patron de
+m\'ethode qui vous rappelle ce \`a quoi ressemble une m\'ethode.
+Effacez-le et saisissez le code de  \tmthref{testShout}.}
+Une fois que vous avez commenc\'e \`a entrer le texte dans le
+navigateur, l'espace de saisie est entour\'e de rouge pour vous
+rappeler que ce panneau contient des changements non-sauvegard\'es.
+%ajout
+Lorsque vous avez fini de saisir le texte de la m\'ethode de test,
+s\'electionnez \menu{accept (s)} via le menu activ\'e par le
+\ind{bouton jaune} dans ce panneau ou utilisez le raccourci-clavier
+\short{s}: ainsi, vous compilerez et sauvegarderez votre m\'ethode.
 \index{raccourci-clavier}
 \index{raccourci-clavier!accept}
 \seeindex{accept it}{raccourci-clavier, accept}
 %ajout
 \seeindex{m\'ethode!accepter}{raccourci-clavier, accept}
 
-Because there is as yet no method called \ct{shout}, the browser will ask you to confirm that this is the name that you really want\,---\,and it will suggest some other names that you might have intended (\figref{testShoutConfirm}).
-This can be quite useful if you have merely made a typing mistake, but in this case, we really \emph{do} mean \ct{shout}, since that is the method we are about to create, so we have to confirm this by selecting the first option from the menu of choices, as shown in \figref{testShoutConfirm}. 
+Puisqu'il n'y a pas encore de m\'ethode nomm\'ee \ct{shout}, le System
+Browser vous demandera confirmation que c'est bien le nom que vous
+d\'esirez\,---\,il vous sugg\`erera d'ailleurs d'autres noms de
+m\'ethodes existantes dans le syst\`eme (voir \figref{testShoutConfirm}).
+Ce comportement du navigateur est utile si vous aviez effectivement
+fait une erreur de frappe. Mais ici, nous voulions \emph{vraiment}
+\'ecrire \ct{shout} puisque c'est la m\'ethode que nous voulons
+cr\'eer. D\`es lors, nous n'avons qu'\`a confirmer cela en
+s\'electionnant la premi\`ere option parmi celles du menu, comme vous
+le voyez sur \figref{testShoutConfirm}. 
 
 \begin{figure}[hbt]
 \ifluluelse
 	{\centerline {\includegraphics[width=\textwidth]{testShoutConfirm}}}
 	{\centerline {\includegraphics[scale=0.7]{testShoutConfirm}}}
-\caption{Accepting the testShout method class \ct{StringTest}.
+\caption{Accepter la m\'ethode testShout dans la classe \ct{StringTest}.
 \label{fig:testShoutConfirm}}
 \end{figure}
 
-\dothis{Run your newly created test: open the \ind{SUnit} \emphind{TestRunner}, either by dragging it from the \toolsflapind, or by selecting \menu{World \go open... \go Test Runner}.}
+\dothis{Lancez votre test nouvellement cr\'e\'e: ouvrez le programme
+  \ind{SUnit} nomm\'e \emphind{TestRunner}, soit en faisant un
+  gliss\'e-d\'epos\'e depuis \toolsflapind, soit en s\'electionnant \menu{World \go{} open\ldots \go{} Test Runner}.}
 
-The leftmost two panes are a bit like the top panes in the system browser.  The left pane contains a list of system categories, but it's restricted to those categories that contain test classes.
+Les deux panneaux les plus \`a gauche se pr\'esentent un peu comme les
+panneaux sup\'erieurs du System Browser. Le panneau de gauche contient
+une liste de cat\'egories-syst\`eme restreintes aux cat\'egories qui
+contiennent des classes de test.
 
-\dothis{Select \scat{CollectionsTests-Text} and the pane to the right will show all of the test classes in that category, which includes the class \ct{StringTest}.  The names of the classes are already selected, so click \menu{Run Selected} to run all these tests.}
+\dothis{S\'electionnez \scat{CollectionsTests-Text} 
+%martial: ajout car Test Runner ne demarre pas toujours pareil
+(si vous ne voyez pas cette cat\'egorie, s\'electionnez tout d'abord 
+\menu{All Standard Tests} dans le premier panneau de filtrage).
+%fin ajout
+Le panneau de droite vous affichera alors toutes les classes de test
+de cette cat\'egorie dont la classe \ct{StringTest}. 
+%martial: encore un changement (les classes ne sont pas toujours selectionnees)
+Si les noms de classes ne sont pas s\'electionn\'es,
+s\'electionnez-les tous.
+Cliquez maintenant sur \menu{Run Selected} pour lancer tous ces tests.}
 
 \begin{figure}[hbt]
 \ifluluelse
 	{\centerline {\includegraphics[width=\textwidth]{testRunnerOnStringTest}}}
 	{\centerline {\includegraphics[scale=0.5]{testRunnerOnStringTest}}}
-\caption{Running the String tests.
+\caption{Lancer les tests de String.
 \label{fig:testRunnerTestShout}}
 \end{figure}
 
-You should see a message like that shown in \figref{testRunnerTestShout}, which indicates that there was an error in running the tests.  The list of tests that gave rise to errors is shown in the bottom right pane; as you can see, \ct{StringTest>>>#testShout} is the culprit.
-(Note that \ct{StringTest>>#testShout} is the Smalltalk way of identifying the \mthind{StringTest}{testShout} method of the \ct{StringTest} class.)
-If you click on that line of text, the erroneous test will run again, this time in such a way that you see the error happen: ``\ct{MessageNotUnderstood: ByteString>>>shout}''.
+Vous devriez voir un message comme celui de
+\figref{testRunnerTestShout}, vous indiquant qu'il y a eu une erreur
+lors de l'ex\'ecution des tests. La liste des tests qui donne
+naissance \`a une erreur est affich\'ee dans le panneau inf\'erieur de
+droite; comme vous pouvez le voir, c'est bien
+\ct{StringTest>>>#testShout} le coupable
+(remarquez que la notation \ct{StringTest>>#testShout} est la fa\c{c}on dont \st
+identifie la m\'ethode de la classe \ct{StringTest} que nous
+\'ecrivons dans le livre \ct{StringTest>>>#testShout}).
+Si vous cliquez sur cette ligne de texte, le test erronn\'e sera
+lanc\'e \`a nouveau mais, cette fois-ci, de telle fa\c{c}on que vous
+voyez l'erreur surgir:
+``\ct{MessageNotUnderstood: ByteString>>>shout}''.
 \seeindex{\ct{>>}}{Behavior, \ct{>>}}
 \cmindex{Behavior}{>>}
 
-The window that opens with the error message is the \st debugger (see \figref{predebugger}).
+Le fen\^etre qui s'ouvre avec le message d'erreur est le d\'ebogueur \st (voir \figref{predebugger}).
 \ab{Well, it's actually the \emph{pre-}debugger.  Does this matter?}\damien{I don't think it's important at this point.}
-We will look at the \ind{debugger} and how to use it in \charef{env}.
+Nous verrons le d\'ebogueur nomm\'e \ind{Debugger} et sa
+fonctionnalit\'e dans \charef{env}.
 
 \begin{figure}[hbt]
 \ifluluelse
 	{\centerline {\includegraphics[width=\textwidth]{Predebugger}}}
 	{\centerline {\includegraphics[scale=0.7]{Predebugger}}}
-\caption{The (pre-)debugger.}
+\caption{Le d\'ebogueur (pre-)Debugger.}
 \label{fig:predebugger}
 \end{figure}
 
-The error is, of course, exactly what we expected:  running the test generates an error because we haven't yet written a method that tells strings how to \ct{shout}.  
-Nevertheless, it's good practice to make sure that the test fails because this confirms that we have set up the testing machinery correctly and that the new test is actually being run.
-Once you have seen the error, you can \button{Abandon} the running test, which will close the debugger window.
-Note that often with Smalltalk you can define the missing method using the \button{Create} button, edit the newly-created method in the debugger, and then \button{Proceed} with the test.
+L'erreur \'etait bien s\^ur attendue; lancer le test g\'en\'ere une
+erreur parce que nous n'avons pas encore \'ecrit la m\'ethode qui dit
+aux cha\^{\i}nes de caract\`eres comment hurler 
+%ajout pour le francais
+\cad comme r\'epondre au message \ct{shout}.
+N'importe comment, c'est une bonne pratique de s'assurer que le test
+\'echoue; cela confirme que nous avons correctement
+configurer notre machine \`a test % testing machinery
+et que le nouveau test est actuellement en cours d'ex\'ecution.
+Une fois que vous avez vu l'erreur, vous pouvez cliquer sur le bouton
+\button{Abandon} pour abandonner le test en cours, ce qui fermera la
+fen\^etre du d\'ebogueur.
+Sachez qu'en \st vous pouvez souvent d\'efinir la m\'ethode manquante
+%ajout
+directement depuis le d\'ebogueur 
+en utilisant le bouton \button{Create}, en y \'editant la m\'ethode
+nouvellement cr\'e\'ee puis, \emph{in fine}, en appuyant sur le bouton
+\button{Proceed} pour poursuivre le test.
 
-Now let's define the method that will make the test succeed!
+D\'efinissons maintenant la m\'ethode qui fera du test un succ\`es!
 
-\dothis{Select class \clsind{String} in the system browser, select the \menu{converting} protocol, type the text in \mthref{shout} over the method creation template, and \menu{accept} it.
-(Note: to get a \mbox{\ct{^}}, type \caret). }
-\begin{method}[shout]{The shout method}
+\dothis{S\'electionnez la classe \clsind{String} dans le System
+  Browser et rendez-vous dans le protocole 
+%ajout
+d\'ej\`a existant des m\'ethodes de conversion et appel\'e
+\menu{converting}. \`A la place du patron de cr\'ation de m\'ethode,
+saisissez le texte de \tmthref{shout} et faites \menu{accept}
+(saisissez \caret pour obtenir un \mbox{\ct{^}})}
+\begin{method}[shout]{La m\'ethode shout}
 shout
 	^ self asUppercase, 'BANG'
 \end{method}
 
-The comma is the string concatenation operation, so the body of this method appends an exclamation mark to an upper-case version of whatever \ct{String} object the \ct{shout} message was sent to.
-The $\uparrow$ tells \sq that the expression that follows is the answer to be returned from the method, in this case the new concatenated string.
-\seeindex{comma}{Collection, comma operator}
+La virgule est un op\'erateur de concatenation de cha\^{\i}nes de
+caract\`eres, donc, le corps de cette m\'ethode ajoute un point
+d'exclamation \`a la version majuscule
+%martial: ajout pour rappeler au francais que uppercase eleve au majuscule
+(obtenue avec la m\'ethode \mthind{String}{asUppercase})
+de l'objet \ct{String} auquel le message \ct{shout} a \'et\'e
+envoy\'e.
+Le $\uparrow$ dit \`a \sq que l'expression qui suit est la r\`eponse
+que la m\'ethode doit retourner; dans notre cas, il s'agit de la
+nouvelle cha\^{\i}ne concat\'en\'ee.
+\seeindex{virgule}{Collection, op\'erateur virgule}
 \index{Collection!op\'erateur virgule}
 
-Does this method work?  Let's run the tests and see.
+Est-ce que cette m\'ethode fonctionne? Lan\c{c}ons tout simplement
+notre test et nous saurons.
 
-\dothis{Click on \menu{Run Selected} again in the test runner, and this time you should see a green bar and text indicating that all of the tests ran with no failures and no errors.}
-When you get to a green bar\footnotemark, it's a good idea to save your work and take a break.  
-So do that right now!
-\footnotetext{Actually, you might not get a green bar since some images contains tests for bugs that need to be fixed.
-Don't worry about this.
-\Squeak is constantly evolving.
+\dothis{Cliquez encore sur le bouton \menu{Run Selected} du Test
+  Runner. Cette fois vous devriez obtenir une barre de signalisation
+  verte (et non plus rouge) et son texte vous confirmera que tous les
+  tests lanc\'es se feront sans aucun \'echec (ni \emph{failures}, ni
+  \emph{errors}).}
+Vous voyez une barre verte~\footnotemark\ dans le Test Runner? Bravo!
+Sauvegardez votre image et faites une pause. 
+%martial: ajout (ca fait toujours plaisir!)
+Vous l'avez bien m\'erit\'e. 
+\footnotetext{En r\'ealit\'e, vous pourriez ne pas obtenir de barre
+  verte car certaines images contiennent des tests pour des
+  \emph{bugs} \`a corriger. Ne vous inqui\'etez pas!
+\sq est perp\'etuelle \'evolution.
 %:PROBLEM --- StringTest has a broken test!
 % ON: There is a broken test in \ct{StringTest>>>\#testIndexOf}!
 }
@@ -1146,29 +1245,28 @@ Don't worry about this.
 \ifluluelse
 	{\centerline{\includegraphics[width=\textwidth]{String-Shout}}}
 	{\centerline{\includegraphics[scale=0.7]{String-Shout}}}
-\caption{The \ct{shout} method defined on class \ct{String}.
-\label{fig:String-shout}}
+\caption{La m\'ethode \ct{shout} dans la classe \ct{String}.\label{fig:String-shout}}
 \end{figure}
 
 %=================================================================
 \section{R\'esum\'e du chapitre}
 %martial: j'ai mis 'intronise' si trop solennel, corriger par 'presente'
 Dans ce chapitre, nous vous avons intronis\'e \`a l'environnement de
-\sq et nous vous avons montr\'e comment utiliser certains des
+\sq et nous vous avons montr\'e comment utiliser certains de ses
 principaux outils comme le  System Browser, le
-Method Finder et le Test Runner. Vous avez pu voir un aper\c{c}u de la
+Method Finder et le Test Runner. Vous avez pu avoir un aper\c{c}u de la
 syntaxe sans que vous puissiez encore la comprendre suffisamment \`a ce stade.
 
 \begin{itemize}
-  \item Un syst\`me \sq fonctionnel comprend une \emph{machine
-      virtuelle} (souvent abr\'eg\'ee par VM), une fichier
+  \item Un syst\`eme \sq fonctionnel comprend une \emph{machine
+      virtuelle} (souvent abr\'eg\'ee par VM), un fichier
     \emph{sources} et un couple de fichiers: une \emph{image} et un
     fichier \emph{changes}. Ces deux derniers sont les seuls \`a
     \^etre susceptible de changer, puisqu'ils sauvegardent un clich\'e
     du syst\`eme actif.
   \item Quand vous restorez une image \sq, vous vous retrouvez
     exactement dans le m\^eme \'etat\,---\,avec les m\^eme objets
-    lanc\'es\,---\,que vous l'aviez laiss\'e lors de votre derni\`ere
+    lanc\'es\,---\,que vous l'avez laiss\'e lors de votre derni\`ere
     sauvegarde de cette image.
   \item \sq est destin\'e \`a fonctionner avec une souris \`a trois
     boutons. Par convention, nous disons qu'il y a un bouton \emph{rouge}, un bouton
@@ -1178,7 +1276,7 @@ syntaxe sans que vous puissiez encore la comprendre suffisamment \`a ce stade.
   \item Vous utilisez le \ind{bouton rouge} sur l'arri\`ere-plan de
     \sq pour faire appara\^{\i}tre le \emph{menu World} et pouvoir
     lancer depuis celui-ci divers outils. Vous pouvez aussi trouver
-    les outils principaux dans \toolsflapind situ\'e \`a droite de
+    les outils essentiels dans \toolsflapind situ\'e \`a droite de
     l'\'ecran \sq.
   \item Un \emph{Workspace} ou espace de travail est un outil
     destin\'e \`a \'ecrire et \'evaluer des fragments de code. Vous
@@ -1193,7 +1291,7 @@ syntaxe sans que vous puissiez encore la comprendre suffisamment \`a ce stade.
     d\'evelopper du nouveau code.
   \item Le \emph{Test Runner} permet d'effectuer des tests
     unitaires. Il supporte pleinement la m\'ethodologie de
-    programmation orient\'ee tests connus sous le nom de \emph{Test
+    programmation orient\'ee tests connue sous le nom de \emph{Test
       Driven Development}.
 \end{itemize}
 

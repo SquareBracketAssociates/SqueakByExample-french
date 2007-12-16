@@ -23,10 +23,10 @@ TODO :
 -----------------------------------------------------------------------------
 L'etat des chapitres
 ------------------
-Preface -- Traducteur : Serge, Relecteur : ?
+Preface -- Traducteur : Serge, Relecteur : Martial
 
 [GETTING STARTED]
-A Quick Tour of Squeak -- Traducteur : Mathieu (en cours)
+A Quick Tour of Squeak -- Traducteur : Mathieu+Martial, Relecteur: ?
 A First Application -- Traducteur : Serge, Relecteur : Martial
 Syntax in a Nutshell -- Traducteur : Rene/Martial, Relecteur : ?
 Understanding Message Syntax -- Traducteur : Serge, Relecteur : Martial 
@@ -35,7 +35,7 @@ Understanding Message Syntax -- Traducteur : Serge, Relecteur : Martial
 The Smalltalk Object Model -- Traducteur : Martial, Relecteur : ? 
 The Squeak Programming Environment -- Traducteur : Martial, Relecteur : Serge
 SUnit -- Traducteur : Alain, Relecteur : Martial
-Basic Classes -- Traducteur : Nicolas (en cours), Relecteur : ?
+Basic Classes -- Traducteur : Nicolas+Alain (en cours), Relecteur : ?
 Collections -- Auteur : Martial, Relecteur : Serge
 Streams -- Auteur : Martial , Relecteur : ?
 Morphic -- En attente reponse Denis Bodor (LinuxMag)
