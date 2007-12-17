@@ -106,7 +106,7 @@ La fonction \ct{map} dans le langage \ind{Lisp} est un exemple
 primaire de cette technique de programmation: cette fonction
 applique une fonction entr\'ee en argument \`a tout \'el\'ement d'une
 liste et retourne une nouvelle liste contenant le r\'esultat.
-Cependant \st-80 a adopt\'e la programmation bas\'ee sur les collections
+\st-80 a adopt\'e la programmation bas\'ee sur les collections
 comme pr\'ecept central.
 Les langages modernes de programmation fonctionnelle tels que \ind{ML}
 % martial: j'aurais eu envie de mettre le dynamique erlang, mon favori
@@ -126,7 +126,7 @@ students select: [ :each | each gpa < threshold ]
 \end{code}
 \noindent
 ce qui donnera une nouvelle collection contenant pr\'ecisement les
-\'elements de \ct{students} (\'etudiants) pour lesquels la
+\'el\'ements de \ct{students} (\'etudiants) pour lesquels la
 fonction entre crochets renvoie une r\'eponse positive \cad \ct{true}\footnote{L'expression entre crochets (brackets en anglais) peut \^etre vue comme une 
 $\lambda$ expression d\'efinissant une fonction anonyme $\lambda x. x~{\sf gpa} < {\sf threshold}$.
 \index{lambda expression}}.
@@ -245,7 +245,7 @@ sont accessibles via des cl\'es plut\^ot que par des indices.
 
   \item {\bf Les collections extensibles:}
 % ou \emph{Growable}:}
-	les instances d'\ct{Interval} et du tableau \clsind{Array} sont
+	les instances d'\ct{Interval} et de \clsind{Array} sont
 toujours de taille fixe. D'autres types de collections (les collections tri\'ees \ct{SortedCollection}, ordonn\'ees \ct{OrderedCollection} et les listes cha\^{\i}n\'ees \ct{LinkedList}) peuvent \^etre \'etendues apr\`es leur cr\'eation.
 	
 	La classe \clsind{OrderedCollection} est plus g\'en\'erale que le tableau \mbox{\ct{Array};} la taille d'une \ct{OrderedCollection} grandit \`a la demande et
@@ -309,7 +309,7 @@ cr\'e\'es avec une simple allocation de m\'emoire.
 \clsind{SortedCollection} contiennent leurs \'el\'ements dans un tableau
 qui est r\'ef\'erenc\'e par une des variables d'instance de la collection.
 En cons\'equence, le tableau interne peut \^etre remplac\'e par un 
-plus grand si la collection grossit par del\`a les capacit\'es de 
+plus grand si la collection grossit au del\`a des capacit\'es de 
 stockage.
   \item Les diff\'erents types d'ensemble (ou \emph{set}) et les dictionnaires
 sont aussi r\'ef\'erenc\'es par un tableau de stockage subsidiaire
@@ -328,7 +328,7 @@ En plus de ces classes, il y a aussi
 les variantes de \mbox{\ct{Array},} de \ct{Set} et de plusieurs sortes de dictionnaires dites \`a liaisons faibles ou ``\subind{Collection}{weak}''. Ces collections
 maintiennent faiblement leurs \'el\'ements, \ie
 de mani\`ere \`a ce qu'elles n'emp\^echent pas ses \'el\'ements d'\^etre
-recycl\'es au ramasse-miettes ou \emph{garbage collector}.
+recycl\'es par le ramasse-miettes ou \emph{garbage collector}.
 La machine virtuelle \sq est consciente de ces classes et les g\`ere d'une
 fa\c{c}on particuli\`ere.
 \index{collection!\`a liaison faible}
@@ -486,9 +486,9 @@ avec un unique \'el\'ement \ct{3} mais vous obtenez plut\^ot le tableau
 \end{code}
 
 \noindent
-Ceci se produit parce que la base \ct{#()} a pour cons\'equence le fait que
+Ceci se produit parce que la construction \ct{#()} fait que
 le compilateur interpr\`ete lit\'erallement les expressions contenues dans
-le tableau. L'expression est scann\'ee et les \'el\'ements r\'esultants
+le tableau. L'expression est analys\'ee et les \'el\'ements r\'esultants
 forment un nouveau tableau. Les tableaux litt\'eraux contiennent des
 nombres, l'\'el\'ement \ct{nil}, des bool\'eens \ct{true} et \ct{false},
 des symboles et des cha\^{\i}nes de caract\`eres.
@@ -497,7 +497,7 @@ des symboles et des cha\^{\i}nes de caract\`eres.
 Vous pouvez finalement cr\'eer un tableau dynamique en utilisant
 la construction suivante: \ct|{}|. \ct|{ a . b }| est \'equivalent
 \`a \lct{Array with: a with: b}. En particulier, les expressions incluses
-entre \ct|{| et \ct|}| sont ex\'ecut\'ees. 
+entre \ct|{| et \ct|}| sont ex\'ecut\'ees. Chaque expression est séparée de la précédente par un point.
 
 \begin{code}{@TEST | anArray |}
 { 1 + 2 } --> #(3)
@@ -540,7 +540,7 @@ ordCol add: 'Seaside'; add: 'SqueakSource'; addFirst: 'Monticello'.
 ordCol --> an OrderedCollection('Monticello' 'Seaside' 'SqueakSource')
 \end{code}
 
-\paragraph{Effacer des \'el\'ements.} La m\'ethode \mthind{OrderedCollection}{remove:} \ct{anObject} efface la premi\`ere occurence d'un objet dans la collection. Si la collection n'inclut pas d'objet (\cad elle est vierge), elle
+\paragraph{Effacer des \'el\'ements.} La m\'ethode \mthind{OrderedCollection}{remove:} \ct{anObject} efface la premi\`ere occurence d'un objet dans la collection. Si la collection n'inclut pas l'objet, elle
 l\`eve une erreur.
 
 \begin{code}{@TEST | ordCol | ordCol := OrderedCollection with: 'Monticello' with: 'Seaside' with: 'SqueakSource'.}
@@ -582,8 +582,8 @@ un tableau \ct{Array} (ou n'importe quelle autre collection) en envoyant le mess
 
 %---------------------------------------------------------
 \subsection{L'intervalle Interval}
-La classe \clsindmain{Interval} repr\'esente un arrangement de nombres.
-Par exemple, l'intervalle de chifrres compris entre 1 et 100 est d\'efini comme
+La classe \clsindmain{Interval} repr\'esente une suite de nombres.
+Par exemple, l'intervalle compris entre 1 et 100 est d\'efini comme
 suit:
 \cmindex{Interval class}{from:to:}
 \begin{code}{@TEST}
@@ -611,13 +611,12 @@ Nous pouvons utiliser \cmind{Interval class}{from:to:by:} (mot \`a mot: depuis-j
 \subsection{Le dictionnaire Dictionary}
 Les dictionnaires sont des collections importantes dont les \'el\'ements
 sont acc\'ed\'es via des cl\'es.
-Parmi les messages de dictionnaire les plus couramment utilis\'es, vous
-trouverez  
+Parmi les messages de dictionnaire les plus couramment utilis\'es, vous trouverez  
 \mthind{Dictionary}{at:}, \mthind{Dictionary}{at:put:}, \mthind{Dictionary}{at:ifAbsent:}, \mthind{Dictionary}{keys} et \mthind{Dictionary}{values} (\emph{keys} et \emph{values} sont les mots anglais pour cl\'es et valeurs respectivement).
 \seeindex{keys}{Dictionary, keys}
 \seeindex{values}{Dictionary, values}
 \seeindex{dictionnaire, cl\'e}{Dictionary, keys}
-\seeindex{dictionnaire, valeur}{Dictionary, values}.
+\seeindex{dictionnaire, valeur}{Dictionary, values}
 
 \begin{code}{@TEST | colors |}
 colors := Dictionary new.
@@ -681,7 +680,7 @@ trouble at: 'foobar' --> 'a'
 \noindent
 Comme \ct{a} et \ct{b} sont des objets diff\'erents, ils sont trait\'es comme des objets diff\'erents.
 %Interestingly,
-Le litt\'eral \mbox{\ct{'foobar'}} est allou\'e une fois pour toute et
+Le litt\'eral \mbox{\ct{'foobar'}} est allou\'e une seule fois et
 ce n'est vraiment pas le m\^eme objet que \ct{a}.
 Vous ne voulez pas que votre code d\'epende d'un tel comportement!
 Un simple \ct{Dictionary} vous donnerait la m\^eme valeur pour n'importe quelle
@@ -755,7 +754,7 @@ op\'erations fonctionnent pour toute sorte de collections!
 \end{code}
 
 Comme nous l'avons expliqu\'e plus haut les \'el\'ements de \ct{Set} sont
-accessibles en utilisant des \emph{iterators} (voir \secref{iterators}).
+accessibles en utilisant des \emph{méthodes d'itérations (itérateurs)} (voir \secref{iterators}).
 
 %---------------------------------------------------------
 \subsection{La collection tri\'ee SortedCollection}
@@ -793,7 +792,7 @@ Cet exemple r\'epond \`a la FAQ suivante:
 \end{code}
 
 Comment retrouver une cha\^{\i}ne de caract\`eres \ct{String} depuis ce r\'esultat?
-Malheureusement \ct{asString} retourne une repr\'esentation descriptive en \ct{printString}; ce n'est bien s\^ur pas ce que nous voulons:
+Malheureusement \ct{asString} retourne une repr\'esentation descriptive en \ct{printString}; ce n'est bien s\^ur pas ce que nous voulons :
 \begin{code}{@TEST}
 'hello' asSortedCollection asString --> 'a SortedCollection($e $h $l $l $o)'
 \end{code}
@@ -904,7 +903,7 @@ s --> 'No worries'
 
 D'une mani\`ere diff\'erente, \mthind{String}{copyReplaceAll:} cr\'ee 
 une nouvelle cha\^{\i}ne de caract\`eres.
-(Curieusement, les arguments dans ce cas sont des sous-cha\^{\i}nes et non des caract\`eres ind\'ependants et leur taille n'a pas \^etre identique.)
+(Curieusement, les arguments dans ce cas sont des sous-cha\^{\i}nes et non des caract\`eres ind\'ependants et leur taille n'a pas a \^etre identique.)
 
 \begin{code}{@TEST |s| s:= 'No worries' copy.}
 s copyReplaceAll: 'rries' with: 'mbats' --> 'No wombats'
@@ -945,7 +944,7 @@ de caract\`eres \`a apparier.
 'GNU/Linux mag' findString: 'linux' startingAt: 1 caseSensitive: false  --> 5
 \end{code}
 
-Il existe aussi des techniques d'appariements plus avanc\'es par filtre 
+Il existe aussi des techniques d'appariements plus avanc\'ees par filtre 
 offrant les m\^eme possibilit\'es que Perl mais elles ne sont pas incluses
 par d\'efaut dans l'image standard\footnote{Nous vous recommandons fortement
 le \ind{paquetage d'expressions r\'eguli\`eres} ou \emph{regular expression package} de Vassili Bykov, disponible \`a \url{www.squeaksource.com/Regex.html}.
@@ -1029,8 +1028,7 @@ En \st, les boucles et les clauses conditionnelles sont simplement
 des messages envoy\'es \`a des collections ou d'autres objets
 tels que des entiers ou des blocs (voir aussi \charef{syntax}).
 En plus des messages bas niveau comme 
- \ct{to:do:} qui \'evalue un bloc avec un argument r\'ef\'erant le
-parcours entre le nombre initial et final,
+ \ct{to:do:} qui \'evalue un bloc avec un argument qui parcourt les valeurs entre un nombre initial et final,
 %which evaluates a block with an argument ranging from an initial to a final number
 la hi\'erarchie de collection \st offre de nombreux it\'erateurs haut-niveau.
 Ceci vous permet de faire un code plus robuste et plus compact.
@@ -1105,7 +1103,7 @@ colors associationsDo: [:value | Transcript show: value;cr].  "affiche les assoc
 \end{code}
 
 %---------------------------------------------------------
-\subsection{Collectionner les r\'esultats avec \lct{collect:}}
+\subsection{Collecter les r\'esultats avec \lct{collect:}}
 Si vous voulez traiter les \'el\'ements d'une collection et produire
 une nouvelle collection en r\'esultat, vous devez utiliser plut\^ot le
 message \ct{collect:} ou d'autres m\'ethodes d'it\'erations au lieu
@@ -1113,9 +1111,8 @@ du message \ct{do:}.
 La plupart peuvent \^etre trouv\'e dans le protocole \protind{enumerating} 
 de la classe \ct{Collection} et de ses sous-classes.
 
-Imaginez que nous voulions qu'une collection contienne le double 
-num\'erique des \'el\'ements d'une autre collection. 
-En utilisant la m\'ethode \ct{do:}, nous devons \'ecrire le code suivant:
+Imaginez que nous voulions qu'une collection contienne le double des \'el\'ements d'une autre collection. 
+En utilisant la m\'ethode \ct{do:}, nous devons \'ecrire le code suivant :
 
 \begin{code}{@TEST | double |}
 double := OrderedCollection new.
@@ -1126,7 +1123,7 @@ double --> an OrderedCollection(2 4 6 8 10 12)
 \noindent
 La m\'ethode \mthind{Collection}{collect:} ex\'ecute son bloc-argument
 pour chaque \'el\'ement et renvoie une collection contenant les r\'esultats.
-En utilisant d\'esormais \ct{collect:}, notre code se simplifie:
+En utilisant d\'esormais \ct{collect:}, notre code se simplifie :
 \begin{code}{@TEST}
 #(1 2 3 4 5 6) collect: [:e | 2 * e] --> #(2 4 6 8 10 12)
 \end{code}
@@ -1134,7 +1131,7 @@ En utilisant d\'esormais \ct{collect:}, notre code se simplifie:
 Les avantages de \ct{collect:} sur \mthind{Collection}{do:} sont encore
 plus d\'emonstratifs sur l'exemple suivant dans lequel nous g\'en\'erons
 une collection de valeurs absolues d'entiers contenues dans une autre
-collection:
+collection :
 
 \begin{code}{@TEST |aCol result|}
 aCol :=  #( 2 -3 4 -35 4 -11).
@@ -1171,6 +1168,7 @@ en \ct{Array} ou un \ct{OrderedCollection}:
 En fait, \ct{collect:} ne garantit pas sp\'ecifiquement de retourner 
 exactement la m\^eme classe que celle du receveur, mais seulement une classe
 de la m\^eme \emph{``esp\`ece''}.  Dans le cas d'\ct{Interval}, l'esp\`ece est en r\'ealit\'e un tableau \ct{Array}!
+En effet, dans ce cas, on est pas assuré que le résultat pourra être transformé en intervalle.
 \begin{code}{@TEST}
 (1 to: 5) collect: [ :ea | ea * 2 ] --> #(2 4 6 8 10)
 \end{code}
@@ -1232,7 +1230,7 @@ les 100 premiers entiers:
 (1 to: 100) inject: 0 into: [:sum :each | sum + each ] --> 5050
 \end{code}
 
-Un autre exemple est le bloc suivant \`a un argument pour calculer les factoriels:
+Un autre exemple est le bloc suivant \`a un argument pour calculer la fonction factoriel :
 \begin{code}{@TEST |factorial|}
 factorial := [:n | (1 to: n) inject: 1 into: [:product :each | product * each ] ].
 factorial value: 10 --> 3628800
@@ -1271,7 +1269,7 @@ collection := OrderedCollection new add: 1; add: 2.
 collection --> 2
 \end{code}
 \noindent
-Ici la variable \ct{collection} n'est pas affect\'e par la collection nouvellement cr\'e\'ee mais par le dernier nombre ajout\'e.
+Ici la variable \ct{collection} ne contient pas la collection nouvellement cr\'e\'ee mais par le dernier nombre ajout\'e.
 En effet, la m\'ethode \ct{add:} renvoie l'\'el\'ement ajout\'e et non le receveur.
 
 Le code suivant donne le r\'esultat attendu:
@@ -1288,7 +1286,7 @@ renvoyer le receveur d'une \ind{cascade} de messages:
 collection := OrderedCollection new add: 1; add: 2; yourself --> an OrderedCollection(1 2)
 \end{code}
 
-\paragraph{Enlever un \'el\'ement d'une collection dans laquelle vous it\'erez.}
+\paragraph{Enlever un \'el\'ement d'une collection en cours d'it\'eration.}
 Une autre erreur que vous pouvez faire est d'effacer un \'el\'ement d'une collection que vous \^etes en train de parcourir de mani\`ere it\'erative en utilisant \mthind{Collection}{remove:}.
 \begin{code}{@TEST |range|}
 range := (2 to: 20) asOrderedCollection.
@@ -1314,7 +1312,7 @@ que d'autres ph\'enom\`enes plus \'etrange. Une solution propos\'ee
 par Kent Beck est d'utiliser \ct{xor:} pour red\'efinir \ct{hash}.
 Supposons que nous voulons que deux livres soient consid\'er\'es comme
 \'egaux si leurs titres et leurs auteurs sont les m\^emes.
-Alors nous red\'efinirions non seulement
+Alors nous red\'efinissons non seulement
 \ct{=} mais aussi \ct{hash} comme suit:
 \index{dictionnaire!surcharger \ct{=} et \ct{hash}}
 
@@ -1327,7 +1325,7 @@ Book>>>hash
    ^ title hash xor: authors hash
 \end{method}
 
-Un autre probl\`eme terrifiant peut surgir lorsque vous utilisez des
+Un autre probl\`eme ennuyeux peut surgir lorsque vous utilisez des
 objets modifiables ou \emph{mutables}: ils peuvent changer leur
 code de hachage constamment quand ils sont \'el\'ements d'un \ct{Set}
 ou cl\'es d'un dictionnaire. 
@@ -1339,11 +1337,11 @@ Ne le faites donc pas à moins que vous n'aimez vraiment le d\'eboguage!
 La hi\'erarchie de collection en \st offre un vocabulaire commun pour la manipulation uniforme d'une grande famille de collections.
 
 \begin{itemize}
-  \item Un distinction essentielle est faite entre les collections s\'equentielles ou 
+  \item Une distinction essentielle est faite entre les collections s\'equentielles ou 
 \ct{SequenceableCollection}s qui stockent leurs \'el\'ements dans un ordre
 donn\'e, 
-les dictionnaires de classe\ct{Dictionary} ou de ses sous-classes qui
-enregistre des associations cl\'e--valeur et les ensembles 
+les dictionnaires de classe \ct{Dictionary} ou de ses sous-classes qui
+enregistrent des associations cl\'e--valeur et les ensembles 
 (\ct{Set}) ou multiensembles (\ct{Bag}) qui sont eux d\'esordonn\'es.
   \item Vous pouvez convertir la plupart des collections en d'autres sortes de 
 collections en leur envoyant des messages tels que \ct{asArray}, \ct{asOrderedCollection} \etc.
@@ -1362,7 +1360,7 @@ Pour des applications plus avanc\'ees, vous aurez besoin du paquetage d'expressi
   \item Le message de base pour l'it\'eration est \ct{do:}. Il est 
 utile pour du code imp\'eratif tel que la modification de chaque \'el\'ement d'une collection ou l'envoi d'un message sur chaque \'el\'ement.
   \item Au lieu d'utiliser \ct{do:}, il est d'usage d'employer \ct{collect:}, \ct{select:}, \ct{reject:}, \ct{includes:}, \ct{inject:into:} et d'autres messages de haut niveau pour un traitement uniforme des collections.
-  \item Ne jamais effacer un \'el\'ement d'une collection que vous parcourez it\'erativement. Si vous la devez modifier, it\'erez plut\^ot sur une copie.
+  \item Ne jamais effacer un \'el\'ement d'une collection que vous parcourez it\'erativement. Si vous devez la modifier, it\'erez plut\^ot sur une copie.
   \item Si vous surchargez \ct{=}, souvenez-vous d'en faire de m\^eme pour le message \ct{hash} 
 %ajout
 qui renvoie le code de hachage!
@@ -1375,4 +1373,5 @@ qui renvoie le code de hachage!
    \end{document}
 \fi
 %=========================================================
+
 
