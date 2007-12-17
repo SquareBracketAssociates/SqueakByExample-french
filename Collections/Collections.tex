@@ -792,7 +792,7 @@ Cet exemple r\'epond \`a la FAQ suivante:
 \end{code}
 
 Comment retrouver une cha\^{\i}ne de caract\`eres \ct{String} depuis ce r\'esultat?
-Malheureusement \ct{asString} retourne une repr\'esentation descriptive en \ct{printString}; ce n'est bien s\^ur pas ce que nous voulons :
+Malheureusement \ct{asString} retourne une repr\'esentation descriptive en \ct{printString}; ce n'est bien s\^ur pas ce que nous voulons:
 \begin{code}{@TEST}
 'hello' asSortedCollection asString --> 'a SortedCollection($e $h $l $l $o)'
 \end{code}
@@ -1112,7 +1112,7 @@ La plupart peuvent \^etre trouv\'e dans le protocole \protind{enumerating}
 de la classe \ct{Collection} et de ses sous-classes.
 
 Imaginez que nous voulions qu'une collection contienne le double des \'el\'ements d'une autre collection. 
-En utilisant la m\'ethode \ct{do:}, nous devons \'ecrire le code suivant :
+En utilisant la m\'ethode \ct{do:}, nous devons \'ecrire le code suivant:
 
 \begin{code}{@TEST | double |}
 double := OrderedCollection new.
@@ -1123,7 +1123,7 @@ double --> an OrderedCollection(2 4 6 8 10 12)
 \noindent
 La m\'ethode \mthind{Collection}{collect:} ex\'ecute son bloc-argument
 pour chaque \'el\'ement et renvoie une collection contenant les r\'esultats.
-En utilisant d\'esormais \ct{collect:}, notre code se simplifie :
+En utilisant d\'esormais \ct{collect:}, notre code se simplifie:
 \begin{code}{@TEST}
 #(1 2 3 4 5 6) collect: [:e | 2 * e] --> #(2 4 6 8 10 12)
 \end{code}
@@ -1131,7 +1131,7 @@ En utilisant d\'esormais \ct{collect:}, notre code se simplifie :
 Les avantages de \ct{collect:} sur \mthind{Collection}{do:} sont encore
 plus d\'emonstratifs sur l'exemple suivant dans lequel nous g\'en\'erons
 une collection de valeurs absolues d'entiers contenues dans une autre
-collection :
+collection:
 
 \begin{code}{@TEST |aCol result|}
 aCol :=  #( 2 -3 4 -35 4 -11).
@@ -1230,7 +1230,7 @@ les 100 premiers entiers:
 (1 to: 100) inject: 0 into: [:sum :each | sum + each ] --> 5050
 \end{code}
 
-Un autre exemple est le bloc suivant \`a un argument pour calculer la fonction factoriel :
+Un autre exemple est le bloc suivant \`a un argument pour calculer la fonction factoriel:
 \begin{code}{@TEST |factorial|}
 factorial := [:n | (1 to: n) inject: 1 into: [:product :each | product * each ] ].
 factorial value: 10 --> 3628800
