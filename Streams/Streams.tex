@@ -337,7 +337,7 @@ string := String streamContents:
                  space;
                  print: 3.	].
 string. -->   '#(1 2 3) size = 3'
-\end{code}
+\end{code}%$
 
 La m\'ethode \mthind{SequenceableCollection class}{streamContents:} \label{sec:streamContents} cr\'ee une collection et un \stream sur cette collection.
 Elle ex\'ecute ensuite le bloc que vous lui donn\'e en passant le \stream comme argument de bloc. Quand le bloc se termine, \ct{streamContents:}
@@ -489,7 +489,7 @@ History>>goForward
 \end{code}
 
 Jusqu'ici le code est asez simple. Maintenant, nous doivons nous occuper
-de la m\'ethode \ct{goTo:} (que l'on peut traduire en fran\c{c}ais par ``aller \`a'') qui devrait \^etre activ\'ee quand l'utilisateur
+de la m\'ethode \ct{goTo:} (que nous pouvons traduire en fran\c{c}ais par ``aller \`a'') qui devrait \^etre activ\'ee quand l'utilisateur
 clique sur un lien. Une solution possible est la suivante:
 
 \begin{code}{}
