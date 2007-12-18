@@ -18,7 +18,9 @@ Traducteurs :
 - Benoit Tudiri
 
 TODO :
-- Expliquer un peu mieux le role des m?thodes hash pour les collections ? cl?s.
+- Expliquer un peu mieux le role des méthodes hash pour les collections ? clés.
+- Parler de la version francisée de Squeak
+- Ajouter un paragraphe et le nom des traducteurs en préface
 
 -----------------------------------------------------------------------------
 L'etat des chapitres
@@ -38,7 +40,7 @@ SUnit -- Traducteur : Alain, Relecteur : Martial
 Basic Classes -- Traducteur : Nicolas+Alain (en cours), Relecteur : ?
 Collections -- Auteur : Martial, Relecteur : Serge
 Streams -- Auteur : Martial , Relecteur : Serge
-Morphic -- En attente reponse Denis Bodor (LinuxMag)
+Morphic -- Traducteur : Martial, Relecteur : ?. En attente reponse Denis Bodor (LinuxMag)
 [ADVANCED SQUEAK]
 Classes and Metaclasses -- Auteur : Luc, Relecteur : Martial
 FAQ -- Auteur : Benoit, Relecteur : Martial
