@@ -64,7 +64,7 @@ Les expressions sont compos\'{e}es des blocs constructeurs suivants:
 \item des expressions constantes pour des \emphind{objets litt\'{e}raux} comprenant les nombres, les caract\`{e}res, les chaînes de caract\`{e}res, les symboles et les tableaux;
 \item des d\'{e}clarations de variables;
 \item des affectations;
-\item des \ind{blocs} ou fermetures lexicales -- \ind{closures} en anglais -- et;
+\item des \ind{bloc}{}s ou fermetures lexicales -- \ind{closures} en anglais -- et;
 \item des messages.
 \end{enumerate}
 \seeindex{pseudo-variable}{variable, pseudo}
@@ -94,7 +94,7 @@ Les expressions sont compos\'{e}es des blocs constructeurs suivants:
 		\lct{| x y |}				&	une d\'eclaration de 2 variables \lct{x} et \lct{y}	\\
 		\lct{x := 1}				&	affectation de 1 \`a \lct{x} \\
 		\lct{[ x + y ]}			&	un bloc qui \'evalue \lct{x+y} \\
-		\lct{<primitive: 1>}		&	une primitive de la MV\footnote{Machine Virtuelle} ou annotation\\
+		\lct{<primitive: 1>}		&	une primitive de la VM~\footnote{Machine Virtuelle.} ou annotation\\
 		\midrule
 		\lct{3 factorial}			&	un message unaire \\
 		\lct{3+4}					&	un message binaire \\
@@ -397,6 +397,7 @@ Le bloc retourne la valeur de la derni\`{e}re expression de son corps,
 \`{a} moins qu'il y ait un retour explicite (avec \ct{^}) auquel cas il ne retourne aucune valeur.
 \seeindex{value}{BlockClosure}
 % Serge : je ne comprends pas pourquoi cela ne retourne rien ...
+% Martial : j'ai traduit tel quel et je ne comprends pas non plus
 
 \begin{code}{@TEST}
 [ 1 + 2 ] value --> 3
