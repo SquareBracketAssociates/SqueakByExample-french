@@ -46,13 +46,12 @@ La \ind{syntaxe} est con\c{c}ue de telle sorte que le texte d'un programme lu \`
 \end{code}
 
 \noindent
-La syntaxe de \sq est minimaliste; pour l'essentiel, con\c{c}ue uniquement pour \emph{envoyer des messages} (\ie des expressions).
+La syntaxe de \sq (\ie les expressions) est minimaliste; pour l'essentiel, con\c{c}ue uniquement pour \emph{envoyer des messages}.
 %% et  \emph{des d\'{e}clarations de m\'{e}thodes}.
 Les expressions sont construites \`{a} partir d'un nombre tr\`{e}s r\'{e}duit de primitives.
 \st dispose seulement 6 mots cl\'{e}s et d'aucune syntaxe ni pour les structures de contr\^{o}le, ni pour les d\'{e}clarations de nouvelles classes.
 En revanche, tout ou presque est r\'{e}alisable en envoyant des messages \`{a} des objets.
-Par exemple, \`{a} la place de la structure de contr\^{o}le \emph{if-then-else}, \st envoie des messages comme \ct{ifTrue:} \`{a} des objets booléens de classe
-\clsind{Boolean}.
+Par exemple, \`{a} la place de la structure de contr\^{o}le conditionnellle \emph{si-also-sinon}, \st envoie des messages comme \ct{ifTrue:} \`{a} des objets booléens de classe \clsind{Boolean}.
 Les nouvelles \mbox{(sous-)classes} sont cr\'{e}\'{e}es en envoyant un message \`{a} leur super-classe.
 
 %=================================================================
@@ -65,7 +64,7 @@ Les expressions sont compos\'{e}es des blocs constructeurs suivants:
 \item des expressions constantes pour des \emphind{objets litt\'{e}raux} comprenant les nombres, les caract\`{e}res, les chaînes de caract\`{e}res, les symboles et les tableaux;
 \item des d\'{e}clarations de variables;
 \item des affectations;
-\item des \ind{bloc}s ou fermetures lexicales -- \ind{closures} en anglais -- et;
+\item des \ind{blocs} ou fermetures lexicales -- \ind{closures} en anglais -- et;
 \item des messages.
 \end{enumerate}
 \seeindex{pseudo-variable}{variable, pseudo}
@@ -95,7 +94,7 @@ Les expressions sont compos\'{e}es des blocs constructeurs suivants:
 		\lct{| x y |}				&	une d\'eclaration de 2 variables \lct{x} et \lct{y}	\\
 		\lct{x := 1}				&	affectation de 1 \`a \lct{x} \\
 		\lct{[ x + y ]}			&	un bloc qui \'evalue \lct{x+y} \\
-		\lct{<primitive: 1>}		&	une primitive de la MV (Machine Virtuelle) ou annotation\\
+		\lct{<primitive: 1>}		&	une primitive de la MV\footnote{Machine Virtuelle} ou annotation\\
 		\midrule
 		\lct{3 factorial}			&	un message unaire \\
 		\lct{3+4}					&	un message binaire \\
@@ -115,7 +114,7 @@ Les expressions sont compos\'{e}es des blocs constructeurs suivants:
 Dans \tabref{syntax}, nous pouvons voir des exemples divers d'\'{e}l\'{e}ments syntaxiques.
 \begin{description}
 \item[Les variables locales.] \ct{startPoint} est un nom de variable ou identifiant.
-Par convention, les identifiants sont compos\'{e}s de mots au format d'écriture \emph{casse de chameau} de la forme ``\ind{camelCase}''(\ie chaque mot except\'{e} le premier d\'{e}bute par une lettre majuscule).
+Par convention, les identifiants sont compos\'{e}s de mots au format d'écriture \emph{casse chameau} (``\ind{camelCase}'') (\ie chaque mot except\'{e} le premier d\'{e}bute par une lettre majuscule).
 La premi\`{e}re lettre d'une variable d'instance, d'une m\'{e}thode ou d'un bloc argument ou d'une variable temporaire doit \^{e}tre en minuscule.
 Ce qui indique au lecteur que la port\'{e}e de la variable est priv\'{e}e .
 
@@ -154,16 +153,16 @@ Mais contrairement \`{a} une chaîne, un \subind{litt\'{e}ral}{symbole} doit \^{
 Il y a seulement un objet symbole \ct{#Bonjour} mais il peut y avoir plusieurs objets chaînes de caract\`{e}res ayant la valeur \ct{'Bonjour'}.
 \seeindex{\#@{\textsf{\#}}}{symbole litt\'{e}ral}
 
-\item[Les tableaux \`{a} la compilation.] Ils sont d\'{e}finis par \ct{#( )}, les objets litt\'{e}raux sont s\'{e}par\'{e}s par des espaces.
+\item[Les tableaux définis \`{a} la compilation.] Ils sont d\'{e}finis par \ct{#( )}, les objets litt\'{e}raux sont s\'{e}par\'{e}s par des espaces.
 À l'int\'{e}rieur des parenth\`{e}ses, tout doit \^{e}tre constant durant la compilation.
 Par exemple,  \ct{#(27 #(true false) abc)} est un
 \subind{littéral}{tableau} \subind{tableau}{litt\'{e}ral} de trois \'{e}l\'{e}ments: l'entier \ct{27}, le tableau \`{a} la compilation contenant deux bool\'{e}ens et le symbole \ct{#abc}.
 
-\item[Les tableaux \`{a} l'ex\'{e}cution.] Les accolades \ct|{ }|
+\item[Les tableaux définis \`{a} l'ex\'{e}cution.] Les accolades \ct|{ }|
   d\'{e}finissent un tableau (\subind{tableau}{dynamique}) \`{a} l'ex\'{e}cution.
 Ses \'{e}l\'{e}ments sont des expressions separ\'{e}es par des points.
 Ainsi \ct|{ 1. 2. 1+2 }| d\'{e}finit un tableau dont les \'{e}l\'{e}ments sont 1, 2 et le r\'{e}sultat de l'\'{e}valuation de 1+2
-(la notation entre accolades est particuli\`{e}re \`{a} \sq, dialecte de \st!
+(La notation entre accolades est particuli\`{e}re \`{a} \sq.
 Dans d'autres \st{}s vous devez explicitement construire des tableaux dynamiques).
 
 \item[Les commentaires.] Ils sont encadr\'{e}s par des guillemets.
@@ -185,7 +184,7 @@ Malheureusement, tant qu'elle ne sera pas un caract\`{e}re
 \textsc{ASCII}, il apparaîtra sous la forme d'un signe souligné (en
 anglais, \emph{underscore} \`{a} moins que vous n'utilisiez une fonte 
 sp\'{e}ciale.
-Ainsi, \ct{x := 1} est identique \`{a} \ct{x _ 1} ou \ct{x UNDERSCORE 1}. Vous devriez utiliser  \ct{:=} puisque les autres repr\'{e}sentations ont \'{e}t\'{e} supprim\'{e}es depuis la version 3.9 de Squeak.
+Ainsi, \ct{x := 1} est identique \`{a} \ct{x _ 1} ou \ct{x UNDERSCORE 1}. Il est préférable d'utiliser  \ct{:=} puisque les autres repr\'{e}sentations ont \'{e}t\'{e} déclarées comme obsolètes depuis la version 3.9 de Squeak.
 \index{affectation}
 \seeindex{:=@{\textsf{:=}}}{affectation}
 \seeindex{\_@{\textsf{\_}}}{affectation}
@@ -375,13 +374,12 @@ Sur le plan de la syntaxe, une m\'{e}thode comporte:
     o\`{u}, mais conventionnellement, un commentaire doit \^{e}tre plac\'{e} au d\'{e}but afin d'expliquer le but de la m\'{e}thode);
   \item les d\'{e}clarations des variables locales (\ie \ct{cr} et
     \ct{count}), et; 
-  \item un nombre quelconque d'expressions separat\'{e}es par des points; dans notre exemple, il y en a quatre.
+  \item un nombre quelconque d'expressions separ\'{e}es par des points; dans notre exemple, il y en a quatre.
 \end{enumerate}
 
 L'\'{e}valuation de n'importe quelle expression pr\'{e}c\'{e}d\'{e}e
 par un \ct{^} (saisi en tapant \verb|^|) provoquera l'arr\^{e}t de la m\'{e}thode \`{a} cet endroit, donnant en retour la valeur de cette expression.
-Une m\'{e}thode qui se termine sans retourner explicitement une expression 
-\ind{retour}nera de fa\c{c}on implicite \pvind{self}.
+Une m\'{e}thode qui se termine sans retourner explicitement une expression retournera de fa\c{c}on implicite \pvind{self}.
 \index{retour!implicite}
 
 
@@ -398,6 +396,7 @@ Un \ind{bloc} est essentiellement une fonction anonyme. Un bloc est \'{e}valu\'{
 Le bloc retourne la valeur de la derni\`{e}re expression de son corps,
 \`{a} moins qu'il y ait un retour explicite (avec \ct{^}) auquel cas il ne retourne aucune valeur.
 \seeindex{value}{BlockClosure}
+% Serge : je ne comprends pas pourquoi cela ne retourne rien ...
 
 \begin{code}{@TEST}
 [ 1 + 2 ] value --> 3
@@ -449,11 +448,8 @@ sont donc objets, de sorte qu'ils peuvent \^{e}tre affect\'{e}s \`{a} des variab
 
 %martial: je crois bien que un \{important} serait mieux que Avertissement 
 \newpage
-\emph{Avertissement:}
-
-Dans l'actuelle version (la version 3.9), \sq ne supporte pas en r\'{e}alit\'{e} les vraies fermetures lexicales, puisque les arguments des blocs sont en fait simul\'{e}s comme variables temporaires de la m\'{e}thode qu'ils contiennent. Il existe un nouveau compilateur qui supporte compl\`{e}tement les fermetures lexicales, mais il est encore en d\'{e}veloppement et non utilis\'{e} par d\'{e}faut.
-Dans certaines situations, ce probl\`{e}me peut entraîner des conflits de nommage;
-Cela se produit car \sq est construit sur une des premi\`{e}res impl\'{e}mentations de \st.
+\emph{Avertissement:} Dans l'actuelle version (la version 3.9), \sq ne supporte pas en r\'{e}alit\'{e} les vraies fermetures lexicales, puisque les arguments des blocs sont en fait simul\'{e}s comme variables temporaires de la m\'{e}thode qu'ils contiennent. Il existe un nouveau compilateur qui supporte compl\`{e}tement les fermetures lexicales, mais il est encore en d\'{e}veloppement et non utilis\'{e} par d\'{e}faut.
+Dans certaines situations, ce probl\`{e}me peut entraîner des conflits de nommage. Cela se produit car \sq est construit sur une des premi\`{e}res impl\'{e}mentations de \st.
 Si vous rencontrez ce probl\`{e}me, examinez l'envoyeur 
 %martial: ajout
 (par exemple, via \menu{senders} dans le System Browser)
@@ -485,7 +481,7 @@ expérimental \emphind{Closure Compiler}.
 \st n'offre aucune syntaxe sp\'{e}cifique pour les structures de contr\^{o}le.
 Typiquement celles-ci sont obtenues par l'envoi de messages \`{a} des bool\'{e}ens, des nombres ou des collections, avec pour arguments des blocs.
 
-Les clauses conditionnelles sont obtenus par l'envoi des messages
+Les clauses conditionnelles sont obtenues par l'envoi des messages
 \mthind{Boolean}{ifTrue:}, \mthind{Boolean}{ifFalse:} ou
 \mthind{Boolean}{ifTrue:ifFalse:} au r\'{e}sultat d'une expression
 bool\'{e}enne. Pour plus de détails sur les booléens, lisez \charef{basic}.
@@ -570,7 +566,7 @@ n --> 55
 
 \ct{select:} et \ct{reject:} construisent des collections nouvelles, contenant un sous-ensemble d'\'{e}l\'{e}ments satisfaisant (ou non) la condition du bloc bool\'{e}en.
 \ct{detect:} retourne le premier \'{e}l\'{e}ment satisfaisant la condition.
-Ne perdez pas de vue que les chaînes sont aussi des conditions, ainsi
+Ne perdez pas de vue que les chaînes sont aussi des collections, ainsi
 vous pouvez it\'{e}rer aussi sur tous les caract\`{e}res.
 %Martial: ajout par rapport a l'original (a completer et surement a
 %changer de place):
@@ -683,8 +679,7 @@ Depuis la version 3.9 de \sq, la syntaxe avec <....> est aussi utilis\'{e}e pour
   \ct{self}, \ct{super} et  \ct{thisContext}.
 
 \item	Il y a cinq types d'objets litt\'{e}raux: les nombres (\ct{5},
-  \ct{2.5}, \mbox{\ct{1.9e15},} \ct{2r111}), les caract\`{e}res (\ct{$a}),%$
-les chaînes (\ct{'bonjour'}), les symboles (\ct{#bonjour}) et les tableaux (\ct{#('bonjour' #bonjour)})
+  \ct{2.5}, \mbox{\ct{1.9e15},} \ct{2r111}), les caract\`{e}res (\ct{$a}), les chaînes (\ct{'bonjour'}), les symboles (\ct{#bonjour}) et les tableaux (\ct{#('bonjour' #bonjour)})
 
 \item	Les chaînes sont d\'{e}limit\'{e}es par des apostrophes et les commentaires par des guillemets. Pour obtenir une apostrophe dans une chaîne, il suffit de la doubler.
 
