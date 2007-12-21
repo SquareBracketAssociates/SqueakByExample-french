@@ -40,7 +40,7 @@ SUnit -- Traducteur : Alain, Relecteur : Martial
 Basic Classes -- Traducteur : Nicolas+Alain (en cours), Relecteur : ?
 Collections -- Auteur : Martial, Relecteur : Serge
 Streams -- Auteur : Martial , Relecteur : Serge
-Morphic -- Traducteur : Martial, Relecteur : ?. En attente reponse Denis Bodor (LinuxMag)
+Morphic -- Traducteur : Martial(traduit le 21/12), Relecteur : ?. En attente reponse Denis Bodor (LinuxMag)
 [ADVANCED SQUEAK]
 Classes and Metaclasses -- Auteur : Luc, Relecteur : Martial
 FAQ -- Auteur : Benoit, Relecteur : Martial
