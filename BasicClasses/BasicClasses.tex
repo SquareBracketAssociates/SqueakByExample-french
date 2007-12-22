@@ -29,11 +29,9 @@
 %=================================================================
 \chapter{Les classes de base}
 \label{cha:basic}
+Une grande partie de la magie de Smalltalk ne réside pas dans son langage mais dans ses bibliothèques de classes. Pour programmer efficacement en Smalltalk, vous devez apprendre comment les bibliothèques de classes servent le langage et l'environnement. Les bibliothèques de classes sont entièrement écrites en Smalltalk et peuvent facilement être étendues, puisqu'un paquet peut ajouter une nouvelle fonctionnalité à une classe même s'il ne définit pas cette classe. 
 
-
-Une grande partie de l'intérêt de Smalltalk ne réside pas dans son langage seul mais dans ses bibliothèques de classes. Pour programmer efficacement en Smalltalk, vous devez apprendre comment les bibliothèques de classes servent le langage et l'environnement. Les bibliothèques de classes sont entièrement écrites en Smalltalk et peuvent facilement être étendues, puisqu'un paquet peut ajouter une nouvelle fonctionnalité à une classe même s'il ne définit pas cette classe. 
-
-Notre but ici n'est pas de présenter en détail l'intégralité les bibliothèques de classes de Squeak, mais plutôt d'indiquer quelles classes et méthodes clés vous devrez utiliser ou surcharger pour programmer efficacement. Ce chapitre couvre les classes de base qui vous seront utiles dans la plupart de vos applications: \ct{Object}, \ct{Number} et ses sous-classes, \ct{Character}, \ct{String}, \ct{Symbol} et \ct{Boolean}.
+Notre but ici n'est pas de présenter en détail l'intégralité des bibliothèques de classes de Squeak, mais plutôt d'indiquer quelles classes et méthodes clés vous devrez utiliser ou surcharger pour programmer efficacement. Ce chapitre couvre les classes de base qui vous seront utiles dans la plupart de vos applications: \ct{Object}, \ct{Number} et ses sous-classes, \ct{Character}, \ct{String}, \ct{Symbol} et \ct{Boolean}.
 
 \md{Here are some comments:\\
 - copying: Good question... the copying in Squeak is much too complicated... there is for one the "old" smalltalk way of
@@ -47,39 +45,37 @@ Notre but ici n'est pas de présenter en détail l'intégralité les bibliothèq
 %=================================================================
 \section{Object}
 
-Dans tous les cas, \clsindmain{Object} est la racine de la hiérarchie d'héritage. En réalité, dans Squeak, la vraie racine de la hiérarchie est \clsind{ProtoObject}, qui est utilisée pour définir les entités minimales qui se font passer pour des objets, mais nous pouvons ignorer ce point pour l'instant.
+Dans tous les cas, \clsindmain{Object} est la racine de la hiérarchie d'héritage. En réalité, dans \squeak, la vraie racine de la hiérarchie est \clsind{ProtoObject} qui est utilisée pour définir les entités minimales qui se font passer pour des objets, mais nous pouvons ignorer ce point pour l'instant.
 % (more on this later in the chapter on reflection).
 
-\ct{Object} se trouve dans la catégorie \scatind{Kernel-Objects}. Etonnamment, on y trouve plus de 400 méthodes (avec les extensions).  En d'autres termes, toutes les classes que vous définirez seront automatiquement munies de ces 400 méthodes, que vous sachiez ce qu'elles font ou non. Notez que certaines de ces méthodes pourraient être supprimées et que dans les nouvelles versions de Squeak certaines méthodes superflues devraient l'être.
+\ct{Object} peut être trouvée dans la catégorie \scatind{Kernel-Objects}. Étonnamment, on y trouve plus de 400 méthodes (avec les extensions). En d'autres termes, toutes les classes que vous définirez seront automatiquement munies de ces 400 méthodes, que vous sachiez ce qu'elles font ou non. Notez que certaines de ces méthodes pourraient être supprimées et que dans les nouvelles versions de \squeak certaines méthodes superflues devraient l'être.
 
 \sd{I do not like to quote something that can change and that people can find simply in the image but let us keep it for now.}
-Le commentaire de la classe \ct{Object} dit :
-
+Le commentaire de la classe \ct{Object} indique:
 \needlines{4}
 \begin{quote}
-\textit{\ct{Object} est la classe racine de la plupart des autres classes dans la hiérarchie de classes. Les exceptions sont \ct{ProtoObject} (super-classe de \ct{Object}) et ses sous-classes.
+\textit{\ct{Object} est la classe racine de la plupart des autres classes dans la hiérarchie des classes. Les exceptions sont \ct{ProtoObject} (super-classe de \ct{Object}) et ses sous-classes.
 La classe \ct{Object} fournit le comportement par défaut, commun à tous les objets classiques, comme l'accès, la copie, la comparaison, le traitement des erreurs, l'envoi de messages, et la \ind{réflexion}. Les messages utiles auxquels tous les objets devraient répondre sont également définis ici.
-\ct{Object} n'a pas de variable d'instance, aucune ne devrait être créée. Ceci est dû aux nombreuses classes d'objets qui héritent de \ct{Object}, qui ont des implémentations particulières (\ct{SmallInteger} et \ct{UndefinedObject} par exemple) ou à certaines classes standard que la VM connaît et dont elle dépend de la structure et du fonctionnement.}
-%FIXME: or the VM knows about and depends on the structure and layout of certain standard classes
+\ct{Object} n'a pas de variable d'instance, aucune ne devrait être créée. Ceci est dû aux nombreuses classes d'objets qui héritent de \ct{Object}, qui ont des implémentations particulières (\ct{SmallInteger} et \ct{UndefinedObject} par exemple) ou à certaines classes standard que la VM connaît et pour laquelle leur structure et leur organisation est importante.}
 \end{quote}
 
-Si nous naviguons dans les catégories de méthodes d'instance de \ct{Object}, nous commençons à voir quelques uns des comportements importants qu'elle apporte.
+Si nous naviguons dans les catégories des méthodes d'instance de \ct{Object}, nous commençons à voir quelques uns des comportements clé qu'elle apporte.
 
 %-----------------------------------------------------------------
 \subsection{Impression}
-Tout objet en Smalltalk peut renvoyer une forme imprimée de lui-même. Vous pouvez sélectionner n'importe quelle expression dans un workspace et sélectionner le menu \menu{print it} : ceci exécute l'expression et demande à l'objet renvoyé de s'imprimer. En réalité le message \ct{printString} est envoyé à l'objet retourné. La méthode \mthind{Object}{printString}, qui est une \ind{méthode générique}, envoie le message \mthind{Object}{printOn:} à son receveur. Le message \ct{printOn:} is a hook qui peut être spécialisé. 
+Tout objet en Smalltalk peut renvoyer une forme imprimée de lui-même. Vous pouvez sélectionner n'importe quelle expression dans un workspace et sélectionner le menu \menu{print it}: ceci exécute l'expression et demande à l'objet renvoyé de s'imprimer. En réalité le message \ct{printString} est envoyé à l'objet retourné. La méthode \mthind{Object}{printString}, qui est une \ind{méthode générique}, envoie le message \mthind{Object}{printOn:} à son receveur. Le message \ct{printOn:} est un point d'entrée qui peut être spécialisé. 
 
-\ct{Object>>>printOn:} est une des méthodes que vous surchargerez le plus souvent. Cette méthode prend comme argument un flot de données ou \clsind{Stream} dans lequel une représentation en chaîne de caractères ou \clsind{String} de l'objet sera écrite. L'implémentation par défaut écrit simplement le nom de la classe précédée par ``\ct{a}'' ou ``\ct{an}''. \ct{Object>>>printString} retourne la chaîne de caractères (\ct{String}) écrite :
+\ct{Object>>>printOn:} est une des méthodes que vous surchargerez le plus souvent. Cette méthode prend comme argument un flôt  (\clsind{Stream}) dans lequel une représentation en chaîne de caractères (\clsind{String}) de l'objet sera écrite. L'implémentation par défaut écrit simplement le nom de la classe précédée par ``\ct{a}'' ou ``\ct{an}''. \ct{Object>>>printString} retourne la chaîne de caractères (\ct{String}) écrite:
 
 Par exemple, la classe \clsind{Browser} ne redéfinit pas le méthode \ct{printOn:} et envoyer le message \ct{printString} à une instance exécute la méthode définie dans \ct{Object}. 
 \begin{code}{@TEST}
 Browser new printString --> 'a Browser'
 \end{code}
 
-La classe \ct{TTCFont} montre un exemple de spécialisation de \mthind{TTCFont}{printOn:}. Elle imprime le nom de la classe suivie par le nom de la famille, la taille et le nom de la sous-famille de la police, comme le montre le code ci-dessous qui imprime une instance ce cette classe.
+La classe \ct{TTCFont} montre un exemple de spécialisation de \mthind{TTCFont}{printOn:}. Elle imprime le nom de la classe suivie par le nom de la famille, la taille et le nom de la sous-famille de la police, comme le montre le code ci-dessous qui imprime une instance de cette classe.
 
 % \needlines{7}
-\begin{method}[zork]{printOn: redefinition.}
+\begin{method}[zork]{printOn: redéfinition.}
 TTCFont>>>printOn: aStream
         aStream nextPutAll: 'TTCFont(';
 		nextPutAll: self familyName; space;
@@ -92,32 +88,32 @@ TTCFont>>>printOn: aStream
 TTCFont allInstances anyOne printString --> 'TTCFont(BitstreamVeraSans 6 Bold)'
 \end{code}
 
-Notez que le message \ct{printOn:} n'est pas le même que \mthind{Object}{storeOn:}. Le message \ct{storeOn:} puts on its argument stream an expression that can be used to recreate the receiver. Cette expression est évaluée quand le flot de données est lu avec le message \ct{readFrom:}. \ct{printOn:} retourne simplement une version textuelle du receveur. Bien sûr, il peut arriver que cette représentation textuelle puisse représenter le receveur comme expression auto-évaluée (self-evaluating ?).
+Notez que le message \ct{printOn:} n'est pas le même que \mthind{Object}{storeOn:}. Le message \ct{storeOn:} ajoute au flôt passé en argument une expression pouvant être utilisée pour recréer le receveur. Cette expression est évaluée quand le flôt est lu avec le message \ct{readFrom:}. \ct{printOn:} retourne simplement une version textuelle du receveur. Bien sûr, il peut arriver que cette représentation textuelle puisse représenter le receveur sous la forme d'une expression auto-évaluée.
 
-\paragraph{Un mot à propos des représentations et des représentations auto-évaluées.}
-En programmation fonctionnelle, les expressions retournent des valeurs quand elles sont évaluées. EN Smalltalk, les messages (expressions) retournent des objets (valeurs). Certains objets ont la propriété sympathique d'être eux-mêmes leur valeur. Par exemple, la valeur de l'objet \ct{true} est lui-même, \ie l'objet \ct{true}. Nous appelons de tels objets \emphind{objets auto-évalués}. Vous pouvez voir une version  \emph{imprimée} de la valeur d'un objet quand vous imprimez l'objet dans un espace de travail (workspace). Voici quelques exemples d'expressions auto-évaluées. 
+\paragraph{Un mot à propos de la représentation et de la représentation auto-évaluée.}
+En programmation fonctionnelle, les expressions retournent des valeurs quand elles sont évaluées. En Smalltalk, les messages (expressions) retournent des objets (valeurs). Certains objets ont la propriété sympathique d'être eux-mêmes leur propre valeur. Par exemple, la valeur de l'objet \ct{true} est lui-même, \ie l'objet \ct{true}. Nous appelons de tels objets des \emphind{objets auto-évalués}. Vous pouvez voir une version  \emph{imprimée} de la valeur d'un objet quand vous imprimez l'objet dans un \ct{Workspace}. Voici quelques exemples de telles expressions auto-évaluées. 
 
 \begin{code}{@TEST}
-true       --> true
-3@4     --> 3@4
-$a         --> $a
+true     --> true
+3@4      --> 3@4
+$a       --> $a
 #(1 2 3) --> #(1 2 3)
 \end{code}
 
-Notez que certains objets comme les tableaux peuvent être auto-évalués ou non suivant les objets qu'ils contiennent. Par exemple, un tableau de booléens est auto-évalué alors qu'un tableau de personnes ne l'est pas. Dans Squeak 3.9, un mécanisme a été introduit (via le message \mthind{Object}{isSelfEvaluating}) pour imprimer des collections dans leur forme auto-évaluée autant que possible et ceci est particulièrement vrai pour les brace arrays. L'exemple suivant montre qu'un tableau \subind{Array}{dynamique} est auto-évalué seulement si ses éléments sont :
+Notez que certains objets comme les tableaux sont auto-évalués ou non suivant les objets qu'ils contiennent. Par exemple, un tableau de booléens est auto-évalué alors qu'un tableau de personnes ne l'est pas. Dans \squeak 3.9, un mécanisme a été introduit (via le message \mthind{Object}{isSelfEvaluating}) pour imprimer des collections dans leur forme auto-évaluée autant que possible et ceci est particulièrement vrai pour les tableaux dynamiques. L'exemple suivant montre qu'un tableau \subind{Array}{dynamique} est auto-évalué seulement si ses éléments le sont:
 \begin{code}{@TEST}
-{10@10 . 100@100}          --> {10@10 . 100@100}
-{Browser new . 100@100} --> an Array(a Browser 100@100)
+{10@10. 100@100}          --> {10@10. 100@100}
+{Browser new . 100@100}    --> an Array(a Browser 100@100)
 \end{code}
 
-Rappelez-vous que les tableaux \subind{Array}{litéraux} ne peuvent contenir que des littéraux. Ainsi le tableau suivant ne contient pas deux points mais six éléments littéraux.
+Rappelez-vous que les tableaux \subind{Array}{littéraux} ne peuvent contenir que des littéraux. Ainsi le tableau suivant ne contient pas deux points mais six éléments littéraux.
 \begin{code}{@TEST}
 #(10@10 100@100) --> #(10 #@ 10 100 #@ 100)
 \end{code}
 
-Beaucoup de spécialisations de méthodes \ct{printOn:} implémentent le comportement d'auto-évaluation. Les implémentations de \cmind{Point}{printOn:} et \cmind{Interval}{printOn:} sont auto-évaluéess.
+Beaucoup de spécialisations de la méthode \ct{printOn:} implémentent le comportement d'auto-évaluation. Les implémentations de \cmind{Point}{printOn:} et \cmind{Interval}{printOn:} sont auto-évaluées.
 
-\begin{method}[Self-evaluating points]{Self-evaluation of \ct{Point}}
+\begin{method}[Self-evaluating points]{Auto-évaluation de \ct{Point}}
 Point>>>printOn: aStream 
     "The receiver prints on aStream in terms of infix notation."
     x printOn: aStream.
@@ -125,7 +121,7 @@ Point>>>printOn: aStream
     y printOn: aStream
 \end{method}\ignoredollar$
 
-\begin{method}[Self-evaluating intervals]{Self-evaluation of \ct{Interval}}
+\begin{method}[Self-evaluating intervals]{Auto-évaluation de \ct{Interval}}
 Interval>>>printOn: aStream
     aStream nextPut: $(;
         print: start;
@@ -136,19 +132,19 @@ Interval>>>printOn: aStream
 \end{method}
 
 \begin{code}{@TEST}
-1 to: 10 --> (1 to: 10)    "intervals are self-evaluating"
+1 to: 10 --> (1 to: 10)    !"les intervals sont auto-évalués"!
 \end{code}
 
 %-----------------------------------------------------------------
 \subsection{Identité et égalité}
 
 En Smalltalk, le message \ct{=} teste l'\emphsubindmain{Object}{égualité} d'objets (\ie si deux objets représentent la même valeur) alors que \ct{==} teste l'\emphsubindmain{Object}{identité} (\ie si deux expressions représentent le même objet).
-\seeindex{\ct{=}}{Object, equality}
-\seeindex{\ct{==}}{Object, identity}
-\seeindex{equality}{Object, equality}
-\seeindex{identity}{Object, identity}
+\seeindex{\ct{=}}{Object, égalité}
+\seeindex{\ct{==}}{Object, identité}
+\seeindex{égalité}{Object, égalité}
+\seeindex{identité}{Object, identité}
 
-L'implémentation par défaut de l'égalité d'objets teste l'identité d'objets :
+L'implémentation par défaut de l'égalité entre objets teste l'identité d'objets :
 \begin{method}{}
 Object>>>= anObject
     "Answer whether the receiver and the argument represent the same object.
@@ -157,24 +153,24 @@ Object>>>= anObject
 \end{method}
 \cmindex{Object}{=}
 
-C'est une méthode que vous voudrez souvent surcharger. Considérez le cas de la classe des nombres complexes \ct{Complex} :
+C'est une méthode que vous voudrez souvent surcharger. Considérez le cas de la classe des nombres complexes \ct{Complex}:
 
 \begin{code}{@TEST}
-(1 + 2 i) = (1 + 2 i)   --> true     "meme valeur"
-(1 + 2 i) == (1 + 2 i) --> false    "mais objets differents"
+(1 + 2 i) = (1 + 2 i)   --> true     !"même valeur"!
+(1 + 2 i) == (1 + 2 i)  --> false    !"mais objets différents"!
 \end{code}
 
-Ceci fonctionne parce que \ct{Complex} surcharge \ct{=} comme suit :
+Ceci fonctionne parce que \ct{Complex} surcharge \ct{=} comme suit:
 \cmindex{Complex}{=}
 \needlines{5}
-\begin{method}{Equalité de nombres complexes}
+\begin{method}{Egalité des nombres complexes}
 Complex>>>= anObject
     anObject isComplex
         ifTrue: [^ (real = anObject real) & (imaginary = anObject imaginary)]
         ifFalse: [^ anObject adaptToComplex: self andSend: #=]
 \end{method}
 
-L'implémentation par défaut de \ct{Object>>>~=} renvoie simplement d'inverse de \ct{Object>>>=}, et ne devrait normalement pas être modifiée.
+L'implémentation par défaut de \ct{Object>>>~=} renvoie simplement l'inverse de \ct{Object>>>=}, et ne devrait normalement pas être modifiée.
 %\cmindex{Object}{\~=}
 \index{Object!~=@\ct{~=}} % needs special treatment due to ~
 
@@ -182,17 +178,17 @@ L'implémentation par défaut de \ct{Object>>>~=} renvoie simplement d'inverse d
 (1 + 2 i) ~= (1 + 4 i) --> true
 \end{code}
 
-Si vous surchargez \ct{=}, vous devriez envisager de surcharger \mthind{Object}{hash}. Si des instances de votre classe instances sont utilisées comme clés dans un dictionnaire (\clsind{Dictionary}), vous devrez alors vous assurer que les instances qui sont considérées égales ont la même valeur de hash :
+Si vous surchargez \ct{=}, vous devriez envisager de surcharger \mthind{Object}{hash}. Si des instances de votre classe sont utilisées comme clés dans un dictionnaire (\clsind{Dictionary}), vous devrez alors vous assurer que les instances qui sont considérées égales ont la même valeur de hash:
 \cmindex{Complex}{hash}
-\begin{method}{Hash doit être réimplémentée pour les nombres complexes}
+\begin{method}{Hash doit être ré-implémentée pour les nombres complexes}
 Complex>>>hash
     "Hash is reimplemented because = is implemented."
     ^ real hash bitXor: imaginary hash.
 \end{method}
 
-Alors que vous devriez surcharger  \ct{=} et \ct{hash} ensemble, vous ne devriez \emph{jamais} surcharger \ct{==}. (La sémantique de l'indentité d'objets est la même pour toutes les classes)  \ct{==} est une méthode primitive de \clsind{ProtoObject}.
+Alors que vous devez surcharger à la fois \ct{=} et \ct{hash}, vous ne devriez \emph{jamais} surcharger \ct{==}. (La sémantique de l'identité d'objets est la même pour toutes les classes)  \ct{==} est une méthode primitive de \clsind{ProtoObject}.
 
-Notez que Squeak a certains comportements étranges comparé à d'autres Smalltalks: par exemple un symbole et une chaîne de caractères peuvent être égaux si the string associated with the symbol is equal to the string. (Nous considérons ce comportement comme un bug, pas comme un feature.)
+Notez que \Squeak a certains comportements étranges comparé à d'autres Smalltalks: par exemple, un symbole et une chaîne de caractères peuvent être égaux si la chaîne de caractères associée au symbole est égale à la chaîne de caractères. (Nous considérons ce comportement comme un bug, pas comme une fonctionnalité.)
 
 \begin{code}{@TEST}
 #'lulu' = 'lulu' --> true
@@ -202,26 +198,26 @@ Notez que Squeak a certains comportements étranges comparé à d'autres Smallta
 
 %-----------------------------------------------------------------
 \subsection{Appartenance à une classe}
-Plusieurs méthodes vous permettent de demander la classe d'un objet.
+Plusieurs méthodes vous permettent de connaître la classe d'un objet.
 
 \paragraph{\mthind{Object}{class}.} Vous pouvez demander à tout objet sa classe en utilisant le message \ct{class}.
 \begin{code}{@TEST}
 1 class --> SmallInteger
 \end{code}
 
-Inversement, vous pouvez demander si un objet est une instance d'une classe spécifique :
+Inversement, vous pouvez demander si un objet est une instance d'une classe spécifique:
 \cmindex{Object}{isMemberOf:}
 \begin{code}{@TEST}
-1 isMemberOf: SmallInteger --> true    "doit etre precisement cette classe"
-1 isMemberOf: Integer          --> false
-1 isMemberOf: Number        --> false
-1 isMemberOf: Object           --> false
+1 isMemberOf: SmallInteger --> true    "doit !être précisément cette classe!"
+1 isMemberOf: Integer      --> false
+1 isMemberOf: Number       --> false
+1 isMemberOf: Object       --> false
 \end{code}
 
-Puisque Smalltalk est écrit en Smalltalk, you can really navigate through its structure using the right combination of superclass and class messages (see \charef{metaclasses}). 
+Puisque \st est écrit en lui-même, vous pouvez vraiment naviguer au travers de sa structure en utilisant la bonne combinaison de messages superclass et class (voir \charef{metaclasses}). 
 
 \paragraph{\ct{isKindOf:}}
-\cmind{Object}{isKindOf:} answers whether the receiver's class is either the same as, or a subclass of the argument class.
+\cmind{Object}{isKindOf:} répond \ct{true} si la classe du receveur est la même, ou bien une des sous-classes de la classe de l'argument.
 
 \begin{code}{@TEST}
 1 isKindOf: SmallInteger --> true
@@ -234,25 +230,25 @@ Puisque Smalltalk est écrit en Smalltalk, you can really navigate through its s
 1/3 isKindOf: Integer        --> false
 \end{code}
 
-\ct{1/3} which is a \clsind{Fraction} is a kind of \clsind{Number}, since the class \ct{Number} is a superclass of the class \ct{Fraction}, but \ct{1/3} is not a \ct{Integer}.
+\ct{1/3}, qui est une \clsind{Fraction}, est aussi une sorte de nombre (\clsind{Number}), puisque la classe \ct{Number} est une super-classe de la classe \ct{Fraction}, mais \ct{1/3} n'est pas un entier (\ct{Integer}).
 
 \paragraph{\ct{respondsTo:}}
-\cmind{Object}{respondsTo:} answers whether the receiver understands the message selector given as an argument.
+\cmind{Object}{respondsTo:} répond \ct{true} si le receveur comprend le message dont le sélecteur est passé en argument.
 
 \begin{code}{@TEST}
 1 respondsTo: #, --> false
 \end{code}
 
-Normally it is a bad idea to query an object for its class, or to ask it which messages it understands.
-Instead of making decisions based on the class of object, you should simply send a message to the object and let it decide (\ie on the basis of its class) how it should behave.
+C'est normalement une mauvaise idée de demander sa classe à un objet, ou de demander quels messages il comprend.
+Au lieu de prendre des décisions basées sur la classe d'un objet, vous devriez simplement envoyer un message à cet objet et le laisser décider (\ie sur la base de sa classe) comment il doit se comporter.
 
 %-----------------------------------------------------------------
-\subsection{Copying}
+\subsection{La copie}
 
-Copying objects introduces some subtle issues. Since instance variables are accessed by reference, a \emphsubind{Object}{shallow copy} of an object would share its references to instance variables with the original object:
-\seeindex{copy}{Object, \ct{copy}}
-\seeindex{shallow copy}{Object, \ct{shallowCopy}}
-\seeindex{deep copy}{Object, \ct{deepCopy}}
+Copier des objets introduit quelques problèmes subtils. Puisque les variables d'instance sont accédées par référence, une \emphsubind{Object}{copie superficielle}, les références portées par les variables d'instance devraient être partagées entre l'objet produit par la copie et l'objet original:
+\seeindex{copie}{Object, \ct{copy}}
+\seeindex{copie superficielle}{Object, \ct{shallowCopy}}
+\seeindex{copie profonde}{Object, \ct{deepCopy}}
 
 \begin{code}{@TEST | a1 a2 |}
 a1 := { { 'harry' } }.
@@ -261,24 +257,25 @@ a2 := a1 shallowCopy.
 a2 --> #(#('harry'))
 (a1 at: 1) at: 1 put: 'sally'.
 a1 --> #(#('sally'))
-a2 --> #(#('sally'))    "the subarray is shared!"
+a2 --> #(#('sally'))    "!le tableau contenu est partagé!"
 \end{code}
 
-\cmind{Object}{shallowCopy} is a primitive method that creates a shallow copy of an object. Since \ct{a2} is only a shallow copy of \ct{a1}, the two arrays share a reference to the nested \ct{Array} that they contain.
+\cmind{Object}{shallowCopy} est une méthode primitive qui crée une copie superficielle d'un objet. Puisque \ct{a2} est seulement une copie superficielle de \ct{a1}, les deux tableaux partagent une référence au tableau (\ct{Array}) qu'ils contiennent.
 
-\ct{Object>>>shallowCopy} is the ``public interface'' to \cmind{Object}{copy} and should be overridden if instances are unique. This is the case, for example, with the classes \clsind{Boolean}, \clsind{Character}, \clsind{SmallInteger}, \clsind{Symbol} and \clsind{UndefinedObject}.
+\ct{Object>>>shallowCopy} est une ``interface publique'' pour \cmind{Object}{copy} et devrait être surchargé si les instances sont uniques. C'est le cas, par exemple, avec les classes \clsind{Boolean}, \clsind{Character}, \clsind{SmallInteger}, \clsind{Symbol} et \clsind{UndefinedObject}.
 
-\cmind{Object}{copyTwoLevel} does the obvious thing when a simple shallow copy does not suffice:
+\cmind{Object}{copyTwoLevel} est utilisée quand une simple copie superficielle ne suffit pas:
+%does the obvious thing when a simple shallow copy does not suffice:
 
 \begin{code}{@TEST | a1 a2 |}
 a1 := { { 'harry' } } .
 a2 := a1 copyTwoLevel.
 (a1 at: 1) at: 1 put: 'sally'.
 a1 --> #(#('sally'))
-a2 --> #(#('harry'))    "fully independent state"
+a2 --> #(#('harry'))    "!état complètement indépendant!"
 \end{code}
 
-\cmind{Object}{deepCopy} makes an arbitrarily deep copy of an object.
+\cmind{Object}{deepCopy} effectue une copie profonde et arbitraire d'un objet.
 
 \begin{code}{@TEST | a1 a2 |}
 a1 := { { { 'harry' } } } .
@@ -288,91 +285,91 @@ a1 --> #(#('sally'))
 a2 --> #(#(#('harry')))
 \end{code}
 
-The problem with \ct{deepCopy} is that it will not terminate when applied to a mutually recursive structure:
+Le problème avec \ct{deepCopy} est qu'elle ne se termine pas si elle est appliquée à une structure mutuellement récursive:
 
 \begin{code}{NB: CANNOT TEST}
 a1 := { 'harry' }.
 a2 := { a1 }.
 a1 at: 1 put: a2.
-a1 deepCopy --> !\emph{... does not terminate!}!
+a1 deepCopy --> !\emph{... ne se termine jamais}!
 \end{code}
 % NB: Not a test!
 
-Although it is possible to override \ct{deepCopy} to do the right thing, \cmind{Object}{copy} offers a better solution:
+Même s'il est possible de surcharger \ct{deepCopy} pour qu'elle fonctionne mieux, \cmind{Object}{copy} offre une meilleure solution:
 
-\begin{method}{Copying objects as a template method}
+\begin{method}{Modèle de méthode pour la copie d'objets}
 Object>>>copy
     "Answer another instance just like the receiver. Subclasses typically override postCopy;
     they typically do not override shallowCopy."
     ^self shallowCopy postCopy
 \end{method}
 
-You should override \mthind{Object}{postCopy} to copy any instance variables that should not be shared. \ct{postCopy} should always do a \ct{super postCopy}.
+Vous pouvez surcharger \mthind{Object}{postCopy} pour copier une variable d'instance qui ne devrait pas être partagée. \ct{postCopy} doit toujours exécuter \ct{super postCopy}.
 
 \on{I looked, but did not finda good example in the system.}
 
 %-----------------------------------------------------------------
-\subsection{Debugging}
+\subsection{Deboguer}
 
-The most important method here is \mthind{Object}{halt}. In order to set a breakpoint in a method, simply insert the message send \ct{self halt} at some point in the body of the method.  When this message is sent, execution will be interrupted and a \ind{debugger} will open to this point in you program.
-(See \charef{env} for more details about the debugger.)
+La méthode la plus importante ici est \mthind{Object}{halt}. Pour placer un point d'arrêt dans une méthode, il suffit d'insérer l'envoi de message \ct{self halt} à une certaine position dans le corps de la méthode.  Quand ce message est envoyé, l'exécution est interrompue est un \ind{debogueur} s'ouvre à cet endroit de votre programme.
+(Voir \charef{env} pour plus de détails sur le debogueur.)
 
 \sd{in another chapter haltIf:, haltOnce, inspectOnce, flagging: isThisEverCalled, }
 
-The next most important message is \mthind{Object}{assert:}, which takes a \ind{block} as its argument. If the block returns \ct{true}, execution continues. Otherwise an exception will be raised. If this exception is not otherwise caught, the debugger will open to this point in the execution. \ct{assert:} is especially useful to support \emphind{design by contract}. The most typical usage is to check non-trivial pre-conditions to public methods of objects. \cmind{Stack}{pop} could easily have been implemented as follows:
+Un autre message important est \mthind{Object}{assert:}, qui prend un \ind{bloc} comme argument. Si le bloc renvoie \ct{true}, l'exécution se poursuit. Autrement une exception sera levée. Si  cette exception n'est pas attrapée, le debogueur s'ouvrira à ce point pendant l'exécution. \ct{assert:} est particulièrement utile pour la \emphind{programmation par contrat}. L'utilisation la plus typique consiste à vérifier des pré-conditions non triviales pour des méthodes publiques. \cmind{Stack}{pop} aurait pu aisément être implementée de la façon suivante:
 
-\begin{method}{Checking a pre-condition}
+\begin{method}{Vérifier une pré-condition}
 Stack>>>pop
     "Return the first element and remove it from the stack."
     self assert: [ self isEmpty not ].
     ^self linkedList removeFirst element
 \end{method}
 
-Do not confuse \ct{Object>>>assert:} with \cmind{TestCase}{assert:}, which occurs in the SUnit testing framework (see \charef{SUnit}). While the former expects a block as its argument\footnote{Actually, it will take any argument that understands \ct{value}, including a \ct{Boolean}.}, the latter expects a \clsind{Boolean}. Although both are useful for debugging, they each serve a very different intent.
+Il ne faut pas confondre \ct{Object>>>assert:} avec \cmind{TestCase}{assert:}, méthode de l'environnement de test SUnit (voir \charef{SUnit}). Alors que la première attend un bloc en argument \footnote{En fait, elle peut prendre n'importe quel argument qui comprend \ct{value}, dont un \ct{Boolean}.}, la deuxième attend un \clsind{Boolean}. Même si les deux sont utiles pour déboguer, elles ont chacune un but très différent.
 
 %-----------------------------------------------------------------
-\subsection{Error handling}
+\subsection{Gestion des erreurs}
 
-This protocol contains several methods useful for signaling run-time errors.
+Ce protocole contient plusieurs méthodes utiles pour signaler les erreurs d'exécution.
 
-Sending \lct{self deprecated: \emph{anExplanationString}} signals that the current method should no longer be used, if deprecation has been turned on in the \protind{debug} protocol of the \ind{preference browser}.
-The \ct{String} argument should offer an alternative.
+Envoyer \lct{self deprecated: \emph{unChaineExplicative}} indique que la méhode courante ne devrait plus être utilisée, si le paramètre \ct{deprecation} a été activé dans le protocole \protind{debug} du browser des préférences (\ind{preference browser}).
+L'argument \ct{String} devrait proposer une alternative.
 \cmindex{Object}{deprecated:}
-\index{deprecation}
+\index{déprécation}
 
 \begin{code}{NB: CANNOT TEST}
 1 doIfNotNil: [ :arg | arg printString, ' is not nil' ]
 	--> !\emph{SmallInteger(Object)>>doIfNotNil: has been deprecated. use ifNotNilDo:}!
 \end{code}
 
-\ct{doesNotUnderstand:} is sent whenever message lookup fails. The default implementation, \ie \cmind{Object}{doesNotUnderstand:} will trigger the debugger at this point. It may be useful to override \lct{does\-Not\-Un\-der\-stand:} to provide some other behaviour.
+\ct{doesNotUnderstand:} est envoyé à chaque fois que la recherche d'un message échoue. L'implémentation par défaut, \ie \cmind{Object}{doesNotUnderstand:} déclenchera l'ouverture d'un debogueur à cet endroit. Il peut être utile de surcharger \lct{does\-Not\-Un\-der\-stand:} pour introduire un autre comportement.
 
 \on{Add a chapter ref when we write the chapter on exceptions.}
 
-\cmind{Object}{error} and \cmind{Object}{error:} are generic methods that can be used to raise exceptions.
-(Generally it is better to raise your own custom exceptions, so you can distinguish errors arising from your code from those coming from kernel classes.)
+\cmind{Object}{error} et \cmind{Object}{error:} sont des méthodes génériques qui peuvent être utilisées pour lever des exceptions.
+(Il est généralement préférable de lever vos propres exceptions, pour que vous puissiez distinguer les erreurs levées par votre code de celles levées par les classes du système.)
 \lr{Maybe mention that it is preferred to create your own custom exception class. (p. 208)}
 
-Abstract methods in Smalltalk are implemented by convention with the body \lct{self sub\-class\-Res\-pon\-si\-bi\-li\-ty}. Should an abstract class be instantiated by accident, then calls to abstract methods will result in \cmind{Object}{subclassResponsibility} being evaluated.
+Les méthodes abstraites en Smalltalk sont implémentées par convention avec le corps \lct{self sub\-class\-Res\-pon\-si\-bi\-li\-ty}. Si une classe abstraite est instanciée par accident, alors l'appel à une méthode abstraite provoquera l'évaluation de \cmind{Object}{subclassResponsibility}.
 
-\begin{method}{Signaling that a method is abstract}
+\begin{method}{Indiquer qu'une méthode est abstraite}
 Object>>>subclassResponsibility
     "This message sets up a framework for the behavior of the class' subclasses.
     Announce that the subclass should have implemented this message."
     self error: 'My subclass should have overridden ', thisContext sender selector printString
 \end{method}
 
-\clsind{Magnitude}, \clsind{Number} and \clsind{Boolean} are classical examples of \subind{class}{abstract} classes that we shall see shortly in this chapter.
+\clsind{Magnitude}, \clsind{Number} et \clsind{Boolean} sont des exemples classiques de  classes \subind{class}{abstraites} que nous verrons rapidement dans ce chapitre.
 
 \begin{code}{NB: CANNOT TEST}
 Number new + 1 --> !\emph{Error: My subclass should have overridden \#+}!
 \end{code}
 
-\ct{self shouldNotImplement} is sent by convention to signal that an inherited method is not appropriate for this subclass. This is generally a sign that something is not quite right with the design of the class hierarchy. Due to the limitations of single inheritance, however, sometimes it is very hard to avoid such workarounds. 
+\ct{self shouldNotImplement} est envoyée par convention pour signaler qu'une méthode héritée est inappropriée pour cette sous-classe. C'est généralement le signe que quelque chose ne va pas dans la conception de la hiérarchie de classes. A cause des limitations de l'héritage simple, malgré tout, il est des fois très difficile d'éviter de telles solutions.
 \cmindex{Object}{shouldNotImplement}
-\index{inheritance!canceling}
+%\apl:jenesaispastraduire\index{inheritance!canceling}
 
-A typical example is \cmind{Collection}{remove:} which is inherited by \clsind{Dictionary} but flagged as not implemented. (A \ct{Dictionary} provides \mthind{Dictionary}{removeKey:} instead.)
+Un exemple classique est \cmind{Collection}{remove:} qui est héritée de \clsind{Dictionary} mais marquée comme non implémentée. (\ct{Dictionary} fournit la méthode \mthind{Dictionary}{removeKey:} à la place.)
 
 %-----------------------------------------------------------------
 \sd{ subsection{Deprecation} }
@@ -381,29 +378,30 @@ A typical example is \cmind{Collection}{remove:} which is inherited by \clsind{D
 \on{There already is some text above!  See second paragraph on Error handling.}
 
 %-----------------------------------------------------------------
-\subsection{Testing}
+\subsection{Le Test}
 
-The \protind{testing} methods have nothing to do with SUnit testing! A testing method is one that lets you ask a question about the state of the receiver and returns a \clsind{Boolean}.
+Les méthodes de \protind{test} n'ont aucun rapport avec SUnit! Une méthode de test vous permet de poser une question sur l'état du receveur et retourne un booléen (\clsind{Boolean}).
 
-Numerous testing methods are provided by \ct{Object}. We have already seen \mthind{Object}{isComplex}. Others include \mthind{Object}{isArray}, \mthind{Object}{isBoolean}, \mthind{Object}{isBlock}, \mthind{Object}{isCollection} and so on. Generally such methods are to be avoided since querying an object for its class is a form of violation of encapsulation. Instead of testing an object for its class, one should simply send a request and let the object decide how to handle it.
+De nombreuses méthodes de test sont fournies par \ct{Object}. Nous avons déjà vu \mthind{Object}{isComplex}. Il existe également \mthind{Object}{isArray}, \mthind{Object}{isBoolean}, \mthind{Object}{isBlock}, \mthind{Object}{isCollection}, parmi d'autres. Généralement ces méthodes sont à éviter car demander sa classe à un objet est une forme de violation de l'encapsulation. Au lieu de tester la classe d'un objet, on devrait simplement envoyer un message et laisser l'objet décider de sa propre réaction.
 
-Nevertheless some of these testing methods are undeniably useful. The most useful are probably \cmind{ProtoObject}{isNil} and \cmind{Object}{notNil} (though the \patind{Null Object}\cite{Wool98a} design pattern can obviate the need for even these methods).
+Cependant certaines de ces méthodes de test sont indéniablement utiles. Les plus utiles sont probablement \cmind{ProtoObject}{isNil} et \cmind{Object}{notNil} (bien que le patron de conception \patind{Null Object}\cite{Wool98a} permet d'éviter le besoin de ces méthodes également).
 
 % \footnote{However the \emph{Null Object} design pattern can obviate the need for even these methods. See, Bobby Woolf, ``Null Object,'' Pattern Languages of Program Design 3, Robert Martin, Dirk Riehle and Frank Buschmann (Eds.), pp. 5-18, Addison Wesley, 1998.}.
 
 %-----------------------------------------------------------------
 \subsection{Initialize release}
 
-A final key method that occurs not in \ct{Object} but in \ct{ProtoObject} is \mthind{ProtoObject}{initialize}.
+\mthind{ProtoObject}{initialize} est une méthode clé qui ne se trouve pas dans \ct{Object} mais dans \ct{ProtoObject}.
 
-\begin{method}{\lct{initialize} as an empty hook method}
+%FIXME ``as an empty hook method``
+\begin{method}{La méthode générique \lct{initialize}}
 ProtoObject>>>initialize
     "Subclasses should redefine this method to perform initializations on instance creation"
 \end{method}
 
-The reason this is important is that in Squeak as of version 3.9, the default \mthind{Behavior}{new} method defined for every class in the system will send \ct{initialize} to newly created instances.
+La raison pour laquelle ceci est important est que dans la version 3.9 de \squeak, la méthode \mthind{Behavior}{new}, définie pour chaque classe du système, envoie \ct{initialize} aux instances nouvellement créées.
 
-\begin{method}{\lct{new} as a class-side template method}
+\begin{method}{Modèle pour la méthode de classe \lct{new}}
 Behavior>>>new
     "Answer a new initialized instance of the receiver (which is a class) with no indexable
     variables. Fail if the class is indexable."
@@ -411,29 +409,29 @@ Behavior>>>new
 \end{method}
 \cmindex{Behavior}{new}
 
-This means that simply by overriding the \ct{initialize} \ind{hook method}, new instances of your class will automatically be initialized. The \ct{initialize} method should normally perform a \ct{super initialize} to establish the class \subind{class}{invariant} for any inherited instance variables.
-Note that this is \emph{not} standard behavior in other Smalltalks.
+Ceci signifie qu'en surchargeant simplement la \ind{méthode générique} \ct{initialize}, les nouvelles instances de votre classe seront automatiquement initialisées. La méthode \ct{initialize} devrait normalement exécuter \ct{super initialize} pour établir les \subind{class}{invariants} de la classe pour toutes les variables d'instance héritées.
+Notons que ceci n'est \emph{pas} le comportement standard dans les autres Smalltalks.
 
 %=================================================================
-\section{Numbers}
+\section{Les nombres}
 \label{sec:Number}
-Remarkably, numbers in Smalltalk are not primitive data values but true objects. Of course numbers are implemented efficiently in the virtual machine, but the \clsindmain{Number} hierarchy is as perfectly accessible and extensible as any other portion of the Smalltalk class hierarchy.
+Il faut remarquer que les nombres en Smalltalk ne sont pas des données primitives mais de vrais objets. Bien sûr les nombres sont implémentés efficacement dans la machine virtuelle, mais la hiérarchie de la classe \clsindmain{Number} est aussi accessible et extensible que n'importe quelle autre portion de la hiérarchie de classe de \st.
 
 \begin{figure}[ht]
 \centerline {\includegraphics[width=8cm]{NumberHierarchy}}
-\caption{The Number Hierarchy \label{fig:numbers}}
+\caption{La hiérarchie de la classe Number \label{fig:numbers}}
 \end{figure}
 
-Numbers are found in the \scatind{Kernel-Numbers} category. The abstract root of this hierarchy is \clsind{Magnitude}, which represents all kinds of classes supporting comparision operators. \ct{Number} adds various arithmetic and other operators as mostly abstract methods. \clsind{Float} and \clsind{Fraction} represent, respectively, floating point numbers and fractional values.  \clsind{Integer} is also abstract, thus distinguishing between subclasses \clsind{SmallInteger}, \clsind{LargePositiveInteger} and \clsind{LargeNegativeInteger}. For the most part users do not need to be aware of the difference between the three \ct{Integer} classes, as values are automatically converted as needed.
+On trouve les nombres dans la catégorie \scatind{Kernel-Numbers}. La racine abstraite de cette catégorie est \clsind{Magnitude}, qui représente toutes les sortes de classes qui supportent les opérateurs de comparaison. La classe \ct{Number} ajoute plusieurs opérateurs arithmétiques et autres, principalement des méthodes abstraites. \clsind{Float} et \clsind{Fraction} représentent, respectivement, les nombres à virgule flottante et les valeurs fractionnaires.  \clsind{Integer} est également une classe abstraite, et contient trois sous-classes \clsind{SmallInteger}, \clsind{LargePositiveInteger} et \clsind{LargeNegativeInteger}. Le plus souvent les utilisateurs n'ont pas à connaître la différence entre les trois classes d'entiers, car les valeurs sont automatiquement converties si besoin est.
 
 %-----------------------------------------------------------------
 \subsection{Magnitude}
 
-\clsindmain{Magnitude} is the parent not only of the \clsind{Number} classes, but also of other classes supporting comparison operations, such as \clsind{Character}, \clsind{Duration} and \clsind{Timespan}.  (\clsind{Complex} numbers are not comparable, and so do not inherit from \clsind{Number}.)
+\clsindmain{Magnitude} n'est pas seulement la classe parente des classes de nombres, mais également des autres classes supportant les opérateurs de comparaison, comme \clsind{Character}, \clsind{Duration} et \clsind{Timespan}.  (Les nombres complexes (classe \clsind{Complex}) ne sont pas comparables, et n'héritent pas de la classe \clsind{Number}.)
 
-Methods \mthind{Magnitude}{<} and \mthind{Magnitude}{=} are abstract. The remaining operators are generically defined. For example:
+Les méthodes \mthind{Magnitude}{<} et \mthind{Magnitude}{=} sont abstraites. Les autres opérateurs sont définis de manière générique. Par exemple :
 
-\begin{method}{Abstract comparison methods}
+\begin{method}{Méthodes de comparaison abstraites}
 Magnitude>>> < aMagnitude 
     "Answer whether the receiver is less than the argument."
     ^self subclassResponsibility
@@ -447,47 +445,49 @@ Magnitude>>> > aMagnitude
 %-----------------------------------------------------------------
 \subsection{Number}
 
-Similarly, \clsindmain{Number} defines \mthind{Number}{+}, \mthind{Number}{-}, \mthind{Number}{*} and \mthind{Number}{/} to be abstract, but all other arithmetic operators are generically defined.
+De la même manière, la classe \clsindmain{Number} définit \mthind{Number}{+}, \mthind{Number}{-}, \mthind{Number}{*} et \mthind{Number}{/} comme des méthodes abstraites, mais tous les autres opérateurs arithmétiques sont définis de manière générique.
 
-All \ct{Number} objects support various \emph{converting} operators, such as \mthind{Number}{asFloat} and \mthind{Number}{asInteger}. There are also numerous \emphind{shortcut constructor methods}, such as \mthind{Number}{i}, which converts a \ct{Number} to an instance of \clsind{Complex} with a zero real component, and others which generate \clsind{Duration}s, such as \mthind{Number}{hour}, \mthind{Number}{day} and \mthind{Number}{week}.
+Tous les nombres supportent plusieurs opérateurs de  \emph{convertion}, comme \mthind{Number}{asFloat} et \mthind{Number}{asInteger}. Il existe également des \emphind{constructeurs} numériques,
+%\emphind{shortcut constructor methods}
+comme \mthind{Number}{i}, qui convertit une instance de \ct{Number} en une instance de \clsind{Complex} avec une partie réelle nulle, ainsi que d'autres méthodes qui génèrent des durées, instances de \clsind{Duration}, comme \mthind{Number}{hour}, \mthind{Number}{day} et \mthind{Number}{week}.
 
-\ct{Numbers} directly support common \emph{math functions} such as \mthind{Number}{sin}, \mthind{Number}{log}, \mthind{Number}{raiseTo:}, \mthind{Number}{squared}, \mthind{Number}{sqrt} and so on.
+Les nombres supportent directement les \emph{fonctions mathématiques} telles que \mthind{Number}{sin}, \mthind{Number}{log}, \mthind{Number}{raiseTo:}, \mthind{Number}{squared}, \mthind{Number}{sqrt}.
 
-\cmind{Number}{printOn:} is implemented in terms of the abstract method \ct{Number>>>printOn:base:}. (The default base is 10.)
+\cmind{Number}{printOn:} utilise la méthode abstraite \ct{Number>>>printOn:base:}. (La base par défaut est 10.)
 
-Testing methods include \mthind{Number}{even}, \mthind{Number}{odd}, \mthind{Number}{positive} and \mthind{Number}{negative}. Unsurprisingly \ct{Number} overrides \lct{is\-Num\-ber}. More interesting, \mthind{Number}{isInfinite} is defined to return \ct{false}.
+Les méthodes de test comprennent entre autres \mthind{Number}{even}, \mthind{Number}{odd}, \mthind{Number}{positive} et \mthind{Number}{negative}. Logiquement, \ct{Number} surcharge \lct{is\-Num\-ber}. Plus intéressant, \mthind{Number}{isInfinite} renvoie \ct{false}.
 
-\emph{Truncation} methods include \mthind{Number}{floor}, \mthind{Number}{ceiling}, \mthind{Number}{integerPart}, \mthind{Number}{fractionPart} and so on.
+Les méthodes de \emph{troncature} incluent entre autres, \mthind{Number}{floor}, \mthind{Number}{ceiling}, \mthind{Number}{integerPart}, \mthind{Number}{fractionPart}.
 
 \begin{code}{@TEST}
-1 + 2.5     --> 3.5             "Addition of two numbers"
-3.4 * 5      --> 17.0           "Multiplication of two numbers"
-8 / 2         --> 4                 "Division of two numbers"
-10 - 8.3   --> 1.7              "Subtraction of two numbers"
-12 = 11    --> false           "Equality between two numbers"
-12 ~= 11 --> true            "Test if two numbers are different"
-12 > 9      --> true            "Greater than"
-12 >= 10  --> true            "Greater or equal  than"
-12 < 10    --> false           "Smaller than"
-100@10   --> 100@10    "Point creation"
+1 + 2.5     --> 3.5             "Addition de deux nombres"
+3.4 * 5      --> 17.0           "Multiplication de deux nombres"
+8 / 2         --> 4                 "Division de deux nombres"
+10 - 8.3   --> 1.7              "Soustraction de deux nombres"
+12 = 11    --> false           !"Egalité entre deux nombres"!
+12 ~= 11 --> true            !"Teste si deux nombres sont différents"!
+12 > 9      --> true            "Plus grand que"
+12 >= 10  --> true            !"Plus grand ou égal à"!
+12 < 10    --> false           "Plus petit que"
+100@10   --> 100@10    !"Création d'un point"!
 \end{code}
 \on{Should check how tabbing works in the listings package ...}
 
-The following example works surprisingly well in \st:
+L'exemple suivant fonctionne étonnamment bien en \st:
 \begin{code}{@TEST}
 1000 factorial / 999 factorial --> 1000
 \end{code}
-Note that \ct{1000 factorial} is really calculated which in many other languages can be quite difficult to compute. This is an excellent example of automatic coercion and exact handling of a number.
+Notons que \ct{1000 factorial} est réellement calculé alors que dans beaucoup d'autres langages il peut être difficile de le faire. Ceci est un excellent exemple de conversion automatique et d'une gestion exacte des nombres.
 \cmindex{Integer}{factorial}
 
-\dothis{Try to display the result of \ct{1000 factorial}. It takes more time to display it than to calculate it!}
+\dothis{Essayez d'afficher le résultat de \ct{1000 factorial}. Il faut plus de temps pour l'afficher que pour le calculer!}
 
 %-----------------------------------------------------------------
 \subsection{Float}
 
-\clsindmain{Float} implements the abstract \ct{Number} methods for floating point numbers.
+\clsindmain{Float} implémente les méthodes de \ct{Number} abstraites pour les nombres à virgule flottante.
 
-More interestingly, \ct{Float class} (\ie the class-side of \ct{Float}) provides methods to return the following \emph{constants}: \mthind{Float class}{e}, \mthind{Float class}{infinity}, \mthind{Float class}{nan} and \mthind{Float class}{pi}.
+Plus intéressant, \ct{la classe Float} (\ie le côté classe de \ct{Float}) contient des méthodes pour renvoyer les \emph{constantes}: \mthind{Float class}{e}, \mthind{Float class}{infinity}, \mthind{Float class}{nan} et \mthind{Float class}{pi}.
 
 \begin{code}{@TEST}
 Float pi                      --> 3.141592653589793
@@ -498,14 +498,14 @@ Float infinity isInfinite --> true
 %-----------------------------------------------------------------
 \subsection{Fraction}
 
-\clsind{Fractions} are represented by instance variables for the numerator and denominator, which should be \ct{Integer}s. \ct{Fractions} are normally created by \ct{Integer} division (rather than using the constructor method \cmind{Fraction}{numerator:denominator:}):
+Les \clsind{fractions} sont représentées par des variables d'instance pour le numérateur et le dénominateur, qui devraient être des entiers. Les \ct{fractions} sont normalement créées par division d'entiers (plutôt qu'en utilisant le constructeur \cmind{Fraction}{numerator:denominator:}):
 
 \begin{code}{@TEST}
 6/8             --> (3/4)
 (6/8) class --> Fraction
 \end{code}
 
-Multiplying a \ct{Fraction} by an \ct{Integer} or another \ct{Fraction} may yield an \ct{Integer}:
+Multiplier une fraction par un entier ou par une autre fraction peut renvoyer un entier :
 
 \begin{code}{@TEST}
 6/8 * 4 --> 3
@@ -516,28 +516,28 @@ Multiplying a \ct{Fraction} by an \ct{Integer} or another \ct{Fraction} may yiel
 %-----------------------------------------------------------------
 \subsection{Integer}
 
-\clsindmain{Integer} is the abstract parent of three concrete integer implementations. In addition to providing concrete implementations of many abstract \ct{Number} methods, it also adds a few methods specific to integers, such as \mthind{Integer}{factorial}, \mthind{Integer}{atRandom}, \mthind{Integer}{isPrime}, \mthind{Integer}{gcd:} and many others.
+\clsindmain{Integer} est le parent abstrait de trois implémentations concrètes d'entiers. En plus de fournir une implémentation concrète de beaucoup de méthodes abstraites de la classe \ct{Number}, il ajoute également quelques méthodes spécifiques aux entiers, telles que \mthind{Integer}{factorial}, \mthind{Integer}{atRandom}, \mthind{Integer}{isPrime}, \mthind{Integer}{gcd:} et beaucoup d'autres.
 
-\clsindmain{SmallInteger} is special in that its instances are represented compactly --- instead of being stored as a reference, a \ct{SmallInteger} is represented directly using the bits that would otherwise be used to hold a reference.  The first bit of an object reference indicates whether the object is a \ct{SmallInteger} or not.
+\clsindmain{SmallInteger} est particulière dans le sens que ses instances sont représentées de manière compacte --- au lieu d'être stockées comme référence, une instance de \ct{SmallInteger} est directement représentée en utilisant les bits qui seraient normalement utilisés pour contenir la référence.  Le premier bit de la référence à un objet indique si l'objet est une instance de SmallInteger ou non.
 
-The class methods \mthind{SmallInteger}{minVal} and \mthind{SmallInteger}{maxVal} tell us the range of a \ct{SmallInteger}:
+Les méthodes de classe \mthind{SmallInteger}{minVal} et \mthind{SmallInteger}{maxVal} nous donne la plage de valeurs d'une instance de \ct{SmallInteger}:
 
 \begin{code}{@TEST}
 SmallInteger maxVal = ((2 raisedTo: 30) - 1)      --> true
 SmallInteger minVal = (2 raisedTo: 30) negated --> true
 \end{code}
 
-When a \ct{SmallInteger} goes out of this range, it is automatically converted to a \clsind{LargePositiveInteger} or a \clsind{LargeNegativeInteger}, as needed:
+Quand un \ct{SmallInteger} dépasse cette plage de valeurs, il est automatiquement converti en une instance de \clsind{LargePositiveInteger} ou de \clsind{LargeNegativeInteger}, selon le besoin:
 
 \begin{code}{@TEST}
 (SmallInteger maxVal + 1) class --> LargePositiveInteger
 (SmallInteger minVal - 1) class  --> LargeNegativeInteger
 \end{code}
 
-Large integers are similarly converted back to small integers when appropriate.
+Les grands entiers sont de la même manière convertis en petits entiers quand il faut.
 
-As in most programming languages, integers can be useful for specifying iterative behavior.  There is a dedicated method \mthind{Integer}{timesRepeat:} for evaluating a block repeatedly.
-We have already seen a similar example in \charef{syntax}:
+Comme dans la plupart des langages de programmation, les entiers peuvent être utiles pour spécifier une itération.  Il existe une méthode dédiée \mthind{Integer}{timesRepeat:} pour l'évaluation répétitive d'un bloc.
+Nous avons déjà vu des exemples similaires dans le chapitre \charef{syntax}:
 \begin{code}{@TEST | n |}
 n := 2.
 3 timesRepeat: [ n := n*n ].
@@ -545,21 +545,21 @@ n --> 256
 \end{code}
 
 %=================================================================
-\section{Characters}
+\section{Les Caractères}
 
-\clsindmain{Character} is defined in the \scatind{Collections-Strings} category as a subclass of \clsind{Magnitude}. Printable characters are represented in Squeak as \lct{\$$\langle$\emph{char}$\rangle$}.  For example:
+\clsindmain{Character} est définie dans la catégorie \scatind{Collections-Strings} comme une sous-classe de \clsind{Magnitude}. Les caractères imprimables sont représentés en \squeak par \lct{\$$\langle$\emph{char}$\rangle$}.  Par exemple:
 
 \begin{code}{@TEST}
 $a < $b --> true
 \end{code}
 
-Non-printing characters can be generated by various class methods.  \mbox{\cmind{Character class}{value:}} takes the Unicode (or ASCII) integer value as argument and returns the corresponding character. The protocol \protind{accessing untypeable characters} contains a number of convenience constructor methods such as \mthind{Character class}{backspace}, \mthind{Character class}{cr}, \mthind{Character class}{escape}, \mthind{Character class}{euro}, \mthind{Character class}{space}, \mthind{Character class}{tab}, and so on.
+Les caractères non imprimables sont générés par différentes méthodes de classe. \mbox{\cmind{Character class}{value:}} prend la valeur entière Unicode (or ASCII) comme argument et renvoie le caractère correspondant. Le protocole \protind{accessing untypeable characters} contient un certain nombre de constructeurs utiles tels que \mthind{Character class}{backspace}, \mthind{Character class}{cr}, \mthind{Character class}{escape}, \mthind{Character class}{euro}, \mthind{Character class}{space}, \mthind{Character class}{tab}, parmi d'autres.
 
 \begin{code}{@TEST}
 Character space = (Character value: Character space asciiValue) --> true
 \end{code}
 
-The \mthind{Character}{printOn:} method is clever enough to know which of the three ways to generate characters offers the most appropriate representation:
+La méthode \mthind{Character}{printOn:} est assez adroite pour savoir laquelle des trois manière utiliser pour générer les caractères de la manière la plus appropriée :
 
 \begin{code}{@TEST}
 Character value: 1   --> Character value: 1
@@ -567,48 +567,47 @@ Character value: 32 --> Character space
 Character value: 97 --> $a
 \end{code}\ignoredollar$
 
-Various convenient \emph{testing} methods are built in: \mthind{Character}{isAlphaNumeric}, \mthind{Character}{isCharacter}, \mthind{Character}{isDigit}, \mthind{Character}{isLowercase}, \mthind{Character}{isVowel}, and so on.
+Il existe plusieurs méthodes de \emph{test} utiles : \mthind{Character}{isAlphaNumeric}, \mthind{Character}{isCharacter}, \mthind{Character}{isDigit}, \mthind{Character}{isLowercase}, \mthind{Character}{isVowel}, parmi d'autres.
 
-To convert a \ct{Character} to the string containing just that character, send \mthind{Character}{asString}.  In this case \ct{asString} and \mthind{Character}{printString} yield different results:
+Pour convertir un caractère en une chaîne de caractères contenant uniquement ce caractère, il faut lui envoyer le message \mthind{Character}{asString}.  Dans ce cas \ct{asString} et \mthind{Character}{printString} donnent des résultats différents:
 
 \begin{code}{@TEST}
 $a asString    --> 'a'
 $a                  --> $a
 $a printString --> '$a'
-\end{code}
+\end{code}\ignoredollar$
 
-Every ascii \ct{Character} is a unique instance, stored in the class variable \cvind{CharacterTable}:
+Chaque caractère ASCII est une instance unique, stockée dans la variable de classe \cvind{CharacterTable}:
 
 \begin{code}{@TEST}
 (Character value: 97) == $a --> true
 \end{code}\ignoredollar$
 
-\ct{Characters} outside the range 0 to 255 are not unique, however: 
-
+Cependant, les caractères au delà de la plage 0 à 255 ne sont pas uniques: 
 \begin{code}{@TEST}
 Character characterTable size                               --> 256
 (Character value: 500) == (Character value: 500) --> false
 \end{code}
 
 %=================================================================
-\section{Strings}
+\section{Les chaînes de caractères}
 
-The \clsindmain{String} class is also defined in the category \scatind{Collections-Strings}.  A \ct{String} is an indexed \ct{Collection} that holds only \ct{Characters}.
+La classe \clsindmain{String} est également définie dans la catégorie \scatind{Collections-Strings}.  Une chaîne de caractères est une collection indexée contenant uniquement des caractères.
 
 \begin{figure}[ht]
 \ifluluelse
 	{\centerline {\includegraphics[width=0.5\textwidth]{StringHierarchy}}}
 	{\centerline {\includegraphics[width=6cm]{StringHierarchy}}}
-\caption{The String Hierarchy \label{fig:strings}}
+\caption{La hiérarchie de String \label{fig:strings}}
 \end{figure}
 
-In fact, \ct{String} is abstract and Squeak \ct{Strings} are actually instances of the concrete class \clsindmain{ByteString}.
+En fait, \ct{String} est une classe abstraite les chaînes de caractères de \squeak sont en réalité des instances de la classe concrète \clsindmain{ByteString}.
 
 \begin{code}{@TEST}
 'hello world' class --> ByteString
 \end{code}
 
-The other important subclass of \ct{String} is \clsindmain{Symbol}.  The key difference is that there is only ever a single instance of  \ct{Symbol} with a given value.  (This is sometimes called ``the unique instance property'').  In contrast, two separately constructed \ct{String}s that happen to contain the same sequence of characters will often be different objects.
+Une autre sous-classe importante de \ct{String} est \clsindmain{Symbol}.  La différence fondamentale est qu'il n'y a toujours qu'une instance unique de \ct{Symbol} pour une valeur donnée.  (Ceci est quelques fois appelé ``la propriété de l'instance unique'').  A l'opposé, deux chaînes construites séparément  qui contiennent la même séquence de caractères seront souvent des objets différents.
 
 \begin{code}{@TEST}
 'hel','lo' == 'hello' --> false
@@ -619,7 +618,7 @@ The other important subclass of \ct{String} is \clsindmain{Symbol}.  The key dif
 \end{code}
 
 \noindent
-Another important difference is that a \ct{String} is mutable, whereas a \ct{Symbol} is immutable.
+Une autre différence importante est que \ct{String} est mutable, alors que \ct{Symbol} est immuable.
 
 \begin{code}{@TEST}
 'hello' at: 2 put: $u; yourself --> 'hullo'
@@ -629,51 +628,53 @@ Another important difference is that a \ct{String} is mutable, whereas a \ct{Sym
 #hello at: 2 put: $u --> error!
 \end{code}\ignoredollar$
 
-It is easy to forget that since strings are collections, they understand the same messages that other collections do:
+Il est facile d'oublier que puisque les chaînes de caractères sont des collections; elles comprennent les mêmes messages que les autres collections: 
 
 \begin{code}{@TEST}
 #hello indexOf: $o --> 5
 \end{code}\ignoredollar$
 
-Although \ct{String} does not inherit from \clsind{Magnitude}, it does support the usual \protind{comparing} methods, \ct{<}, \ct{=} and so on.  In addition, \cmind{String}{match:} is useful for some basic glob-style pattern-matching:
+Bien que \ct{String} n'hérite pas de \clsind{Magnitude}, la classe supporte les méthodes de  \protind{comparaison}, \ct{<}, \ct{=}, etc.  De plus, \cmind{String}{match:} est utile pour les recherches simples d'expressions régulières:
 
 \begin{code}{@TEST}
 '*or*' match: 'zorro' --> true
 \end{code}
 
-Should you need more advanced support for regular expressions, there are a number of third party implementations available, such as Vassili Bykov's Regex package.
+Si vous avez besoin d'un meilleur support pour les expressions régulières, plusieurs implémentations sont disponibles, comme le paquet  Regex de  Vassili Bykov.
 \index{Bykov, Vassili}
-\index{regular expression package}
+\index{Package pour les expressions régulières}
 
-Strings support rather a large number of conversion methods. Many of these are \ind{shortcut constructor methods} for other classes, such as \mthind{String}{asDate}, \mthind{String}{asFileName} and so on.  There are also a number of useful methods for converting a string to another string, such as \mthind{String}{capitalized} and \mthind{String}{translateToLowercase}.
+Les chaînes de caractères supportent un grand nombre de méthodes de conversion. Beaucoup sont des \ind{Constructeurs} pour d'autres classes, comme \mthind{String}{asDate}, \mthind{String}{asFileName}.  Il existe également un certain nombre de méthodes utiles pour transformation d'une chaîne de caractères en une autre, comme \mthind{String}{capitalized} et \mthind{String}{translateToLowercase}.
 
-For more on strings and collections, see \charef{collections}.
+Pour plus d'informations sur les chaînes de caractères et les collections, voir le chapitre \charef{collections}.
 
 \on{There is more material we could use here:
 \url{http://www.dmu.com/crb/crb7.html}.}
 
 %=================================================================
-\section{Booleans}
+\section{Les booléens}
 
-The class \clsindmain{Boolean} offers a fascinating insight into how much of the Smalltalk language has been pushed into the class library. \ct{Boolean} is the \subind{class}{abstract} superclass of the \patind{Singleton} classes \clsindmain{True} and \clsindmain{False}.
+La classe \clsindmain{Boolean} offre un aperçu fascinant de la manière dont \st est construit autour de la librairie de classe. 
+%how much of the Smalltalk language has been pushed into the class library. 
+\ct{Boolean} est la super-classe \subind{class}{abstraite} des classes singleton \patind{Singleton} \clsindmain{True} et \clsindmain{False}.
 
 \begin{figure}[ht]
 \ifluluelse
 	{\centerline {\includegraphics[width=0.6\textwidth]{BooleanHierarchy}}}
 	{\centerline {\includegraphics[width=6cm]{BooleanHierarchy}}}
-\caption{The Boolean Hierarchy \label{fig:booleans}}
+\caption{La hiérarchie des booléens \label{fig:booleans}}
 \end{figure}
 
-Most of the behaviour of \ct{Boolean}s can be understood by considering the method \mthind{Boolean}{ifTrue:ifFalse:}, which takes two \ct{Blocks} as arguments.
+La plupart des comportements des booléens peuvent être compris en regardant la méthode \mthind{Boolean}{ifTrue:ifFalse:}, qui prend deux blocs comme arguments.
 
 \begin{code}{@TEST}
 (4 factorial > 20) ifTrue: [ 'bigger' ] ifFalse: [ 'smaller' ] --> 'bigger'
 \end{code}
 
-The method is abstract in \ct{Boolean}.
-The implementations in its concrete subclasses are both trivial:
+La méthode est abstraite dans \ct{Boolean}.
+Les implémentations dans les sous-classes concrètes sont toutes les deux triviales:
 
-\begin{method}{Implementations of \lct{ifTrue:ifFalse:}}
+\begin{method}{Implementations de \lct{ifTrue:ifFalse:}}
 True>>>ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock 
     ^trueAlternativeBlock value
 
@@ -683,59 +684,59 @@ False>>>ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock
 \cmindex{True}{ifTrue:}
 \cmindex{False}{ifTrue:}
 
-In fact, this is the essence of OOP: when a message is sent to an object, the object itself determines which method will be used to respond. In this case an instance of \ct{True} simply evaluates the \emph{true} alternative, while an instance of \ct{False} evaluates the \emph{false} alternative.  All the abstract \ct{Boolean} methods are implemented in this way for \ct{True} and \ct{False}. For example:
+En fait, ceci est l'essence même de la POO: quand un message est envoyé à un objet, l'objet lui-même détermine quelle méthode sera utilisée pour répondre. Dans ce cas une instance de \ct{True}  évalue simplement l'alternative \emph{true}, alors qu'une instance de \ct{False} evalue l'alternative \emph{false}.  Toutes les méthodes abstraites de la classe \ct{Boolean} sont implémentées de cette manière pour \ct{True} et \ct{False}. Par exemple:
 
-\begin{method}{Implementing negation}
+\begin{method}{Implémenter la négation}
 True>>>not
     "Negation--answer false since the receiver is true."
     ^false
 \end{method}
 \cmindex{True}{not}
 
-\ct{Booleans} offer several useful convenience methods, such as \mthind{Boolean}{ifTrue:}, \mthind{Boolean}{ifFalse:}, \mthind{Boolean}{ifFalse:ifTrue}. You also have the choice between eager and lazy conjuctions and disjunctions.
+La classe \ct{Boolean} offre plusieurs méthodes utiles, comme \mthind{Boolean}{ifTrue:}, \mthind{Boolean}{ifFalse:}, \mthind{Boolean}{ifFalse:ifTrue}. Vous avez également le choix entre les conjonctions et disjonctions optimisées ou paresseuses.
 
 \begin{code}{@TEST}
-(1>2) & (3<4)              --> false    "must evaluate both sides"
-(1>2) and: [ 3<4 ]        --> false    "only evaluate receiver"
-(1>2) and: [ (1/0) > 0 ] --> false    "argument block is never evaluated, so no exception"
+(1>2) & (3<4)              --> false    !"doit évaluer les deux cotés"!
+(1>2) and: [ 3<4 ]        --> false    !"évalue seulement le receveur"!
+(1>2) and: [ (1/0) > 0 ] --> false    !"le bloc passé en argument n'est jamais évalué, ainsi, pas d'exception"!
 \end{code}
 
-In the first example, both \ct{Boolean} subexpressions are evaluated, since \mthind{Boolean}{&} takes a \ct{Boolean} argument.
-In the second and third examples, only the first is evaluated, since \mthind{Boolean}{and:} expects a \ct{Block} as its argument.  The \ct{Block} is evaluated only if the first argument is \pvind{true}.
+Dans le premier exemple, les deux sous-expressions booléennes sont évaluées, puisque \mthind{Boolean}{&} prend un argument booléen.
+Dans le second et troisième exemple, uniquement la première est évaluée, car \mthind{Boolean}{and:} attend un  bloc comme argument. Le  bloc est évalué uniquement si le premier argument vaut \pvind{true}.
 
-\dothis{Try to imagine how \ct{and:} and \ct{or:} are implemented.
-Check the implementations in \ct{Boolean}, \ct{True} and \ct{False}.}
+\dothis{Essayez d'imaginer comment \ct{and:} et \ct{or:} sont implémentés.
+Vérifiez les implémentations dans \ct{Boolean}, \ct{True} et \ct{False}.}
 
 %=================================================================
-\section{Chapter summary}
+\section{Résumé du chapitre}
 
 \begin{itemize}
 %  \item Send \ct{yourself} to get back the receiver at the end of a cascade.
 
-  \item If you override \ct{=} then you should override \ct{hash} as well.
+  \item Si vous surchargez \ct{=} alors vous devez également surcharger \ct{hash}.
 
-  \item Override \ct{postCopy} to correctly implement copying for your objects.
+  \item Surchargez \ct{postCopy} pour implémenter correctement la copie de vos objets.
 
-  \item Send \ct{self halt} to set a breakpoint.
+  \item Envoyez \ct{self halt} pour créer un point d'arrêt.
 
-  \item Return \ct{self subclassResponsibility} to make a method abstract.
+  \item Renvoyez \ct{self subclassResponsibility} pour faire une méthode abstraite.
 
-  \item To give an object a \ct{String} representation you should override \ct{printOn:}.
+  \item Pour donner la représentation en chaîne de caractères d'un objet \ct{String} vous devez surcharger \ct{printOn:}.
 
-  \item Override the hook method \ct{initialize} to properly initialize instances.
+  \item Surchargez la méthode générique \ct{initialize} pour instancier correctement vos objets.
 
-  \item \ct{Number} methods automatically convert between \ct{Floats}, \ct{Fractions} and \ct{Integers}.
+  \item Les méthodes de la classe \ct{Number} convertissent automatiquement entre flottants, fractions et entiers.
 
-  \item \ct{Fractions} truly represent rational numbers rather than floats.
+  \item Les fractions représentent vraiment des nombres réels plutôt que des nombres à virgule flottante.
 
-  \item \ct{Characters} are unique instances.
+  \item Les caractères sont des instances uniques.
 
-  \item \ct{Strings} are mutable; \ct{Symbols} are not.
-  Take care not to mutate string literals, however!
+  \item Les chaînes de caractères sont mutables, les symboles ne le sont pas.
+  Cependant faites attention à ne pas muter les chaînes de caractères littérales!
 
-  \item \ct{Symbols} are unique; \ct{Strings} are not.
+  \item Les symboles sont uniques, les chaînes de caractères ne le sont pas.
 
-  \item \ct{Strings} and \ct{Symbols} are \ct{Collections} and therefore support the usual \ct{Collection} methods.
+  \item Les chaînes de caractères et les symboles sont des collections et donc supportent les méthodes usuelles de la classe \ct{Collection}.
 
 \end{itemize}
 
