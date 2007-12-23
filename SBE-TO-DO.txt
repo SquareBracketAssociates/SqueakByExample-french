@@ -21,6 +21,7 @@ TODO :
 - Expliquer un peu mieux le role des méthodes hash pour les collections ? clés.
 - Parler de la version francisée de Squeak
 - Ajouter un paragraphe et le nom des traducteurs en préface
+- (Merger les diffs de René): certaines corrections n'ont pas été mises à jour
 
 -----------------------------------------------------------------------------
 L'etat des chapitres
@@ -37,10 +38,12 @@ Understanding Message Syntax -- Traducteur : Serge, Relecteur : Martial
 The Smalltalk Object Model -- Traducteur : Martial, Relecteur : ? 
 The Squeak Programming Environment -- Traducteur : Martial, Relecteur : Serge
 SUnit -- Traducteur : Alain, Relecteur : Martial
-Basic Classes -- Traducteur : Nicolas+Alain (en cours), Relecteur : ?
+Basic Classes -- Traducteur : Nicolas, Relecteur : Alain, René, Martial
 Collections -- Auteur : Martial, Relecteur : Serge
 Streams -- Auteur : Martial , Relecteur : Serge
 Morphic -- Traducteur : Martial(traduit le 21/12), Relecteur : ?. En attente reponse Denis Bodor (LinuxMag)
 [ADVANCED SQUEAK]
 Classes and Metaclasses -- Auteur : Luc, Relecteur : Martial
+(Monticello -- Auteur : Martial (en cours))
+
 FAQ -- Auteur : Benoit, Relecteur : Martial
