@@ -1,0 +1,572 @@
+% $Author $
+% $Date: 2007-09-25 09:59:36 +0200 (Tue, 25 Sep 2007) $
+% $Revision: 12376 $
+%=================================================================
+\ifx\wholebook\relax\else
+% --------------------------------------------
+% Lulu:
+	\documentclass[a4paper,10pt,twoside]{book}
+	\usepackage[
+		papersize={6in,9in},
+		hmargin={.75in,.75in},
+		vmargin={.75in,1in},
+		ignoreheadfoot
+	]{geometry}
+	\input{../common.tex}
+	\pagestyle{headings}
+	\setboolean{lulu}{true}
+% --------------------------------------------
+% A4:
+%	\documentclass[a4paper,11pt,twoside]{book}
+%	\input{../common.tex}
+%	\usepackage{a4wide}
+% --------------------------------------------
+    \graphicspath{{figures/} {../figures/}}
+	\begin{document}
+	\renewcommand{\nnbb}[2]{} % Disable editorial comments
+	\sloppy
+\fi
+
+\newcommand{\figlabel}[1]{\label{fig:#1}}
+\newcommand{\seclabel}[1]{\label{sec:#1}}
+
+%=================================================================
+\chapter{Organiser votre code avec Monticello}
+%ou \chapter{Archiver votre code avec Monticello}
+%\chapter{Versioning your Code with Monticello}
+
+
+\ab{I've finished reviewing this chapter.  I changed the title back to the other one, since it is more descriptive.  I fixed some things, and left lots of comments; I think that it still needs a lot of work before it can be joined with the existing section on Monticello}
+
+\noindent
+\on{I massaged some text and added comments for things that still need to be fixed}
+
+\on{I tried to be consistent in the use of the \button{button} and \menu{menu} macros, but maybe this is confusing.}
+
+Un syst\`eme de versionage est un outil qui vous aide \`a g\'erer les
+acc\`es concourants \`a un d\'ep\^ot commun de code source. Il vous
+aide \`a conserver des traces de votre travail et de toutes les
+modifications d'un ensemble de classes et permet \`a plusieurs
+d\'eveloppeurs de collaborer. \`A partir du moment o\`u la taille de
+votre logiciel d\'epasse le cadre de quelques classes, vous aurez
+probablement besoin d'un syst\`eme de versionage.
+
+Plusieurs outiles de versionage sont
+disponibles. CVS~\footnote{\url{http://www.nongnu.org/cvs}} et
+Subversion~\footnote{\url{http://subversion.tigris.org}} sont
+probablement les plus populaires.
+En principe, vous pouvez les utiliser pour g\'erer le d\'eveloppement
+de projets de logiciel en \sq mais, \sq en sera r\'eduit \`a un
+langage sans \^ame bas\'e sur des fichiers.
+ 
+\ab{It woudl be better to say concretely why this would be a bad idea, rather than resorting to name-calling.  Many people think that files are good.  Let's tell the reader about the disadvantages!}
+
+\emph{Monticello} propose un syst\`eme de versionage pour \sq dans
+lequel les m\'ethodes remplace les lignes de texte en tant qu'unit\'e
+de changements. % unit of change. 
+\emph{SqueakSource}  est un d\'ep\^ot central en ligne dans lequel
+vous pouvez stocker vos applications.
+
+Dans ce chapitre, vous apprendrez \`a utiliser Monticello et
+SqueakSource pour g\'erer votre code durant votre programmation journali\`ere.
+
+\on{Should state explicitly what is new in this chapter.
+We have already seen Monticello in ``A First Application'' (section 2.9) and in ``The Squeak Programming Environment'' (section 6.3), so we should be told what is new.
+}
+
+%=================================================================
+\section{Premiers pas} %basic usage
+
+Cette section vous donne une br\`eve description des possibilit\'es de
+base de Monticello et de SqueakSource: cr\'eer un paquetage,
+l'archiver, le mettre \`a jour et le fusionner.
+
+Monticello est inclus dans la distribution standard de
+\sq~\footnote{\url{http://www.squeak.org}} et dans l'image pour les
+d\'eveloppeurs \footnote{\squeakdev}. Si vous utilisez une autre
+image, Monticello peut y \^etre install\'e depuis  \emph{SqueakMap} ou
+%ajout
+le nouveau syst\`eme d'installation avec d\'ependances,
+\emph{Universe}.
+\on{Universe is not described anywhere else in the book.  The reader does not know what this is.}
+
+Une fois que Monticello est op\'erationnel, le navigateur Monticello
+Browser sera disponible depuis le menu 
+\menu{World \go{} open... \go{} Monticello Browser}.
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{monticello}
+	\caption{Le navigateur Monticello Browser.\figlabel{monticelloMain}}
+\end{figure}
+%ajout
+\index{Monticello Browser} % a definir
+
+%-----------------------------------------------------------------
+\subsection{Cr\'eer un paquetage}
+
+Vous devez tout d'abord commencer par dire \`a Monticello quels
+paquetages vous voulez suivre en versionage. Les paquetages Monticello
+correspondent aux cat\'egories-syst\`eme.
+The very first thing you need to do is to tell Monticello about the package you want to version. Monticello packages are mapped to system categories. For example, the two classes in Quinto, the first application you have seen, are contained in the category \scat{SBE-Quinto}. Press the \button{+Package} in the Monticello browser and enter \scat{SBE-Quinto}. \emph{Voil\`a!} You have just created the \pkg{SBE-Quinto} Monticello package. \ab{We need to refer back to the description of \ct{PackageInfo} packages.}
+
+%-----------------------------------------------------------------
+\subsection{Archiver} %committing => archiver
+
+Before committing you need to specify \emph{where} you want to save your package. The \button{+Repository} button is for that purpose. Choose a folder. \ab{I don't know what this means.  \button{+Repository} does not have ``folder'' as an option.  ``directory'' and ``directory with subdirectories'' are the most likely options.}  The \button{Save} button will save your package into this repository. You may change the version name and add a comment. \ab{Experience with my students is that changing the version name is a really bad idea, since it can easily break Monticello.}
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.55\linewidth]{saving.png}
+	\caption{A new version name and a comment may be set when committing.\figlabel{saving}}
+\end{figure}
+
+\ab{We need to say here, if not earlier, what a ``version'' is.  Perhaps: an immutable snapshot of a package that has been written into a repository at some point in the past?  Also introduce the version numbering scheme?}
+
+%-----------------------------------------------------------------
+\subsection{Mettre \`a jour}
+
+\ab{What is ``updating''.  OK, I think that I know\,---\,it is like \emph{svn update}.  But I don't think that we can assume that the reader knows this}. 
+Select the repository you want to load a version from in the list on the right-hand side of the Monticello Browser, and click the \button{Open} button. This will open a Repository Inspector. Select your version and click the \button{Load} button.
+
+%\begin{figure}[ht]\centering
+%	\includegraphics[width=.75\linewidth]{viewingRepository}
+%	\caption{A repository offers different package versions.\figlabel{viewingRepository}}
+%\end{figure}
+
+%-----------------------------------------------------------------
+\subsection{Utiliser SqueakSource}
+
+SqueakSource is a central online repository accessible from \url{http://www.squeaksource.com}. For example, use a web browser to visit the BreakOut project at \url{http://www.squeaksource.com/BreakOut.html}. In the registration section on that web page you should see this \emph{repository expression:}
+
+\begin{code}{}
+MCHttpRepository
+    location: 'http://www.squeaksource.com/BreakOut'
+    user: ''
+    password: ''
+\end{code}
+
+Add this repository to Monticello by clicking \button{+Repository}, and then selecting \menu{HTTP}. Fill out the template with the URL corresponding to the BreakOut project\,---\,you can cut the above repository expression form the web page and paste it into the template.
+\button{Open} the repository and choose one version. 
+Unless you are running an old image, you are most likely to want the most recent version. Select a version and click \button{Load}.
+
+Note If you want to save your code in a SqueakSource Monticello repository, the project security policy should allow you to do so.
+\on{huh? what is this?}
+\ab{We need a sub-section on read and write permissions}
+
+%\begin{figure}[ht]\centering
+%	\includegraphics[width=.75\linewidth]{squeaksource1}
+%	\caption{SqueakSource is an online central repository.\figlabel{squeaksource1}}
+%\end{figure}
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{squeaksource2}
+	\caption{SqueakSource, the online Monticello code repository.\figlabel{squeaksource}}
+\end{figure}
+
+At the time this chapter is being written, about 1000 projects are registered on SqueakSource and more than 1100 people have an account. \figref{squeaksource} shows the main web page.  \ab{This should come first.}
+
+Pressing the \menu{Register Member} link on the SqueakSource home page will probably be your first step If you do not have a SqueakSource account. 
+Once you are a member, \menu{Register Project} allows you to create a new project. 
+
+%-----------------------------------------------------------------
+\subsection{Fusionner avec une nouvelle version} %merging => fusionner
+
+Your package may be merged with another version by using the \button{Merge} button in the Monticello browser. We will come back to the different options that are available at that stage. Press \button{Merge} to replace your package with a new version of this one. \ab{Isn't this what update does?   What is the difference?}Note that your changes, if any, will be erased.
+\on{Not really very clear.
+Why is it called ``merge''?
+It seems to be just updating.
+And what is \figref{merging} supposed to show us?}
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{merger}
+	\caption{Merging two packages is performed using a fine grain.
+	\on{huh?}
+	\ab{I would like to know what those buttons do}
+	\figlabel{merging}}
+\end{figure}
+
+%-----------------------------------------------------------------
+\subsection{Les paquetages ``Clean'' et ``Dirty''}
+
+Modifying the code in a package with any of the development tools makes that package \emph{dirty}.
+This means that the version package in the image is different from the version that has been saved or loaded. 
+In Monticello, the name of a dirty package is preceded by an asterisk (\ct{*}) . This indicates which packages have uncommitted changes, and therefore need to be saved into a repository if those changes are not to be lost. Saving a dirty package cleans it.
+
+%=================================================================
+\section{Les possibilit\'es utiles} %features =>
+\seclabel{monti:usefulfeatures}
+
+Monticello has many other useful features. As shown in \figref{monticelloMain}, the Monticello browser window has nine buttons. We have already seen four of them\,---\,\button{+Package}, \button{Save}, \button{+Repository} and \button{Open}. Let's look at the remaining five.
+
+%-----------------------------------------------------------------
+\subsection{Browse} %browse 
+
+As described in \secref{packageextension}, a Monticello package may define and redefine methods on classes defined in another package.
+\on{explain that this is called an ``extension''.}
+\ab{There is already a section explaining the \ct{PackageInfo} conventions in the \emph{Environment} chapter.   If we merge the two, this description will be in a prior section of this chapter.}
+The system browser provide a clear view on the content of a package \on{huh? what does this mean?}.
+\ab{I don't know what it means either, but I think that it's wrong.  As far as I'm aware, the system browser (or even the package-pane browser) can't be used to look at packages at all, only classes\,---\,that's one of the deficiencies that needs to be fixed.}
+The \button{Browse} button opens a snapshot browser on the code in a particular version of a package; this browser can be used to view, but not change, the package.
+\ab{I reworded this to reflect my understanding, based on some quick experiments.}
+
+\begin{figure}[tb]
+\centering
+	\includegraphics[width=.75\linewidth]{{packageviewer}}
+	\caption{The snapshot browser shows us that the package \ct{Sound} extends the class \ct{GraphMorph} with 3 methods.\figlabel{packageviewer}}
+\end{figure}
+
+In \figref{packageviewer} the snapshot browser is showing us the extensions defined in the \pkg{Sound} package. 
+This package extends the class \ct{GraphMorph} with the three methods listed in the top right pane.
+
+%\subsection{Scripts}
+% Script do not work!
+
+%-----------------------------------------------------------------
+\subsection{History} 
+
+The \button{History} button opens a version history viewer that displays the comments committed along with each version of the selected package (see \figref{historyviewer}).  
+The versions of the package, in this case \ct{Perseus}\ab{was: AST!  I changed the text since this was easier than changing the figure.  Also \ct{Perseus} is the selected package in \figref{monticelloMain}} are listed on the left,
+while information about the selected version is displayed on the right.
+
+\begin{figure}[tb]\centering
+	\includegraphics[width=.75\linewidth]{{historyviewer}}
+	\caption{The version history viewer provides information about the various versions of a package.\figlabel{historyviewer}}
+\end{figure}
+
+%Cannot do the swapping!
+
+%-----------------------------------------------------------------
+\subsection{Changes} 
+
+The \button{Changes} button computes the difference between your current package version \ab{shouldn't this be ``between the code in the image''.  It's not a ``version'' until it is written to a repository.  Or. maybe you intended to define version differently \ldots?} and the most recent version of the package in the repository. 
+
+\begin{figure}[b]\centering
+	\includegraphics[width=.75\linewidth]{{patchbrowser}}
+	\caption{The patch browser shows the difference between the code in the image and the most recently committed version.\figlabel{patchbrowser}}
+\end{figure}
+
+\figref{patchbrowser} shows that the Perseus package has been locally modified with three changes. One method has been removed (\ct{functionName}) and two methods have been added (\ct{toSmalltalkCompiledMethod} on \ct{PSCompiledFunction} and \ct{PSCompiledScript}).
+
+%-----------------------------------------------------------------
+\subsection{Backport} 
+
+Each package version has an ancestor which is its parent version.  \ab{You need to explain what a ``parent'' is, that is, what the developer can use it for.}  The left pane of the history viewer displays the list of ancestor versions. \button{Backport} allows you to change the version {what does ``change the version'' mean.  I thought that versions were immutable?}  of a package without erasing non-commited changes. For example, let's assume you are working on the version 6 of \pkg{SBE-Quinto}. This current package can be turned into the version 3 while keeping your changes. \ab{I don't understand this.  Isn't there already a version 3?  Can't you use the same running example (\ct{Perseus}), so we can see what versions exist by looking at the figures? } 
+
+Backporting a package is useful when you want to revert your package to a previous while keeping your modifications. You may then create a new branch.
+
+\on{not entirely clear to me. in the example, what happens to the old version 3? what happens to newer versions? when would you use this? is this the topic of the next section? if so, we should say so, otherwise it stops abruptly.}
+
+%=================================================================
+\section{Les op\'erations avanc\'ees}
+\seclabel{monti:advancedoperations}
+
+%-----------------------------------------------------------------
+\subsection{Cr\'eer des branches} %branching
+
+You may create new version branch when saving your package. This is useful when you want to have a new parallel development. 
+\ab{Give me an example of why I might want to do  this.  The discussion is too abstract}.  A new branch is easily created by giving a new name to the version in the upper text pane of the \button{Edit Version} window. For example, \figref{saving} shows the package \pkg{SBE-Quinto} being saved. You may assign a new name such as \emph{SBE-Quinto-MyBranch-ab.1} to create the branch \emph{MyBranch}. Giving a totally new name is not a good idea since it will make it hard to see the relationships between branches when browsing the repository. \ab{Eh?  Why tell us to do it, and then tell us that it's not a good idea?}
+
+\ab{Is there some relation between parents and branches?  Please tell us about it!}  
+
+%-----------------------------------------------------------------
+\subsection{Les extensions de paquetages} %package extensions
+\ab{This is out of place.   First, this definition already appears in the ``Environment'' chapter.  Second, it needs to come before the section on the snapshot browser, which shows us an extension.}
+\seclabel{packageextension} 
+Monticello packages follow a number of important naming conventions for class and method categories.
+A package named \pkg{Foo} contains:
+
+\begin{itemize}
+\item All classes in the system category \scat{Foo}, or in system categories whose names start with \scat{Foo-}.
+\item All methods\,---\,on any class in any system category\,---\,that are defined in protocols named \prot{*foo} or \prot{*Foo} or in protocols whose names start with \prot{*foo-} or \prot{*Foo-}.
+	\on{I rephrased this ; please check}
+\item All methods in classes in the system category \scat{Foo}, or in system categories whose names begin with \scat{Foo-}, \emph{except} those in protocols whose names start with \prot{*} (\ie which belong to \emph{other} packages).
+\end{itemize}
+\ab{We have consistently used ``protocol'' rather than ``method category'', so I made that change here.}
+\ab{The subsection heading promises that we will learn about ``Package Extensions''.  Well?}
+
+%-----------------------------------------------------------------
+\subsection{Les d\'ependances} %dependencies
+
+To function properly, a package may require the presence of some other package. \ab{Example?}
+Monticello supports a dependency mechanism that lets you declare such requirements, which are called \emph{dependencies}. To declare a dependency, simply yellow-click on a package in a Monticello browser and select \emph{add required package}.  \ab{If they are called dependencies, then why doesn't the menu say ``declare dependency''?}
+
+Let us assume a package \pkg{A} version 1 requires another package \pkg{B} version 1.
+
+\begin{itemize}
+\item Saving \pkg{A} implies that \pkg{B} should also be saved, if \pkg{B} is dirty.
+\item Saving a new version of \pkg{B} does \emph{not} imply that \pkg{A} must be saved.
+\item Loading \pkg{A} in a fresh image implies that the \ab{appropriate?} version of \pkg{B} must be loaded from the same repository that \pkg{A} is loaded from.  \ab{Why does it matter what repository I load it from?  A version is a version is a version, no matter how many repositories it may be copied to!}
+\item To make \pkg{A} require a new version of \pkg{B}, use the \menu{Add required package} menu item. \ab{What happens to the dependency on the old version?  Does it go away.}
+\end{itemize}
+
+\ab{I'm left feeling uncomfortable here.  Is the dependency on a package or on a version?  We start off by saying one thing, and then go on to imply the other.}
+
+%-----------------------------------------------------------------
+\subsection{Le chargements de version} %version loading
+
+Loading a package with another version \ab{What doe sthis mean?} fully erases changes for that package that are committed \on{? what does ``that are committed'' refer to?}. For example, let's assume that you are working on a package that contains a method \ct{m} for a class \ct{C}. Loading a new version of this package will either remove or replace \ab{which?  Remove, or replace?  If \ct{C>>>m} is in the package, how could it \emph{not} replace the \ct{C>>>m} in the image?  And why does this happen only ``if I am working on a package that contains \ct{C>>>m}''?  I would have thought that this replacement would occur regardless of what I'm working on\ldots} your definition of \ct{C} and \ct{m}. You will lose it, even if \ct{C} is not defined in a new version. \ab{a new version of what?}
+\on{so the point of ``that are committed'' is still unclear to me.}
+
+You probably want to use the \button{Merge} or the \button{Backport} buttons if you want to update the version of your package while keeping your code change.
+\on{But when we looked at \button{Merge} before it also seemed to stomp on your changes. the explanation needs work, I think.}
+\ab{I think that a real example (not \pkg{A} and \pkg{B}, please) would help a lot.  I think that you may have just introduced the problem for which \button{Backport} is the solution!} 
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=.75\linewidth]{{filerepositoryinspector}}
+	\caption{A file repository inspector.\figlabel{filerepositoryinspector}\ab{The figure seems to show an http repository, not a file repository.}}
+\end{figure}
+
+%-----------------------------------------------------------------
+\subsection{L'inspecteur de d\'ep\^ot de fichiers} %file repository inspector 
+
+\ab{Isn't this true for all kinds of repositories, not just file repositories?}
+
+Information about the content of a repository is displayed using the File Repository Inspector, which can be launched with the \button{Open} button. The packages in the repository are listed on the left-hand side of the inspector:
+
+\begin{itemize}
+\item an \underline{underlined} package name means that this package is installed in the image;
+\item a \underline{\bf bold underlined} name means that the package is installed, but that there is a more recent version in the repository.
+\end{itemize}
+
+\noindent
+Once a package is selected, the right-hand pane lists the versions of the selected package:
+
+\begin{itemize}
+\item an \underline{underlined} version name means that this version is installed in the image;
+\item a {\bf bold} version name means that this version is not an ancestor of the installed version. This means that the bold version belongs to a different branch from the installed version.
+\end{itemize}
+\ab{I reworded these bullets; please check that I have not corrupted the meaning.}
+\noindent
+Note that right-clicking the right-hand side of the inspector opens a menu with different sorting options.
+\ab{What does \menu{unchanged} do?}
+
+%\subsection{Branching}
+%\subsection{Ancestor}
+
+%-----------------------------------------------------------------
+\subsection{L'initialisation de classe} %classe initialization
+
+\ab{When Monticello loads a package into the image, any class that defines an \ct{initialize} method \ldots} classes are initialized by Monticello by invoking the \ct{initialize} class method on classes for which this method is defined only. Note that inherited \ct{initialize} methods are not invoked.
+\on{Ugh!  You do not ``invoke methods'' in Smalltalk!  You ``send messages''!!!}
+\on{Why are inherited initialize method not invoked? shouldn't you always send \ct{super initialize}?}
+\ab{I think that this might be a bug in Monticello}.
+
+%-----------------------------------------------------------------
+\subsection{Ajouter de nouvelles variables} %adding new variables
+
+\ab{Tell us what the problem is, before telling us the solution.  With an Example!}
+Monticello supports method extension only. One way to circumvent this limitation is to define an initialize method on the class side, and manually add this variable. For example, let us image \on{imagine?} a package that extends the class \ct{OBUCommand} with a variable \ct{parent}.
+
+\begin{code}{}
+OBUCommand class>>initialize
+	(OBUCommand instVarNames includes: 'parent') 
+		ifFalse: [OBUCommand addInstVarName: 'parent']
+\end{code}
+
+In the case that \ct{initialize} is already defined in \ct{OBUCommand}, then you may define this \ct{initialize} method on a class in your package.
+\on{huh? otherwise?}
+
+\ab{Isn't this more appropriate for a post-load \emph{do-it} than an \ct{initialize} method?  Do such things not exist (they did with change sets \ldots}
+
+%=================================================================
+\section{Les d\'ep\^ots} %repositories
+\seclabel{monti:repositories}
+
+Several kinds of repositories are supported by Monticello, each with different characteristics and uses. Repositories can be read-only, write-only or read-write.  \ab{eh?  Do you mean that \emph{a particular user} may have restricted access rights?}
+
+\paragraph{HTTP} HTTP Repositories are often general-purpose read-write repositories for day-to-day \on{? as opposed to what?} development using a shared server. (Such servers can also be configured for read-only access. Saving versions via HTTP uses the PUT method \ab{Is ``put'' the right word}, which must be enabled on the server.)
+
+The nice thing about HTTP repositories is that it's easy to link directly to specific versions from web sites or SqueakMap. With a little configuration work on the HTTP server, HTTP repositories can be made browsable by ordinary web browsers, WebDAV clients, \etc
+\ab{where can I find out how to support an HTTP repository?}
+
+\paragraph{FTP} This is similar to an HTTP repository, except that it uses an FTP server instead.  \ab{And which of the nice properties listed above apply?}
+
+\paragraph{GOODS} This repository type stores versions in a GOODS object database. It's a read-write repository, so it makes a good ``working'' repository where versions can be saved and retreived. Because of the transaction support, journaling and replication capabilities of GOODS, it is suitable for large repositories used by many clients.  \ab{I would like a couple of sentences about GOODS, which I've never heard of.}
+
+\paragraph{Directory} A directory repository stores versions in a directory in the local file system. Since it requires very little work to set up, it's handy for private projects; since it requires no network connection, it's the only option for disconnected development. Versions in a directory repository may be uploaded \ab{copied?} to a public or shared repository at a later time. \ab{say how}
+
+\paragraph{SMTP} SMTP repositories are useful for sending versions by mail. When creating an SMTP repository, you specify a destination email address. This could be the address of another developer\,---\,the package's maintainer, for example\,---\,or a mailing list such as squeak-dev. Any versions saved in such a repository will be emailed to this address.  \ab{Is this an example of a write-only repository?} 
+
+\paragraph{SqueakMap Release} This is a write-only repository used for publishing releases of a package to SqueakMap. To configure the repository enter the name of the package on SqueakMap, your SqueakMap initials and your SqueakMap password. Now any versions saved to the repository will be uploaded to your SqueakMap account, and registered as a new release with SqueakMap.  \ab{We havn't talked bout how to put stuff on SqueakMap, only about how to load it.  So, we should add that material, either here, or in a subsequent subsection.}
+
+\paragraph{SqueakMap Cache} When packages are installed via SqueakMap, downloaded files are stored in particular location \ab{subdirectory?} in your working directory called a cache. In order to make these files available to Monticello for loading, merging, \etc, a SqueakMap Cache repository is created when these files are loaded for the first time.
+
+\on{why don't you first talk about the package cache?  I see you commented it out.}
+\ab{One thing to say is how to get to versions in some \emph{other} package cache}
+
+%\paragraph{package-cache}
+
+%The package cache is a special repository that Monticello creates automatically. Like a directory repository, the package cache stores files in a directory on your local filesystem. See Elements of Monticello for more information.
+
+\ab{what about ``Directory with Subdirectories''?}
+
+%=================================================================
+\section{Le format de fichiers .mcz} %the .mcz file format
+
+Versions are often \ab{not always?} saved in binary files for storage in repositories, distribution to users \etc
+These files are commonly call ``mcz files'' as they carry the extension .mcz.
+\ab{Say here that it's just a zipped file, but you shouldn't unzip it yourself?}
+
+\paragraph{Le contenu des archives} %archive contents
+
+\ab{What's an ``Archive''?}
+Mcz files are actually ZIP archives that follow certain conventions. Conceptually a version contains four things:
+
+\begin{itemize}
+\item Package. A version is related to a particular package. Each mcz file contains a member \ab{member?}called ``package'' which contains information about the version's package.
+
+\item VersionInfo. This is the meta-data about the snapshot. It contains the author initials, date and time the snapshot was taken, and the ancestry of the snapshot. Each mcz file contains a member called ``version'' which contains this information.
+\item Snapshot. A Snapshot is a record of the state of the package at a particular time. Each mcz file contains a directory named ``snapshot/''. All the members in this directory contain definitions of program elements, which when combined form the Snapshot. Current versions of Monticello only create one member in this directory, called ``source.st''.
+\item Dependencies. A version may depend on specific version of other packages. An mcz file may contain a ``dependencies/'' directory with a member for each dependency. These members will be named after each package they \ab{what does this ``they'' refer to?} depend upon.
+\end{itemize}
+
+\paragraph{L'encodage du code source} %source code encoding
+
+The member named ``snapshot/source.st'' contains a standard fileout of the code that belongs to the package.
+
+\paragraph{L'encodage des m\'eta-donn\'ees} %metadata encoding
+
+The other members of the zip archive are encoded using S-expressions. Conceptually, the expressions represent nestable dictionaries. Each pair of elements in a list represent a key and value. The following example should need no explanation: \ab{butif it does?}
+
+\ct{(key1 'value1' key2 (sub1 'sub value 1'))}
+
+\paragraph{Distribuer les fichiers mcz} %distribuer les fichiers mcz
+
+The metadata for a version ends up being fairly compact, so it's not unreasonable to distribute it with a release. \ab{What's a release?} It's also important that it be present if somebody decides to start hacking on your package \on{?}. Then they can create a mcz with their version of your package and it will have the correct ancestry information, enabling you to easily and correctly merge it back into your work.
+
+Stated another way, a version doesn't contain a full history of the source code. It's a snapshot of the code at a single point in time, with a UUID identifying that snapshot, and a record of the UUIDs of all the previous snapshots it's descended from. So it's a perfect thing to distribute. \ab{This paragraph I understand.  Maybe just delete the previous one?  What is the connection with the paragraph title?}
+
+%=================================================================
+\section{R\'esum\'e du chapitre}
+
+Ce chapitre vous a expliqu\'e comment utiliser Monticello et
+SqueakSource pour g\'erer le code source de vos applications.
+
+\begin{itemize}
+\item Monticello est utilis\'e pour administrer vos
+  paquetages. Monticello fait partie int\'egrante de la distribution
+  standard de \sq.
+
+\item SqueakSource est un d\'ep\^ot central en ligne dans lequel vous
+  pouvez stocker votre code.
+
+\item Les paquetages Monticello correspondent aux cat\'egories de classes. 
+%mapped to class categories. 
+
+\item Apr\`es avoir cr\'e\'e un paquetage dans Monticello, vous pouvez
+  le  stocker dans un d\'ep\^ot distant tel que celui offert par
+  SqueakSource.
+
+\item Monticello permet de fusionner une version de paquetage
+  diff\'erent de la version locale, de cr\'eer une nouvelle branche et
+  de changer la version locale de votre paquetage.
+\on{confusing sentence --- not sure what you want to say}
+%martial: a revoir de toute facon
+\ab{ditto}
+\end{itemize}
+
+%=================================================================
+
+%\section{Packages in Monticello: PackageInfo}
+
+%The PackageInfo system is a simple, lightweight way of organizing Smalltalk source: it is nothing more than a naming convention, which uses (or abuses) the existing categorization mechanisms to group related code. Let me give you an example: say that you are developing a framework named SqueakLink to facilitate using relational databases from Squeak. You will probably have a series of system categories to contain all of your classes (e.g., category \cat{SqueakLink-Connections} containing the classes \ct{OracleConnection}, \ct{MySQLConnection} and \ct{PostgresConnection})
+%(\cat{SqueakLink-Model} containing \ct{DBTable}, \ct{DBRow}  and \ct{DBQuery}) and so on. But not all of your code will reside in these classes\,---\,you may also have, for example, a series of methods to convert objects into an SQL friendly format: \mthind{Object}{asSQL},  \mthind{String}{asSQL} and \mthind{Date}{asSQL}.
+
+%These methods belong in the same package as the classes in \cat{SqueakLink-Connections} and \cat{SqueakLink-Model}. You mark this by placing those methods in a method category (of \ct{Object}, \ct{String}, \ct{Date}, and so on) named \cat{*squeaklink} (note the initial star). The combination of the \cat{SqueakLink-...} system categories and the \cat{*squeaklink} method categories forms a package named "SqueakLink".
+
+%
+%\section{Getting Started}
+
+%\paragraph{Installing}
+
+%
+
+%\paragraph{Creating a Working Copy}
+
+%The first thing you need to do is tell Monticello about the package you are interested in versioning. You do this by creating a Working Copy.
+
+%\paragraph{From an .mcz version file}
+%Open a FileList and navigate to the version file. Click on the 'Load' button to load the package into your image.
+
+%\paragraph{From scratch}
+
+%Click on the '+Package' button, and enter the name of a PackageInfo package. It doesn't matter whether or not the code for the package already exists.
+
+%Once the Working Copy has been created, the name of the package will appear in the package list on the left side of the Monticello Browser. If you loaded an existing version, the version name will be displayed in parenthesis after the package name, otherwise the parenthesis will be empty, indicating that your working copy has no ancestors.
+
+%\paragraph{Connecting to a Repository}
+
+%If you've already got a Working Copy, click on the package name on the left side of the Monticello Browser, so that your repository will be associated with your package. To connect to a repository, click on the '+Repository' button in the Monticello Browser. A pop-up menu will appear, allowing you to select the type of repository you want to connect to.
+
+%The simplest repository type is 'directory.' When you select this type of repository, Monticello will open a FileList2 to allow you to select an existing directory in which to store versions. Other types of repositories typically require more configuration, and will open a text pane to allow you to enter it.
+
+%\paragraph{Saving Changes}
+
+%Changes to your working copy are automatically logged in your changes file, so you only need to create a new version of your package when you want to share the changes with others. Select the package on the left side of the Monticello Browser and the repository to save to on the right, then click the 'Save' button. See Repositories for discussion of how to publish to shared repositories.
+
+%\paragraph{Merging Changes}
+
+%If you or some other developer have made changes to the same version of a package, load one version as your working set and then select the repository containing the other version in the Monticello Browser, open a Repository Inspector and select the other version. Clicking the 'Merge' button will automatically load all non-conflicting changes from the other version. If you need to control which changes to accept, you may instead click 'Changes' to browse every difference.
+
+%
+
+%\section{Elements of Monticello}
+
+%\paragraph{Packages}
+
+%Packages are the units of versioning used by Monticello; the classes and methods they contain are recorded and versioned together. Monticello uses the packages defined by PackageInfo.
+
+%\paragraph{Snapshots}
+
+%A Snapshot is the state of a Package at a particular point in time
+
+%\paragraph{Versions}
+
+%A Version is a Snapshot of a Package and it's associated metadata\,---\,author initials, the date and time the snapshot was taken, and the Version's ancestry\,---\,the list of Versions from which it is derived.
+
+%A Version is the standard currency of the system. You save them, load them, give them to others, merge them, delete... you get the picture. Versions are often stored in mcz files\,---\,see File Format
+
+%\paragraph{Working Copies}
+
+%Each package in an image that is being versioned with Monticello has a Working Copy. The Working Copy represents the Version of the package that is currently active in the image, and which may be modified by the Smalltalk development tools.
+
+%\paragraph{Repositories}
+
+%These are places to store your Versions. Unlike CVS, in which a Package is associated with one Repository, a Monticello Package can have Versions in many repositories. When adding a new Repository to use, you can choose from SqueakMap Cache, FTP, HTTP (webdav), SqueakMap Release, SMTP, or a directory somewhere on your hard drive (or network drive).
+
+%For example, if I have six versions of package Foo, I could have Foo versions 1-4 being on my local harddrive, and 5-6 being on an ftp server. You could download version 5, make some changes and commit a new version (7) to your WebDAV repository. I can download and merge that version with my own work to produce version 8, which I save to my ftp repository.
+
+%This is a key element of Monticello's distributed development model.
+
+%\paragraph{Package cache}
+
+%The package-cache is a local repository the Monticello uses to cache any package that is loaded into a particular image in a directory. That means it is filled with .mcz files, whether it is a package you create in your image, or one you download from somewhere else.
+
+%When you use images in different directories you will have multiple package-caches, and may hold many of the same packages. If MC is loaded into an image which is subsequently moved, MC will continue to use the package-cache in the directory the image was moved from. Otherwise MC creates a new package-cache in the local directory. This can become a real mess and so some have used symlinks on unix systems to centralize it.
+
+%\paragraph{Why cache packages at all?}
+
+%When a Version is loaded into the image, it is likely to become the ancestor of new versions that are created as part of the development process. During merges, Monticello needs to examine the Snapshots of these ancestors in order to detect conflicts. By caching these ancestors as it loads them, MC reduces the chance that the necessary version will be unavailable\,---\,either because the repository it's in is no longer available or because it was loaded directly from a file and isn't in any repository.
+
+%\section{The Snapshot Browser}
+
+%The Snapshot browser is much like the standard Smalltalk System Browser except that it displays the contents of a Snapshot, rather than the code that is active in the image. Since Snapshots are immutable, the Snapshot browser does not allow editiing.
+
+%One difference between the Snapshot Browser and the familiar system browsers is that the Snapshot browser uses the special system category '*Extensions' to categorize classes that do not belong to the package, but which have extension methods that do.
+%
+%\section{More on PackageInfo}
+%To get a feel for this, try filing the Refactoring Browser. The Refactoring Browser code uses PackageInfo's naming conventions, using "Refactory" as the package name. In a workspace, create a model of this package with  \ct{refactory := PackageInfo named: 'Refactory'}. 
+
+%It is now possible to introspect on this package; for example, refactory classes will return the long list of classes that make up the Refactoring Browser. refactory coreMethods will return a list of MethodReferences for all of the methods in those classes. refactory extensionMethods is perhaps one of the most interesting queries: it will return a list of all methods contained in the Refactory package but not contained within a Refactory class. This includes, for example, \mthind{String}{expandMacrosWithArguments:} and \mthind{Behavior}{parseTreeFor:}.
+
+%Since the PackageInfo naming conventions are based on those used already by Squeak, it is possible to use it to perform analysis even of code that has not explicitly adapted to work with it. For example, (PackageInfo named: 'Collections') externalSubclasses will return a list of all Collection subclasses outside the Collections categories.
+
+%You can send fileOut to an instance of PackageInfo to get a changeset of the entire package. For more sophisticated versioning of packages, see the Monticello project.
+
+%=========================================================
+\ifx\wholebook\relax\else
+   \bibliographystyle{jurabib}
+   \nobibliography{scg}
+   \end{document}
+\fi
+%=========================================================
+
