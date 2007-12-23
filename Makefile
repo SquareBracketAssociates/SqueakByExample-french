@@ -4,8 +4,9 @@
 # export TEXINPUTS:=.:local
 export TEXINPUTS:=./local//:../local//:
 
-C = Introduction FirstApp BasicClasses Collections QuickTour Model SyntaxAndModel SUnit \
-	Metaclasses Syntax
+C = Preface QuickTour FirstApp Syntax Messages \
+	Model Environment SUnit BasicClasses Collections Streams Morphic \
+	Metaclasses
 
 PDFLATEX = pdflatex -file-line-error
 PDFVIEW = open
