@@ -5,6 +5,7 @@
 %=================================================================
 % translated by Martial.Boniou@ifrance.com start: (Fri, 12 Oct 2007)
 %=================================================================
+% relecture par Rene Mages (Fri, 21 Dec 2007)
 \ifx\wholebook\relax\else
 % --------------------------------------------
 % Lulu:
@@ -45,7 +46,7 @@ et 9 issues de la classe \ct{Stream}. Formant un total de 28 classes, elles
 ont d\'ej\`a \'et\'e remodel\'ees maintes fois avant la sortie du syst\`eme \st-80. Ce groupe de classes est souvent consid\'er\'e comme un exemple pragmatique
 de mod\'elisation orient\'ee objet.
 
-En \squeak, les classes abstraites \ct{Collection} et \ct{Stream}
+En \sq, les classes abstraites \ct{Collection} et \ct{Stream}
 disposent respectivement de 98 et de 39 sous-classes mais beaucoup d'entre elles
 (comme \mbox{\clsind{Bitmap},} \clsind{FileStream} et \clsind{CompiledMethod})
 sont des classes d'usage sp\'ecifique d\'efinies pour \^etre employ\'ees
@@ -107,7 +108,7 @@ primaire de cette technique de programmation: cette fonction
 applique une fonction entr\'ee en argument \`a tout \'el\'ement d'une
 liste et retourne une nouvelle liste contenant le r\'esultat.
 \st-80 a adopt\'e la programmation bas\'ee sur les collections
-comme pr\'ecept central.
+comme pr\'ecepte central.
 Les langages modernes de programmation fonctionnelle tels que \ind{ML}
 % martial: j'aurais eu envie de mettre le dynamique erlang, mon favori
 et \ind{Haskell} ont suivi l'orientation de \st. 
@@ -156,7 +157,7 @@ et \mbox{\mthind{Collection}{occurrencesOf:}} (test d'occurences d'un \'el\'emen
 \mthind{Collection}{inject:into:} (accumulation ou op\'eration par r\'eduction 
 comme avec une fonction \emph{fold} ou \emph{reduce} dans d'autres langages) et
 beaucoup plus encore.
-C'est tant la systématicité de ce protocole que sa diversit\'e qui le rend
+C'est plus l'ubiquit\'e de ce protocole que sa diversit\'e qui le rend
 si puissant.
 
 \Figref{protocols} r\'esume les protocoles standards support\'es par la
@@ -259,7 +260,7 @@ elle a aussi bien des m\'ethodes d'ajout en d\'ebut \mthind{OrderedCollection}{a
 \ct{=} fournie par les \'el\'ements; les variantes \ct{Identity} de ces
 classes (\ct{IdentityDictionary}, \ct{IdentitySet} et \ct{IdentityBag})
 utilisent la m\'ethode \ct{==} qui teste si les arguments sont 
-le m\^eme objet et les variantes \ct{Pluggable} emploie une \'equivalence
+le m\^eme objet et les variantes \ct{Pluggable} emploient une \'equivalence
 arbitraire d\'efinie par le cr\'eateur de la collection.
 	\index{collection dite Pluggable}
 
@@ -291,7 +292,7 @@ pouvoir contenir que des \'el\'ements qui sont conformes au protocole
 \end{figure*}
 
 Consid\'erer ces cat\'egorisations par fonctionnalit\'e n'est pas 
-suffisante; nous devons aussi regarder les classes de collection selon
+suffisant; nous devons aussi regarder les classes de collection selon
 leur impl\'ementation. Comme nous le montre 
 % by functionality are not our only concern; we must also consider how the collection classes are implemented. 
 \figref{collsByImpl}, cinq techniques d'impl\'ementations majeures 
@@ -344,7 +345,7 @@ de \st sont renvoy\'es \`a la lecture de l'excellent livre de LaLonde et Pugh
 Nous pr\'esentons maintenant les classes de collection les plus communes et les plus importantes via des exemples de code simples.
 Les protocoles principaux de collections sont: \mthind{Collection}{at:}, \mthind{Collection}{at:put:} --- pour acc\'eder \`a un \'el\'ement, \mthind{Collection}{add:}, \mthind{Collection}{remove:} --- pour ajouter ou enlever un \'el\'ement, \mthind{Collection}{size}, \mthind{Collection}{isEmpty}, \mthind{Collection}{include:} --- pour obtenir des informations respectivement sur la taille, la virginit\'e (collection vide) et l'inclusion dans la collection, \mthind{Collection}{do:}, \mthind{Collection}{collect:}, \mthind{Collection}{select:} --- pour agir en it\'erations \`a travers la collection.
 Chaque collection impl\'emente ou non de tels protocoles et quand elle 
-le fait, elle l'interpr\'etent pour convenir \`a sa s\'emantique.
+le fait, elle les interpr\'ete pour \^etre en ad\'equation avec leurs \'emantiques.
 Nous vous sugg\'erons de naviguer dans les classes elles-m\^eme pour
 identifier par vous m\^eme les protocoles sp\'ecifiques et plus
 avanc\'es.
@@ -363,7 +364,7 @@ La technique la plus g\'en\'erale consiste \`a utiliser les m\'ethodes
 dont les \'el\'ements seront tous nuls \cad de valeur \ct{nil}. 
 \mthind{Collection class}{with:} \ct{anObject} cr\'ee une collection
 et ajoute \ct{anObject} \`a la collection cr\'e\'ee. 
-Les collections r\'ealisent cela de diff\'erente mani\`ere.
+Les collections r\'ealisent cela de diff\'erentes mani\`eres.
 
 Vous pouvez cr\'eer des collections avec des \'el\'ements initiaux
 en utilisant les m\'ethodes \mbox{\mthind{Collection class}{with:},}
@@ -386,8 +387,7 @@ Vous pouvez aussi utiliser la m\'ethode \ct{addAll:} pour ajouter tous les \'el\
 \end{code}
 
 \noindent
-Prenez garde au fait que \mthind{Collection}{addAll:} renvoie aussi ses
-arguments et non pas le receveur!
+Prenez garde au fait que \mthind{Collection}{addAll:} renvoie aussi ses arguments et non pas le receveur!
 
 Vous pouvez aussi cr\'eer plusieurs collections avec les m\'ethodes  
 \mthind{Collection class}{withAll:} ou \mthind{Collection class}{newFrom:}
@@ -549,7 +549,7 @@ ordCol remove: 'Monticello'.
 ordCol --> an OrderedCollection('Seaside' 'SqueakSource' 'Monticello')
 \end{code}
 
-Il y a une variante de \ct{remove:} nomm\'ee \mthind{OrderedCollection}{remove:ifAbsent:} qui permet de sp\'ecifier comme second argument un bloc ex\'ecut\'e dans le cas o\`u l'\'el\'ement \`a \^etre effac\'e n'est pas dans la collection. 
+Il y a une variante de \ct{remove:} nomm\'ee \mthind{OrderedCollection}{remove:ifAbsent:} qui permet de sp\'ecifier comme second argument un bloc ex\'ecut\'e dans le cas o\`u l'\'el\'ement \`a effacer n'est pas dans la collection. 
 
 \begin{code}{@TEST | ordCol res | ordCol := OrderedCollection with: 'Seaside' with: 'SqueakSource' with: 'Monticello'.}
 res := ordCol remove: 'zork' ifAbsent: [33].
@@ -610,7 +610,7 @@ Nous pouvons utiliser \cmind{Interval class}{from:to:by:} (mot \`a mot: depuis-j
 %---------------------------------------------------------
 \subsection{Le dictionnaire Dictionary}
 Les dictionnaires sont des collections importantes dont les \'el\'ements
-sont acc\'ed\'es via des cl\'es.
+sont accessibles via des cl\'es.
 Parmi les messages de dictionnaire les plus couramment utilis\'es, vous trouverez  
 \mthind{Dictionary}{at:}, \mthind{Dictionary}{at:put:}, \mthind{Dictionary}{at:ifAbsent:}, \mthind{Dictionary}{keys} et \mthind{Dictionary}{values} (\emph{keys} et \emph{values} sont les mots anglais pour cl\'es et valeurs respectivement).
 \seeindex{keys}{Dictionary, keys}
@@ -629,7 +629,7 @@ colors values       --> {Color blue . Color yellow . Color red}
 \end{code}
 
 Les dictionnaires comparent les cl\'es par \'egalit\'e. Deux cl\'es sont
-consid\'er\'es comme \'etant la m\^eme si elles retournent \emph{true}
+consid\'er\'ees comme \'etant la m\^eme si elles retournent \emph{true}
 lorsqu'elles sont compar\'ees par \ct{=}. Un erreur commune et difficile \`a
 identifier est d'utiliser un objet dont la m\'ethode \ct{=} a \'et\'e
 red\'efinie mais pas sa m\'ethode de hachage \ct{hash}. Ces deux
@@ -708,7 +708,8 @@ qui suit.
 La classe \clsindmain{Set} est une collection qui se comporte comme un ensemble
 dans le sens math\'ematique \ie comme une collection sans doublons
 et sans aucun ordre particulier. Dans un \ct{Set}, les \'el\'ements sont
-ajout\'es en utilisant le message \mthind{Set}{add:} (signifiant ``ajoute'' en anglais) et ils ne peuvent pas \^etre acc\'ed\'es par le message de recherche par indice \ct{at:}. 
+ajout\'es en utilisant le message \mthind{Set}{add:} (signifiant
+``ajoute'' en anglais) et ils ne peuvent pas \^etre accessibles par le message de recherche par indice \ct{at:}. 
 Les objets \`a inclure dans \ct{Set} doivent impl\'ementer les m\'ethodes \ct{hash} et \ct{=}.
 
 \begin{code}{@TEST | s | }
@@ -740,7 +741,7 @@ qui autorise le duplicata:
 Les op\'erations sur les ensembles telles que
 l'\emph{union}, l'\emph{intersection} et le test d'\emph{appartenance} 
 sont impl\'ement\'ees respectivement par les messages de \ct{Collection} \mthind{Collection}{union:}, \mthind{Collection}{intersection:} et \mthind{Collection}{includes:}.
-Premi\`erement, le receveur est converti en un \ct{Set}, ainsi ces
+Le receveur est d'abord converti en un \ct{Set}, ainsi ces
 op\'erations fonctionnent pour toute sorte de collections!
 
 \seeindex{Set!union}{Collection, \ct{union:}}
@@ -902,8 +903,8 @@ s --> 'No worries'
 \end{code}
 
 D'une mani\`ere diff\'erente, \mthind{String}{copyReplaceAll:} cr\'ee 
-une nouvelle cha\^{\i}ne de caract\`eres.
-(Curieusement, les arguments dans ce cas sont des sous-cha\^{\i}nes et non des caract\`eres ind\'ependants et leur taille n'a pas a \^etre identique.)
+une nouvelle cha\^{\i}ne de caract\`eres
+(curieusement, les arguments dans ce cas sont des sous-cha\^{\i}nes et non des caract\`eres ind\'ependants et leur taille n'a pas \`a \^etre identique).
 
 \begin{code}{@TEST |s| s:= 'No worries' copy.}
 s copyReplaceAll: 'rries' with: 'mbats' --> 'No wombats'
@@ -1027,10 +1028,10 @@ Voyez aussi \charef{basic} pour plus d'informations sur \clsind{String} et \clsi
 En \st, les boucles et les clauses conditionnelles sont simplement
 des messages envoy\'es \`a des collections ou d'autres objets
 tels que des entiers ou des blocs (voir aussi \charef{syntax}).
-En plus des messages bas niveau comme 
+En plus des messages de bas niveau comme 
  \ct{to:do:} qui \'evalue un bloc avec un argument qui parcourt les valeurs entre un nombre initial et final,
 %which evaluates a block with an argument ranging from an initial to a final number
-la hi\'erarchie de collection \st offre de nombreux it\'erateurs haut-niveau.
+la hi\'erarchie de collection \st offre de nombreux it\'erateurs de haut niveau.
 Ceci vous permet de faire un code plus robuste et plus compact.
 \index{Collection!it\'eration}
 
@@ -1108,7 +1109,7 @@ Si vous voulez traiter les \'el\'ements d'une collection et produire
 une nouvelle collection en r\'esultat, vous devez utiliser plut\^ot le
 message \ct{collect:} ou d'autres m\'ethodes d'it\'erations au lieu
 du message \ct{do:}.
-La plupart peuvent \^etre trouv\'e dans le protocole \protind{enumerating} 
+La plupart peuvent \^etre trouv\'es dans le protocole \protind{enumerating} 
 de la classe \ct{Collection} et de ses sous-classes.
 
 <<<<<<< .mine
@@ -1229,17 +1230,14 @@ Une application triviale de  \ct{inject:into:} consiste \`a produire
 la somme de nombres stock\'es dans une collection.
 %?En se r\'ef\'erant \`a Gauss,
 %Following Gauss, 
-Nous pouvons \'ecrire cette expression en \sq pour sommer
-les 100 premiers entiers:
+Nous pouvons \'ecrire cette expression en \sq pour sommer les 100 premiers entiers:
 \begin{code}{@TEST}
 (1 to: 100) inject: 0 into: [:sum :each | sum + each ] --> 5050
 \end{code}
 
-<<<<<<< .mine
-Un autre exemple est le bloc suivant \`a un argument pour calculer la fonction factoriel :
-=======
-Un autre exemple est le bloc suivant \`a un argument pour calculer la fonction factoriel:
->>>>>>> .r14469
+
+Un autre exemple est le bloc suivant \`a un argument pour calculer la factorielle:
+
 \begin{code}{@TEST |factorial|}
 factorial := [:n | (1 to: n) inject: 1 into: [:product :each | product * each ] ].
 factorial value: 10 --> 3628800
@@ -1317,7 +1315,7 @@ range --> an OrderedCollection(2 3 5 7 11 13 17 19)
 Une erreur difficile \`a identifier se produit lorsque vous
 red\'efinissez \ct{=} mais pas \ct{hash}. Les sympt\^omes sont
 la perte d'\'el\'ements que vous mettez dans des ensembles ainsi
-que d'autres ph\'enom\`enes plus \'etrange. Une solution propos\'ee
+que d'autres ph\'enom\`enes plus \'etranges. Une solution propos\'ee
 par Kent Beck est d'utiliser \ct{xor:} pour red\'efinir \ct{hash}.
 Supposons que nous voulons que deux livres soient consid\'er\'es comme
 \'egaux si leurs titres et leurs auteurs sont les m\^emes.
@@ -1338,12 +1336,12 @@ Un autre probl\`eme ennuyeux peut surgir lorsque vous utilisez des
 objets modifiables ou \emph{mutables}: ils peuvent changer leur
 code de hachage constamment quand ils sont \'el\'ements d'un \ct{Set}
 ou cl\'es d'un dictionnaire. 
-Ne le faites donc pas à moins que vous n'aimez vraiment le d\'eboguage!
+Ne le faites donc pas à moins que vous aimiez vraiment le d\'ebogage!
 
 %=========================================================
 \section{R\'esum\'e du chapitre}
 
-La hi\'erarchie de collection en \st offre un vocabulaire commun pour la manipulation uniforme d'une grande famille de collections.
+La hi\'erarchie des collections en \st offre un vocabulaire commun pour la manipulation uniforme d'une grande famille de collections.
 
 \begin{itemize}
   \item Une distinction essentielle est faite entre les collections s\'equentielles ou 
@@ -1351,7 +1349,7 @@ La hi\'erarchie de collection en \st offre un vocabulaire commun pour la manipul
 donn\'e, 
 les dictionnaires de classe \ct{Dictionary} ou de ses sous-classes qui
 enregistrent des associations cl\'e--valeur et les ensembles 
-(\ct{Set}) ou multiensembles (\ct{Bag}) qui sont eux d\'esordonn\'es.
+(\ct{Set}) ou multi-ensembles (\ct{Bag}) qui sont eux d\'esordonn\'es.
   \item Vous pouvez convertir la plupart des collections en d'autres sortes de 
 collections en leur envoyant des messages tels que \ct{asArray}, \ct{asOrderedCollection} \etc.
   \item Pour trier une collection, envoyez-lui le message \ct{asSortedCollection}.
