@@ -8,6 +8,8 @@
 % j'ai fait aussi des ajouts destines pour l'essentiel a traduire les
 % methodes ou certains menus (inutile de les reprendre dans la VO)
 %=================================================================
+% relecture: Rene Mages (12/19/2007) + Martial -> Mon Dec 24 18:27:55 CET 2007
+%=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
 % Lulu:
@@ -37,8 +39,8 @@
 \label{cha:firstApp}
 
 Dans ce chapitre, nous allons développer un jeu très simple, le jeu de \ind{Quinto}. 
-En cours de route, nous allons faire la démonstration de la plupart des outils que les développeurs \squeak utilisent pour construire et déboguer leurs programmes et comment les programmes sont échangés entre les développeurs. Nous verrons notamment le navigateur de classes (System Browser), l'inspecteur d'objet, le d\'ebogueur et le navigateur de \ind{paquetages} \ind{Monticello}. 
-Le développement avec Smalltalk est efficace : vous d\'ecouvrirez que vous passerez beaucoup plus de temps à écrire du code et beaucoup moins à gérer le processus de d\'eveloppement. 
+En cours de route, nous allons faire la démonstration de la plupart des outils que les développeurs \sq utilisent pour construire et déboguer leurs programmes et comment les programmes sont échangés entre les développeurs. Nous verrons notamment le navigateur de classes (System Browser), l'inspecteur d'objet, le d\'ebogueur et le navigateur de \ind{paquetage}{}s \ind{Monticello}. 
+Le développement avec Smalltalk est efficace: vous d\'ecouvrirez que vous passerez beaucoup plus de temps à écrire du code et beaucoup moins à gérer le processus de d\'eveloppement. 
 Ceci est en partie du au fait que Smalltalk est langage très simple, et d'autre part que les outils qui forment l'environnement de programmation sont tr\`es int\'egr\'es avec le langage.
 
 %=================================================================
@@ -60,16 +62,16 @@ Ceci est en partie du au fait que Smalltalk est langage très simple, et d'autre
 \end{figure}
 
 Pour vous montrer comment utiliser les outils de d\'eveloppement de
-\squeak, nous allons construire un jeu tr\`es simple nomm\'e
+\sq, nous allons construire un jeu tr\`es simple nomm\'e
 \emph{Quinto}.  Le tableau de jeu est montr\'e dans
 \figref{gameBoard}; il consiste en un tableau rectangulaire de
 \emph{cellules} jaunes claires.  Lorsque l'on clique sur l'une de ces
 cellules avec la souris, les quatre qui l'entourent deviennent
-bleue. Cliquez de nouveau et elles repassent au jaune p\^ale. Le but du 
+bleues. Cliquez de nouveau et elles repassent au jaune p\^ale. Le but du 
 jeu est de passer au bleu autant de cellules que possible.
 
-Le jeu de Quinto montr\'e dans \figref{gameBoard} est fait de deux types d'objets: le plateau de jeu lui-même et une centaine de cellule-objets individuelles. Le code \squeak pour r\'ealiser ce jeu va contenir deux classes: une pour le jeu et une autre pour les cellules.
-Nous allons voir maintenant comment d\'efinir ces deux classes en utilisant les outils de programmation de \squeak.
+Le jeu de Quinto montr\'e dans \figref{gameBoard} est fait de deux types d'objets: le plateau de jeu lui-même et une centaine de cellule-objets individuelles. Le code \sq pour r\'ealiser ce jeu va contenir deux classes: une pour le jeu et une autre pour les cellules.
+Nous allons voir maintenant comment d\'efinir ces deux classes en utilisant les outils de programmation de \sq.
 
 %=================================================================
 \section{Créer une nouvelle catégorie de classe}
@@ -113,7 +115,7 @@ Si vous sélectionnez une catégorie existante, alors la nouvelle catégorie ser
 
 Pour l'instant, il n'y a aucune classe dans cette nouvelle catégorie. Néanmoins, la zone principale d'édition affiche un modèle afin de créer facilement une nouvelle classe (voir \figref{classTemplate}).
 
-Ce modèle nous montre une expression \st qui envoie un message à la classe appellée \ct{Object}, lui demandant de créer une sous-classe appellée \ct{NameOfSubClass}.  La nouvelle classe n'a pas de variables et devrait appartenir à la catégorie \scat{SBE-Quinto}.
+Ce modèle nous montre une expression \st qui envoie un message à la classe appelée \ct{Object}, lui demandant de créer une sous-classe appelée \ct{NameOfSubClass}.  La nouvelle classe n'a pas de variables et devrait appartenir à la catégorie \scat{SBE-Quinto}.
 
 Nous modifions simplement le modèle afin de créer la classe que nous souhaitons.
 
@@ -136,7 +138,7 @@ SimpleSwitchMorph subclass: #SBECell
 \index{classe!cr\`eation}
 \index{Morphic}
 
-Cette nouvelle définition consiste en une expression \st qui envoie un message à une classe existante \ct{SimpleSwitchMorph}, lui demandant de créer une sous-classe appellée \ct{SBECell}
+Cette nouvelle définition consiste en une expression \st qui envoie un message à une classe existante \ct{SimpleSwitchMorph}, lui demandant de créer une sous-classe appelée \ct{SBECell}
 (en fait, comme \ct{SBECell} n'existe pas encore, nous passons comme argument le \emphind{symbole} \ct{#SBECell} qui correspond au nom de la classe à créer).
 Nous indiquons également que les instances de cette nouvelle classe doivent avoir une variable d'instance \ct{mouseAction}, que nous utiliserons pour définir l'action que la cellule doit effectuer lorsque l'utilisateur clique dessus avec la souris.
 
@@ -176,10 +178,10 @@ Les Smalltalkiens accordent une grande valeur à la lisibilité de leur
 code et il n'est pas habituel de trouver des commentaires détaillés
 dans leurs méthodes; la philosophie est plutôt d'avoir un code qui
 parle de lui-même (si cela n'est pas le cas, vous devrez le
-refactoriser jusqu'à ce que le soit!). 
+refactoriser jusqu'à ce que \c{c}a le soit!). 
 Un \subind{classe}{commentaire} de classe ne nécessite pas une
 description détaillée de la classe, mais quelques mots la décrivant
-sont vitals si les développeurs qui viennent après vous souhaitent
+sont vitaux si les développeurs qui viennent après vous souhaitent
 passer un peu de temps sur votre classe.
 \index{refactoring}
 
@@ -236,12 +238,12 @@ sans espace entre elles, et non un guillemet (")!
 
 Que fait le code ci-dessus?  Nous n'allons pas rentrer dans tous les
 détails maintenant (ce sera l'objet du reste de ce livre!), mais nous
-allons vous en donner un bref aperçu. Reprenons-le code ligne par ligne.
+allons vous en donner un bref aperçu. Reprenons le code ligne par ligne.
 
 Notons que la méthode s'appelle \mthind{SBECell}{initialize}.
 Ce nom dit bien ce qu'il veut dire\footnote{En anglais, puisque c'est
   la langue conventionnelle en \st.}!
-Par convention, si une classe définit une méthode nommée \ct{initialize}, elle sera appellée d\`es que l'objet aura été créé.
+Par convention, si une classe définit une méthode nommée \ct{initialize}, elle sera appelée d\`es que l'objet aura été créé.
 Ainsi d\`es que nous évaluons \ct{SBECell new}, le message \ct{initialize} sera envoyé automatiquement à cet objet nouvellement créé.
 Les méthodes d'initialisation sont utilisées pour définir l'état des objets, généralement pour donner une valeur à leurs variables d'instances; c'est exactement ce que nous faisons ici.
 %\seeindex{Object!initialization}{initialization}
@@ -355,7 +357,7 @@ BorderedMorph subclass: #SBEGame
 \end{classdef}
 
 Ici nous sous-classons \clsind{BorderedMorph}; \clsind{Morph} est la
-super-classe de toutes les formes graphiques de \squeak, et (suprise!)
+super-classe de toutes les formes graphiques de \sq, et (surprise!)
 un \ct{BorderedMorph} est un \ct{Morph} avec un bord.  
 Nous pourrions également insérer les noms des variables d'instances
 entre apostrophes sur la seconde ligne, mais pour l'instant 
@@ -363,7 +365,7 @@ laissons cette liste vide.
 
 Définissons maintenant une méthode \mthind{SBEGame}{initialize} pour \ct{SBEGame}.
 
-\dothis{Tapez ce qui suit dans le navigateur comme une méthode de \ct{SBEGame} et faites ensuite \menu{accept} :}
+\dothis{Tapez ce qui suit dans le navigateur comme une méthode de \ct{SBEGame} et faites ensuite \menu{accept}:}
 
 \begin{numMethod}[sbegameinitialize]{Initialisation du jeu}
 initialize
@@ -380,9 +382,9 @@ initialize
 %\sd{it would be nicer if we would not have to create an instance of SBECell for nothing}
 %\on{yes}
 
-\squeak va se plaindre qu'il ne conna\^it pas la signification de
+\sq va se plaindre qu'il ne conna\^it pas la signification de
 certains termes.
-\squeak vous indique qu'il ne conna\^it pas le message
+\sq vous indique qu'il ne conna\^it pas le message
 \ct{cellsPerSide} (en fran\c{c}ais, ``cellules par c\^ot\'e''), et
 vous suggère un certain nombre de propositions, dans le cas où il
 s'agirait d'une erreur de frappe.
@@ -393,7 +395,7 @@ s'agirait d'une erreur de frappe.
 	\ifluluelse
 		{\includegraphics[width=\textwidth]{UnknownSelector}}
 		{\includegraphics[scale=0.7]{UnknownSelector}}
-	\caption{\squeak détecte un sélecteur inconnu.\label{fig:unknownSelector}}
+	\caption{\sq détecte un sélecteur inconnu.\label{fig:unknownSelector}}
 \end{minipage}
 \hfill
 \begin{minipage}{0.64\textwidth}
@@ -409,10 +411,10 @@ Mais \ct{cellsPerSide} n'est pas une erreur \,---\, c'est juste le nom d'une mé
 
 \dothis{Sélectionnez le premier élément du menu, afin de confirmer que nous parlons bien de \ct{cellsPerSide}.}
 
-Puis, \squeak va se plaindre de ne pas connaître la signification de \ct{cells}. Il vous offre plusieurs possibilités de correction.
+Puis, \sq va se plaindre de ne pas connaître la signification de \ct{cells}. Il vous offre plusieurs possibilités de correction.
 
 \dothis{Choisissez \menu{declare instance} parce que nous souhaitons que \ct{cells} soit une variable d'instance.}
-Enfin, \squeak va se plaindre à propos du message \ct{newCellAt:at:}
+Enfin, \sq va se plaindre à propos du message \ct{newCellAt:at:}
 envoyé à la dernière ligne; ce n'est pas non plus une erreur,
 confirmez donc ce message aussi.
 %\index{on the fly variable definition}
@@ -423,18 +425,18 @@ confirmez donc ce message aussi.
 Si vous regardez maintenant de nouveau la définition de classe (en cliquant sur le bouton \button{instance}), vous allez voir que la définition a été modifiée pour inclure la variable d'instance \ct{cells}.
 
 Examinons plus précisemment cette méthode \ct{initialize}.
-La ligne \ct{| sampleCell width height n |} déclare 4 variables temporaires. Elles sont appellées variables temporaires car leur portée et leur durée de vie sont limitées à cette méthode. Des variables temporaires avec des noms explicites sont utiles afin de rendre le code plus lisible. \st n'a pas de syntaxe spéciale pour distinguer les constantes et les variables et en fait, ces 4 ``variables'' sont ici des constantes. Les lignes 4 à 7 définissent ces constantes.
+La ligne \ct{| sampleCell width height n |} déclare 4 variables temporaires. Elles sont appelées variables temporaires car leur portée et leur durée de vie sont limitées à cette méthode. Des variables temporaires avec des noms explicites sont utiles afin de rendre le code plus lisible. \st n'a pas de syntaxe spéciale pour distinguer les constantes et les variables et en fait, ces 4 ``variables'' sont ici des constantes. Les lignes 4 à 7 définissent ces constantes.
 
-Quelle taille doit faire notre plateau de jeu? Assez pour pouvoir contenir un certain nombre de cellules et pour pouvoir dessiner un bord autour d'elles.
+Quelle doit \^etre la taille de notre plateau de jeu? Assez grande pour pouvoir contenir un certain nombre de cellules et pour pouvoir dessiner un bord autour d'elles.
 Quel est le bon nombre de cellules? 5? 10? 100? Nous ne le savons pas
 pour l'instant et si nous le savions, il y aurait des chances pour que
 nous changions d'idée par la suite. Nous déléguons donc la
 responsabilité de connaître ce nombre à une autre méthode, que nous
-appellons \ct{cellsPerSide} et que nous écrirons 
+appelons \ct{cellsPerSide} et que nous écrirons 
 bient\^ot.
 %martial: 'bientot' remplace 'dans une minute ou deux'. Trop repetitif!
 C'est parce que nous envoyons le message \ct{cellsPerSide} avant de
-définir une méthode avec ce nom que \squeak nous demande ``confirm,
+définir une méthode avec ce nom que \sq nous demande ``confirm,
 correct, or cancel'' (\cad ``confirmez, corrigez ou annulez'') lorsque nous acceptons le corps de la méthode \ct{initialize}.
 Ne soyez pas inquiet par cela: c'est en fait une bonne pratique d'écrire en fonction d'autres méthodes qui ne sont pas encore définies.
 Pourquoi? En fait, ce n'est que quand nous avons commencé à écrire la
@@ -443,9 +445,9 @@ avions besoin, et à ce point, nous lui avons donné un nom
 %qui fait sens 
 significatif et nous avons poursuivi, sans nous interrompre.
  
-La quatrième ligne utilise cette méthode: le code Smalltalk \ct{self cellsPerSide} envoie le message \ct{cellsPerSide} à \pvind{self}, \cad à l'objet lui-même. La réponse, qui sera le nombre de cellules par côté du plateau de jeu, est affecté à \ct{n}.
+La quatrième ligne utilise cette méthode: le code Smalltalk \ct{self cellsPerSide} envoie le message \ct{cellsPerSide} à \pvind{self}, \cad à l'objet lui-même. La réponse, qui sera le nombre de cellules par côté du plateau de jeu, est affectée à \ct{n}.
 
-Les trois lignes suivantes créent un nouvel objet \ct{SBECell} et assigne sa largeur et sa hauteur aux variables temporaires appropriées.
+Les trois lignes suivantes créent un nouvel objet \ct{SBECell} et assignent sa largeur et sa hauteur aux variables temporaires appropriées.
 
 %The eighth line sends the message \ct{bounds:} to \self.
 %\ct{bounds:} is a method that we inherit from our superclass; it is used to define the space on the screen that this Morph will occupy.  
@@ -489,7 +491,7 @@ afin de le faire apparaître directement.
 
 Avant de définir de nouvelles méthodes, attardons-nous un peu sur le troisième panneau en haut du navigateur.
 De la même façon que le premier panneau du navigateur nous permet de catégoriser les classes de telle sorte que nous ne soyons pas submergé par une liste de noms de classes trop longue dans le second panneau, le troisième panneau nous permet de catégoriser les méthodes de telle sorte que n'ayons pas pas une liste de méthodes trop longue dans le quatrième panneau.
-Ces catégories de méthodes sont appellés ``protocoles''.
+Ces catégories de méthodes sont appelés ``protocoles''.
 \index{protocole}
 
 S'il n'y avait que quelques méthodes par classes, ce niveau hiérarchique supplémentaire ne serait pas vraiment nécessaire.
@@ -506,12 +508,12 @@ C'est pour cela que le navigateur offre un protocole virtuel
 Si vous avez suivi l'exemple jusqu'à présent, le troisième panneau doit contenir le protocole \protind{as yet unclassified}\footnote{NdT: non encore classifié.}.
 
 \dothis{Sélectionnez avec le \ind{button jaune} de la souris l'élément du menu \menu{categorize all uncategorized} afin de régler ce problème et déplacer les méthodes \ct{initialize} vers un nouveau protocole appelé \protind{initialization}.}
-Comment \squeak{} sait que c'est le bon protocole? En général,
-\squeak{} ne peut pas le savoir mais dans notre cas, il y a aussi une méthode \ct{initialize} dans la super-classe et \squeak suppose que notre méthode \ct{initialize} doit être rangé dans la même catégorie que celle qu'elle surcharge.
+Comment \sq sait que c'est le bon protocole? En général,
+\sq ne peut pas le savoir mais dans notre cas, il y a aussi une méthode \ct{initialize} dans la super-classe et \sq suppose que notre méthode \ct{initialize} doit être rangé dans la même catégorie que celle qu'elle surcharge.
 %\index{method!categorize}
 \index{m\'ethode!cat\'egorisation}
 
-Vous pouvez également vous rendre compte que \squeak a déjà rangé votre méthode \ct{initialize} dans le protocole \protind{initialization}. Si c'est le cas, c'est probablement que vous avez chargé un paquet nommé \ct{AutomaticMethodCategorizer} dans votre image.
+Vous pouvez également vous rendre compte que \sq a déjà rangé votre méthode \ct{initialize} dans le protocole \protind{initialization}. Si c'est le cas, c'est probablement que vous avez chargé un paquet nommé \ct{AutomaticMethodCategorizer} dans votre image.
 
 \paragraph{Une convention typographique.} Les Smalltalkiens utilisent fréquemment la notation ``\verb|>>|'' afin d'identifier la classe à laquelle la méthode appartient, ainsi par exemple, la méthode \ct{cellsPerSide} de la classe \ct{SBEGame} sera référencée par \ct{SBEGame>>cellsPerSide}.
 Afin d'indiquer que cela ne fait pas partie de la syntaxe de \st, nous utiliserons plutôt le symbole spécial \ct{>>>} de telle sorte que cette méthode apparaîtra dans le texte comme \ct{SBEGame>>>cellsPerSide}
@@ -801,11 +803,11 @@ Le jeu doit maintenant se dérouler sans problèmes.
 Maintenant que nous avons un jeu de Quinto qui fonctionne, vous avez
 probablement envie de le sauvegarder quelque part de telle sorte à
 pouvoir le partager avec des amis. Bien s\^ur, vous pouvez sauvegarder
-l'ensemble de votre image \squeak et montrer votre premier programme
+l'ensemble de votre image \sq et montrer votre premier programme
 en l'exécutant, mais vos amis ont probablement leur propre code dans
 leurs images et ne veulent pas sans passer pour utiliser votre image.
 Nous avons donc besoin de pouvoir extraire le code source d'une image
-\squeak afin que d'autres développeurs puissent le charger dans leurs images.
+\sq afin que d'autres développeurs puissent le charger dans leurs images.
 
 La façon la plus simple de le faire est d'effectuer une exportation ou
 sortie-fichier (\emph{filing out}) de votre code. Le menu activé par
@@ -814,7 +816,7 @@ générer un fichier correspondant à l'ensemble de la catégorie \scat{SBE-Quin
 Le fichier résultant est plus lisible par tout un chacun, même s'il
 est plus destiné à des machines qu'à des hommes.
 Vous pouvez envoyer par email ce fichier à vos amis et ils peuvent le
-charger dans leurs propres images \squeak en utilisant le navigateur
+charger dans leurs propres images \sq en utilisant le navigateur
 de fichiers File List Browser.
 \seeindex{sauvegarde du code}{cat\'egorie}
 \seeindex{cat\'egorie!exportation de fichier}{fichier, exportation}
@@ -831,7 +833,7 @@ Vous devriez trouver maintenant un fichier SBE-Quinto.st dans le même
 répertoire où votre image a été sauvegardé.
 Jetez un coup à ce fichier avec un éditeur de texte.
 
-\dothis{Ouvrez une nouvelle image \squeak et utilisez l'outil File
+\dothis{Ouvrez une nouvelle image \sq et utilisez l'outil File
   List Browser pour faire une importation de fichier via l'option de menu  \menu{file in} dans le fichier SBE-Quinto.st. Vérifiez que le jeu fonctionne maintenant dans une nouvelle image.}
 \seeindex{cat\'egorie!importation de fichier}{fichier, importation}
 \seeindex{classe!importation de fichier}{fichier, importation}
@@ -841,7 +843,7 @@ Jetez un coup à ce fichier avec un éditeur de texte.
 
 \begin{figure}[ht]
 \centerline {\includegraphics[width=\textwidth]{FileIn}}
-\caption{Charger le code source dans \squeak.
+\caption{Charger le code source dans \sq.
 \label{fig:filein}}
 \end{figure}
 
@@ -853,7 +855,7 @@ Tout comme la plupart des d\'eveloppeurs de projets libres
 \emph{Open-Source} qui trouvent plus utile de maintenir leur code dans
 des dépôts en utilisant \ind{CVS}\footnote{\url{www.nongnu.org/cvs}}
 ou \ind{Subversion}\footnote{\url{subversion.tigris.org}}, les
-programmeurs sur \squeak gèrent maintenant leur code au moyen de
+programmeurs sur \sq gèrent maintenant leur code au moyen de
 paquetages \ind{Monticello}: 
 ces paquetages sont représentés comme des fichiers dont le nom se
 termine en \ct{.mcz}; ce sont en fait des fichiers compressés en
@@ -914,7 +916,7 @@ Qu'est-ce qu'un paquetage? Pour l'instant, vous pouvez penser le paquetage comme
 
 \dothis{Ajoutez le paquetage \ct{SBE-Quinto} à votre navigateur Monticello en utilisant le bouton \button{+Package}.}
 
-\subsection{\ind{\squeaksource}: un \ind{SourceForge} pour \squeak.} 
+\subsection{\ind{\squeaksource}: un \ind{SourceForge} pour \sq.} 
 Nous pensons que la meilleure façon de sauvegarder votre code et de le
 partager est de créer un compte sur un serveur
 \squeaksource. \squeaksource est similaire à
@@ -928,7 +930,7 @@ Il y a un serveur public \squeaksource à l'adresse
 livre est enregistrée sur
 \url{http://www.squeaksource.com/SqueakByExample.html}. Vous pouvez
 consulter ce projet à l'aide d'un navigateur internet, mais il est
-beaucoup plus productif de le faire depuis \squeak en utilisant
+beaucoup plus productif de le faire depuis \sq en utilisant
 l'outil \emph{ad hoc}, le navigateur Monticello, qui vous permet de
 gérer vos paquetages.
 
@@ -937,7 +939,7 @@ Ouvrez un compte et ensuite, créez un projet (\ie via ``register'').}
 \squeaksource va vous montrer l'information que vous devez utiliser
 lorsque on ajoute un dépôt au moyen de Monticello.
 
-Une fois que votre projet a été créé sur \squeaksource, vous devez indiquer au système \squeak de l'utiliser.
+Une fois que votre projet a été créé sur \squeaksource, vous devez indiquer au système \sq de l'utiliser.
 
 \dothis{Avec le paquetage \ct{SBE-Quinto} sélectionné, cliquez sur le
   boutton \button{+Repository} dans le navigateur Monticello.}  Vous
@@ -1015,7 +1017,7 @@ navigateur Monticello.
   \item L'inspecteur offre une manière simple et générale pour inspecter et interagir avec des objets arbitraires.
   \item Le navigateur de classes détecte l'utilisation de méthodes et de variables non déclarées et propose d'éventuelles corrections.
   \item La méthode \ct{initialize} est automatiquement éxecutée après
-    la création d'un objet dans \squeak. Vous pouvez y mettre
+    la création d'un objet dans \sq. Vous pouvez y mettre
     le code d'initialisation que vous voulez.
   \item Le débogueur est une interface de haut-niveau pour inspecter et modifier l'état d'un programme en cours d'ex\'ecution.
   \item Vous pouvez partager le code source en sauvegardant une
