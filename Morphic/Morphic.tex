@@ -7,10 +7,12 @@
 %% Maintainer: Martial Boniou
 %% Created: 2007-11-09 08:07:45 +0100 (Fri, 09 Nov 2007)
 %% Version: 13642
-%% Last-Updated: Fri Dec 21 16:28:36 2007 (3600 CET)
+%% Last-Updated: Tue Dec 25 12:34:19 2007 (3600 CET)
 %%           By: Martial Boniou
-%%     Update #: 733
-%% URL: https://www.iam.unibe.ch/scg/svn_repos/SqueakByExample/FrenchBook/Morphic/Morphic.tex
+%%     Update #: 756
+%% URL:
+%% https://www.iam.unibe.ch/scg/svn_repos/SqueakByExample/FrenchBook/Morphic/Morphic.tex
+%% Review: Rene Mages - Fri Dec 21 22:18:36 2007 (3600 CET)
 %% Keywords: 
 %% Compatibility: 
 %% 
@@ -135,7 +137,7 @@ que toutes les formes graphiques sont des objets
 inspectables et modifiables directement par la souris.
 %l'interactivit\'e offerte
 
-De plus, le fait que toute action faite par l'utilisateur donnent lieu
+De plus, le fait que toute action faite par l'utilisateur donne lieu
 \`a une r\'eponse de la part de Morphic d\'efinit son caract\`ere
 vivant: les informations affich\'ees sont constamment mise \`a jour
 au fur et \`a mesure des changements du ``monde'' que l'interface
@@ -210,7 +212,7 @@ morph en reprenant le code plus haut et en repla\c{c}ant, par exemple,
 le \ct{s} par un \ct{t}, vous obtiendrez certainement \ct{String1} comme nom
 temporairement attribu\'e.
 
-Nous partons ici du principe que le nom du morph en \ct{String}.
+Nous partons ici du principe que le nom du morph est \ct{String}.
 
 \dothis{Cliquez le point d'exclamation de la commande \ct{String turn
     by 5} dans la bo\^{\i}te de contr\^ole inf\'erieure du visualiseur
@@ -239,9 +241,9 @@ commandes, vous pouvez aussi utiliser le halo Morphic et cliquer sur
 la poign\'ee nomm\'ee Viewer \viewerHandle{}.
    
 Notez que vous pouvez ranger le visualiseur au m\^eme titre que les
-fen\^etres; pour ce faire, cliquez sur l'ic\^one miniature coll\'e \`a
+fen\^etres; pour ce faire, cliquez sur l'ic\^one miniature coll\'ee \`a
 gauche du visualiseur. Pour rappeler le visualiseur, vous n'aurez
-qu'\`a cliquer sur son ic\^one plac\'e sur le bord droit du \emph{world}.
+qu'\`a cliquer sur son ic\^one plac\'ee sur le bord droit du \emph{world}.
 
 \subsection{Personnaliser sa repr\'esentation}
 
@@ -454,7 +456,7 @@ descendant la hi\'erarchie des inclusions.
 
 Bien qu'il soit possible de faire des repr\'esentations graphiques
 utiles et int\'eressantes par composition de morphs, vous aurez
-parfois besoin de cr\'eer quelque chose de compl\'etement diff\'erent.
+parfois besoin de cr\'eer quelque chose de compl\`etement diff\'erent.
 \index{morph!sous-classer}
 Pour ce faire, vous d\'efinissez une sous-classe de \ct{Morph} et
 surchargez la m\'ethode \mthind{Morph}{drawOn:} pour personnaliser son
@@ -648,7 +650,7 @@ morceaux et sur le remplissage uniquement des deux morceaux
 sup\'erieurs et inf\'erieurs.
 Encore une fois, nous trouvons une m\'ethode dans la classe
 \ct{Rectangle} qui va bien nous aider: \ct{r1 areasOutside: r2} 
-retourne un tableau de rectangles comprennent les parties de \ct{r1}
+retourne un tableau de rectangles comprenant les parties de \ct{r1}
 exclus de \ct{r2}. 
 
 Le code revisit\'e de la m\'ethode \ct{drawOn:} peut s'\'ecrire comme suit:
@@ -751,7 +753,7 @@ morph sous le pointeur de la souris le message
 envoie imm\'ediatemment le message \mthind{Morph}{mouseDown:}. Lorsque
 le bouton de la souris est rel\^ach\'e, Morphic envoie
 \mthind{Morph}{mouseUp:}  \`a ces m\^eme morphs qui avaient r\'epondus
-positivement. Si tous les morphs retourne \ct{false}, Morphic entame
+positivement. Si tous les morphs retournent \ct{false}, Morphic entame
 une op\'eration de
 %saisissement dans la version d'Hilaire (c'est en fait une emotion
 %vive et soudaine
@@ -794,8 +796,7 @@ Ce message assure que Morphic envoie \ct{drawOn:}
 %in a timely fashion
 de fa\c{c}on assez rapide.
 \ab{However, the \ct{self changed} message seems to be entirely unnecessary; the colour changes instantly without it.}
-Notez aussi qu'une fois qu'un morph g\`ere les \ind{\'ev\'enements souris}, vous ne pouvez plus l'attraper avec la souris pour le
-d\'eplacer.
+Notez aussi qu'une fois qu'un morph g\`ere les \ind{\'ev\'enements souris}, vous ne pouvez plus l'attraper avec la souris pour le d\'eplacer.
 D\`es lors, vous devez utiliser le halo Morphic en cliquant dessus avec le
 bouton bleu: les poign\'ees sup\'erieurs noir \grabHandle{}
 et marron \moveHandle{} 
@@ -809,7 +810,7 @@ L'argument \ct{anEvent} de \ct{mouseDown:} est une instance de
 bouton rouge de la souris et \mthind{MouseEvent}{yellowButtonPressed}
 pour celle du clic au bouton jaune. Parcourez cette classe pour
 en savoir plus sur les autres m\'ethodes disponibles pour la gestion
-des \'evenements souris.
+des \'ev\'enements souris.
 
 \subsection{Les \'ev\'enements clavier}
 
@@ -820,7 +821,8 @@ La capture des \ind{\'ev\'enements clavier} se d\'eroule en trois
 %``keyboard focus'' to a specific morph: for instance we can give focus to our morph when the mouse is over it.
 
 \begin{enumerate}
-	\item activer votre morph pour la gestion du clavier par la ``mise au point'' sous certaine condition, disons, lorsque la souris est au-dessus du morph; 
+	\item activer votre morph pour la gestion du clavier par la ``mise
+      au point'' sous une certaine condition, disons, lorsque la souris est au-dessus du morph; 
 	\item g\'erer l'\'ev\'enement proprement dit avec la m\'ethode
       \mthind{Morph}{handleKeystroke:} --- ce message est envoy\'e au
       morph quand vous pressez une touche et qu'il a d\'ej\`a re\c{c}u
@@ -961,11 +963,11 @@ le stoppe.
 
 %=================================================================
 %martial: passage de cette section en sous-section
-\subsection{Les int\'eracteurs} %interactors
+\subsection{Les interacteurs} %interactors
 
 %ajout
 Morphic dispose de morphs commodes pour cr\'eer en quelques lignes de
-code des int\'eractions avec l'utilisateur. Parmi eux, nous avons la
+code des interactions avec l'utilisateur. Parmi eux, nous avons la
 classe \clsind{FillInTheBank} offre quelques bo\^{\i}tes de dialogue
 pr\^etes \`a l'emploi pour fournir \`a l'utilisateur une zone de saisie.
 La m\'ethode \mthind{FillInTheBlank}{request:initialAnswer:} renvoie
@@ -1045,7 +1047,7 @@ Comment d\'ecidons-nous si le receveur va accepter ou refuser le morph
 d\'epos\'e? En g\'en\'eral, ces deux morphs devront s'accorder sur
 leur interaction. Le receveur fait cela en r\'epondant au message
  \mthind{Morph}{wantsDroppedMorph:event:}; le premier argument est le
- morph que nous voulons d\'epos\'e et le second est l'\'ev\'enement
+ morph que nous voulons d\'eposer et le second est l'\'ev\'enement
  souris. Ce dernier argument permet, par exemple, au receveur de
  savoir si une (ou plusieurs) touche de modification a \'et\'e
  maintenue enfonc\'ee durant la phase de d\'ep\^ot de l'autre morph.
@@ -1128,7 +1130,7 @@ DroppedMorph>>>initialize
 % reformulation
 Nous voulons que le morph d\'epos\'e ait un nouveau comportement 
 lorsqu'il est rejet\'e par le receveur; cette fois-ci, il restera
-attacher au pointeur de la souris:
+attach\'e au pointeur de la souris:
 \begin{method}{R\'eagir lorsque le morph est rejet\'e lors du d\'ep\^ot}
 DroppedMorph>>>rejectDropMorphEvent: anEvent
 	| h |
@@ -1303,12 +1305,11 @@ DieMorph>>>drawOn: aCanvas
 		do: [:aPoint | self drawDotOn: aCanvas at: aPoint]
 \end{method}
 
-Les capacit\'es r\'efl\'ectives de \st sont utilis\'ees dans la
+Les capacit\'es r\'eflexives de \st sont utilis\'ees dans la
 derni\`ere expression de cette m\'ethode. Dessiner les points noirs
 d'une face revient \`a it\'erer sur la collection 
 %ajout
-de coordonn\'ees
-retourn\'ee par la m\'ethode \ct{faceX} 
+de coordonn\'ees retourn\'ee par la m\'ethode \ct{faceX} 
 %ajout
 (\ct{X} est issu de la variable d'instance \ct{dieValue}
 correspondant au num\'ero de la face en cours),
@@ -1356,11 +1357,9 @@ DieMorph>>>dieValue: aNumber
 			self changed]
 \end{method}
 
-Nous allons utiliser le syst\`eme d'animation pour 
-pour faire d\'efiler rapidement 
+Nous allons utiliser le syst\`eme d'animation pour faire d\'efiler rapidement 
 %ajout
-et al\'eatoirement (avec le message \ct{atRandom})
-toutes les faces du d\'e:
+et al\'eatoirement (avec le message \ct{atRandom}) toutes les faces du d\'e:
 \index{Morphic!animation}
 \begin{methods}{Animer le d\'e}
 DieMorph>>>stepTime
@@ -1374,7 +1373,7 @@ D\'esormais, notre d\'e ``roule''!
 Pour d\'emarrer ou arr\^eter  l'animation par un clic de souris, nous
 utiliserons ce que nous avons pr\'ealablement appris sur les
 \'ev\'enements souris.
-Nous activons la r\'eception des \'evenements de la souris et nous
+Nous activons la r\'eception des \'ev\'enements de la souris et nous
 d\'ecrivons notre gestion du bouton rouge de la souris dans la
 m\'ethode \ct{mouseDown:}.       
 %ou \mthind{Morph}{mouseDown:}
@@ -1402,7 +1401,7 @@ Maintenant notre d\'e ``roule'' ou se fige quand nous cliquons dessus.
 
 La m\'ethode \ct{drawOn:} a un canevas, instance de
 \clsindmain{Canvas}, comme unique argument;
-le canevas est l'espace sur lequel le morph se dessine.
+le canevas est l'espace dans lequel le morph se dessine.
 En utilisant les m\'ethodes graphiques du canevas, vous \^etes libre
 de donner l'apparence que vous voulez \`a votre morph.
 Si vous parcourez la hi\'erarchie d'h\'eritage de la classe
@@ -1501,7 +1500,7 @@ Vous pouvez:
     (ce que fait le morph) et \ct{stepTime} (le nombre de
     millisecondes entre les pas);
   \item trouver diff\'erents morphs pr\'e-d\'efinis pour
-    l'int\'eractivit\'e de l'utilisateur comme
+    l'interactivit\'e de l'utilisateur comme
     \ct{PopUpMenu} ou \ct{FillInTheBlank};
 %martial: ajout a signaler a andrew
   \item explorer les m\'ethodes graphiques des diff\'erents canevas,
