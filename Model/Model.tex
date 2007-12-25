@@ -4,6 +4,7 @@
 % $Revision: 12715 $
 %=================================================================
 % translated by Martial.Boniou@ifrance.com start: (Fri, 28 Sep 2007)
+% relecture par Rene Mages : Thu Dec 20 12:13:40 CET 2007
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -35,7 +36,7 @@
 
 Le mod\`ele de programmation de \st est simple et homog\`ene: tout est objet et les objets communiquent les uns avec les autres uniquement
 via envoi de messages (nous disons aussi transmission de messages).
-Cependant, ces caract\'eristiques de simplicit\'e et d'homog\'en\'eit\'e peuvent \^etre source de quelque difficult\'e pour le programmeur habitu\'e \`a d'autres langages. Dans ce chapitre nous pr\'esenterons les concepts de base du mod\`ele objet de \st; en particulier nous discuterons des cons\'equences de repr\'esenter les classes comme des objets.
+Cependant, ces caract\'eristiques de simplicit\'e et d'homog\'en\'eit\'e peuvent \^etre source de quelques difficult\'es pour le programmeur habitu\'e \`a d'autres langages. Dans ce chapitre nous pr\'esenterons les concepts de base du mod\`ele objet de \st; en particulier nous discuterons des cons\'equences de repr\'esenter les classes comme des objets.
 
 %=========================================================
 \section{Les r\`egles du mod\`ele}
@@ -92,7 +93,14 @@ Plus encore, les classes ne sont pas des objets de seconde zone: elles sont v\'e
 Ainsi \squeak est vraiment un syst\`eme r\'eflexif offrant une grande expressivit\'e
 aux développeurs.
 
-En regardant plus avant dans l'impl\'ementation de \st, nous trouvons trois sortes diff\'erentes d'objets. Il y a (1) les objets ordinaires avec des variables d'instance pass\'ees par r\'eferences; il y a (2) \emph{les petits entiers} ~\footnote{En anglais, small integers.} qui sont pass\'es par valeur, et enfin, il y a (3) les objets indexables comme les Array (tableaux) qui ont une portion contig\"ue de m\'emoire. La beaut\'e de \st r\'eside 
+En regardant plus avant dans l'impl\'ementation de \st, nous trouvons
+trois sortes diff\'erentes d'objets. Il y a (1) les objets ordinaires
+avec des variables d'instance pass\'ees par r\'eference; il y a (2)
+\emph{les petits entiers}~\footnote{En anglais, \emph{small
+    integers}.} qui sont pass\'es par valeur, et enfin, il y a (3) les
+objets 
+%martial: remplacement de 'indexables' (Tue Dec 25 11:37:17 CET 2007)
+index\'es comme les Array (tableaux) qui ont une portion contig\"ue de m\'emoire. La beaut\'e de \st r\'eside 
 dans le fait que vous n'avez aucunement \`a vous soucier des diff\'erences entre ces trois types
 d'objet.
 
@@ -124,13 +132,13 @@ automatiquement.
 La m\'eta-classe definit la structure et le comportement de la classe qui est son instance.
 \damien{Did any of you verify it is 99\%? Maybe 'Most' would have been better than '99\%'}
 99\% du temps vous n'aurez pas \`a penser aux m\'eta-classes et vous pourrez joyeusement les ignorer.
-(Nous porterons notre attention aux m\'etaclasses dans \charef{metaclasses}.)
+(Nous porterons notre attention aux m\'eta-classes dans \charef{metaclasses}.)
 
 %---------------------------------------------------------
 \subsection{Les variables d'instance}
 
 Les variables d'instance en \st sont priv\'ees vis-\`a-vis de l'\emph{instance} elle-m\^eme.
-Ceci diff\'ere de langages comme \ind{Java} et \ind{C++} qui permettent l'acc\`es aux variables d'instance (aussi connues sous le nom d'``attributs'' ou ``variables membre'') depuis n'importe qu'elle autre instance de la m\^eme classe.
+Ceci diff\`ere de langages comme \ind{Java} et \ind{C++} qui permettent l'acc\`es aux variables d'instance (aussi connues sous le nom d'``attributs'' ou ``variables membre'') depuis n'importe qu'elle autre instance de la m\^eme classe.
 Nous disons que l'\emphind{espace d'encapsulation}~\footnote{En anglais, encapsulation boundary.} des objets en Java et en C++ est la classe, l\`a o\`u, en \st, c'est l'instance.
 \seeindex{variable!instance}{variable d'instance}
 \seeindex{attribut}{variable d'instance}
@@ -232,7 +240,7 @@ sur le bouton \button{class} (pour classe), vous naviguez dans la classe \ct{Col
 en envoyant les messages directement \`a la classe \ct{Color} elle-m\^eme.
 Par exemple, \ct{Color blue} envoie le message \ct{blue} (pour \emph{bleu}) \`a
 la classe \clsind{Color}.
-Vous trouverez donc la m\'ethode \ct{blue} d\'efini c\^ot\'e classe de la classe \ct{Color} et non du c\^ot\'e instance.
+Vous trouverez donc la m\'ethode \ct{blue} d\'efinie c\^ot\'e classe de la classe \ct{Color} et non du c\^ot\'e instance.
 \seeindex{c\^ot\'e instance}{System Browser!c\^ot\'e instance}
 \seeindex{c\^ot\'e classe}{System Browser!c\^ot\'e classe}
 \seeindex{navigateur de classes!c\^ot\'e instance}{System Browser!c\^ot\'e instance}
@@ -253,7 +261,7 @@ Quand vous acceptez ce patron, le syst\`eme cr\'ee non seulement la classe
 que vous d\'efinissez mais aussi la m\'eta-classe correspondante.
 Vous pouvez naviguer dans la m\'eta-classe en cliquant sur le bouton \button{class}.
 Du patron employ\'e pour la cr\'eation de la m\'eta-classe, seule la
-liste de noms des variables d'instance vous est propos\'ee pour une \'edition directe.  
+liste des noms des variables d'instance vous est propos\'ee pour une \'edition directe.  
 
 Une fois que vous avez cr\'e\'e une classe, cliquer sur
 le bouton \button{instance} vous permet d'\'editer et de parcourir les
@@ -265,7 +273,7 @@ la m\'eta-classe (dans ce cas \ct{Color class}).
 %---------------------------------------------------------
 \subsection{Les m\'ethodes de classe} 
 
-Les m\'ethodes de classe peuvent \^etre relativement utile; naviguez dans \ct{Color class} pour voir quelques bons exemples.
+Les m\'ethodes de classe peuvent \^etre relativement utiles; naviguez dans \ct{Color class} pour voir quelques bons exemples.
 Vous verrez qu'il y a deux sortes de \subind{classe}{m\'ethode}{s} d\'efinies dans une classe: celles qui cr\'eent les instances de la classe, comme \cmind{Color class}{blue} et celles qui ont une action \emph{utilitaire}, 
 % martial: j'ai mis volontairement \emph pour l'adjectif utilitaire
 comme \cmind{Color class}{showColorCube}.
@@ -274,19 +282,19 @@ de classe utilis\'ees d'une autre mani\`ere.
 
 Il est coutumier de placer des m\'ethodes utilitaires dans le \subind{System Browser}{c\^ot\'e classe} parce qu'elles peuvent \^etre ex\'ecut\'ees
 sans avoir \`a cr\'eer un objet additionnel dans un premier temps.
-En fait, beaucoup d'entre elles contiennent un commentaire pour les rendre plus compr\'ehensible pour l'utilisateur qui les ex\'ecute.
+En fait, beaucoup d'entre elles contiennent un commentaire pour les rendre plus compr\'ehensible spour l'utilisateur qui les ex\'ecute.
 
 \dothis{Naviguez dans la m\'ethode \ct{Color class>>>showColorCube}, double-cliquez \`a l'int\'erieur des guillements englobant le commentaire \ct{"Color showColorCube"} et tape au clavier \short{d}.}
 Vous verrez l'effet de l'ex\'ecution de cette m\'ethode.  (S\'electionnez \menu{World \go \ind{restore display}~(r)} pour annuler les effets.)
 
 Pour les familiers de \ind{Java} et \ind{C++},  les m\'ethodes de classe peuvent \^etre assimil\'ees aux m\'ethodes statiques. 
-N\'eanmoins, l'homog\'en\'eit\'e de \st induit une diff\'erence:  les m\'ethodes statiques de Java sont des fonctions r\'esolues de mani\`ere statique alors que les m\'ethodes de classe de \st sont des m\'ethodes \`a transfert dynamique~\footnote{En anglais, dynamically-dispatched methods.} Ainsi, l'h\'eritage, la surcharge et l'uitilisation de \emph{super} fonctionnent avec les m\'ethodes de classe dans \st, ce qui n'est pas le cas avec les m\'ethodes statiques en Java.  
+N\'eanmoins, l'homog\'en\'eit\'e de \st induit une diff\'erence:  les m\'ethodes statiques de Java sont des fonctions r\'esolues de mani\`ere statique alors que les m\'ethodes de classe de \st sont des m\'ethodes \`a transfert dynamique~\footnote{En anglais, dynamically-dispatched methods.} Ainsi, l'h\'eritage, la surcharge et l'utilisation de \emph{super} fonctionnent avec les m\'ethodes de classe dans \st, ce qui n'est pas le cas avec les m\'ethodes statiques en Java.  
 
 %---------------------------------------------------------
 \subsection{Les variables d'instance de classe}
 Dans le cadre des variables d'instance ordinaires,
 toutes les instances d'une classe partagent le m\^eme ensemble
-de noms de variable et, les instances de ses sous-classes h\'eritent
+de noms de variable et les instances de ses sous-classes h\'eritent
 de ces noms; cependant, chaque instance poss\`ede son propre jeu de valeurs.
 C'est exactement la m\^eme histoire avec les \subind{classe!variables d'instance}{variables d'instance de classe}: chaque classe a ses propres variables d'instance de classe priv\'ees.
 Une sous-classe h\'eritera de ces  variables d'instance de classe, \emph{mais elle aura ses propres copies priv\'ees de ces variables}.
@@ -299,6 +307,8 @@ les instances des sous-classes seront compt\'ees s\'epar\'ement.
 \paragraph{Exemple: les variables d'instance de classe ne sont pas partag\'ees avec les sous-classes.}
 Soient les classes \ct{Dog} et \ct{Hyena}~\footnote{En fran\c{c}ais, chien et hy\`ene.} telles que \ct{Hyena} h\'erite de la variable d'instance de classe \ct{count} de la classe \ct{Dog}.
 
+%martial: si mauvaise coupe:
+\newpage
 \begin{classdef}[dog]{Cr\'eer Dog et Hyena}
 Object subclass: #Dog
 	instanceVariableNames: ''
@@ -398,7 +408,7 @@ WebServer class>>>uniqueInstance
      ^ uniqueInstance
 \end{method}
 
-La premi\`ere fois que \ct{WebServer uniqueInstance} est ex\'ecut\'e, une instance de la classe \ct{WebServer} sera cr\'e\'ee et affect\'ee \`a la variable \ct{uniqueInstance}. 
+La premi\`ere fois que l'expression \ct{WebServer uniqueInstance} est ex\'ecut\'ee, une instance de la classe \ct{WebServer} sera cr\'e\'ee et affect\'ee \`a la variable \ct{uniqueInstance}. 
 La seconde fois, l'instance pr\'ec\'edemment cr\'e\'ee sera retourn\'ee au lieu d'y avoir une nouvelle cr\'eation. 
 
 Remarquons que la clause conditionnelle \`a l'int\'erieur du code de cr\'eation
@@ -433,7 +443,7 @@ Traditionnellement, la racine de la hi\'erarchie d'h\'eritage en \st est la clas
 En \squeak, la racine est en fait une classe nomm\'ee \clsind{ProtoObject}, mais
 normalement, vous n'aurez aucune attention \`a accorder \`a cette classe.
 \ct{ProtoObject} encapsule le jeu de messages restreint que tout objet \emph{doit} avoir.  
-N'importe comment, la plupart des classes h\'erite de \ct{Object} qui, pour
+N'importe comment, la plupart des classes h\'eritent de \ct{Object} qui, pour
 sa part, d\'efinit beaucoup de messages suppl\'ementaires que presque tous les
 objets devraient comprendre et auquels ils devraient pouvoir r\'epondre.
 \`A moins que vous ayez une autre raison de faire autrement, vous devriez
@@ -444,7 +454,7 @@ de la classe \ct{Object} ou d'une de ses sous-classes lors de la cr\'eation de c
 \ct{subclass: instanceVariableNames: ...}
 \`a une classe existante.
 Il y a d'autres m\'ethodes pour cr\'eer des classes.
-Veuillez jeter un \oe il au protocole \prot{Kernel-Classes \go Class \go subclass creation} pour voir desquelles il s'agit.}
+Veuillez jeter un coup d'\oe il au protocole \prot{Kernel-Classes \go Class \go subclass creation} pour voir desquelles il s'agit.}
 \scatindex{Kernel-Classes}
 \protindex{cr\'eation}
 
@@ -469,7 +479,7 @@ Les m\'ethodes ``manquantes''\,---\,celle que les autres m\'ethodes envoyent, ma
 
 \st n'a pas de syntaxe d\'edi\'ee pour dire qu'une m\'ethode ou qu'une classe est abstraite. 
 Par convention, le corps d'une m\'ethode abstraite contient l'expression \ct{self subclassResponsibility}~\footnote{Dans le sens, laiss\'ee \`a la responsabilit\'e de la sous-classe.}. 
-Ceci est connue sous le nom de ``marker method'' ou marqueur de m\'ethode; il indique que les sous-classes ont la responsabilit\'e de d\'efinir une version concr\`ete de la m\'ethode. 
+Ceci est connu sous le nom de ``marker method'' ou marqueur de m\'ethode; il indique que les sous-classes ont la responsabilit\'e de d\'efinir une version concr\`ete de la m\'ethode. 
 Les m\'ethodes \ct{self subclassResponsibility} devraient toujours \^etre surcharg\'ees, et ainsi, ne devraient jamais \^etre ex\'ecut\'ees.
 Si vous oubliez d'en surcharger une et que celle-ci est ex\'ecut\'ee, une exception sera lev\'ee. 
 \cmindex{Object}{subclassResponsibility}
@@ -496,7 +506,7 @@ Magnitude>>>< aMagnitude
 \end{method}
 
 \noindent
-A contrario, la m\'ethode \mthind{Magnitude}{>=} est concr\`ete; elle est d\'efinit en fonction de \ct{<}:
+A contrario, la m\'ethode \mthind{Magnitude}{>=} est concr\`ete; elle est d\'efinie en fonction de \ct{<}:
 
 \begin{method}[Magnitude>=]{\ct{Magnitude>>>>=}. Le commentaire dit: ``r\'epond si le receveur est plus grand ou \'egal \`a l'argument''.}
 >= aMagnitude 
@@ -621,7 +631,7 @@ dit succintement le principe suivant:
 \important{Ne fais rien que tu ne peux d\'el\'eguer \`a quelqu'un d'autre~\traduit{Don't do anything that you can push off onto someone else.}.}
 \index{Pelrine, Joseph}
 
-Beaucoup de langages orient\'es objets disposent \`a la fois d'op\'erations statiques et dynamiques pour les objets; en \st il n'y a qu'envois de message dynamiques. Au lieu de fournir des op\'erations statiques sur les classes, nous leur envoyons simplement des messages, puisque les classes sont aussi des objets. 
+Beaucoup de langages orient\'es objets disposent \`a la fois d'op\'erations statiques et dynamiques pour les objets; en \st il n'y a qu'envois de messages dynamiques. Au lieu de fournir des op\'erations statiques sur les classes, nous leur envoyons simplement des messages, puisque les classes sont aussi des objets. 
 
 \emph{Pratiquement} tout en \st se passe par envoi de messages.
 \`A certains stades, le pragmatisme doit prendre le relais:
@@ -655,7 +665,7 @@ Le processus est relativement simple:
 la classe du receveur cherche la m\'ethode \`a utiliser pour
 op\'erer le message.
 Si cette classe n'a pas de m\'ethode, elle demande \`a sa \ind{super-classe} et remonte ainsi de suite la cha\^{\i}ne d'\ind{h\'eritage}.
-Quand la m\'ethode est enfin trouv\'ee, les arguments sont affect\'es aux param\'etres de la m\'ethode et la \ind{machine virtuelle} l'ex\'ecute.
+Quand la m\'ethode est enfin trouv\'ee, les arguments sont affect\'es aux param\`etres de la m\'ethode et la \ind{machine virtuelle} l'ex\'ecute.
 \index{m\'ethode!lookup}
 \index{m\'ethode!r\'eferencement}
 
@@ -748,9 +758,9 @@ Morph>>>openInWorld
 \end{method}
 
 Pourquoi \'ecrire \ct{^ self} explicitement n'est pas une bonne chose \`a faire?
-Parce que, quand vous renvoie quelque chose explicitiment, vous communiquez
+Parce que, quand vous renvoyez explicitement quelque chose, vous communiquez
 que vous retournez quelque chose d'importance \`a l'exp\'editeur du message.
-D\`es lors. vous sp\'ecifiez que vous attendez que l'exp\'editeur fasse quelque chose de la valeur retourn\'ee.
+D\`es lors vous sp\'ecifiez que vous attendez que l'exp\'editeur fasse quelque chose de la valeur retourn\'ee.
 Puisque ce n'est pas le cas ici, il est pr\'ef\'erable de ne pas renvoyer explicitement \self.
 
 C'est une convention en \st, ainsi r\'esum\'e par Kent Beck se r\'ef\'erant \`a la \emph{valeur de retour importante} ``Interesting return value'' \cite{Beck97a}:
@@ -812,7 +822,7 @@ Au lieu de faire partir la recherche depuis la classe du receveur,
 celle-ci d\'emarre dans la super-classe de la m\'ethode dans laquelle la
 transmission sur \super se produit. 
 
-Remarquez que \super n'est \emph{pas} la supre-classe!
+Remarquez que \super n'est \emph{pas} la super-classe!
 C'est une erreur courante et normale que de le penser.
 C'est aussi une erreur de penser que la recherche commence dans la super-classe du receveur.
 Nous allons voir pr\'ecisemment comment cela marche avec l'exemple suivant.
@@ -923,14 +933,14 @@ offrant une fa\c{c}on diff\'erente de capturer l'erreur.
 
 En fait, nous nous simplifions la vie en impl\'ementant une 
 d\'el\'egation automatique de messages d'un objet \`a un autre.
-Un objet \ct{Delegator} peut simplement d\'el\'eguer tous messages
+Un objet \ct{Delegator} peut simplement d\'el\'eguer tous les messages
 qu'il ne comprend pas \`a un autre objet responsable de les g\'erer ou
 de lever une erreur lui-m\^eme!
 
 %=========================================================
 \section{Les variables partag\'ees}
 
-Maintenant, int\'eressons-nous \`a un aspect de \st que nous n'avons pas couverts
+Maintenant, int\'eressons-nous \`a un aspect de \st que nous n'avons pas couvert
 par nos cinq r\`egles: les variables \subind{variable}{partag\'ee}{}s.
 
 \st offre trois sortes de variables partag\'ees: (1) les variables \emph{globales}; (2) les \emph{variables de classe} partag\'ees entre les instances et les classes, et (3) les variables partag\'ees parmi un groupe de classes ou \emph{variables de pool}.  Les noms de toutes ces variables partag\'ees commencent par une lettre capitale (majuscule), pour nous informer qu'elles sont partag\'ees entre plusieurs objets.
@@ -993,7 +1003,8 @@ touche \emph{shift} gauche est maintenue enfonc\'ee, alors que \ct{Sensor mouseP
 Si vous \'ecrivez une m\'ethode qui r\'ef\'erence une variable non d\'eclar\'ee,
 le navigateur de classe (Browser) vous l'annoncera normalement
 pour que vous la d\'eclariez, par exemple, en tant que variable globale ou variable d'instance de la classe.
-Cependant, si par la suite, vous effacez la d\'eclaration, le code ref\'erencera une variable non d\'eclar\'ee. 
+Cependant, si par la suite, vous effacez la d\'eclaration, le code
+r\'ef\'erencera une variable non d\'eclar\'ee. 
 Inspecter \ct{Undeclared} peut parfois expliquer des comportements bizarres!
 
 \item
@@ -1006,7 +1017,8 @@ SystemOrganization categoryOfElement: #Magnitude --> #'Kernel-Numbers'
 
 Une pratique courante est de limiter fortement l'usage des variables globales;
 il est toujours pr\'ef\'erable d'utiliser des variables d'instance de classe ou des variables de classes et de fournir des m\'ethodes de classe pour y acc\'eder.
-En effet, si aujourd'hui \squeak devait \^etre reprogramm\'e \`a z\'ero~\footnote{Le terme anglais est: \emph{from scratch}, signifiant depuis le d\'ebut.}, la plupart des variables globales qui ne sont pas des classes seraient remplac\'ees par des Singletons.
+En effet, si aujourd'hui \sq devait \^etre reprogramm\'e \`a partir de
+z\'ero~\footnote{Le terme anglais est: \emph{from scratch}, signifiant depuis le d\'ebut.}, la plupart des variables globales qui ne sont pas des classes seraient remplac\'ees par des Singletons.
 
 La technique habituellement employ\'ee pour d\'efinir une variable globale
 est simplement de faire un \menu{do it} sur une affectation d'un identifiant
@@ -1027,8 +1039,7 @@ C'est possible gr\^ace aux \emph{variables de classe}.
 Le terme \subind{classe}{variable} de classe indique que le cycle de vie
 de la variable est le m\^eme que celui de la classe. Cependant, 
 le terme ne v\'ehicule pas l'id\'ee que ces variables sont partag\'ees aussi bien parmi toutes
-les instances d'une classe que dans la classe elle-m\^eme.
-comme nous pouvons le voir sur \figref{privateSharedVar}.
+les instances d'une classe que dans la classe elle-m\^eme comme nous pouvons le voir sur \figref{privateSharedVar}.
 En fait, \emph{variables partag\'ees} (ou \emph{shared variables}, en anglais) aurait
 \'et\'e un meilleur nom car ce dernier exprime plus clairement leur r\^ole
 tout en pointant le danger de les utiliser, en particulier si elles sont 
@@ -1131,8 +1142,9 @@ de pool;  maintenant elles devraient \^etre d\'efinies comme variables
 de classe dans des classes d\'edi\'ees (sous-classes de SharedPool).
 Notre conseil: \'evitez-les. Vous n'en aurez besoin qu'en des circonstances
 exceptionnelles et sp\'ecifiques.
-Ici, notre but est de vous expliquer les variables de \subind{variable}{pool} suffisamment pour
-les comprendre quand vous les rencontrer durant la lecture de code.
+Ici, notre but est de vous expliquer suffisamment les variables de
+\subind{variable}{pool} pour comprendre leur fonction quand vous les
+rencontrez durant la lecture de code.
 
 Une classe qui acc\'ede \`a une variable de pool doit mentionner le \emph{pool}
 dans sa d\'efinition de classe.
@@ -1192,16 +1204,14 @@ d\'efinies au besoin.
 
   \item Toute classe a une super-classe.
   La racine de la hi\'erarchie bas\'ee sur l'h\'eritage simple est \lct{ProtoObject}.
-	Les classes que vous d\'efinissez, cependant, devrait normalement h\'erit\'e de la classe \ct{Object} ou de ses sous-classes.
+	Cependant les classes que vous d\'efinissez devrait normalement h\'eriter de la classe \ct{Object} ou de ses sous-classes.
 Il n'y a pas d'\'el\'ement s\'emantique pour la d\'efinition de classes abstraites.
-Une classe abstraite est simplement une classe avec au moins une  
-m\'ethode abstraite
+Une classe abstraite est simplement une classe avec au moins une m\'ethode abstraite
 \,---\,une dont l'impl\'ementation contient l'expression 
 \ct{self subclassResponsibility}.
   Bien que \squeak ne dispose que du principe d'h\'eritage simple, 
 il est facile de partager les impl\'ementations de m\'ethodes
-en regroupant ces derni\`eres en
-\emph{traits}.
+en regroupant ces derni\`eres en \emph{traits}.
 
   \item Tout se passe par envoi de messages.
 	Nous ne faisons pas des ``appels de m\'ethodes'', nous
