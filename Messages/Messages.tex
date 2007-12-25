@@ -2,7 +2,9 @@
 % $Date$ 
 % $Revision$
 % relecture par Martial Boniou: Thu Dec 13 22:40:00 CET 2007
-% Une instance de Pen est appele 'crayon' (et non plus, crayon ou stylo...)
+% Une instance de Pen est appele 'crayon' (et non plus, crayon ou
+% stylo...)
+% relecture par Rene Mages : Thu Dec 20 12:13:40 CET 2007
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -157,7 +159,7 @@ pu \^etre cr\'e\'e par un autre envoi de message.
 	\caption{Exemples de messages}\label{tab:messageExamples}
 \end{table}
 
-\Tabref{messageExamples} montre diff\`erents exemples de messages.
+\Tabref{messageExamples} montre diff\'erents exemples de messages.
 Vous devez remarquer que tous les messages n'ont pas obligatoirement
 d'arguments. Un message unaire comme \ct{open} (pour ouvrir) ne n\'ecessite pas d'arguments. Les messages \`a mots cl\'es simples ou les messages binaires comme \ct{go: 100} et \ct{+ 20} ont chacun un argument. 
 Il y a aussi des messages simples et des messages
@@ -191,7 +193,7 @@ prend un argument \ct{1} et le mot-cl\'e \ct{put:} prend l'argument \ct{10}.
 \subsection{Messages unaires}
 Les messages unaires sont des messages qui ne n\'ecessitent aucun
 argument. Ils suivent le mod\`ele syntaxique suivant: \ct{receveur nomMessage}. Le s\'electeur est constitu\'e d'une s\'erie de
-caract\`ere ne contenant pas de deux points (\ct{:}) (\eg
+caract\`eres ne contenant pas de deux points (\ct{:}) (\eg
 \ct{factorial}, \ct{open}, \ct{class}).
 \needlines{4}
 \begin{code}{@TEST}
@@ -255,7 +257,7 @@ nums --> #(6 2 3 4 5)
 
 %=============================================================
 \section{Composition de messages}
-Les trois formes d'envoi de message ont chacune des priorit\'es diff\`erentes, ce qui permet de les composer de mani\`ere \'el\'egante.
+Les trois formes d'envoi de message ont chacune des priorit\'es diff\'erentes, ce qui permet de les composer de mani\`ere \'el\'egante.
 
 \begin{enumerate}
 \item Les messages unaires sont envoy\'es en premier, puis les messages binaires et enfin les messages \`a mot-cl\'es.
@@ -465,7 +467,7 @@ est d'abord envoy\'e: il contient deux messages binaires \ct{65@325}
 et \ct{134@100} qui sont d'abord envoy\'es et qui retournent des
 points, et un message \`a mot-cl\'es \ct{extent:} qui est ensuite
 envoy\'e et qui retourne un rectangle. Finalement le message unaire
-\ct{center} est envoy\'e au rectangle et le point central est retoun\'e.
+\ct{center} est envoy\'e au rectangle et le point central est retourn\'e.
 
 \'Evaluer ce message sans parenth\`eses d\'eclencherait une erreur car
 l'objet \ct{100} ne comprend pas le message \ct{center}.
@@ -538,7 +540,7 @@ binaires \ct{+} et \ct{*}. En \st, il n'y a pas de priorit\'e
 sp\'ecifique pour les op\'erations \ct{+} et \ct{*}. Ce ne sont que
 des messages binaires, ainsi \ct{*} n'a pas priorit\'e sur \ct{+}. Ici
 le message le plus \`a gauche \ct{+} est envoy\'e en premier (1) et
-ensuite \ct{*} est envoy\'e au r\'esultat comme on le voit dans l'\egref{binaryMessages1}.  
+ensuite \ct{*} est envoy\'e au r\'esultat comme nous le voyons dans l'\egref{binaryMessages1}.  
 
 \begin{example}[binaryMessages1]{D\'ecomposer \ct{20 + 2 * 5}}{}
 "!Comme il n'y a pas de priorit\'e entre les messages binaires, le message le plus \`a gauche + est \'evalu\'e en premier m\^eme si d'apr\`es les r\`egles de l'arithm\'etique le * devrait d'abord \^etre envoy\'e.!"
@@ -552,7 +554,15 @@ ensuite \ct{*} est envoy\'e au r\'esultat comme on le voit dans l'\egref{binaryM
 \begin{center}\includegraphics[width=8cm]{ucompoNoBracketPar}\end{center}
 \end{figure}
 \noindent
-Comme il est montr\'e dans l'\egref{binaryMessages1} le r\'esultat de cette expression n'est pas \ct{30} mais \ct{110}. Ce r\'esultat est peut-\^etre inattendu mais r\'esulte directement des r\`egles utilis\'ees pour envoyer des messages. Ceci est le prix \`a payer pour la simplicit\'e du mod\`ele de \st. Afin d'avoir un r\'esultat correct, nous devons utiliser des parenth\`eses. Lorsque les messages sont entour\'es par des parenth\`eses, ils sont \'evalu\'es en premier. Ainsi l'expression \ct{20 + (2 * 5)} retourne le r\'esultat comme on le voit dans l'\egref{mathcorrect}.
+Comme il est montr\'e dans l'\egref{binaryMessages1} le r\'esultat de
+cette expression n'est pas \ct{30} mais \ct{110}. Ce r\'esultat est
+peut-\^etre inattendu mais r\'esulte directement des r\`egles
+utilis\'ees pour envoyer des messages. Ceci est le prix \`a payer pour
+la simplicit\'e du mod\`ele de \st. Afin d'avoir un r\'esultat
+correct, nous devons utiliser des parenth\`eses. Lorsque les messages
+sont entour\'es par des parenth\`eses, ils sont \'evalu\'es en
+premier. Ainsi l'expression \ct{20 + (2 * 5)} retourne le r\'esultat
+comme nous le voyons dans l'\egref{mathcorrect}.
 
 \needlines{4}
 \begin{example}[mathcorrect]{D\'ecomposition de \ct{20 + (2 * 5)}}{}
@@ -757,7 +767,7 @@ Ils sont de la forme \lct{receveur \textbf{s\'electeur}}.
 
 \item Les messages binaires sont des messages qui concernent deux objets, le receveur et un autre objet \emph{et} dont le s\'electeur est compos\'e de un ou deux caract\`eres de la liste suivante: \ct{+}, \ct{-}, \ct{*}, \ct{/}, \ct{|}, \texttt{\&}, \ct{=}, \ct{>}, \ct{<}, \texttt{\~}, et \ct{@}.\\
 Ils sont de la forme: \lct{receveur \textbf{s\'electeur} argument}.
-\item Les messages \`a mots-cl\'es sont des messages qui concernent plus d'un objet et qui contiennent au moins un caract\`ere deux points (\ct{:}). \\
+\item Les messages \`a mots-cl\'es sont des messages qui concernent plus d'un objet et qui contiennent au moins un caract\`ere deux points (\ct{:}).\\
 Ils sont de la forme: 
 \lct{receveur \textbf{s\'electeurMotUn:} argumentUn \textbf{motDeux:} argumentDeux}.
 
@@ -768,7 +778,7 @@ Ils sont de la forme:
   ou * ont la m\^eme priorit\'e. \ct{+} et \ct{*} ne sont que des
   messages binaires; donc \ct{*} n'a aucune priorit\'e sur
   \ct{+}. Vous devez utiliser les parenth\`eses pour obtenir un
-  r\'esultat diff\`erent.
+  r\'esultat diff\'erent.
 \end{itemize}
 
 %\end{document}
