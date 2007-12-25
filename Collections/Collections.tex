@@ -128,7 +128,7 @@ students select: [ :each | each gpa < threshold ]
 \noindent
 ce qui donnera une nouvelle collection contenant pr\'ecisement les
 \'el\'ements de \ct{students} (\'etudiants) pour lesquels la
-fonction entre crochets renvoie une r\'eponse positive \cad \ct{true}\footnote{L'expression entre crochets (brackets en anglais) peut \^etre vue comme une 
+fonction entre crochets renvoie une r\'eponse positive \cad \ct{true}~\footnote{L'expression entre crochets (brackets en anglais) peut \^etre vue comme une 
 $\lambda$ expression d\'efinissant une fonction anonyme $\lambda x. x~{\sf gpa} < {\sf threshold}$.
 \index{lambda expression}}.
 Le code \st a la simplicit\'e et l'\'el\'egance des langages d\'edi\'es ou \emph{Domain-Specific Language} souvent abr\'eg\'es en DSL. 
@@ -947,7 +947,7 @@ de caract\`eres \`a apparier.
 
 Il existe aussi des techniques d'appariements plus avanc\'ees par filtre 
 offrant les m\^eme possibilit\'es que Perl mais elles ne sont pas incluses
-par d\'efaut dans l'image standard\footnote{Nous vous recommandons fortement
+par d\'efaut dans l'image standard~\footnote{Nous vous recommandons fortement
 le \ind{paquetage d'expressions r\'eguli\`eres} ou \emph{regular expression package} de Vassili Bykov, disponible \`a \url{www.squeaksource.com/Regex.html}.
 \index{Bykov, Vassili}}.
 \seeindex{regular expression package}{paquetage d'expressions r\'eguli\`eres}
@@ -1174,7 +1174,7 @@ en \ct{Array} ou un \ct{OrderedCollection}:
 En fait, \ct{collect:} ne garantit pas sp\'ecifiquement de retourner 
 exactement la m\^eme classe que celle du receveur, mais seulement une classe
 de la m\^eme \emph{``esp\`ece''}.  Dans le cas d'\ct{Interval}, l'esp\`ece est en r\'ealit\'e un tableau \ct{Array}!
-En effet, dans ce cas, on est pas assuré que le résultat pourra être transformé en intervalle.
+En effet, dans ce cas, nous ne sommes pas assurés que le résultat pourra être transformé en intervalle.
 \begin{code}{@TEST}
 (1 to: 5) collect: [ :ea | ea * 2 ] --> #(2 4 6 8 10)
 \end{code}

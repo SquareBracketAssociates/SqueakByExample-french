@@ -404,7 +404,7 @@ Stack>>>pop
     ^self linkedList removeFirst element
 \end{method}
 
-Il ne faut pas confondre \ct{Object>>>assert:} avec \cmind{TestCase}{assert:}, m\'ethode de l'environnement de test SUnit (voir \charef{SUnit}). Alors que la premi\`ere attend un bloc en argument \footnote{En fait, elle peut prendre n'importe quel argument qui comprend \ct{value}, dont un \ct{Boolean}.}, la deuxi\`eme attend un \clsind{Boolean}. M\^eme si les deux sont utiles pour d\'eboguer, elles ont chacune un but tr\`es diff\'erent.
+Il ne faut pas confondre \ct{Object>>>assert:} avec \cmind{TestCase}{assert:}, m\'ethode de l'environnement de test SUnit (voir \charef{SUnit}). Alors que la premi\`ere attend un bloc en argument~\footnote{En fait, elle peut prendre n'importe quel argument qui comprend \ct{value}, dont un \ct{Boolean}.}, la deuxi\`eme attend un \clsind{Boolean}. M\^eme si les deux sont utiles pour d\'eboguer, elles ont chacune un but tr\`es diff\'erent.
 
 %-----------------------------------------------------------------
 \subsection{Gestion des erreurs}
@@ -485,7 +485,14 @@ Un exemple classique est la m\'ethode \cmind{Collection}{remove:} qui est h\'eri
 
 Les m\'ethodes de \protind{test} n'ont aucun rapport avec SUnit! Une m\'ethode de test vous permet de poser une question sur l'\'etat du receveur et retourne un bool\'een (\clsind{Boolean}).
 
-De nombreuses m\'ethodes de test sont fournies par \ct{Object}. Nous avons d\'ej\`a vu \mthind{Object}{isComplex}. Il existe \'egalement \mthind{Object}{isArray}, \mthind{Object}{isBoolean}, \mthind{Object}{isBlock}, \mthind{Object}{isCollection}, parmi d'autres. G\'en\'eralement ces m\'ethodes sont \`a \'eviter car demander sa classe \`a un objet est une forme de violation de l'encapsulation. Au lieu de tester la classe d'un objet, on devrait simplement envoyer un message et laisser l'objet d\'ecider de sa propre r\'eaction.
+De nombreuses m\'ethodes de test sont fournies par \ct{Object}. Nous
+avons d\'ej\`a vu \mthind{Object}{isComplex}. Il existe \'egalement
+\mthind{Object}{isArray}, \mthind{Object}{isBoolean},
+\mthind{Object}{isBlock}, \mthind{Object}{isCollection}, parmi
+d'autres. G\'en\'eralement ces m\'ethodes sont \`a \'eviter car
+demander sa classe \`a un objet est une forme de violation de
+l'encapsulation. Au lieu de tester la classe d'un objet, nous devrions
+simplement envoyer un message et laisser l'objet d\'ecider de sa propre r\'eaction.
 
 Cependant certaines de ces m\'ethodes de test sont ind\'eniablement utiles. Les plus utiles sont probablement \cmind{ProtoObject}{isNil} et \cmind{Object}{notNil} (bien que le patron de conception \patind{Null Object}\cite{Wool98a} permet d'\'eviter le besoin de ces m\'ethodes \'egalement).
 
