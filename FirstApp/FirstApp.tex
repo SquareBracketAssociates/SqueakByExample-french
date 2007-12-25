@@ -169,7 +169,7 @@ Une fois la définition de classe acceptée, la classe va être créée et
 apparaîtra dans le panneau des classes du navigateur (voir \figref{SBECell}).
 Le panneau d'édition montre maintenant la définition de la classe et
 un petit panneau dessous vous invite à écrire quelques mots décrivant
-l'objectif de la classe. On appelle cela un \emph{commentaire de
+l'objectif de la classe. Nous appelons cela un \emph{commentaire de
   classe}; il est assez important d'en écrire un qui donnera aux
 autres développeurs une vision 
 %de haut niveau 
@@ -230,7 +230,7 @@ initialize
 \noindent
 Notez que les caractères \ct{''} de la ligne 3 sont deux
 %quotes séparées avec rien entre les deux, et pas un guillemet ! 
-apostrophes\footnote{Nous utilisons le terme ``quote'' en anglais.} 
+apostrophes~\footnote{Nous utilisons le terme ``quote'' en anglais.} 
 sans espace entre elles, et non un guillemet (")!
 \ct{''} représente la chaîne de caractères vide.
 
@@ -241,7 +241,7 @@ détails maintenant (ce sera l'objet du reste de ce livre!), mais nous
 allons vous en donner un bref aperçu. Reprenons le code ligne par ligne.
 
 Notons que la méthode s'appelle \mthind{SBECell}{initialize}.
-Ce nom dit bien ce qu'il veut dire\footnote{En anglais, puisque c'est
+Ce nom dit bien ce qu'il veut dire~\footnote{En anglais, puisque c'est
   la langue conventionnelle en \st.}!
 Par convention, si une classe définit une méthode nommée \ct{initialize}, elle sera appelée d\`es que l'objet aura été créé.
 Ainsi d\`es que nous évaluons \ct{SBECell new}, le message \ct{initialize} sera envoyé automatiquement à cet objet nouvellement créé.
@@ -509,11 +509,13 @@ Si vous avez suivi l'exemple jusqu'à présent, le troisième panneau doit conte
 
 \dothis{Sélectionnez avec le \ind{button jaune} de la souris l'élément du menu \menu{categorize all uncategorized} afin de régler ce problème et déplacer les méthodes \ct{initialize} vers un nouveau protocole appelé \protind{initialization}.}
 Comment \sq sait que c'est le bon protocole? En général,
-\sq ne peut pas le savoir mais dans notre cas, il y a aussi une méthode \ct{initialize} dans la super-classe et \sq suppose que notre méthode \ct{initialize} doit être rangé dans la même catégorie que celle qu'elle surcharge.
+\sq ne peut pas le savoir mais dans notre cas, il y a aussi une méthode \ct{initialize} dans la super-classe et \sq suppose que notre méthode \ct{initialize} doit être rangée dans la même catégorie que celle qu'elle surcharge.
 %\index{method!categorize}
 \index{m\'ethode!cat\'egorisation}
 
-Vous pouvez également vous rendre compte que \sq a déjà rangé votre méthode \ct{initialize} dans le protocole \protind{initialization}. Si c'est le cas, c'est probablement que vous avez chargé un paquet nommé \ct{AutomaticMethodCategorizer} dans votre image.
+Vous pouvez également vous rendre compte que \sq a déjà rangé votre
+méthode \ct{initialize} dans le protocole \protind{initialization}. Si
+c'est le cas, c'est probablement que vous avez chargé un paquetage nommé \ct{AutomaticMethodCategorizer} dans votre image.
 
 \paragraph{Une convention typographique.} Les Smalltalkiens utilisent fréquemment la notation ``\verb|>>|'' afin d'identifier la classe à laquelle la méthode appartient, ainsi par exemple, la méthode \ct{cellsPerSide} de la classe \ct{SBEGame} sera référencée par \ct{SBEGame>>cellsPerSide}.
 Afin d'indiquer que cela ne fait pas partie de la syntaxe de \st, nous utiliserons plutôt le symbole spécial \ct{>>>} de telle sorte que cette méthode apparaîtra dans le texte comme \ct{SBEGame>>>cellsPerSide}
@@ -533,7 +535,7 @@ SBEGame>>>cellsPerSide
 \index{m\'ethode constante}
 
 Cette méthode ne peut pas être plus simple: elle retourne la constante
-10. Représenter les constantes comme des méthodes a comme avantage que si le programme évolue de telle sorte que la constante dépend d'autres propriétés, la méthode peut être modifiée pour calculer la valeur.
+10. Représenter les constantes comme des méthodes a comme avantage que si le programme évolue de telle sorte que la constante dépende d'autres propriétés, la méthode peut être modifiée pour calculer la valeur.
 
 \needlines{10}
 \begin{method}[newCellAt:at:]{Une méthode d'aide à l'initialisation}
@@ -558,7 +560,7 @@ Confirmez que les sélecteurs \ct{toggleNeighboursOfCellAt:at:} et \ct{mouseActi
 La dernière ligne définit l'action de la souris (\ct{mouseAction}) associée à la cellule comme le \emph{bloc}
 \mbox{\lct{[self toggleNeighboursOfCellAt:i at:j]}.}
 %martial: callback = fonction de rappel ? (plus francais)
-En effet, ceci définit le comportement de rappel ou \callback à effectuer lorsque l'on clique sur la souris.
+En effet, ceci définit le comportement de rappel ou \callback à effectuer lorsque nous cliquons \`a la souris.
 La méthode correspondante doit être aussi définie.
 
 \begin{method}[toggleNeighboursOfCellAt:at:]{La méthode \callback}
@@ -579,7 +581,8 @@ voisins de la cellule\ldots'') change l'état des 4 cellules au nord, sud, ouest
 que vous aurez cr\'e\'e gr\^ace au menu contextuel accessible via le
 \ind{bouton jaune} de la souris dans le panneau des protocoles en
 cliquant sur \menu{create category\ldots}.}
-Pour déplacer cette méthode, vous devez simplement cliquer sur son nom puis la glisser-d\'eposer sur le nouveau protocole (\figref{dragMethod}).
+Pour déplacer cette méthode, vous devez simplement cliquer sur son nom
+puis la glisser-d\'eposer sur le nouveau protocole (voir \figref{dragMethod}).
 
 \begin{figure}[htbp]
    \centering
@@ -636,7 +639,7 @@ plac\'ee dans le protocole \protind{accessing}.
 En Smalltalk, \emph{toutes} les variables d'instances sont privées à
 l'objet qui les possède, ainsi la seule façon pour un autre objet de
 lire ou de modifier ces variables en Smalltalk se fait au travers de
-ces méthodes d'accès comme ici\footnote{En fait, les variables
+ces méthodes d'accès comme ici~\footnote{En fait, les variables
   d'instances peuvent être accédées également dans les sous-classes.}.
 
 \dothis{Allez à la classe \ct{SBECell}, définissez \ct{SBECell>>>mouseAction:} et mettez-la dans le protocole \prot{accessing}.}
@@ -711,7 +714,8 @@ la partie qui a déclenchée l'erreur en caract\`ere gras.
 
 \dothis{Cliquez sur la ligne nommée
 \ct{SBEGame>>>toggleNeighboursOfCellAt:at:} (près du haut).}
-Le débogueur vous montrera le \ind{contexte d'exécution} à l'intérieur de la méthode où l'erreur s'est déclenchée (\figref{debugToggle}).
+Le débogueur vous montrera le \ind{contexte d'exécution} à l'intérieur
+de la méthode où l'erreur s'est déclenchée (voir \figref{debugToggle}).
 
 \begin{figure}[ht]
 \ifluluelse
@@ -731,15 +735,20 @@ inspecter les objets dans les paramètres et les variables locales,
 surprenante pour ceux qui sont déjà habitués à d'autres débogueurs, il
 est possible de modifier le code en cours de déboguage! 
 Certains Smalltalkiens programment la plupart du temps dans le
-débogueur, plutôt que dans le navigateur de classes: l'avantage en est
-que vous voyez la méthode que vous écrivez telle qu'elle sera
-exécutée, avec de paramètres dans son contexte actuel d'exécution.
+débogueur, plutôt que dans le navigateur de classes.
+%martial: Tue Dec 25 10:30:52 CET 2007 modif' car trop lourd
+L'avantage est certain: la m\'ethode que vous \'ecrivez est telle
+qu'elle sera ex\'ecut\'ee \ie avec ses param\`etres dans son contexte
+actuel d'ex\'ecution.
+%: l'avantage en est
+%que vous voyez la méthode que vous écrivez telle qu'elle sera
+%exécutée, avec de paramètres dans son contexte actuel d'exécution.
 
 Dans notre cas, vous pouvez voir dans la première ligne du panneau du haut que le message \ct{toggleState} a été envoyé à une instance de \ct{SBEGame}, alors qu'il était clairement destiné à une instance de \lct{SBECell}.
 Le problème se situe vraisemblablement dans l'initialisation de la matrice \ct{cells}.
 En parcourant le code de \cmind{SBEGame}{initialize}, nous pouvons
 voir que \ct{cells} est rempli avec les valeurs retournées par
-\ct{newCellAt:at:}, mais lorsque l'on regarde cette méthode, nous
+\ct{newCellAt:at:}, mais lorsque nous regardons cette méthode, nous
 constatons qu'il n'y a pas de valeur retournée ici!
 Par défaut, une méthode retourne \ct{self}, ce qui dans le cas de \ct{newCellAt:at:} est effectivement une instance de \ct{SBEGame}.
 \index{m\'ethode!renvoi de self}
@@ -782,7 +791,7 @@ fenêtre du débogueur et de poursuivre l'application en cliquant sur
 \menu{Proceed}.
 Dans notre cas, la chose la plus simple à faire est de fermer la
 fenêtre du débogueur, détruire l'instance en cours d'exécution (avec
-le halo \subind{Morphic}) et d'en créer une nouvelle, parce que le bug
+le \subind{Morphic}{halo} Morphic) et d'en créer une nouvelle, parce que le bug
 ne se situe pas dans une m\'ethode erron\'ee mais dans
 l'initialisation de l'objet.
 
@@ -813,8 +822,8 @@ La façon la plus simple de le faire est d'effectuer une exportation ou
 sortie-fichier (\emph{filing out}) de votre code. Le menu activé par
 le bouton jaune dans le panneau de catégories-syst\`eme vous permet de
 générer un fichier correspondant à l'ensemble de la catégorie \scat{SBE-Quinto}.
-Le fichier résultant est plus lisible par tout un chacun, même s'il
-est plus destiné à des machines qu'à des hommes.
+Le fichier résultant est plus lisible par tout un chacun, même si son
+contenu est plut\^ot destiné aux des machines qu'aux hommes.
 Vous pouvez envoyer par email ce fichier à vos amis et ils peuvent le
 charger dans leurs propres images \sq en utilisant le navigateur
 de fichiers File List Browser.
@@ -830,8 +839,8 @@ de fichiers File List Browser.
 \dothis{Sélectionnez \`a l'aide du \ind{bouton jaune} la catégorie
   \scat{SBE-Quinto} et choisissez \menu{fileOut} pour exporter le contenu.}
 Vous devriez trouver maintenant un fichier SBE-Quinto.st dans le même
-répertoire où votre image a été sauvegardé.
-Jetez un coup à ce fichier avec un éditeur de texte.
+répertoire où votre image a été sauvegardée.
+Jetez un coup d'\oe il à ce fichier avec un éditeur de texte.
 
 \dothis{Ouvrez une nouvelle image \sq et utilisez l'outil File
   List Browser pour faire une importation de fichier via l'option de menu  \menu{file in} dans le fichier SBE-Quinto.st. Vérifiez que le jeu fonctionne maintenant dans une nouvelle image.}
@@ -853,8 +862,8 @@ faire des sauvegardes du code que vous avez écrit, elles font
 maintenant partie du passé.
 Tout comme la plupart des d\'eveloppeurs de projets libres
 \emph{Open-Source} qui trouvent plus utile de maintenir leur code dans
-des dépôts en utilisant \ind{CVS}\footnote{\url{www.nongnu.org/cvs}}
-ou \ind{Subversion}\footnote{\url{subversion.tigris.org}}, les
+des dépôts en utilisant \ind{CVS}~\footnote{\url{www.nongnu.org/cvs}}
+ou \ind{Subversion}~\footnote{\url{subversion.tigris.org}}, les
 programmeurs sur \sq gèrent maintenant leur code au moyen de
 paquetages \ind{Monticello}: 
 ces paquetages sont représentés comme des fichiers dont le nom se
@@ -899,7 +908,8 @@ d'un r\'epertoire-cache pour des copies de paquetages que vous avez
 chargé ou publié sur le réseau. Ce cache est vraiment utile car il
 vous permet de garder votre historique local. Il vous permet également
 de travailler là où vous n'avez pas d'accès Internet ou l'accès est si
-lent que vous n'avez pas envie de sauver sur un dépôt distant très fréquemment.
+lent que vous n'avez pas envie de sauver fr\'equemment sur un dépôt
+distant.
 
 \subsection{Sauvegarder et charger du code avec Monticello.}
 Dans la partie gauche du navigateur Monticello, il y a une liste de
@@ -908,11 +918,11 @@ paquetages qui ont été modifié depuis qu'ils ont été chargés sont
 marqués d'une 
 %étoile; martial:  http://www.iam.unibe.ch/pipermail/sbe-discussion/2007-December/000102.html
 ast\'erisque
-(ils sont parfois appelés des \subind{paquetage}{dirty package}{s}). Si vous sélectionner un paquetage, la liste des dépôts est restreinte à ceux qui contiennent une copie du paquetage sélectionné.
+(ils sont parfois appelés des \subind{paquetage}{dirty package}{}s). Si vous sélectionnez un paquetage, la liste des dépôts est restreinte à ceux qui contiennent une copie du paquetage sélectionné.
 \seeindex{*}{paquetage, dirty package}
 \seeindex{dirty package}{paquetage, dirty package}
 
-Qu'est-ce qu'un paquetage? Pour l'instant, vous pouvez penser le paquetage comme un groupe de classes et de catégories de méthodes qui partagent le même préfixe. Comme nous avons mis tout le code du jeu Quinto dans la catégorie de classe appelée \scat{SBE-Quinto}, nous pouvons le désigner comme le paquetage \ct{SBE-Quinto}.
+Qu'est-ce qu'un paquetage? Pour l'instant, vous pouvez penser le paquetage comme un groupe de classes et de catégories de méthodes qui partagent le même préfixe. Comme nous avons mis tout le code du jeu Quinto dans la catégorie de classes appelée \scat{SBE-Quinto}, nous pouvons le désigner comme le paquetage \ct{SBE-Quinto}.
 
 \dothis{Ajoutez le paquetage \ct{SBE-Quinto} à votre navigateur Monticello en utilisant le bouton \button{+Package}.}
 
@@ -920,7 +930,7 @@ Qu'est-ce qu'un paquetage? Pour l'instant, vous pouvez penser le paquetage comme
 Nous pensons que la meilleure façon de sauvegarder votre code et de le
 partager est de créer un compte sur un serveur
 \squeaksource. \squeaksource est similaire à
-\sourceforge\footnote{\url{http://www.sourceforge.net}}: il s'agit d'un
+\sourceforge~\footnote{\url{http://www.sourceforge.net}}: il s'agit d'un
 \emph{frontal web} à un serveur Monticello HTTP qui vous permet de gérer vos projets.
 %In addition, \squeaksource includes a wiki, remote code browsing, RSS feed, admin right and access right management,   
 % A number of {\squeaksource servers} around the Internet provide Monticello repositories and other facilities for development projects, including as a Wiki for documentation, remote code browsing, an RSS feed for update notification, and automatic publishing on SqueakMap.
@@ -937,7 +947,7 @@ gérer vos paquetages.
 \dothis{Ouvrez un navigateur web à l'adresse \url{http://www.squeaksource.com}.
 Ouvrez un compte et ensuite, créez un projet (\ie via ``register'').}
 \squeaksource va vous montrer l'information que vous devez utiliser
-lorsque on ajoute un dépôt au moyen de Monticello.
+lorsque nous ajoutons un dépôt au moyen de Monticello.
 
 Une fois que votre projet a été créé sur \squeaksource, vous devez indiquer au système \sq de l'utiliser.
 
@@ -1016,10 +1026,10 @@ navigateur Monticello.
   \item Une nouvelle méthode est créée ou modifiée en éditant la définition dans le navigateur de classes et en \emph{acceptant} les modifications.
   \item L'inspecteur offre une manière simple et générale pour inspecter et interagir avec des objets arbitraires.
   \item Le navigateur de classes détecte l'utilisation de méthodes et de variables non déclarées et propose d'éventuelles corrections.
-  \item La méthode \ct{initialize} est automatiquement éxecutée après
+  \item La méthode \ct{initialize} est automatiquement ex\'ecutée après
     la création d'un objet dans \sq. Vous pouvez y mettre
     le code d'initialisation que vous voulez.
-  \item Le débogueur est une interface de haut-niveau pour inspecter et modifier l'état d'un programme en cours d'ex\'ecution.
+  \item Le débogueur est une interface de haut niveau pour inspecter et modifier l'état d'un programme en cours d'ex\'ecution.
   \item Vous pouvez partager le code source en sauvegardant une
     catégorie sous forme d'un fichier d'exportation.
   \item Une meilleure façon de partager le code consiste \`a faire
