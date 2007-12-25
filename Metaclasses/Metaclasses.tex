@@ -159,10 +159,10 @@ TranslucentColor superclass --> Color
 Color superclass                   --> Object
 \end{code}
 
-Comme tout se produit par \ind{envoi de message}{}s (\ref{rule:message}), on peut déduire que \mthind{Color class}{blue} est un message à destination de \ct{Color}; \mthind{Object}{class} et \mthind{Color}{alpha:} sont des messages à destination de la couleur bleue; \mthind{Morph}{openInWorld} est un message à destination d'une ellipse morph et \mthind{Behavior}{superclass} est un message à destination de \ct{TranslucentColor} et \ct{Color}.
+Comme tout se produit par \ind{envoi de message}{}s (\ref{rule:message}), nous pouvons déduire que \mthind{Color class}{blue} est un message à destination de \ct{Color}; \mthind{Object}{class} et \mthind{Color}{alpha:} sont des messages à destination de la couleur bleue; \mthind{Morph}{openInWorld} est un message à destination d'une ellipse morph et \mthind{Behavior}{superclass} est un message à destination de \ct{TranslucentColor} et \ct{Color}.
 Dans chaque cas, le receveur est un objet puisque tout est un objet bien que certains de ces objets soient aussi des classes.
 
-La recherche de méthodes suit la chaîne d'héritage (\ref{rule:lookup}), donc quand on envoie le message \ct{class} au résultat de 
+La recherche de méthodes suit la chaîne d'héritage (\ref{rule:lookup}), donc quand nous envoyons le message \ct{class} au résultat de 
 \ct{Color blue alpha: 0.4}, le message est traité quand la méthode correspondante est trouvée dans la classe \ct{Object}, comme illustré par \figref{classmessage}.
 
 \begin{center}
@@ -175,7 +175,8 @@ La recherche de méthodes suit la chaîne d'héritage (\ref{rule:lookup}), donc 
 \end{center}
 
 Cette figure capture l'essence de la relation \emphind{est-un}{}(e).
-Notre objet bleu translucide \emphind{est un}{}e instance de \ct{TranslucentColor}, mais on peut aussi dire qu'il
+Notre objet bleu translucide \emphind{est un}{}e instance de
+\ct{TranslucentColor}, mais nous pouvons aussi dire qu'il
 \emph{est un}{}e  \ct{Color} et qu'il \emph{est un} \ct{Object}, puisqu'il répond aux messages définis dans toutes ces classes.
 En fait, il y a un message, \mthind{Object}{isKindOf:}, qui peut-être envoyé à n'importe quel objet pour déterminer s'il est en relation \emph{est un} avec une classe donnée:
 
@@ -200,7 +201,7 @@ On dit qu'elles sont \emph{implicites} car en tant que programmeur, vous n'avez 
 Une méta-classe \subind{méta-classe}{implicite} est créée pour chaque classe que vous créez donc chaque méta-classe n'a qu'une seule instance.
 
 Alors que les classes ordinaires sont nommées par des variables globales, les méta-classes sont anonymes.
-Cependant, on peut toujours les référencer à travers la classe qui est leur instance.
+Cependant, nous pouvons toujours les référencer à travers la classe qui est leur instance.
 Par exemple, la classe de \clsind{Color} est \clsind{Color class} et la classe de \ct{Object} est \clsind{Object class}:
 \begin{code}{@TEST}
 Color class   --> Color class
@@ -294,7 +295,7 @@ Les classes sont juste des objets et se comportent comme tous les autres objets.
 Les classes ont le pouvoir de créer de nouvelles instances uniquement parce qu'elles répondent au message \ct{new} et que la méthode pour \ct{new} sait créer de nouvelles instances.
 Normalement, les objets qui ne sont pas des classes ne comprennent ce message, mais si vous avez une bonne raison pour faire cela, il n'y a rien qui vous empêche d'ajouter une méthode \ct{new} à une classe qui n'est pas une méta-classe.
 
-Comme les classes sont des objets, on peut aussi les inspecter.
+Comme les classes sont des objets, nous pouvons aussi les inspecter.
 \index{inspecteur}
 
 \dothis{Inspectez \ct{Color blue} et \ct{Color}.}

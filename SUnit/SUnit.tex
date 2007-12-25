@@ -53,7 +53,7 @@ mais en fait, il peut être aussi utilisé pour des tests d'intégration ou des 
 \index{Beck, Kent}
 \index{Pelrine, Joseph}
 \seeindex{resource}{test, ressource}
-L'intérêt pour le test et le \ind{développement dirigé par les tests} ne se limite pas à \squeak ou \st.
+L'intérêt pour le test et le \ind{développement dirigé par les tests} ne se limite pas à \sq ou \st.
 L'automatisation des tests est devenue une pratique fondamentale des \ind{méthodes de développement agiles} et 
 tout développeur concerné par l'amélioration de la qualité du logiciel ferait bien de l'adopter.  
 En effet, de nombreux développeurs apprécient la puissance du test unitaire et des versions de \xUnit{} sont maintenant disponibles pour de nombreux langages dont \ind{Java}, \ind{Python}, \ind{Perl}, .Net et \ind{Oracle}.
@@ -364,7 +364,7 @@ ExampleSetTest>>>testIncludes
 	self assert: (full includes: 6)
 \end{method}
 
-Le second test nommé \ct{testOccurrences} vérifie que le nombre d'occurences de~5 dans le \ct{Set} \ct{full} est égal à un, même si on ajoute un autre élément~5 au \ct{Set}.
+Le second test nommé \ct{testOccurrences} vérifie que le nombre d'occurences de~5 dans le \ct{Set} \ct{full} est égal à un, même si nous ajoutons un autre élément~5 au \ct{Set}.
 % The second test, named \ct{testOccurrences}, verifies that the
 % number of occurrences of~5 in \ct{full} set is equal to one, even if we
 % add another element~5 to the set.
@@ -411,7 +411,7 @@ Le panneau le plus à gauche présente toutes les catégories système qui conti
 \begin{figure}[tbh]
   \begin{center}
 	\includegraphics[width=\linewidth]{test-runner}
-	\caption{\sunit, l'évaluateur de test de \squeak.}
+	\caption{\sunit, l'évaluateur de test de \sq.}
 	\label{fig:test-runner}
   \end{center}
 \end{figure}
@@ -480,7 +480,7 @@ La méthode \mthind{TestCase}{assert:}\,, définie dans la classe \ct{TestCase},
 % true, the
 % test passes; when the argument is false, the test fails.
 
-Il y a actuellement trois résultats possibles pour un test. Le résultat espéré est que toutes les assertions du test soient vraies, dans ce cas le test réussit. Dans l'évaluateur de tests (\ct{TestRunner}), quand tous les tests réussissent, la barre du haut devient verte. Pourtant, il reste deux possibilités pour que quelque-chose se passe mal quand vous évaluez le test. Le plus évident est qu'une des assertions peut être fausse, entraînant \emph{l'échec} du test. Pourtant, il est aussi possible qu'une erreur intervienne pendant l'exécution du test, telle qu'une erreur \emph{message non compris} ou une erreur d'\emph{index hors limites}. Si une erreur survient, les assertions de la méthode de test peuvent ne pas avoir été exécutées du tout, ainsi on ne peut pas dire que le test a échoué. 
+Il y a actuellement trois résultats possibles pour un test. Le résultat espéré est que toutes les assertions du test soient vraies, dans ce cas le test réussit. Dans l'évaluateur de tests (\ct{TestRunner}), quand tous les tests réussissent, la barre du haut devient verte. Pourtant, il reste deux possibilités pour que quelque-chose se passe mal quand vous évaluez le test. Le plus évident est qu'une des assertions peut être fausse, entraînant \emph{l'échec} du test. Pourtant, il est aussi possible qu'une erreur intervienne pendant l'exécution du test, telle qu'une erreur \emph{message non compris} ou une erreur d'\emph{index hors limites}. Si une erreur survient, les assertions de la méthode de test peuvent ne pas avoir été exécutées du tout, ainsi nous ne pouvons pas dire que le test a échoué. 
 Toutefois, quelque chose est clairement faux~!
 Dans l'évaluateur de tests (\ct{TestRunner}), la barre du haut devient jaune pour les tests en échec et ces tests sont listés dans le panneau du milieu à droite, alors que pour les tests erronés, la barre devient rouge et ces tests sont listés dans le panneau en bas à droite.
 % There are actually three possible outcomes of a test.
@@ -499,7 +499,7 @@ Dans l'évaluateur de tests (\ct{TestRunner}), la barre du haut devient jaune po
 %=================================================================
 %\section{The \SUnit cook book}
 \section{Les recettes pour \SUnit}
-Cette section vous donne plus d'informations sur la façon d'utiliser \SUnit. Si vous avez utilisé un autre environnement de test comme \JUnit\footnote{\url{junit.org}}, ceci vous sera familier puisque tous ces environnements sont issus de  \SUnit. \aconfirmer{Normalement, vous utiliserez l'IHM~\footnote{Interface Homme Machine.} de \SUnit pour exécuter les tests à l'exception de certains cas}.
+Cette section vous donne plus d'informations sur la façon d'utiliser \SUnit. Si vous avez utilisé un autre environnement de test comme \JUnit~\footnote{\url{junit.org}}, ceci vous sera familier puisque tous ces environnements sont issus de  \SUnit. \aconfirmer{Normalement, vous utiliserez l'IHM~\footnote{Interface Homme Machine.} de \SUnit pour exécuter les tests à l'exception de certains cas}.
 
 % This section will give you more details on how to use \SUnit.  If you
 % have used another testing framework such as \JUnit\footnote{\url{junit.org}},
@@ -681,7 +681,7 @@ Une des caractéristiques importantes d'une suite de tests est que les tests doi
 Malgré tout, il y a certains cas pour lesquels la préparation du contexte nécessaire est simplement trop lent pour qu'il soit 
 réalisable
 % plutôt que praticable 
-de le faire avant l'exécution de chaque test. De plus, si on sait que les tests n'altèrent pas les ressources qu'ils utilisent, alors il est prohibitif de les initialiser pour chaque test; il est suffisant de les initialiser une seule fois pour chaque suite de tests. Supposez, par exemple, qu'une suite de tests ait besoin d'interroger une base de données ou d'effectuer certaines analyses sur du code compilé.
+de le faire avant l'exécution de chaque test. De plus, si nous savons que les tests n'altèrent pas les ressources qu'ils utilisent, alors il est prohibitif de les initialiser pour chaque test; il est suffisant de les initialiser une seule fois pour chaque suite de tests. Supposez, par exemple, qu'une suite de tests ait besoin d'interroger une base de données ou d'effectuer certaines analyses sur du code compilé.
 Pour ces situations, il est sensé d'initialiser et d'ouvrir une connexion vers la base de données ou de compiler du code source avant l'évaluation des tests.
 % However, there are occasions where setting up the necessary context is just too time-consuming for it to be practical to do it once before the execution of each test.
 % Moreover, if it is known that the test cases do not disrupt the resources used by the tests, then it is wasteful to set them up afresh for each test; it is sufficient to set them up once for each suite of tests.
