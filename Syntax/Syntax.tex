@@ -1,7 +1,6 @@
-
 % $Author$
 % $Date$
-% $Revision$
+% $Revision: 14633$
 % $Id$
 %=================================================================
 \ifx\wholebook\relax\else
@@ -39,7 +38,8 @@
 % \on{There are links already.}
 
 \sq, comme la plupart des dialectes modernes de \st, adopte une syntaxe proche de celle de \st-80.
-La \ind{syntaxe} est con\c{c}ue de telle sorte que le texte d'un programme lu \`{a} voix haute ressemble \`{a} de l'\emph{English pidgin} ou ``Anglais \emph{petit-nègre}'':
+La \ind{syntaxe} est con\c{c}ue de telle sorte que le texte d'un
+programme lu \`{a} haute voix ressemble \`{a} de l'\emph{English pidgin} ou ``Anglais \emph{petit-nègre}'':
 
 \begin{code}{}
 (Smalltalk includes: Class) ifTrue: [ Transcript show: Class superclass ]
@@ -49,9 +49,9 @@ La \ind{syntaxe} est con\c{c}ue de telle sorte que le texte d'un programme lu \`
 La syntaxe de \sq (\ie les expressions) est minimaliste; pour l'essentiel, con\c{c}ue uniquement pour \emph{envoyer des messages}.
 %% et  \emph{des d\'{e}clarations de m\'{e}thodes}.
 Les expressions sont construites \`{a} partir d'un nombre tr\`{e}s r\'{e}duit de primitives.
-\st dispose seulement 6 mots cl\'{e}s et d'aucune syntaxe ni pour les structures de contr\^{o}le, ni pour les d\'{e}clarations de nouvelles classes.
+\st dispose seulement de 6 mots cl\'{e}s et d'aucune syntaxe ni pour les structures de contr\^{o}le, ni pour les d\'{e}clarations de nouvelles classes.
 En revanche, tout ou presque est r\'{e}alisable en envoyant des messages \`{a} des objets.
-Par exemple, \`{a} la place de la structure de contr\^{o}le conditionnellle \emph{si-also-sinon}, \st envoie des messages comme \ct{ifTrue:} \`{a} des objets booléens de classe \clsind{Boolean}.
+Par exemple, \`{a} la place de la structure de contr\^{o}le conditionnelle \emph{si-alors-sinon}, \st envoie des messages comme \ct{ifTrue:} \`{a} des objets booléens de classe \clsind{Boolean}.
 Les nouvelles \mbox{(sous-)classes} sont cr\'{e}\'{e}es en envoyant un message \`{a} leur super-classe.
 
 %=================================================================
@@ -153,6 +153,8 @@ Mais contrairement \`{a} une chaîne, un \subind{litt\'{e}ral}{symbole} doit \^{
 Il y a seulement un objet symbole \ct{#Bonjour} mais il peut y avoir plusieurs objets chaînes de caract\`{e}res ayant la valeur \ct{'Bonjour'}.
 \seeindex{\#@{\textsf{\#}}}{symbole litt\'{e}ral}
 
+% martial (25 dec 2007): nous avons dit 'tableaux \`a la compilation'
+% dans d'autres chapitres? 
 \item[Les tableaux définis \`{a} la compilation.] Ils sont d\'{e}finis par \ct{#( )}, les objets litt\'{e}raux sont s\'{e}par\'{e}s par des espaces.
 À l'int\'{e}rieur des parenth\`{e}ses, tout doit \^{e}tre constant durant la compilation.
 Par exemple,  \ct{#(27 #(true false) abc)} est un
@@ -160,7 +162,7 @@ Par exemple,  \ct{#(27 #(true false) abc)} est un
 
 \item[Les tableaux définis \`{a} l'ex\'{e}cution.] Les accolades \ct|{ }|
   d\'{e}finissent un tableau (\subind{tableau}{dynamique}) \`{a} l'ex\'{e}cution.
-Ses \'{e}l\'{e}ments sont des expressions separ\'{e}es par des points.
+Ses \'{e}l\'{e}ments sont des expressions s\'epar\'{e}es par des points.
 Ainsi \ct|{ 1. 2. 1+2 }| d\'{e}finit un tableau dont les \'{e}l\'{e}ments sont 1, 2 et le r\'{e}sultat de l'\'{e}valuation de 1+2
 (La notation entre accolades est particuli\`{e}re \`{a} \sq.
 Dans d'autres \st{}s vous devez explicitement construire des tableaux dynamiques).
@@ -184,7 +186,7 @@ Malheureusement, tant qu'elle ne sera pas un caract\`{e}re
 \textsc{ASCII}, il apparaîtra sous la forme d'un signe souligné (en
 anglais, \emph{underscore} \`{a} moins que vous n'utilisiez une fonte 
 sp\'{e}ciale.
-Ainsi, \ct{x := 1} est identique \`{a} \ct{x _ 1} ou \ct{x UNDERSCORE 1}. Il est préférable d'utiliser  \ct{:=} puisque les autres repr\'{e}sentations ont \'{e}t\'{e} déclarées comme obsolètes depuis la version 3.9 de Squeak.
+Ainsi, \ct{x := 1} est identique \`{a} \ct{x _ 1} ou \ct{x UNDERSCORE 1}. Il est préférable d'utiliser  \ct{:=} puisque les autres repr\'{e}sentations ont \'{e}t\'{e} déclarées comme obsolètes depuis la version 3.9 de \sq.
 \index{affectation}
 \seeindex{:=@{\textsf{:=}}}{affectation}
 \seeindex{\_@{\textsf{\_}}}{affectation}
@@ -200,7 +202,7 @@ Comme nous le verrons, les blocs peuvent avoir des arguments et des variables lo
 \item[Les primitives.]	\ct{<primitive: ...>} marque l'invocation
   d'une \ind{primitive} de la VM ou \ind{machine virtuelle}
 (\ct{<primitive: 1>} est la primitive de \ct{SmallInteger>>>+}).
-Tout code suivant la primitive est ex\'{e}cut\'{e} seulement si la primitive \'{e}choue. Depuis la version 3.9 de Squeak, la m\^{e}me syntaxe est aussi employ\'{e}e pour des annotations de m\'{e}thode.
+Tout code suivant la primitive est ex\'{e}cut\'{e} seulement si la primitive \'{e}choue. Depuis la version 3.9 de \sq, la m\^{e}me syntaxe est aussi employ\'{e}e pour des annotations de m\'{e}thode.
 
 \item[Les messages unaires.] Ce sont des simples mots (comme \ct{factorial}) envoy\'{e}s \`{a} un receveur (comme \ct{3}).
 \index{message!unaire}
@@ -337,7 +339,7 @@ Ce code a pr\'{e}cis\'{e}ment le m\^{e}me effet que celui de l'exemple pr\'{e}c\
 \section{Syntaxe relative aux m\'{e}thodes}
 Bien que les expressions peuvent \^{e}tre \'{e}valu\'{e}es n'importe
 o\`{u} dans \sq (par exemple, dans un espace de travail (Workspace),
-dans un d\'{e}ebogueur (Debugger) ou dans un navigateur de classes), 
+dans un d\'{e}bogueur (Debugger) ou dans un navigateur de classes), 
 les m\'{e}thodes sont en principe d\'{e}finies dans une fen\^{e}tre du Browser ou du d\'{e}bogueur
 (les m\'{e}thodes peuvent aussi \^{e}tre insérées (par \menu{file in})
 depuis une source externe, mais ce n'est pas une fa\c{c}on habituelle de programmer en \sq).
@@ -346,7 +348,7 @@ Les programmes sont d\'{e}velopp\'{e}s, une m\'{e}thode \`{a} la fois,
 dans l'environnement d'une classe pr\'{e}cise (une classe est d\'{e}finie en envoyant un message \`{a} une classe existante, en demandant de cr\'{e}er une sous-classe, de sorte qu'il n'y ait pas de syntaxe sp\'{e}cifique pour cr\'{e}er une classe).
 
 Voil\`{a} la m\'{e}thode \mthind{String}{lineCount} (pour compter le
-nombre de ligne) dans la classe  \clsind{String}.
+nombre de lignes) dans la classe  \clsind{String}.
 La convention habituelle consiste à se ref\'{e}rer aux m\'{e}thode
 comme suit: \ct{ClassName>>>methodName}; ainsi nous nommerons cette
 m\'{e}thode \ct{String>>>lineCount}~\footnote{Le commentaire de la
@@ -373,7 +375,7 @@ Sur le plan de la syntaxe, une m\'{e}thode comporte:
   \item les commentaires (qui peuvent \^{e}tre plac\'{e}s n'importe
     o\`{u}, mais conventionnellement, un commentaire doit \^{e}tre plac\'{e} au d\'{e}but afin d'expliquer le but de la m\'{e}thode);
   \item les d\'{e}clarations des variables locales (\ie \ct{cr} et
-    \ct{count}), et; 
+    \ct{count}); 
   \item un nombre quelconque d'expressions separ\'{e}es par des points; dans notre exemple, il y en a quatre.
 \end{enumerate}
 
@@ -429,10 +431,14 @@ arguments:
 [ :x :y | | z | z := x+ y. z ] value: 1 value: 2 --> 3
 \end{code}
 
-Les blocs sont en fait des \emph{fermetures} lexicales, d\`{e}s lors
-qu'ils peuvent se r\'{e}f\'{e}rer \`{a} des variables de
-l'environnement qui l'entoure.
-Le bloc suivant concerne la variable \ct{x} de son environnement englobant:
+% Rene : la traduction de ces deux phrases est à controler (merci).
+Les blocs sont en fait des \emph{fermetures} lexicales, puisqu'ils
+peuvent faire r\'ef\'erence \`a des variables de leur environnement
+imm\'ediat. Le bloc suivant fait r\'ef\'erence \`a la variable \ct{x} voisine:
+%Les blocs sont en fait des \emph{fermetures} lexicales, d\`{e}s lors
+%qu'ils peuvent se r\'{e}f\'{e}rer \`{a} des variables de
+%l'environnement qui l'entoure.
+%Le bloc suivant concerne la variable \ct{x} de son environnement englobant:
 
 \begin{code}{@TEST}
 | x |
@@ -440,8 +446,10 @@ x := 1.
 [ :y | x + y ] value: 2 --> 3
 \end{code}
 
-Les blocs sont des instances de la classe \clsind{BlockContext}; ils
-sont donc objets, de sorte qu'ils peuvent \^{e}tre affect\'{e}s \`{a} des variables et \^{e}tre pass\'{e}s comme arguments \`{a} l'instar de tout autre objet.
+Les blocs sont des instances de la classe \clsind{BlockContext}; ce
+sont donc des objets, de sorte qu'ils peuvent \^{e}tre affect\'{e}s
+\`{a} des variables et \^{e}tre pass\'{e}s comme arguments \`{a}
+l'instar de tout autre objet.
 
 % For both understandability and performance, it is better for blocks to refer only to their parameters and local variables; blocks that do not refer external variables are optimized by the compiler.
 % MARCUS sez: I would just delete the sentence. There is nothing optimized, accessign outer temps is as fast as inner, so the only reason to avoid accessing outer temps would be that the code is easier to understand. But that's a relatively weak argument, I think.
@@ -449,7 +457,8 @@ sont donc objets, de sorte qu'ils peuvent \^{e}tre affect\'{e}s \`{a} des variab
 
 %martial: je crois bien que un \{important} serait mieux que Avertissement 
 \newpage
-\emph{Avertissement:} Dans l'actuelle version (la version 3.9), \sq ne supporte pas en r\'{e}alit\'{e} les vraies fermetures lexicales, puisque les arguments des blocs sont en fait simul\'{e}s comme variables temporaires de la m\'{e}thode qu'ils contiennent. Il existe un nouveau compilateur qui supporte compl\`{e}tement les fermetures lexicales, mais il est encore en d\'{e}veloppement et non utilis\'{e} par d\'{e}faut.
+%rene: 'Mise en garde' au lieu d''Avertissement'
+\emph{Mise en garde:} Dans l'actuelle version (la version 3.9), \sq ne supporte pas en r\'{e}alit\'{e} les vraies fermetures lexicales, puisque les arguments des blocs sont en fait simul\'{e}s comme variables temporaires de la m\'{e}thode qu'ils contiennent. Il existe un nouveau compilateur qui supporte compl\`{e}tement les fermetures lexicales, mais il est encore en d\'{e}veloppement et non utilis\'{e} par d\'{e}faut.
 Dans certaines situations, ce probl\`{e}me peut entraîner des conflits de nommage. Cela se produit car \sq est construit sur une des premi\`{e}res impl\'{e}mentations de \st.
 Si vous rencontrez ce probl\`{e}me, examinez l'envoyeur 
 %martial: ajout
@@ -499,7 +508,8 @@ Les boucles (ou it\'{e}rations) sont obtenues typiquement par l'envoi de message
 Comme la condition de sortie d'une boucle peut \^{e}tre \'{e}valu\'{e}e de fa\c{c}on r\'{e}p\'{e}titive, elle se pr\'{e}sentera sous la forme d'un bloc plut\^{o}t que de celle d'une valeur bool\'{e}enne.
 Voici pr\'{e}cis\'{e}ment un exemple d'une boucle proc\'{e}durale:
 \index{itération}
-\index{itération|voir{Collection, itération}}
+%\index{itération|voir{Collection, itération}}
+\seeindex{it\'eration}{Collection, it\'eration}
 %seealso
 \seeindex{boucle}{itération}
 \seeindex{\'enum\'eration}{itération}
@@ -576,7 +586,7 @@ lorsque le receveur-caract\`ere est une \label{def:isVowel}
 voyelle~\footnote{Note du traducteur: les voyelles accentu\'ees ne sont
   pas consid\'er\'ees par d\'efaut comme des voyelles; \st-80 a le
   m\^eme d\'efaut que la plupart des langages de programmation n\'es
-  dans la culture anglosaxonne.}.
+  dans la culture anglo-saxonne.}.
 %note de martial: cette remarque ne concerne que moi. Elle pourrait
 %etre enlevee si elle pose probleme; par contre il est bon de dire les
 %limites des manipulations de string en ST. Je l'avais mise dans le
@@ -613,7 +623,7 @@ rendez-vous dans \charefs{collections}{streams}.
 \section{Primitives et Pragmas}
 
 En \st, tout est un objet et tout se passe par l'envoi de messages.
-N\'{e}anmoins, \`{a} certains niveaux, ce mod\`ele a sa limite;
+N\'{e}anmoins, \`{a} certains niveaux, ce mod\`ele a ses limites;
 %%points nous ``touchons le fond``.
 le fonctionnement de certains objets ne peut \^{e}tre achev\'e qu'en
 invoquant la \ind{machine virtuelle} et les \ind{primitive}{}s.
@@ -704,7 +714,7 @@ Depuis la version 3.9 de \sq, la syntaxe avec <....> est aussi utilis\'{e}e pour
 
 \item	Les variables locales sont d\'{e}clar\'{e}es à l'aide de barres verticales.
 		Employez \ct{:=} pour les affectations; \ct{_} ou
-        \ct{UNDERSCORE} marche aussi; tous deux sont abandonnées depuis la version 3.9 de \sq .
+        \ct{UNDERSCORE} marche aussi; tous deux sont abandonnées depuis la version 3.9 de \sq.
 		\ct{|x| x:=1}
 
 \item	Les expressions sont les messages envoy\'{e}s, les cascades et
@@ -713,7 +723,7 @@ Depuis la version 3.9 de \sq, la syntaxe avec <....> est aussi utilis\'{e}e pour
 
 \item	Les blocs ou fermetures lexicales sont des expressions limit\'{e}es par des crochets.
 		Les blocs peuvent prendre des arguments et peuvent contenir
-        des variables locales dites aussi \emph{variables temporaires}).
+        des variables locales dites aussi \emph{variables temporaires}.
 		Les expressions du bloc ne sont \'{e}valu\'{e}es que lorsque
         vous envoyez un message de la forme \ct{value...} avec le bon nombre d'arguments.\\
 		\ct{[:x | x + 2] value: 4 --> 6}.
