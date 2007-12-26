@@ -8,6 +8,7 @@
 % collapse a window --> ranger la fenetre (et pas reduire, si vous
 % voyez cette erreur, SVP merci de corriger)
 %%%%%%%%%%%%%%%%%%%%%%
+% relecture: Rene Mages (fusion par martial: Wed Dec 26 17:28:17 CET 2007)
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -76,12 +77,12 @@ constituent une installation courante de \sq; voir \figref{download})
 
   %\item The \emphind{virtual machine} (VM) is the only part of the system that is different for each operating system and processor.  Pre-compiled virtual machines are available for all the major computing environments.  In \figref{download} we see the VM for the Mac is called \textit{\sq 3.8.15beta1U.app}.
 
-\item La \emphind{machine virtuelle} (agr\'eg\'e en VM pour
+\item La \emphind{machine virtuelle} (abr\'eg\'ee en VM pour
   \emph{virtual machine}) est la seule partie de l'environnement qui
   est particulière à chaque système d'exploitation. Des machines
   virtuelles pré-compilées sont disponibles pour la plupart des
   systèmes (Linux, \macosx, Win32). Dans \figref{download}, vous
-  avez par exemple l'icone de la machine virtuelle pour le syst\`eme \macosx: \textit{\sq 3.8.15beta1U.app}.
+  avez par exemple l'ic\^one de la machine virtuelle pour le syst\`eme \macosx: \textit{\sq 3.8.15beta1U.app}.
 %martial: ajout des index dans la vf
 \index{machine virtuelle}
 \seeindex{VM}{machine virtuelle}
@@ -188,7 +189,7 @@ Les options du menu World (``Monde'' en anglais) pr\'esent\'e dans
 
 \dothis{Cliquez à l'aide de la souris dans l'arrière plan de la
   fenêtre principale pour afficher le menu World, puis sélectionnez
-  \menu{open \ldots \go workspace} pour créer un nouvel espace de
+  \menu{open\ldots \go workspace} pour créer un nouvel espace de
   travail ou Workspace.}
 
 
@@ -231,17 +232,20 @@ bouton avec lequel vous obtenez le menu World est intitulé le
 s\'electionner du texte, des \'el\'ements de listes ou des choix de
 menus et pour déplacer des fenêtres.
 
-%martial: j'ai mis 14 au lieu de 19 
-\begin{wrapfigure}[14]{r}{0.25\linewidth}
+ 
+Lors de vos premiers pas avec \sq, il vous sera sûrement utile de
+marquer votre souris avec des couleurs, comme vous pouvez le voir sur \figref{colouredMouse}.
+
+%martial: il faut regler a la main la position et la hauteur de
+%l'encart avec la souris 
+\begin{wrapfigure}[16]{r}{0.25\linewidth}
 % The parameters are the number of narrow lines to the right of the figure [19],
 % the placement {r} for right, and the width of the figure. Capital R will allow some float.
 % Inside the wrapfig environment, linewidth is special --- the width of the figure.
 \includegraphics[width=0.95\linewidth]{colouredMouse}
 \caption{La souris de l'auteur. Le clic avec la molette correspond au bouton bleu.\label{fig:colouredMouse}}
 \end{wrapfigure}
- 
-Lors de vos premiers pas avec \sq, il vous sera sûrement utile de
-marquer votre souris avec des couleurs, comme vous pouvez le voir sur \figref{colouredMouse}.
+
 
 Le \emphind{bouton jaune} est l'autre bouton le plus employé dans \sq, vous l'utiliserez pour afficher les menus contextuels qui présentent des options selon le contexte ou plus précisement selon l'endroit et les objets sur lesquels vous cliquez. Voyez \figref{threeButtons:yellow}.
 
@@ -266,7 +270,12 @@ une bulle d'aide en affichera un descriptif
 (en anglais, dans la version d'origine de \sq).
 
 \dothis{Cliquez avec le bouton bleu sur le Workspace.
-Déplacez la poignée \raisebox{-0.4ex}{\includegraphics[width=1em]{morphicRotate}} située à proximité du coin inférieur gauche pour faire pivoter le Workspace.}
+Déplacez la poignée 
+%martial: j'ai decide de mettre tout les Morphic handles dans le
+%repertoire 'figures' de la racine 
+\rotateHandle{}
+%\raisebox{-0.4ex}{\includegraphics[width=1em]{morphicRotate}}
+située à proximité du coin inférieur gauche pour faire pivoter le Workspace.}
 
 Nous recommandons aux personnes gauchères de configurer leur souris et d'affecter le \ind{button rouge} à la gauche de leur souris, le \ind{bouton jaune} à droite et d'utiliser la molette de défilement (si elle est disponible) comme \ind{bouton bleu}.
 Avec une souris sans molette il est possible d'invoquer le menu halo
@@ -282,7 +291,7 @@ vous recommandons d'investir dans un modèle à deux boutons au minimum.
 % note de martial: ca depend aussi du windowmanager; c'est une bonne
 % idee de le mettre en tout cas 
 Vous pouvez configurer votre souris selon vos souhaits en utilisant les préférences de votre système ou le pilote de votre dispostif de pointage.
-\sq vous propose des réglages pour adapter votre souris et les touches spéciales de votre clavier. Vous trouverez le \ind{Preference Browser} dans l'option \menu{open...} du menu \menu{World}.
+\sq vous propose des réglages pour adapter votre souris et les touches spéciales de votre clavier. Vous trouverez le \ind{Preference Browser} dans l'option \menu{open\ldots} du menu \menu{World}.
 Dans l'outil de r\'eglage des pr\'ef\'erences nomm\'e Preference
 Browser, la catégorie \menu{general} contient une option
 \menu{swapMouseButtons} qui permute les boutons jaune et bleu (voir
@@ -407,7 +416,7 @@ L'image sur laquelle vous travaillez provient d'une image de \st-80 créée à l
 Beaucoup des objets qu'elle contient sont là depuis des décennies!
 
 Vous pourriez penser que l'utilisation d'une image est incontournable pour stocker et gérer des projets, mais comme nous le verrons bientôt il existe des outils plus adaptés pour gérer le code et travailler en équipe sur des projets.
-Les images sont très utiles mais nous considèrons comme une pratique un peu dépassée et fragile pour diffuser et partager vos projets alors qu'il existe des outils tels que Monticello qui proposent de biens meilleurs moyens de suivre les évolutions du code et de le partager entre plusieurs développeurs.
+Les images sont très utiles mais nous consid\'erons comme une pratique un peu dépassée et fragile pour diffuser et partager vos projets alors qu'il existe des outils tels que Monticello qui proposent de biens meilleurs moyens de suivre les évolutions du code et de le partager entre plusieurs développeurs.
 
 \dothis{Cliquez avec le bouton bleu sur le \blobmorph}
 
@@ -442,13 +451,14 @@ l'endroit attendu).
   l'onglet \menu{Tools} à la droite de la fenêtre principale de \sq
   pour ouvrir le volet des outils (Tools Flap).}
 L'onglet s'élargira et présentera les icônes de certains outils
-importants de \sq (voir \figref{tools}). Faire un glisser-déposer de l'icône \ind{Transcript} puis l'icône \ind{Workspace}.
+importants de \sq (voir \figref{tools}). Faites un glisser-déposer des
+icônes \ind{Transcript} et \ind{Workspace}.
 
 \dothis{Positionnez et redimensionnez le Transcript et le Workspace
   pour que ce dernier recouvre le Transcript.}
 Vous pouvez redimensionner les fenêtres en glissant l'un de leurs
 coins ou en cliquant avec le bouton bleu qui affiche les poignées
-\emph{halo}: utilisez alors l'icône jaune situé en bas à droite.
+\emph{halo}: utilisez alors l'icône jaune située en bas à droite.
 
 Une seule fenêtre est active à la fois; elle s'affiche au premier plan
 et son titre est alors mis en relief. Notez que le pointeur de la
@@ -489,7 +499,7 @@ Exp\'erimentez la s\'election
 en double-cliquant dans l'espace de travail \`a diff\'erents points dans
 le texte que vous venez de saisir.
 % entire word, entire string, or the whole text ((diff: string and word?))
-Remarquez comment un mot entier ou une tout un texte est
+Remarquez comment un mot entier ou tout un texte est
 s\'electionn\'e selon l'endroit o\`u vous cliquez.
 
 \dothis{S\'electionnez le texte que vous avez saisi puis cliquez \`a
@@ -515,7 +525,7 @@ d'informations, rendez-vous dans la prochaine section!).
 \caption{Ex\'ecuter une expression.\label{fig:doit}}
 \end{figure}
 
-Vous venez d'\'evaluer votre premi\`ere~\footnote{NdT: les anglosaxons
+Vous venez d'\'evaluer votre premi\`ere~\footnote{NdT: les anglo-saxons
 ont remplac\'e le ``bonjour squeak'' par ``hello world'' qui a le
 sens de ``salut le monde'' dans la plus pure tradition de la
 programmation; celle-ci veut que le premier programme
@@ -529,7 +539,7 @@ message \ct{cr}
 (qui a le sens de \emph{carriage return}, \cad retour-chariot
 permettant de forcer le passage \`a la ligne suivante).
 Le \ct{Transcript} d\'ecide ensuite de quoi faire avec ce message; il
-cherche parmi ses \emph{m\'ethodes} celles qui g\`ere une r\'eponse
+cherche parmi ses \emph{m\'ethodes} celles qui g\`erent une r\'eponse
 aux messages \ct{show:} et \ct{cr} et qui r\'eagissent de fa\c{c}on
 appropri\'ee.
 
@@ -566,7 +576,7 @@ En plus de \menu{do it}, vous aurez not\'e la pr\'esence de
 (pour \'evaluer et afficher le r\'esultat dans le m\^eme espace de travail), 
 de \menu{inspect it} (pour inspecter) et de \menu{explore it} (pour
 explorer). 
-Jetons un \oe il \`a ceux-ci.
+Jetons un coup d'\oe il \`a ceux-ci.
 
 \dothis{Entrez l'expression \ct{3 + 4} dans le Workspace. Maintenant
   \'evaluez en faisant un \menu{do it} avec le raccourci-clavier.}
@@ -944,7 +954,7 @@ L'outil \emphind{Method Finder} peut vous aider \`a la trouver.
     Finder} depuis  \toolsflapind.
 Saisissez ``now'' dans le panneau sup\'erieur gauche et cliquez sur
 \menu{accept} (ou tapez simplement la touche \textsc{Entr\'ee}).}
-Le chercheur de m\'ethodes Method Finder affichera une liste de toutes
+Le chercheur de m\'ethodes Method Finder affichera une liste de tous
 les noms de m\'ethodes contenant la sous-cha\^{\i}ne de caract\`eres ``now''.  
 
 Pour d\'efiler jusqu'\`a \ct{now} lui-m\^eme, tapez ``\ct{n}''; cette
@@ -977,7 +987,7 @@ que vous voulez.
 
 Une ast\'erisque au d\'ebut d'une ligne dans le panneau de droite du
 Method Finder vous indique que cette m\'ethode est celle qui a \'et\'e
-effectivement utilis\'e pour obtenir le r\'esultat requis.
+effectivement utilis\'ee pour obtenir le r\'esultat requis.
 Ainsi, l'ast\'erisque devant \ct{String asUppercase} vous fait savoir
 que la m\'ethode \mthind{String}{asUppercase} 
 %ajout
@@ -1010,7 +1020,7 @@ panneau inf\'erieure vous en apprendra plus.
 %=================================================================
 \section{D\'efinir une nouvelle m\'ethode}
 \seeindex{d\'eveloppement orient\'e tests}{Test Driven Development}
-L'av\'enement de la m\'ethodologie de d\'eveloppement orient\'e tests
+L'av\`enement de la m\'ethodologie de d\'eveloppement orient\'e tests
 ou \emphind{Test Driven Development}\cite{Beck03a} a chang\'e la
 fa\c{c}on d'\'ecrire du code.
 L'id\'ee derri\`ere cette technique aussi appel\'ee TDD ou
@@ -1031,7 +1041,7 @@ chose''. Qu'est-ce que cela veut dire au juste? Quelle serait le nom
 le plus convenable pour une telle m\'ethode? Comment pourrions-nous
 \^etre s\^ur que les programmeurs en charge de la maintenance future
 du code auront une description sans ambigu\"{\i}t\'e de ce que ce code
-est sens\'e faire?
+est cens\'e faire?
 Nous pouvons r\'epondre \`a toutes ces questions en proposant
 l'exemple suivant:
 
@@ -1152,7 +1162,7 @@ droite; comme vous pouvez le voir, c'est bien
 \ct{StringTest>>>#testShout} le coupable
 (remarquez que la notation \ct{StringTest>>#testShout} est la fa\c{c}on dont \st
 identifie la m\'ethode de la classe \ct{StringTest}).
-Si vous cliquez sur cette ligne de texte, le test erronn\'e sera
+Si vous cliquez sur cette ligne de texte, le test erron\'e sera
 lanc\'e \`a nouveau mais, cette fois-ci, de telle fa\c{c}on que vous
 voyez l'erreur surgir:
 ``\ct{MessageNotUnderstood: ByteString>>>shout}''.
@@ -1172,7 +1182,7 @@ fonctionnalit\'es dans \charef{env}.
 \label{fig:predebugger}
 \end{figure}
 
-L'erreur \'etait bien s\^ur attendue; lancer le test g\'en\'ere une
+L'erreur \'etait bien s\^ur attendue; lancer le test g\'en\`ere une
 erreur parce que nous n'avons pas encore \'ecrit la m\'ethode qui dit
 aux cha\^{\i}nes de caract\`eres comment hurler 
 %ajout pour le francais
@@ -1259,7 +1269,7 @@ syntaxe sans que vous puissiez encore la comprendre suffisamment \`a ce stade.
       virtuelle} (souvent abr\'eg\'ee par VM), un fichier
     \emph{sources} et un couple de fichiers: une \emph{image} et un
     fichier \emph{changes}. Ces deux derniers sont les seuls \`a
-    \^etre susceptible de changer, puisqu'ils sauvegardent un clich\'e
+    \^etre susceptibles de changer, puisqu'ils sauvegardent un clich\'e
     du syst\`eme actif.
   \item Quand vous restorez une image \sq, vous vous retrouvez
     exactement dans le m\^eme \'etat\,---\,avec les m\^eme objets
