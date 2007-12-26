@@ -3,6 +3,8 @@
 % traduit par Alain Plantec
 % relu par Martial Boniou (Sat Nov 24 14:53:40 CET 2007)  
 % $Revision: 12130 $
+% relu par Rene Mages (Fri Dec 21 8:57;55 CET 2007)
+% $Revision: 14579 $ (fusion le: Wed Dec 26 18:15:25 CET 2007)
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -29,6 +31,8 @@
 	\sloppy
 \fi
 %=================================================================
+%%martial (remarque): bonne idee d'Alain; a reutiliser ailleurs avec
+%%une balise a la 'lulu'
 \newcommand{\aconfirmer}[1]{#1}
 \chapter{SUnit}
 \label{cha:SUnit}
@@ -58,7 +62,7 @@ L'automatisation des tests est devenue une pratique fondamentale des \ind{métho
 tout développeur concerné par l'amélioration de la qualité du logiciel ferait bien de l'adopter.  
 En effet, de nombreux développeurs apprécient la puissance du test unitaire et des versions de \xUnit{} sont maintenant disponibles pour de nombreux langages dont \ind{Java}, \ind{Python}, \ind{Perl}, .Net et \ind{Oracle}.
 % The interest in testing and \ind{Test Driven Development}
-% is not limited to \squeak or \st.  
+% is not limited to \sq or \st.  
 % Automated testing has become a hallmark of the \ind{Agile software development} movement, and any
 % software developer concerned with improving software quality would do well to adopt it.
 % Indeed, developers in many languages have come to appreciate
@@ -84,7 +88,7 @@ Le test et la construction de lignes de tests ne sont pas des pratiques nouvelle
 % The \st community has a long tradition of
 % testing because of the incremental style of development supported by its
 % programming environment.
-Traditionnellement, un programmeur \st écrirait des tests dans un \ct{Workspace} dès qu'une méthode est achevée. Quelques-fois, un test serait intégré comme commentaire en tête de méthode en cours de mise au point, ou bien les tests plus élaborés seraient inclus dans la classe sous la forme de méthodes exemples. L'inconvénient de ces pratiques est que les tests édités dans un \ct{Workspace} ne sont pas disponibles pour les autres développeurs qui modifient le code; les commentaires et les méthodes exemples sont de ce point de vue préférables mais ne permettent toujours pas ni leur suivi ni leur automatisation. 
+Traditionnellement, un programmeur \st écrirait des tests dans un \ct{Workspace} dès qu'une méthode est achevée. Quelquefois, un test serait intégré comme commentaire en tête de méthode en cours de mise au point, ou bien les tests plus élaborés seraient inclus dans la classe sous la forme de méthodes exemples. L'inconvénient de ces pratiques est que les tests édités dans un \ct{Workspace} ne sont pas disponibles pour les autres développeurs qui modifient le code; les commentaires et les méthodes exemples sont de ce point de vue préférables mais ne permettent toujours pas ni leur suivi ni leur automatisation. 
 % In traditional \st development, the programmer would write tests in a workspace 
 % as soon as a method was finished.
 % Sometimes a test would be incorporated as a comment at the head of the method that it exercised, or tests that needed some set up would be included as example methods in the class.
@@ -109,7 +113,8 @@ Les tests qui ne sont pas exécutés ne vous aident pas à trouver les bugs~! De
 % \sunit, so instead of writing small code snippets in a workspace, we encourage you
 % to use \sunit and get all the
 % advantages of stored and automatically executable tests.
-Dans ce chapitre, nous commencerons par discuter de pourquoi nous testons et de quoi est fait un bon test. Nous présenterons alors une séries de petits exemples montrant comment utiliser \sunit. Finalement, nous étudierons l'implémentation de \sunit, de façon à ce que vous compreniez comment \st utilise la puissance de la \ind{réflexivité} pour la mise en \oe uvre de ses outils.
+Dans ce chapitre, nous commencerons par discuter de la raison des
+tests et de ce qu'est un bon test. Nous présenterons alors une séries de petits exemples montrant comment utiliser \sunit. Finalement, nous étudierons l'implémentation de \sunit, de façon à ce que vous compreniez comment \st utilise la puissance de la \ind{réflexivité} pour la mise en \oe uvre de ses outils.
 
 % In this chapter we start by discussing why we test, and what makes a good test. We then present a series of small 
 % examples showing how to use \sunit.
@@ -122,8 +127,8 @@ Dans ce chapitre, nous commencerons par discuter de pourquoi nous testons et de 
 \label{sec:why}
 
 Malheureusement, beaucoup de développeurs croient perdre leur temps avec les tests. 
-Après tout, \emph{ils} n'écrivent pas de bug\,---\,seulement les \emph{autres} programmeurs le font. La plupart d'entre nous a dit, à un moment ou à un autre~: ``j'écrirais des tests si j'avais plus de temps''.
-Si vous n'écrivez jamais de bug, et si votre code n'est pas destiné à être modifié dans le futur, alors, en effet, les tests sont une perte de temps. Pourtant, cela signifie très probablement que votre application est triviale, ou qu'elle n'est pas utilisée, ni par vous, ni par quelqu'un d'autre. Pensez aux tests comme un investissement sur le futur~: disposer d'une suite de tests est dès à présent tout à fait utile, mais sera \emph{extrêmement} utile dans le futur, lorsque votre application ou votre environnement dans lequel elle s'exécute évolue. 
+Après tout, \emph{ils} n'écrivent pas de bug\,---\,seulement les \emph{autres} programmeurs le font. La plupart d'entre nous avons dit, à un moment ou à un autre~: ``j'écrirais des tests si j'avais plus de temps''.
+Si vous n'écrivez jamais de bugs, et si votre code n'est pas destiné à être modifié dans le futur, alors, en effet, les tests sont une perte de temps. Pourtant, cela signifie très probablement que votre application est triviale, ou qu'elle n'est pas utilisée, ni par vous, ni par quelqu'un d'autre. Pensez aux tests comme un investissement sur le futur~: disposer d'une suite de tests est dès à présent tout à fait utile, mais sera \emph{extrêmement} utile dans le futur, lorsque votre application ou votre environnement dans lequel elle s'exécute évoluera. 
 
 % Unfortunately, many developers believe that tests are a waste of their time.  
 % After all, \emph{they} do not write bugs\,---\,only \emph{other} programmers do that.
@@ -137,7 +142,22 @@ Si vous n'écrivez jamais de bug, et si votre code n'est pas destiné à être m
 % suite of tests will be quite useful now, but it will be \emph{extremely} useful when
 % your application, or the environment in which it executes, changes in the future.
 
-Les tests jouent plusieurs rôles. Premièrement, ils fournissent une documentation pour la fonctionnalité qu'ils couvrent. De plus, la documentation est active~: l'observation des passes de tests vous indique que votre documentation est à jour. Deuxièmement, les tests aident les développeurs à garantir que certaines modifications qu'ils viennent juste d'apporter à un package n'a rien cassé dans le système\,---\, et à trouver quelles parties sont cassées si leur confiance s'avère contredite. Finalement, écrire des tests en même temps que\,---\, ou même avant de \,---\,  programmer vous force à penser à la fonctionnalité que vous désirez concevoir et à \emph{comment elle devrait apparaître au client}, plutôt qu'à comment la mettre en oeuvre. En écrivant les tests en premier\,---\, avant le code\,---\, vous êtes contraint d'établir le contexte dans lequel votre fonctionnalité s'exécutera, la façon dont elle interagira avec le code client et les résultats attendus. Votre code s'améliorera~: essayez-le.
+Les tests jouent plusieurs rôles. Premièrement, ils fournissent une
+documentation pour la fonctionnalité qu'ils couvrent. De plus, la
+documentation est active~: l'observation des passes de tests vous
+indique que votre documentation est à jour. Deuxièmement, les tests
+aident les développeurs à garantir que certaines modifications qu'ils
+viennent juste d'apporter à un package n'ont rien cassé dans le
+système\,---\, et à trouver quelles parties sont cassées si leur
+confiance s'avère contredite. Finalement, écrire des tests en même
+temps que\,---\, ou même avant de \,---\,  programmer vous force à
+penser à la fonctionnalité que vous désirez concevoir et à
+\emph{comment elle devrait apparaître au client}, plutôt qu'à comment
+la mettre en \oe uvre. En écrivant les tests en premier\,---\, avant
+le code\,---\, vous êtes contraint d'établir le contexte dans lequel
+votre fonctionnalité s'exécutera, la façon dont elle interagira avec
+le code client et les résultats attendus. Votre code s'améliorera~:
+essayez donc!
  
 % Tests play several roles. First, they provide documentation of the functionality that they cover.  
 % Moreover, the documentation is active: watching the tests pass tells you that the documentation is up-to-date.
@@ -162,7 +182,11 @@ Les tests jouent plusieurs rôles. Premièrement, ils fournissent une documentat
 %the context of the tests is left unspecified so the reader has to
 %interpret the results and assess if they are right or wrong.
 
-Nous ne pouvons pas tester tous les aspects d'une application réaliste. Couvrir une application complète est tout simplement impossible et ne devrait pas être l'objectif du test. Même avec une bonne suite de tests, certains bugs seront quand même présents dans votre application, assoupis, attendant l'occasion d'endommager votre système. Si vous constatez que c'est arrivé, tirez-en parti~! Dès que vous découvrez le bug, écrivez un test qui le met en évidence, exécutez le test et observez qu'il échoue. Alors vous pourrez commencer à corriger le bug~: le test vous indiquera quand vous en aurez fini.
+Nous ne pouvons pas tester tous les aspects d'une application
+réaliste. Couvrir une application complète est tout simplement
+impossible et ne devrait pas être l'objectif du test. Même avec une
+bonne suite de tests, certains bugs seront quand même présents dans
+votre application, sommeillant en attendant l'occasion d'endommager votre système. Si vous constatez que c'est arrivé, tirez-en parti~! Dès que vous découvrez le bug, écrivez un test qui le met en évidence, exécutez le test et observez qu'il échoue. Alors vous pourrez commencer à corriger le bug~: le test vous indiquera quand vous en aurez fini.
 
 % We cannot test all aspects of any realistic application.
 % Covering a complete application is simply impossible and should not be the
@@ -178,7 +202,7 @@ Nous ne pouvons pas tester tous les aspects d'une application réaliste. Couvrir
 \section{De quoi est fait un bon test ?}
 
 \'Ecrire de bons tests constitue un savoir-faire qui peut s'apprendre facilement par la pratique.
-\aconfirmer{Regardons comment concevoir les tests de façon à en tirer le maximum de bénéfices}.
+\aconfirmer{Regardons comment concevoir les tests de façon à en tirer le maximum de bénéfices.}
  
 % Writing good tests is a skill that can be learned most easily by
 % practicing.  Let us look at the properties that tests should have to
@@ -214,7 +238,7 @@ Il est possible d'écrire un test pour une méthode utilitaire privée si vous s
 %   implementation.
 \end{enumerate}
 
-Une conséquence du point (\ref{prop:oneAspect}) est que le nombre de tests doit être proportionnel au nombre de fonctions à tester~: changer un aspect du système ne doit pas altérer tous les tests mais seulement un nombre limité. C'est important car avoir 100 échecs de test doit constituer un signal beaucoup plus fort que d'en avoir 10. Cependant, cet idéal n'est pas toujours possible à atteindre~: en particulier, si une modification casse l'initialisation d'un objet ou la mise en place du test, une conséquence probable peut être l'échec de tous les tests.
+Une conséquence du point (\ref{prop:oneAspect}) est que le nombre de tests doit être proportionnel au nombre de fonctions à tester~: changer un aspect du système ne doit pas altérer tous les tests mais seulement un nombre limité. C'est important car avoir 100 échecs de tests doit constituer un signal beaucoup plus fort que d'en avoir 10. Cependant, cet idéal n'est pas toujours possible à atteindre~: en particulier, si une modification casse l'initialisation d'un objet ou la mise en place du test, une conséquence probable peut être l'échec de tous les tests.
 % A consequence of property (\ref{prop:oneAspect}) is that 
 % the number of tests should be somewhat proportional to the number of
 % functions to be tested: changing one aspect of the
@@ -225,7 +249,10 @@ Une conséquence du point (\ref{prop:oneAspect}) est que le nombre de tests doit
 % in particular, if a change breaks the initialization of an object, or the
 % set-up of a test, it is likely to cause all of the tests to fail. 
 
-L'\ind{eXtreme Programming} recommande d'écrire des tests avant de coder. Cela semble contredire nos instincts profonds de développeur. Tout ce que nous pouvons dire est~: allez de l'avant et essayez-le. Nous avons trouvé que d'écrire les tests avant le code nous aide à déterminer ce que nous voulons coder, nous aide à savoir quand nous avons terminé et nous aide à conceptualiser la fonctionnalité d'une classe et à concevoir son interface.
+L'\ind{eXtreme Programming} recommande d'écrire des tests avant de
+coder. Cela semble contredire nos instincts profonds de
+développeur. Tout ce que nous pouvons dire est~: allez de l'avant et
+essayez donc! Nous trouvons qu'écrire les tests avant le code nous aide à déterminer ce que nous voulons coder, nous aide à savoir quand nous avons terminé et nous aide à conceptualiser la fonctionnalité d'une classe et à concevoir son interface.
 De plus, le développement \flqq{}\emph{test d'abord}\frqq{} (\ct{test-first}) nous donne le courage d'avancer rapidement parce que nous n'avons pas peur d'oublier quelque chose d'important. 
 % \ind{eXtreme Programming} advocates writing tests before writing code.  This may seem to go
 % against our deep instincts as software developers.  
@@ -263,9 +290,11 @@ Avant de considérer \SUnit en détails, nous allons montrer un exemple, étape 
 %\subsection{Step 1: create the test class}
 \subsection{\'Etape 1: créer la classe de test}
 
-\dothis{Premièrement vous devriez créer une nouvelle sous-classe de \clsind{TestCase} nommée
-\ct{ExampleSetTest}. Ajoutez deux variables d'instance de façon à ce que votre classe ressemble à ceci~:}
+\dothis{Créez tout d'abord une nouvelle sous-classe de \clsind{TestCase} nommée
+\ct{ExampleSetTest}. Ajoutez-lui deux variables d'instance de façon à ce que votre classe ressemble à ceci~:}
 
+%ATTENTION
+\newpage{}
 \begin{classdef}[exampleSetTest]{Un exemple de classe de test pour Set}
 TestCase subclass: #ExampleSetTest
 	instanceVariableNames: 'full empty'
@@ -284,7 +313,7 @@ TestCase subclass: #ExampleSetTest
 % \end{classdef}
 
 Nous utiliserons la classe \ct{ExampleSetTest} pour regrouper tous les tests relatifs
-à la classe \ct{Set}. Elle définit le contexte dans lequel les tests s'exécuterons. Ici, le contexte est décrit par les deux variables d'instance \ct{full} et \ct{empty} qui seront utilisées pour représenter respectivement, un \ct{Set} plein et un \ct{Set} vide.
+à la classe \ct{Set}. Elle définit le contexte dans lequel les tests s'exécuteront. Ici, le contexte est décrit par les deux variables d'instance \ct{full} et \ct{empty} qui seront utilisées pour représenter respectivement, un \ct{Set} plein et un \ct{Set} vide.
 % We will use the class \ct{ExampleSetTest} to group all the tests related to
 % the class \ct{Set}.  It defines the context in which the tests
 % will run.  Here the context is described by
@@ -292,7 +321,7 @@ Nous utiliserons la classe \ct{ExampleSetTest} pour regrouper tous les tests rel
 % that we will use to represent a full and an empty set.
 
 Le nom de la classe n'est pas fondamental, mais par convention il devrait se terminer par \ct{Test}.
-Si vous définissez une classe nommée \ct{Pattern} et nommez la classe de test correspondante \ct{PatternTest}, les deux classes seront présentées ensembles, par ordre alphabétique, dans le \ct{System Browser} (en considérant qu'elles sont dans la même catégorie). Il est indispensable que votre classe soit une sous-classe de \ct{TestCase}.
+Si vous définissez une classe nommée \ct{Pattern} et que vous nommez la classe de test correspondante \ct{PatternTest}, les deux classes seront présentées ensembles, par ordre alphabétique, dans le \ct{System Browser} (en considérant qu'elles sont dans la même catégorie). Il est indispensable que votre classe soit une sous-classe de \ct{TestCase}.
 
 % The name of the class is not critical, but by convention it should end in \ct{Test}.
 % If you define a class called \ct{Pattern} and call the corresponding test class \ct{PatternTest}, the two classes will be alphabetized together in the browser (assuming that they are in the same category).  It \emph{is} critical that your class be a subclass of \ct{TestCase}.
@@ -304,7 +333,8 @@ La méthode \mthind{TestCase}{setUp} (en anglais, \emph{configurer}) définit le
 \index{SUnit!set up method}
 \seeindex{testing}{SUnit}
 
-\dothis{Définissez la méthode \ct{setUp} de la façon suivante pour initialiser la variable \ct{empty}, de sorte qu'elle référence un \ct{Set} vide et la variable \ct{full}, de sorte qu'elle référence un \ct{Set} contenant deux éléments.}
+%martial: phrase a revoir
+\dothis{Définissez la méthode \ct{setUp} de la façon suivante pour initialiser la variable \ct{empty}, de sorte qu'elle référence un \ct{Set} vide; et la variable \ct{full}, de sorte qu'elle référence un \ct{Set} contenant deux éléments.}
 % The method \mthind{TestCase}{setUp} defines the context in which the tests will run, a bit like an initialize method.
 % \ct{setUp} is invoked before the execution of each test
 % method defined in the test class.
@@ -322,7 +352,8 @@ ExampleSetTest>>>setUp
 \end{method}
 
 \noindent
-Dans le jargon du test, le contexte est appelé \emph{l'installation} du test.
+Dans le jargon du test, le contexte est appelé \emph{l'installation}
+du test (en anglais, \emph{fixture}).
 \index{SUnit!installation}
 \seeindex{fixture}{SUnit, installation}
 % \noindent
@@ -337,7 +368,7 @@ Dans le jargon du test, le contexte est appelé \emph{l'installation} du test.
 
 Créons quelques tests en définissant quelques méthodes dans la classe \ct{ExampleSetTest}.
 Chaque méthode représente un test;
-le nom de la méthode devrait commencer par la chaîne `\ct{test}' pour que \sunit les regroupe en suites de tests.
+le nom de la méthode devrait commencer par la chaîne ``\ct{test}'' pour que \sunit les regroupe en suites de tests.
 Les méthodes de test ne prennent pas d'arguments.
 
 % Let's create some tests by defining some methods in the class
@@ -401,7 +432,7 @@ Notez l'utilisation de la méthode \mthind{TestCase}{deny:} pour garantir que qu
 \subsection{\'Etape 4: exécuter les tests}
 \aconfirmer{Le plus facile pour exécuter les tests est d'utiliser \emphind{l'évaluateur de tests} \sunit (\emph{TestRunner}), que vous pouvez ouvrir depuis le menu \menu{World \go open\,\ldots} ou en glissant le \menu{TestRunner} depuis la barre d'outils (\toolsflap).}
 L'évaluateur de tests, montré dans la \figref{test-runner}, est conçu pour faciliter l'exécution de groupes de tests.
-Le panneau le plus à gauche présente toutes les catégories système qui contiennent des classes de test (\ie  sous-classes de \ct{TestCase}). Lorsque certaines de ces catégories sont sélectionnées, les classes de test qu'elles contiennent apparaîssent dans le panneau de droite. Les classes abstraites sont en italique et la hiérarchie des classes de test est visible par l'indentation, ainsi les sous-classes de  \ct{ClassTestCase} sont plus indentées que les sous-classes de \ct{TestCase}.
+Le panneau le plus à gauche présente toutes les catégories système qui contiennent des classes de test (\ie  sous-classes de \ct{TestCase}). Lorsque certaines de ces catégories sont sélectionnées, les classes de test qu'elles contiennent apparaissent dans le panneau de droite. Les classes abstraites sont en italique et la hiérarchie des classes de test est visible par l'indentation, ainsi les sous-classes de  \ct{ClassTestCase} sont plus indentées que les sous-classes de \ct{TestCase}.
 % The easiest way to execute the tests is with the \sunit \emphind{Test Runner}, 
 % which you can open from the \menu{World \go open\,\ldots} menu, or by dragging the \menu{TestRunner} from the \toolsflap.
 % The \emph{TestRunner}, shown in \figref{test-runner}, is designed to make it easy  to execute groups of tests.
@@ -474,13 +505,29 @@ ExampleSetTest debug: #testRemove
 %\subsection{Step 5: interpret the results}
 \subsection{\'Etape 5: interpréter les résultats}
 
-La méthode \mthind{TestCase}{assert:}\,, définie dans la classe \ct{TestCase}, prend un booléen en argument; habituellement la valeur d'une expression testée. Quand cet argument est à vrai (\ct{true}), le test est réussi; quand cet argument à faux (\ct{false}), le test échoue.  
+La méthode \mthind{TestCase}{assert:}\,, définie dans la classe
+\ct{TestCase}, prend un booléen en argument; habituellement la valeur
+d'une expression testée. Quand cet argument est à vrai (\ct{true}), le
+test est réussi; quand cet argument est à faux (\ct{false}), le test échoue.  
 % The method \mthind{TestCase}{assert:}\,, which is defined in the class
 % \ct{TestCase}, expects a boolean argument, usually the value of a tested expression.  When the argument is
 % true, the
 % test passes; when the argument is false, the test fails.
 
-Il y a actuellement trois résultats possibles pour un test. Le résultat espéré est que toutes les assertions du test soient vraies, dans ce cas le test réussit. Dans l'évaluateur de tests (\ct{TestRunner}), quand tous les tests réussissent, la barre du haut devient verte. Pourtant, il reste deux possibilités pour que quelque-chose se passe mal quand vous évaluez le test. Le plus évident est qu'une des assertions peut être fausse, entraînant \emph{l'échec} du test. Pourtant, il est aussi possible qu'une erreur intervienne pendant l'exécution du test, telle qu'une erreur \emph{message non compris} ou une erreur d'\emph{index hors limites}. Si une erreur survient, les assertions de la méthode de test peuvent ne pas avoir été exécutées du tout, ainsi nous ne pouvons pas dire que le test a échoué. 
+Il y a actuellement trois résultats possibles pour un test. Le
+résultat espéré est que toutes les assertions du test soient vraies,
+dans ce cas le test réussit. Dans l'évaluateur de tests
+(\ct{TestRunner}), quand tous les tests réussissent, la barre du haut
+devient verte. Pourtant, il reste deux possibilités pour que quelque
+chose se passe mal quand vous évaluez le test. Le plus évident est
+qu'une des assertions peut être fausse, entraînant \emph{l'échec} du
+test. Pourtant, il est aussi possible qu'une erreur intervienne
+pendant l'exécution du test, telle qu'une erreur \emph{message non
+  compris} ou une erreur 
+d'\emph{indice hors limites}.
+%d'\emph{index hors limites}. 
+
+Si une erreur survient, les assertions de la méthode de test peuvent ne pas avoir été exécutées du tout, ainsi nous ne pouvons pas dire que le test a échoué. 
 Toutefois, quelque chose est clairement faux~!
 Dans l'évaluateur de tests (\ct{TestRunner}), la barre du haut devient jaune pour les tests en échec et ces tests sont listés dans le panneau du milieu à droite, alors que pour les tests erronés, la barre devient rouge et ces tests sont listés dans le panneau en bas à droite.
 % There are actually three possible outcomes of a test.
@@ -499,7 +546,7 @@ Dans l'évaluateur de tests (\ct{TestRunner}), la barre du haut devient jaune po
 %=================================================================
 %\section{The \SUnit cook book}
 \section{Les recettes pour \SUnit}
-Cette section vous donne plus d'informations sur la façon d'utiliser \SUnit. Si vous avez utilisé un autre environnement de test comme \JUnit~\footnote{\url{junit.org}}, ceci vous sera familier puisque tous ces environnements sont issus de  \SUnit. \aconfirmer{Normalement, vous utiliserez l'IHM~\footnote{Interface Homme Machine.} de \SUnit pour exécuter les tests à l'exception de certains cas}.
+Cette section vous donne plus d'informations sur la façon d'utiliser \SUnit. Si vous avez utilisé un autre environnement de test comme \JUnit~\footnote{\url{http://junit.org}}, ceci vous sera familier puisque tous ces environnements sont issus de  \SUnit. \aconfirmer{Normalement, vous utiliserez l'IHM~\footnote{Interface Homme Machine.} de \SUnit pour exécuter les tests à l'exception de certains cas.}
 
 % This section will give you more details on how to use \SUnit.  If you
 % have used another testing framework such as \JUnit\footnote{\url{junit.org}},
@@ -689,7 +736,7 @@ Pour ces situations, il est sensé d'initialiser et d'ouvrir une connexion vers 
 % In such cases, it may make sense to set up the database and open a connection to it, or to compile some source code, before any of the tests start to run.
 
 Où pourrions nous conserver ces ressources de façon à ce qu'elles puissent être partagées par les tests d'une suite~?
-Les variables d'instance d'une sous-classe de \ct{TestCase} particulière ne le pourraient pas parce que ces instances ne subsistent que pendant la durée d'un seul test.
+Les variables d'instance d'une sous-classe de \ct{TestCase} particulière ne le pourraient pas parce que ses instances ne subsistent que pendant la durée d'un seul test.
 Une variable globable ferait l'affaire, mais utiliser trop de variables globales pollue l'espace de nommage et la relation entre la variable globale et les tests qui en dépendent ne serait pas explicite.
 Une meilleur solution est de placer les ressources nécessaires dans l'objet singleton d'une certaine classe. La classe \clsindmain{TestResource} est définie pour avoir des sous-classes utilisées comme classes de ressource. Chaque sous-classe de \ct{TestResource} comprend le message \ct{current} qui retournera son instance singleton.
 Les méthodes  \ct{setUp} et \ct{tearDown} doivent être surchargées dans la sous-classe pour permettre à la ressource d'être initialisée et libérée.
@@ -806,7 +853,7 @@ Les méthodes correspondantes  de \ct{TestCase} sont~:
 
 %---------------------------------------------------------
 \subsection{Gestion des traces}
-Les chaînes descriptives présentées précédemment peuvent aussi être tracées dans un flot de données \ct{Stream} tel que le \ct{Transcript} ou un flot associé à un fichier. Vous pouvez choisir de tracer ou non en surchargeant \cmind{TestCase}{isLogging} dans votre classe de test; vous devez aussi choisir dans quoi tracer en surchargeant \cmind{TestCase}{failureLog} de façon à fournir un \emph{stream} approprié.
+Les chaînes descriptives présentées précédemment peuvent aussi être tracées dans un flux de données \ct{Stream} tel que le \ct{Transcript} ou un flux associé à un fichier. Vous pouvez choisir de tracer ou non en surchargeant \cmind{TestCase}{isLogging} dans votre classe de test; vous devez aussi choisir dans quoi tracer en surchargeant \cmind{TestCase}{failureLog} de façon à fournir un \emph{stream} approprié.
 % The description strings described above may also be logged to a
 % \ct{Stream} such as the \ct{Transcript}, or a file stream.
 % You can choose whether to log by overriding
@@ -847,7 +894,7 @@ aCollection do:
 		description: each printString , ' n''est pas pair'
 		resumable: true]
 \end{code}
-Pour chaque élément en échec, un message sera affiché dans le flot des traces. Les échecs ne sont pas cumulés, \ie si l'assertion échoue 10~fois dans la méthode de test, vous ne verrez qu'un seul échec. Toutes les autres méthodes d'assertion que nous avons vues ne permettent pas la reprise;
+Pour chaque élément en échec, un message sera affiché dans le flux des traces. Les échecs ne sont pas cumulés, \ie si l'assertion échoue 10~fois dans la méthode de test, vous ne verrez qu'un seul échec. Toutes les autres méthodes d'assertion que nous avons vues ne permettent pas la reprise;
 \ct{assert: p description: s} est équivalente à \ct{assert: p description: s resumable: false}.
 
 % This will print out a message on your logging stream for each element
@@ -1013,7 +1060,7 @@ TestCase>>>testSelectors
 \end{method}
 \cmindex{MyTestCase class}{buildSuiteFromSelectors}
 
-La méthode \cmind{TestSuite}{run} crée une instance de \ct{TestResult}, vérifie que toutes les ressources sont disponibles avec \ct{areAllResourcesAvailable} puis envoie elle même le message \mthind{TestSuite}{run:} qui exécute tous les tests de la suite. Toutes les ressources sont alors libérées.
+La méthode \cmind{TestSuite}{run} crée une instance de \ct{TestResult}, vérifie que toutes les ressources sont disponibles avec \ct{areAllResourcesAvailable} puis envoie elle-même le message \mthind{TestSuite}{run:} qui exécute tous les tests de la suite. Toutes les ressources sont alors libérées.
 % The method \cmind{TestSuite}{run} creates an instance of
 % \ct{TestResult}, verifies that all the resource are available, and then sends itself
 % the message \mthind{TestSuite}{run:}, which runs all
@@ -1058,7 +1105,7 @@ La classe \clsind{TestResource} et ses sous-classes conservent la trace de leurs
 % cleared when the tests have finished running and the resources are
 % reset.
 
-Comme le montre la méthode de classe \cmind{TestResource class}{isAvailable} (en anglais,\emph{est-disponible}), le contrôle de la disponibilité de la ressource permet de la recréer en cas de besoin. 
+Comme le montre la méthode de classe \cmind{TestResource class}{isAvailable} (en anglais, \emph{est-disponible}), le contrôle de la disponibilité de la ressource permet de la recréer en cas de besoin. 
 Pendant sa création, l'instance de \ct{TestResource} est initialisée et la méthode \mthind{TestResource}{setUp} est invoquée.
 % The resource availability check makes it possible for the resource to be 
 % re-created if needed, as shown in the class method \cmind{TestResource class}{isAvailable}.  During the \ct{TestResource}
@@ -1101,7 +1148,8 @@ TestResource>>>initialize
 %\section{Some advice on testing}
 \section{Quelques conseils sur le test}
 
-Bien que les mécanismes du test soient simples, il n'est pas aussi facile d'écrire de bon tests.
+Bien que les mécanismes du test soient simples, il n'est pas toujours
+facile d'en écrire de bons.
 Voici quelques conseils pour leur conception.
 % While the mechanics of testing are easy, writing good tests is not.
 % Here is some advice on how to design tests.
@@ -1123,7 +1171,9 @@ Voici quelques conseils pour leur conception.
 
 \index{Feathers, Michael}
 \item[Les règles de Feathers.]
-Michael Feathers, un auteur et consultant en processus agile écrit~\footnote{Voir \url{http://www.artima.com/weblogs/viewpost.jsp?thread=126923}. 9 Septembre 2005}~:
+Michael Feathers, un auteur et consultant en processus agile
+écrit~\footnote{Voir
+  \url{http://www.artima.com/weblogs/viewpost.jsp?thread=126923} -- 9 Septembre 2005.}~:
 \begin{quotation}
 \noindent
  {\it
@@ -1136,7 +1186,7 @@ Un test n'est pas un test unitaire si~:
 \item vous devez préparer votre environnement de façon particulière pour l'exécuter (comme éditer un fichier de configuration).
 \end{itemize}
 Des tests qui s'exécutent ainsi ne sont pas mauvais.   
-Souvent ils valent la peine d'être écrit et ils peuvent être développés au sein d'un environnement de tests. 
+Souvent ils valent la peine d'être écrits et ils peuvent être développés au sein d'un environnement de tests. 
 Cependant, il est important de pouvoir les séparer des vrais tests unitaires de façon à ce qu'il soit possible de maintenir un ensemble de tests que nous pouvons exécuter rapidement à chaque fois que nous apportons nos modifications.
 }
 \end{quotation}
@@ -1162,7 +1212,7 @@ Ne vous placez jamais dans une situation où vous ne voulez pas lancer votre sui
 \item[Tests unitaires \textit{contre} tests d'acceptation.]
 % Martial: j'ai préféré contre à versus
 %\item[Tests unitaire \textit{vs.}\ tests d'acceptation.] 
-Des tests unitaires capturent une partie de fonctionnalité et, comme tels, permettent de faciliter l'identification des bugs de cette fonctionnalité. Essayez d'avoir, autant que possible, des tests unitaires pour chaque méthode pouvant potentiellement poser problème et regroupez-les par classe. Cependant, pour des situations profondément récursives ou complexes à installer, il est plus facile d'écrire des tests qui représentent un scénario cohérent pour l'application visée; ce sont des tests d'acceptation ou tests fonctionnels.
+Des tests unitaires capturent une partie de la fonctionnalité et, comme tels, permettent de faciliter l'identification des bugs de cette fonctionnalité. Essayez d'avoir, autant que possible, des tests unitaires pour chaque méthode pouvant potentiellement poser problème et regroupez-les par classe. Cependant, pour des situations profondément récursives ou complexes à installer, il est plus facile d'écrire des tests qui représentent un scénario cohérent pour l'application visée; ce sont des tests d'acceptation ou tests fonctionnels.
 Des tests qui violent les principes de  Feathers peuvent faire de bons tests d'acceptation.
 Groupez les tests d'acceptation en cohérence avec la fonctionnalité qu'ils testent.
 Par exemple, si vous écrivez un compilateur, vous pourriez écrire des tests d'acceptation avec des assertions qui concernent le code généré pour chaque instruction utilisable du langage source.
@@ -1186,7 +1236,7 @@ Vous pouvez les écrire avec \sunit, mais vous ne voudriez pas les exécuter à 
 %   so they should be separated form the true unit tests.
 
 \item[Les règles de Black.]
-\aconfirmer{Pour tout les tests du système, vous devriez être en mesure d'identifier une propriété pour laquelle le test renforce votre confiance. Il est évident qu'il ne devrait pas y avoir de propriété importante que vous ne testez pas. Cette règle établit le fait moins évident qu'il ne devrait pas y avoir de test sans valeur ajoutée de nature à accroître votre confiance envers une propriété utile}.
+\aconfirmer{Pour tout les tests du système, vous devriez être en mesure d'identifier une propriété pour laquelle le test renforce votre confiance. Il est évident qu'il ne devrait pas y avoir de propriété importante que vous ne testez pas. Cette règle établit le fait moins évident qu'il ne devrait pas y avoir de test sans valeur ajoutée de nature à accroître votre confiance envers une propriété utile.}
 Par exemple, il n'est pas bon d'avoir plusieurs tests pour la même propriété. En fait, c'est nuisible~: ils rendent la compréhension de la classe plus difficile à déduire à la lecture des tests et un bug dans le code est susceptible de casser beaucoup de tests en même temps. Ne pensez qu'à une seule propriété quand vous écrivez un test.  
 % \item[Black's Rule of Testing.]
 %   For every test in the system, you should be able to identify some property for which
@@ -1553,7 +1603,7 @@ Par exemple, il n'est pas bon d'avoir plusieurs tests pour la même propriété.
 
 \aconfirmer{Ce chapitre a expliqué en quoi les tests constituent un investissement important pour le futur de votre code.
 Nous avons expliqué, étape par étape, comment spécifier quelques tests pour la classe \ct{Set}.
-Ensuite, nous avons décrit simplement le c\oe ur de l'environnement \sunit en présentant les classes \ct{TestCase}, \ct{TestResult}, \ct{TestSuite} et \lct{TestResources}. Finalement, nous avons détaillé \sunit en suivant l'exécution d'un test et d'une suite de tests}.
+Ensuite, nous avons décrit simplement le c\oe ur de l'environnement \sunit en présentant les classes \ct{TestCase}, \ct{TestResult}, \ct{TestSuite} et \lct{TestResources}. Finalement, nous avons détaillé \sunit en suivant l'exécution d'un test et d'une suite de tests.}
 % This chapter explained why tests are an important investment in 
 % the future of your code.  
 % We explained in a step-by-step fashion how
@@ -1565,11 +1615,11 @@ Ensuite, nous avons décrit simplement le c\oe ur de l'environnement \sunit en p
 
 \begin{itemize}
 \item Pour maximiser leur potentiel, des tests unitaires devraient être rapides, réitérables, indépendants d'une intervention humaine et couvrir une seule partie de fonctionnalité.
-\item Les tests pour la classe nommée \ct{MyClass} sont dans la classe nommée \ct{MyClassTest} qui devrait être implantée comme une sous-classe de \lct{TestCase}.
+\item Les tests pour la classe nommée \ct{MyClass} sont dans la classe nommée \ct{MyClassTest} qui devrait être implantée comme une sous-classe de \ct{TestCase}.
 \item Initialisez vos données de test dans une méthode \ct{setUp}.
-\item Chaque méthode de test devrait commencer par le mot ``test''.
+\item Chaque méthode de test devrait commencer par le mot ``\ct{test}''.
 \item Utilisez les méthodes de \ct{TestCase} comme \ct{assert:}, \ct{deny:} et autres, pour établir vos assertions.
-\item Exécutez les tests en utilisant l'évaluateur de tests, \sunit (dans la barre d'outils).
+\item Exécutez les tests en utilisant l'évaluateur de tests \sunit (dans \toolsflap).
 %   \item To maximize their potential, unit tests should be fast, repeatable, independent of any direct human interaction and cover a single unit of functionality.
 %   \item Tests for a class called \ct{MyClass} belong in a class classed \ct{MyClassTest}, which should be introduced as a subclass of \lct{TestCase}.
 %   \item Initialize your test data in a \ct{setUp} method.
