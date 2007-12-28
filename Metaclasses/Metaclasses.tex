@@ -46,7 +46,7 @@
 
 \on{The section on responsibilities of Class, Behavior and Metaclass are weak, and need to be fleshed out with convincing examples. Marcus, can you help?}
 
-Comme nous l'avons vu dans~\charef{model}, en \st, tout est un objet, et tout objet est une instance d'une classe.
+Comme nous l'avons vu dans~\charef{model}, en \st, \mantra, et tout objet est une instance d'une classe.
 Les classes ne sont pas des cas particuliers:
 les classes sont des objets, et les objets représentant les classes sont des instances d'autres classes.
 Ce modèle objet capture l'essence de la programmation orientée objet: il est petit, simple, élégant et uniforme.
@@ -64,7 +64,7 @@ Rappelons ici les règles du modèle objet qui ont été présentées dans~\char
 \begin{enumerate}[label={\textbf{Règle \arabic{*}}.}, ref={la règle~\arabic{*}}, leftmargin=*, widest=10]
 % NB: rule labels must not be multiply defined across chapters!
 \item{} % \label{rule:everything}
-	Tout est un objet.
+	\Mantra.
 
 \item{} % \label{rule:instance}
 	Tout objet est instance d'une classe.
@@ -117,7 +117,7 @@ Ensuite, nous examinerons ces nouvelles règles à travers le même exemple.
 %=================================================================
 \section{Retour sur le modèle objet de \st}
 
-Puisque tout est un objet, la couleur bleue est aussi un objet en \st.
+Puisque \mantra, la couleur bleue est aussi un objet en \st.
 
 \begin{code}{@TEST}
 Color blue --> Color blue
@@ -163,7 +163,7 @@ Color superclass                   --> Object
 \end{code}
 
 Comme tout se produit par \ind{envoi de message}{}s (\ref{rule:message}), nous pouvons déduire que \mthind{Color class}{blue} est un message à destination de \ct{Color}; \mthind{Object}{class} et \mthind{Color}{alpha:} sont des messages à destination de la couleur bleue; \mthind{Morph}{openInWorld} est un message à destination d'une ellipse morph et \mthind{Behavior}{superclass} est un message à destination de \ct{TranslucentColor} et \ct{Color}.
-Dans chaque cas, le receveur est un objet puisque tout est un objet bien que certains de ces objets soient aussi des classes.
+Dans chaque cas, le receveur est un objet puisque \mantra bien que certains de ces objets soient aussi des classes.
 
 La recherche de méthodes suit la chaîne d'héritage (\ref{rule:lookup}), donc quand nous envoyons le message \ct{class} au résultat de 
 \ct{Color blue alpha: 0.4}, le message est traité quand la méthode correspondante est trouvée dans la classe \ct{Object}, comme illustré par \figref{classmessage}.

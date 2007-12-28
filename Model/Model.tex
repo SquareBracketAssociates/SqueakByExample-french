@@ -34,7 +34,7 @@
 \chapter{Le mod\`ele objet de \st}
 \label{cha:SqueakModel}\label{cha:model}
 
-Le mod\`ele de programmation de \st est simple et homog\`ene: tout est objet et les objets communiquent les uns avec les autres uniquement
+Le mod\`ele de programmation de \st est simple et homog\`ene: \mantra et les objets communiquent les uns avec les autres uniquement
 via envoi de messages (nous disons aussi transmission de messages).
 Cependant, ces caract\'eristiques de simplicit\'e et d'homog\'en\'eit\'e peuvent \^etre source de quelques difficult\'es pour le programmeur habitu\'e \`a d'autres langages. Dans ce chapitre nous pr\'esenterons les concepts de base du mod\`ele objet de \st; en particulier nous discuterons des cons\'equences de repr\'esenter les classes comme des objets.
 
@@ -47,7 +47,7 @@ qui sont appliqu\'es de mani\`ere \emph{uniforme}. Les r\`egles s'\'enoncent com
 
 \begin{enumerate}[label={\textbf{R\`egle \arabic{*}}.}, ref={R\`egle \arabic{*}}, leftmargin=*]
 \item{} \label{rule:everything}
-	Tout est un objet.
+	\Mantra.
 
 \item{} \label{rule:instance}
 	Tout objet est instance de classe.
@@ -68,11 +68,11 @@ Prenons le temps d'\'etudier ces r\`egles en d\'etail.
 
 
 %=========================================================
-\section{Tout est un objet}
+\section{\Mantra}
 
 %\ruleref{everything}
 
-Le mantra ``tout est un objet'' est hautement contagieux.
+Le mantra ``\mantra'' est hautement contagieux.
 Apr\`es seulement peu de temps pass\'e avec \st, vous serez progressivement surpris par comment cette r\`egle simplifie tout ce que vous faites.
 Par exemple, les entiers sont v\'eritablement des objets (de classe Integer). D\`es lors vous pouvez leur envoyer des messages, comme vous feriez avec n'importe quel autre objet.
 
@@ -439,7 +439,7 @@ Object superclass           --> ProtoObject
 ProtoObject superclass  --> nil
 \end{code}
 
-Traditionnellement, la racine de la hi\'erarchie d'h\'eritage en \st est la classe \clsind{Object} (``Objet'' en anglais; puisque tout est un objet).
+Traditionnellement, la racine de la hi\'erarchie d'h\'eritage en \st est la classe \clsind{Object} (``Objet'' en anglais; puisque \mantra).
 En \squeak, la racine est en fait une classe nomm\'ee \clsind{ProtoObject}, mais
 normalement, vous n'aurez aucune attention \`a accorder \`a cette classe.
 \ct{ProtoObject} encapsule le jeu de messages restreint que tout objet \emph{doit} avoir.  
@@ -1182,10 +1182,10 @@ les variables et les dictionnaires de pool.
 \section{R\'esum\'e du chapitre}
 
 Le mod\`ele objet de \squeak est \`a la fois simple et uniforme.
-Tout est un objet, et quasiment tout se passe via l'envoi de messages.
+\Mantra et quasiment tout se passe via l'envoi de messages.
 
 \begin{itemize}
-  \item Tout est un objet.
+  \item \Mantra.
   Les entit\'es primitives telles que les entiers sont des objets, tout comme
 il est vrai que les classes soient des objets de premier ordre.
 
