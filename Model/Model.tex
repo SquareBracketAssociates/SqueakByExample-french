@@ -5,7 +5,13 @@
 %=================================================================
 % translated by Martial.Boniou@ifrance.com start: (Fri, 28 Sep 2007)
 % relecture par Rene Mages : Thu Dec 20 12:13:40 CET 2007
+% relecture par Martial : Sat Dec 29 16:06:42 CET 2007
+%% j'ai enleve les 'transmissions de messages': il ne reste que 'envoi
+%% de messages'; j'ai remplace 'envoi sur super/self' par 'envoi a
+%% ...'; j'ai remplace '\lct{}' par '\ct{}' quand possible
 %=================================================================
+
+ 
 \ifx\wholebook\relax\else
 % --------------------------------------------
 % Lulu:
@@ -35,7 +41,7 @@
 \label{cha:SqueakModel}\label{cha:model}
 
 Le mod\`ele de programmation de \st est simple et homog\`ene: \mantra et les objets communiquent les uns avec les autres uniquement
-via envoi de messages (nous disons aussi transmission de messages).
+via l'envoi de messages.
 Cependant, ces caract\'eristiques de simplicit\'e et d'homog\'en\'eit\'e peuvent \^etre source de quelques difficult\'es pour le programmeur habitu\'e \`a d'autres langages. Dans ce chapitre nous pr\'esenterons les concepts de base du mod\`ele objet de \st; en particulier nous discuterons des cons\'equences de repr\'esenter les classes comme des objets.
 
 %=========================================================
@@ -163,7 +169,7 @@ nous pr\'ef\'erons dire qu'elles sont priv\'ees parce qu'il n'est pas d'usage en
 La m\'ethode \cmind{Point}{dist:} (\mthref{dist:}) calcule la distance entre le receveur et un autre point. Les variables d'instance \ct{x} et \ct{y} du receveur sont acc\'ed\'ees directement par le corps de la m\'ethode. Cependant, les variables d'instance de l'autre point doivent \^etre acc\'ed\'ees en lui envoyant les messasges \ct{x} et \ct{y}.
 
 \needlines{7}
-\begin{method}[dist:]{la distance entre deux points. le nom arbitraire aPoint est utilis\'e dans le sens de \emph{a point} qui, en anglais, signifie un point.}
+\begin{method}[dist:]{la distance entre deux points. le nom arbitraire aPoint est utilis\'e dans le sens de \emph{a point} qui, en anglais, signifie un point}
 Point>>>dist: aPoint 
 	"Retourne la distance entre aPoint et le receveur."
 	| dx dy |
@@ -415,7 +421,7 @@ Remarquons que la clause conditionnelle \`a l'int\'erieur du code de cr\'eation
 de \tmthref{uniqueInstance} est \'ecrite \ct{self new} et non 
 \mbox{\ct{WebServer new}.}
 Quelle en-est la diff\'erence?   Comme la m\'ethode \ct{uniqueInstance} est d\'efinie dans \ct{WebServer class}, vous pouvez penser qu'elles sont identiques.    En fait, tant que personne ne cr\'ee une sous-classe de \ct{WebServer}, elles sont pareilles. Mais en supposant que \ct{ReliableWebServer} est une sous-classe de \ct{WebServer} et qu'elle h\'erite de la m\'ethode \ct{uniqueInstance},
-nous devrions nous attendre \`a ce que \ct{ReliableWebServer uniqueInstance} r\'eponde un \lct{ReliableWebServer}. L'utilisation de \self assure que cela arrivera car il sera li\'e \`a la classe correspondante.
+nous devrions nous attendre \`a ce que \ct{ReliableWebServer uniqueInstance} r\'eponde un \ct{ReliableWebServer}. L'utilisation de \self assure que cela arrivera car il sera li\'e \`a la classe correspondante.
 Du reste, notez que \ct{WebServer} et \ct{ReliableWebServer} ont chacune
 leur propre variable d'instance de classe nomm\'ee \ct{uniqueInstance}.  Ces
 deux variables ont, bien entendu, diff\'erentes valeurs.
@@ -499,7 +505,7 @@ Ces m\'ethodes sont h\'erit\'ees par les sous-classes.
 La m\'ethode \mthind{Magnitude}{<} est abstraite et est d\'efinie comme
 dans \tmthref{MagnitudeLessThan}.
 
-\begin{method}[MagnitudeLessThan]{\ct{Magnitude>>><}. Le commentaire dit: ``r\'epond si le receveur est inf\'erieur \`a l'argument''.}
+\begin{method}[MagnitudeLessThan]{\ct{Magnitude>>><}. Le commentaire dit: ``r\'epond si le receveur est inf\'erieur \`a l'argument''}
 Magnitude>>>< aMagnitude 
 	"Answer whether the receiver is less than the argument."
 	^self subclassResponsibility
@@ -508,7 +514,7 @@ Magnitude>>>< aMagnitude
 \noindent
 A contrario, la m\'ethode \mthind{Magnitude}{>=} est concr\`ete; elle est d\'efinie en fonction de \ct{<}:
 
-\begin{method}[Magnitude>=]{\ct{Magnitude>>>>=}. Le commentaire dit: ``r\'epond si le receveur est plus grand ou \'egal \`a l'argument''.}
+\begin{method}[Magnitude>=]{\ct{Magnitude>>>>=}. Le commentaire dit: ``r\'epond si le receveur est plus grand ou \'egal \`a l'argument''}
 >= aMagnitude 
 	"Answer whether the receiver is greater than or equal to the argument."
 	^(self < aMagnitude) not
@@ -517,7 +523,7 @@ Il en va de m\^eme des autres m\'ethodes de comparaison.
 
 \clsind{Character} est une sous-classe de \ct{Magnitude}; elle surcharge la m\'ethode \mthind{Object}{subclassResponsibility} de \ct{<} avec sa propre version de \ct{<} (voir \mthref{CharacterLessThan}).  \ct{Character} d\'efinit aussi les m\'ethodes \ct{=} et \ct{hash}; elles h\'eritent les m\'ethodes \ct{>=}, \ct{<=}, \ct{~=} et autres de la classe \ct{Magnitude}.
 
-\begin{method}[CharacterLessThan]{\ct{Character>>><}. Le commentaire dit: ``r\'epond vrai si la valeur du receveur est inf\'erieure \`a la valeur du l'argument''.}
+\begin{method}[CharacterLessThan]{\ct{Character>>><}. Le commentaire dit: ``r\'epond vrai si la valeur du receveur est inf\'erieure \`a la valeur du l'argument''}
 Character>>>< aCharacter 
 	"Answer true if the receiver's value < aCharacter's value."
 	^self asciiValue < aCharacter asciiValue
@@ -623,7 +629,7 @@ En cons\'equence, nous pouvons envoyer le \emph{m\^eme message} \`a diff\'erents
 Nous ne disons pas \`a \ct{SmallInteger} \ct{3} ou au \ct{Point} \ct{1@2} comment r\'epondre au message \ct{+ 4}.
 Chacun a sa propre m\'ethode pour r\'epondre \`a cet envoi de message, et r\'epond ainsi selon le cas.
 
-L'une des cons\'equences du mod\`ele de transmission de message de \st est qu'il encourage un style de programmation dans lequel les objets tendent \`a avoir des m\'ethodes tr\`es compactes en d\'el\'eguant des t\^aches aux autres objets, plut\^ot que d'impl\'ementer de gigantesques m\'ethodes proc\'edurales engendrant trop de responsabilit\'e.
+L'une des cons\'equences du mod\`ele d'envoi de messages de \st est qu'il encourage un style de programmation dans lequel les objets tendent \`a avoir des m\'ethodes tr\`es compactes en d\'el\'eguant des t\^aches aux autres objets, plut\^ot que d'impl\'ementer de gigantesques m\'ethodes proc\'edurales engendrant trop de responsabilit\'e.
 Joseph Pelrine
 \ab{Citation?}
 \on{d\'esol\'e, simple communiqu\'e personel de l'auteur et notes de lecture!}
@@ -636,10 +642,10 @@ Beaucoup de langages orient\'es objets disposent \`a la fois d'op\'erations stat
 \emph{Pratiquement} tout en \st se passe par envoi de messages.
 \`A certains stades, le pragmatisme doit prendre le relais:
 \begin{itemize}
-  \item Les \emph{d\'eclarations de variable} ne reposent pas sur l'envoi de message.
+  \item Les \emph{d\'eclarations de variable} ne reposent pas sur l'envoi de messages.
   		En fait, les \subind{variable}{d\'eclaration}{}s de variable ne sont m\^eme pas ex\'ecutables.
   		D\'eclarer une variable produit simplement l'allocation d'un espace pour la r\'ef\'erence de l'objet.
-  \item Les \emph{affectations} (ou assignations) ne reposent pas sur l'envoi de message.
+  \item Les \emph{affectations} (ou assignations) ne reposent pas sur l'envoi de messages.
   		L'\ind{affectation} d'une variable produit une liaison de nom de variable dans le cadre de sa d\'efinition.
   \item Les \emph{retours} (ou renvois) ne reposent pas sur l'envoi de message.
   		Un \ind{retour} ne produit que le retour \`a l'envoyeur du r\'esultat calcul\'e.
@@ -700,17 +706,17 @@ anEllipse defaultColor --> Color yellow
 \noindent
 La classe \ct{EllipseMorph} impl\'emente \ct{defaultColor}, donc la m\'ethode ad\'equate est trouv\'ee imm\'ediatement.
 
-\begin{method}[defaultColor]{Une m\'ethode impl\'ement\'ee localement. Le commentaire dit: ``retourne la couleur par d\'efaut; le style de remplissage pour le receveur''.}
+\begin{method}[defaultColor]{Une m\'ethode impl\'ement\'ee localement. Le commentaire dit: ``retourne la couleur par d\'efaut; le style de remplissage pour le receveur''}
 EllipseMorph>>>defaultColor
 	"answer the default color/fill style for the receiver"
 	^ Color yellow
 \end{method}
 \cmindex{EllipseMorph}{defaultColor}
 
-A contrario, si nous transmettons le message \ct{openInWorld} \`a \mbox{\ct{anEllipse},} la m\'ethode n'est pas trouv\'ee imm\'ediatement parce que la classe \ct{EllipseMorph} n'impl\'emente pas \ct{openInWorld}.
-La recherche continue plus avant dans la super-classe \mbox{\lct{BorderedMorph},} puis ainsi de suite, jusqu'\`a ce qu'une m\'ethode \ct{openInWorld} soit trouv\'ee dans la classe \ct{Morph} (voir \figref{openInWorldLookup}).
+A contrario, si nous envoyons le message \ct{openInWorld} \`a \mbox{\ct{anEllipse},} la m\'ethode n'est pas trouv\'ee imm\'ediatement parce que la classe \ct{EllipseMorph} n'impl\'emente pas \ct{openInWorld}.
+La recherche continue plus avant dans la super-classe \mbox{\ct{BorderedMorph},} puis ainsi de suite, jusqu'\`a ce qu'une m\'ethode \ct{openInWorld} soit trouv\'ee dans la classe \ct{Morph} (voir \figref{openInWorldLookup}).
 
-\begin{method}[openInWorld]{Une m\'ethode h\'erit\'ee. Le commentaire dit: ``Ajoute ce morph dans le monde (world). Si le mode MVC est actif alors lui fournir une fen\^etre Morphic.''.}
+\begin{method}[openInWorld]{Une m\'ethode h\'erit\'ee. Le commentaire dit: ``Ajoute ce morph dans le monde (world). Si le mode MVC est actif alors lui fournir une fen\^etre Morphic.''}
 Morph>>>openInWorld
 	"Add this morph to the world.  If in MVC, then provide a Morphic window for it."
 	self couldOpenInMorphic
@@ -747,7 +753,7 @@ Nous disons habituellement que la m\'ethode ``renvoie \self'', parce qu'en
 Ceci induit le constat suivant: \tmthref{openInWorld} est \'equivalent \`a \mbox{\tmthref{openInWorldReturnSelf}:}
 
 \needlines{5}
-\begin{method}[openInWorldReturnSelf]{Renvoi explicite de \mbox{\self.} Le dernier commentaire dit: ``Ne faites pas cela \`a moins d'en \^etre s\^ur''.}
+\begin{method}[openInWorldReturnSelf]{Renvoi explicite de \mbox{\self.} Le dernier commentaire dit: ``Ne faites pas cela \`a moins d'en \^etre s\^ur''}
 Morph>>>openInWorld
 	"Add this morph to the world.  If in MVC,
 	then provide a Morphic window for it."
@@ -796,7 +802,7 @@ C'est une bonne pratique d'envoyer \ct{super initialize} avant tout autre consid
 \index{super!initialize}
 
 \needlines{6}
-\begin{method}[morphinit]{Super initialize. Le commentaire dit: ``initialise l'\'etat du receveur''.}
+\begin{method}[morphinit]{Super initialize. Le commentaire dit: ``initialise l'\'etat du receveur''}
 BorderedMorph>>>initialize
 	"initialize the state of the receiver"
 	super initialize.
@@ -808,19 +814,19 @@ BorderedMorph>>>initialize
 %---------------------------------------------------------
 \subsection{Self et super}
 
-Nous avons besoin des \subind{super}{transmission}{}s sur \super pour 
+Nous avons besoin des \subind{super}{envoi}{}s sur \super pour 
 r\'eutiliser le comportement h\'erit\'e qui pourrait sinon \^etre
 surcharg\'e.
 Cependant, la technique habituelle de composition de m\'ethodes,
-h\'erit\'ees ou non, est bas\'ee sur la \subind{self}{transmission} sur
+h\'erit\'ees ou non, est bas\'ee sur l'\subind{self}{envoi} \`a
 \self.
 
-Comment la transmission sur \self diff\`ere de celle avec \super?
+Comment l'envoi \`a \self diff\`ere de celle avec \super?
 Comme \self, \super repr\'esente le receveur du message.
 La seule diff\'erence est dans la \subind{recherche}{m\'ethode} de recherche.
 Au lieu de faire partir la recherche depuis la classe du receveur,
-celle-ci d\'emarre dans la super-classe de la m\'ethode dans laquelle la
-transmission sur \super se produit. 
+celle-ci d\'emarre dans la super-classe de la m\'ethode dans laquelle
+l'envoi \`a \super se produit. 
 
 Remarquez que \super n'est \emph{pas} la super-classe!
 C'est une erreur courante et normale que de le penser.
@@ -847,24 +853,24 @@ comme vu dans \figref{initStringLookup}.
 \ifluluelse
 	{\includegraphics[width=\textwidth]{initStringLookup}}
 	{\includegraphics[width=0.8\textwidth]{initStringLookup}}
-\caption{Les transmissions sur \self et \super.\label{fig:initStringLookup}}
+\caption{Les envois \`a \self et \super.\label{fig:initStringLookup}}
 \end{center}
 \end{figure}
 
 \needlines{5}
-\begin{method}[initString]{Une transmission sur \self}
+\begin{method}[initString]{Un envoi \`a \self}
 Morph>>>initString
 	^ String streamContents: [:s | self fullPrintOn: s]
 \end{method}
 La m\'ethode \cmind{Morph}{initString} envoie \ct{fullPrintOn:} \`a \self,
 ce qui entra\^{\i}ne une seconde recherche, d\'emarrant dans la classe
 \ct{EllipseMorph}, trouvant \mthind{BorderedMorph}{fullPrintOn:} dans \ct{BorderedMorph} (voir \figref{initStringLookup} encore une fois).
-Ce qu'il faut noter, c'est que la transmission sur \self
+Ce qu'il faut noter, c'est que l'envoi \`a \self
 fait d\'emarrer encore la recherche de m\'ethode dans la classe du 
 receveur, \ie la classe de
 \ct{anEllipse}.
 
-\important{Une transmission sur \self d\'eclenche le d\'epart de la recherche \emph{dynamique} de m\'ethode dans la classe du receveur.}
+\important{Un envoi \`a \self d\'eclenche le d\'epart de la recherche \emph{dynamique} de m\'ethode dans la classe du receveur.}
 
 \needlines{4}
 \begin{method}[fullPrintOn]{Combiner l'usage de \super et \self}
@@ -874,8 +880,8 @@ BorderedMorph>>>fullPrintOn: aStream
 	aStream nextPutAll: ') setBorderWidth: '; print: borderWidth;
 		nextPutAll: ' borderColor: ' , (self colorString: borderColor)
 \end{method}
-Maintenant, \ct{BorderedMorph>>>fullPrintOn:} utilise la transmission sur \super pour \'etendre le comportement \ct{fullPrintOn:} h\'erit\'e de sa super-classe.
-Parce qu'il s'agit d'un envoi sur \super, la recherche d\'emarre alors
+Maintenant, \ct{BorderedMorph>>>fullPrintOn:} utilise l'envoi \`a \super pour \'etendre le comportement \ct{fullPrintOn:} h\'erit\'e de sa super-classe.
+Parce qu'il s'agit d'un envoi \`a \super, la recherche d\'emarre alors
 depuis la super-classe de la classe dans laquelle se produit l'envoi \`a
 \super, autrement dit, dans 
 \ct{Morph}.
@@ -886,10 +892,10 @@ super-classe du receveur. Ainsi il en aurait r\'esult\'e
 un d\'epart de la recherche depuis \ct{BorderedMorph}, 
 cr\'eant alors une boucle infinie!
 
-\important{Une transmission sur \super d\'eclenche un d\'epart de recherche \emph{statique} de m\'ethode dans la super-classe de la classe dont la m\'ethode envoie le message \`a \super.}
+\important{Un envoi \`a \super d\'eclenche un d\'epart de recherche \emph{statique} de m\'ethode dans la super-classe de la classe dont la m\'ethode envoie le message \`a \super.}
 
 Si vous regardez attentivement l'envoi \`a \super et \figref{initStringLookup}, vous r\'ealiserez que les liens \`a \super sont statiques: tout ce qui importe
-est la classe dans laquelle le texte de la transmission sur \super est trouv\'e.
+est la classe dans laquelle le texte de l'envoi \`a \super est trouv\'e.
 A contrario, le sens de \self est dynamique: \self repr\'esente toujours le
 receveur du message courant ex\'ecut\'e. Ce qui signifie que  \emph{tout} message envoy\'e \`a \self est recherch\'e en partant de la classe du receveur.
 
@@ -901,7 +907,7 @@ Que se passe-t-il si la m\'ethode que nous cherchons n'est pas trouv\'ee?
 \index{message!not understood}
 %\index{message!incompris}
 
-Supposons que nous transmettions le message \ct{foo} \`a une ellipse \ct{anEllipse}.
+Supposons que nous envoyions le message \ct{foo} \`a une ellipse \ct{anEllipse}.
 Tout d'abord, la recherche normale de cette m\'ethode aurait \`a parcourir
 toute la cha\^{\i}ne d'h\'eritage jusqu'\`a la classe \clsind{Object} (ou
 plut\^ot \clsind{ProtoObject}).
@@ -914,7 +920,7 @@ Comme cette m\'ethode n'est pas trouv\'ee, la \ind{machine virtuelle} veillera
 \ifluluelse
 	{\includegraphics[width=\textwidth]{fooNotFound}}
 	{\includegraphics[width=0.8\textwidth]{fooNotFound}}
-\caption{Le message \lct{foo} n'est pas compris (not understood).\label{fig:fooNotFound}}
+\caption{Le message \ct{foo} n'est pas compris (not understood).\label{fig:fooNotFound}}
 \end{center}
 \end{figure}
 
@@ -988,7 +994,7 @@ et
 \end{code}
 
 \item \clsind{Sensor} est une instance of \clsind{EventSensor}. Il repr\'esente les entr\'ees interactives ou intefaces de saisie (en anglais, \emph{input}) dans \squeak.
-Par exemple, \lct{Sensor keyboard} retourne le caract\`ere suivant saisi au clavier, et \ct{Sensor leftShiftDown} r\'epond \ct{true} (vrai en bool\'een) si la
+Par exemple, \ct{Sensor keyboard} retourne le caract\`ere suivant saisi au clavier, et \ct{Sensor leftShiftDown} r\'epond \ct{true} (vrai en bool\'een) si la
 touche \emph{shift} gauche est maintenue enfonc\'ee, alors que \ct{Sensor mousePoint} renvoie un \ct{Point} indiquant la position actuelle de la souris.
 
 \item \glbind{World} (Monde en anglais) est une instance de \clsind{PasteUpMorph} repr\'esentant l'\'ecran.
@@ -1058,7 +1064,7 @@ variables.\label{fig:privateSharedVar}}
 Sur \figref{privateSharedVar} nous voyons que \ct{rgb} et \ct{cachedDepth} sont
 des variables d'instance de \ct{Color} uniquement accessibles par les 
 instances de \clsind{Color}.
-Nous remarquons aussi que \lct{superclass}, \lct{subclass}, \lct{methodDict}\ldots \etc, sont des variables d'instance de classe, \ie des variables d'instance  accessibles seulement par \lct{Color} class.
+Nous remarquons aussi que \ct{superclass}, \ct{subclass}, \ct{methodDict}\ldots \etc, sont des variables d'instance de classe, \ie des variables d'instance  accessibles seulement par \ct{Color} class.
 
 Mais nous pouvons noter quelque chose de nouveau: \ct{ColorNames} et \ct{CachedColormaps} sont des \emph{variables de classe} d\'efinies pour \ct{Color}.
 La capitalisation du nom de ces variables nous donne un indice sur le fait qu'elles sont partag\'ees.
@@ -1203,7 +1209,7 @@ Les m\'ethodes d'acc\`es (accesseurs et mutateurs) doivent \^etre
 d\'efinies au besoin.  
 
   \item Toute classe a une super-classe.
-  La racine de la hi\'erarchie bas\'ee sur l'h\'eritage simple est \lct{ProtoObject}.
+  La racine de la hi\'erarchie bas\'ee sur l'h\'eritage simple est \ct{ProtoObject}.
 	Cependant les classes que vous d\'efinissez devrait normalement h\'eriter de la classe \ct{Object} ou de ses sous-classes.
 Il n'y a pas d'\'el\'ement s\'emantique pour la d\'efinition de classes abstraites.
 Une classe abstraite est simplement une classe avec au moins une m\'ethode abstraite
@@ -1219,11 +1225,11 @@ en regroupant ces derni\`eres en \emph{traits}.
 Le receveur choisit alors sa propre m\'ethode pour r\'epondre au message.
 
   \item La recherche de m\'ethode suit la cha\^{\i}ne d'h\'eritage;
-  Les transmissions sur \self sont dynamiques et la recherche de m\'ethode
+  Les envois \`a \self sont dynamiques et la recherche de m\'ethode
 d\'emarre dans le receveur de la classe, alors que
-celles sur \super sont statiques
+celles \`a \super sont statiques
 et la recherche commence dans la super-classe de la classe dans laquelle l'envoi
-sur \super est \'ecrit.
+\`a \super est \'ecrit.
 
   \item Il y a trois sortes de variables partag\'ees.
 Les variables globales sont accessibles partout dans le syst\`eme.
