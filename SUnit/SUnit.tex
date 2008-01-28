@@ -5,6 +5,7 @@
 % $Revision: 12130 $
 % relu par Rene Mages (Fri Dec 21 8:57;55 CET 2007)
 % $Revision: 14579 $ (fusion le: Wed Dec 26 18:15:25 CET 2007)
+% relu par Rene Mages (Sun Jan 13 11:22:33 CET 2008)
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -114,7 +115,7 @@ Les tests qui ne sont pas exécutés ne vous aident pas à trouver les bugs~! De
 % to use \sunit and get all the
 % advantages of stored and automatically executable tests.
 Dans ce chapitre, nous commencerons par discuter de la raison des
-tests et de ce qu'est un bon test. Nous présenterons alors une séries de petits exemples montrant comment utiliser \sunit. Finalement, nous étudierons l'implémentation de \sunit, de façon à ce que vous compreniez comment \st utilise la puissance de la \ind{réflexivité} pour la mise en \oe uvre de ses outils.
+tests et de ce qu'est un bon test. Nous présenterons alors une séries de petits exemples montrant comment utiliser \sunit. Finalement, nous étudierons l'implémentation de \sunit, de façon à ce que vous compreniez comment \st utilise la puissance de la \ind{réflexivité} pour la mise en {\oe}uvre de ses outils.
 
 % In this chapter we start by discussing why we test, and what makes a good test. We then present a series of small 
 % examples showing how to use \sunit.
@@ -123,7 +124,7 @@ tests et de ce qu'est un bon test. Nous présenterons alors une séries de petit
 
 %=================================================================
 %\section{Why testing is important}
-\section{Pourquoi le test est important}
+\section{Pourquoi tester est important}
 \label{sec:why}
 
 Malheureusement, beaucoup de développeurs croient perdre leur temps avec les tests. 
@@ -153,7 +154,7 @@ confiance s'avère contredite. Finalement, écrire des tests en même
 temps que\,---\, ou même avant de \,---\,  programmer vous force à
 penser à la fonctionnalité que vous désirez concevoir et à
 \emph{comment elle devrait apparaître au client}, plutôt qu'à comment
-la mettre en \oe uvre. En écrivant les tests en premier\,---\, avant
+la mettre en {\oe}uvre. En écrivant les tests en premier\,---\, avant
 le code\,---\, vous êtes contraint d'établir le contexte dans lequel
 votre fonctionnalité s'exécutera, la façon dont elle interagira avec
 le code client et les résultats attendus. Votre code s'améliorera~:
@@ -226,7 +227,7 @@ votre application, sommeillant en attendant l'occasion d'endommager votre systè
 %   read to understand a piece of functionality. \label{prop:oneAspect}
 
 \item Les tests doivent changer moins fréquemment que la fonctionnalité qu'ils couvrent~: vous ne voulez pas changer tous vos tests à chaque fois que vous modifiez votre application. Une façon d'y parvenir est d'écrire des tests basés sur l'interface publique de la classe que vous êtes en train de tester. 
-Il est possible d'écrire un test pour une méthode utilitaire privée si vous sentez que la méthode est suffisamment compliquée pour nécessiter le test, mais vous devez être conscient qu'un tel test est susceptible d'être modifié ou intégralement supprimé quand vous pensez à une meilleur mise en \oe uvre.
+Il est possible d'écrire un test pour une méthode utilitaire privée si vous sentez que la méthode est suffisamment compliquée pour nécessiter le test, mais vous devez être conscient qu'un tel test est susceptible d'être modifié ou intégralement supprimé quand vous pensez à une meilleure mise en {\oe}uvre.
 % \item Tests should have a change frequency lower than that of the
 %   functionality they cover:  you do not want to have to change all your
 %   tests every time you modify your application.  One way to achieve
@@ -321,7 +322,7 @@ Nous utiliserons la classe \ct{ExampleSetTest} pour regrouper tous les tests rel
 % that we will use to represent a full and an empty set.
 
 Le nom de la classe n'est pas fondamental, mais par convention il devrait se terminer par \ct{Test}.
-Si vous définissez une classe nommée \ct{Pattern} et que vous nommez la classe de test correspondante \ct{PatternTest}, les deux classes seront présentées ensembles, par ordre alphabétique, dans le \ct{System Browser} (en considérant qu'elles sont dans la même catégorie). Il est indispensable que votre classe soit une sous-classe de \ct{TestCase}.
+Si vous définissez une classe nommée \ct{Pattern} et que vous nommez la classe de test correspondante \ct{PatternTest}, les deux classes seront présentées ensemble, par ordre alphabétique, dans le \ct{System Browser} (en considérant qu'elles sont dans la même catégorie). Il est indispensable que votre classe soit une sous-classe de \ct{TestCase}.
 
 % The name of the class is not critical, but by convention it should end in \ct{Test}.
 % If you define a class called \ct{Pattern} and call the corresponding test class \ct{PatternTest}, the two classes will be alphabetized together in the browser (assuming that they are in the same category).  It \emph{is} critical that your class be a subclass of \ct{TestCase}.
@@ -363,7 +364,7 @@ du test (en anglais, \emph{fixture}).
 % \seeindex{fixture}{SUnit, fixture}
 
 %---------------------------------------------------------
-\subsection{\'Etape 3: écriver quelques méthodes de test}
+\subsection{\'Etape 3: écrire quelques méthodes de test}
 %\subsection{Step 3: write some test methods}
 
 Créons quelques tests en définissant quelques méthodes dans la classe \ct{ExampleSetTest}.
@@ -585,7 +586,7 @@ ExampleSetTest>>>testIllegal
 	self should: [empty at: 5 put: #zork] raise: Error
 \end{method}
 
-\sunit est portable~: il peut être utilisé avec tous les dialectes de \st. Afin de rendre \sunit portable, ses développeurs ont retirés les parties dépendantes des dialectes. La méthode de classe \cmind{TestResult class}{error} retourne la classe erreur du système de façon indépendante du dialecte. Vous pouvez en profiter aussi~: si vous voulez écrire des tests qui fonctionnent quelque soit le dialecte de \st, vous pouvez écrire \tmthref{ESTtestIllegal} ainsi:
+\sunit est portable~: il peut être utilisé avec tous les dialectes de \st. Afin de rendre \sunit portable, ses développeurs ont retiré les parties dépendantes des dialectes. La méthode de classe \cmind{TestResult class}{error} retourne la classe erreur du système de façon indépendante du dialecte. Vous pouvez en profiter aussi~: si vous voulez écrire des tests qui fonctionnent quelque soit le dialecte de \st, vous pouvez écrire \tmthref{ESTtestIllegal} ainsi:
 % \sunit is portable: it can be used from all dialects of \st.  To make
 % \sunit portable, its developers factored-out the dialect-dependent aspects.  The class method \cmind{TestResult class}{error} answers
 % the system's error class in a dialect-independent fashion. 
@@ -640,7 +641,7 @@ ExampleSetTest suite run --> 5 run, 5 passed, 0 failed, 0 errors
 %---------------------------------------------------------
 %\subsection{Must I subclass TestCase?}
 \subsection{Dois-je sous-classer TestCase ?}
-Avec \JUnit{}, vous pouvez construire un \clsind{TestSuite} dans n'importe quelle classe contenant des méthodes \ct{test*}. En \st, vous pouvez faire la même chose mais vous aurez à créer une suite manuellement et votre classe devra mettre en \oe uvre toutes les méthodes esentielles de \ct{TestCase} comme \ct{assert:}.
+Avec \JUnit{}, vous pouvez construire un \clsind{TestSuite} dans n'importe quelle classe contenant des méthodes \ct{test*}. En \st, vous pouvez faire la même chose mais vous aurez à créer une suite manuellement et votre classe devra mettre en {\oe}uvre toutes les méthodes esentielles de \ct{TestCase} comme \ct{assert:}.
 Nous ne vous le recommandons pas. L'environnement est déjà là~: utilisez-le.
 % In \JUnit{} you can build a \clsind{TestSuite} from an arbitrary class
 % containing \ct{test*} methods.  In \st you can do the same
@@ -651,7 +652,7 @@ Nous ne vous le recommandons pas. L'environnement est déjà là~: utilisez-le.
 %\section{The SUnit framework}
 \section{L'environnement SUnit}
 
-Comme montré dans la \figref{sunit-classes}, \sunit consiste en quatre classes principales~: \clsind{TestCase},\clsind{TestSuite}, \clsind{TestResult} et \clsind{TestResource}.
+Comme montré dans \figref{sunit-classes}, \sunit consiste en quatre classes principales~: \clsind{TestCase},\clsind{TestSuite}, \clsind{TestResult} et \clsind{TestResource}.
 La notion de \emph{ressource de test} a été introduite dans \sunit~3.1 pour représenter une ressource coûteuse à installer mais qui peut être utilisée par toute une série de tests. Un \ct{TestResource} spécifie une méthode \ct{setUp} qui est exécutée une seule fois avant la suite de tests; à la différence de la méthode \ct{TestCase>>>setUp} qui est exécutée avant chaque test.
 % \sunit consists of four main classes: \clsind{TestCase},
 % \clsind{TestSuite}, \clsind{TestResult}, and \clsind{TestResource}, as shown in \figref{sunit-classes}.
@@ -694,7 +695,7 @@ Le contexte est porté par des variables d'instance de la sous-classe et par la 
 %---------------------------------------------------------
 \subsection{TestSuite}
 
-Les instances de la classe \clsindmain{TestSuite} contiennent une collection de cas de test. Une instance de \ct{TestSuite} contient des tests et d'autres suites de tests. En fait, une suite de tests contient des instances de sous-classes de \ct{TestCase} et de \ct{TestSuite}.
+Les instances de la classe \clsindmain{TestSuite} contiennent une collection de cas de tests. Une instance de \ct{TestSuite} contient des tests et d'autres suites de tests. En fait, une suite de tests contient des instances de sous-classes de \ct{TestCase} et de \ct{TestSuite}.
 Individuellement, les \ct{TestCase}s et les \ct{TestSuite}s comprennent le même protocole, ainsi elles peuvent être traitées de la même façon~; par exemple, elles comprennent toutes \ct{run}.
 Il s'agit en fait de l'application du patron de conception 
 %pas \ct{composite} mais plutôt
@@ -729,7 +730,8 @@ Malgré tout, il y a certains cas pour lesquels la préparation du contexte néc
 réalisable
 % plutôt que praticable 
 de le faire avant l'exécution de chaque test. De plus, si nous savons que les tests n'altèrent pas les ressources qu'ils utilisent, alors il est prohibitif de les initialiser pour chaque test; il est suffisant de les initialiser une seule fois pour chaque suite de tests. Supposez, par exemple, qu'une suite de tests ait besoin d'interroger une base de données ou d'effectuer certaines analyses sur du code compilé.
-Pour ces situations, il est sensé d'initialiser et d'ouvrir une connexion vers la base de données ou de compiler du code source avant l'évaluation des tests.
+% rene : elle est censée (car c'est la suite de tests)
+Pour ces situations, elle est censée initialiser et ouvrir une connexion vers la base de données ou compiler du code source avant l'évaluation des tests.
 % However, there are occasions where setting up the necessary context is just too time-consuming for it to be practical to do it once before the execution of each test.
 % Moreover, if it is known that the test cases do not disrupt the resources used by the tests, then it is wasteful to set them up afresh for each test; it is sufficient to set them up once for each suite of tests.
 % Suppose, for example, that a suite of tests need to query a database, or do some analysis on some compiled code.
@@ -738,7 +740,7 @@ Pour ces situations, il est sensé d'initialiser et d'ouvrir une connexion vers 
 Où pourrions nous conserver ces ressources de façon à ce qu'elles puissent être partagées par les tests d'une suite~?
 Les variables d'instance d'une sous-classe de \ct{TestCase} particulière ne le pourraient pas parce que ses instances ne subsistent que pendant la durée d'un seul test.
 Une variable globable ferait l'affaire, mais utiliser trop de variables globales pollue l'espace de nommage et la relation entre la variable globale et les tests qui en dépendent ne serait pas explicite.
-Une meilleur solution est de placer les ressources nécessaires dans l'objet singleton d'une certaine classe. La classe \clsindmain{TestResource} est définie pour avoir des sous-classes utilisées comme classes de ressource. Chaque sous-classe de \ct{TestResource} comprend le message \ct{current} qui retournera son instance singleton.
+Une meilleure solution est de placer les ressources nécessaires dans l'objet singleton d'une certaine classe. La classe \clsindmain{TestResource} est définie pour avoir des sous-classes utilisées comme classes de ressource. Chaque sous-classe de \ct{TestResource} comprend le message \ct{current} qui retournera son instance singleton.
 Les méthodes  \ct{setUp} et \ct{tearDown} doivent être surchargées dans la sous-classe pour permettre à la ressource d'être initialisée et libérée.
 % Where should we cache these resources, so that they can be shared by a suite of tests?
 % The instance variables of a particular \ct{TestCase} sub-instance won't do, because such an instance persists only for the duration of a single test.
@@ -905,10 +907,10 @@ Pour chaque élément en échec, un message sera affiché dans le flux des trace
 \cmindex{Collection}{do:}
 %=================================================================
 %\section{The implementation of SUnit}
-\section{La mise en \oe uvre de SUnit}
+\section{La mise en {\oe}uvre de SUnit}
 
-La mise en \oe uvre de \sunit constitue un cas d'étude intéressant de \ct{framework} \st.
-\'Etudions quelques aspects clés de la mise en \oe uvre en suivant l'exécution d'un test.
+La mise en {\oe}uvre de \sunit constitue un cas d'étude intéressant de \ct{framework} \st.
+\'Etudions quelques aspects clés de la mise en {\oe}uvre en suivant l'exécution d'un test.
 % The implementation of \sunit makes an interesting case study of a \st framework.
 % Let's look at some key aspects of the implementation by following the
 % execution of a test.
@@ -1045,8 +1047,8 @@ TestCase>>>runCase
 
 %---------------------------------------------------------
 %\subsection{Running a \lct{TestSuite}}
-\subsection{Exécuter un \lct{TestSuite}}
-Pour exécuter plus d'un test, nous envoyons le message \ct{run} à un \ct{TestSuite} qui contient les tests adéquates. \ct{TestCase class} procure des fonctionnalités lui permettant de construire  une suite de tests. L'expression \ct{MyTestCase buildSuiteFromSelectors} retourne une suite contenant tous les tests définis dans la classe {\ct{MyTestCase}. Le c\oe ur de ce processus est:
+\subsection{Exécuter un \ct{TestSuite}}
+Pour exécuter plus d'un test, nous envoyons le message \ct{run} à un \ct{TestSuite} qui contient les tests adéquats. \ct{TestCase class} procure des fonctionnalités lui permettant de construire  une suite de tests. L'expression \ct{MyTestCase buildSuiteFromSelectors} retourne une suite contenant tous les tests définis dans la classe {\ct{MyTestCase}. Le c{\oe}ur de ce processus est:
 % To run more than one test, we send the message
 % \ct{run} to a \ct{TestSuite} that contains the relevant tests. 
 % \ct{TestCase class} provides some functionality to build a test suite from
@@ -1146,9 +1148,9 @@ TestResource>>>initialize
 % \end{method}
 %=================================================================
 %\section{Some advice on testing}
-\section{Quelques conseils sur le test}
+\section{Quelques conseils sur les tests}
 
-Bien que les mécanismes du test soient simples, il n'est pas toujours
+Bien que les mécanismes de tests soient simples, il n'est pas toujours
 facile d'en écrire de bons.
 Voici quelques conseils pour leur conception.
 % While the mechanics of testing are easy, writing good tests is not.
@@ -1236,7 +1238,7 @@ Vous pouvez les écrire avec \sunit, mais vous ne voudriez pas les exécuter à 
 %   so they should be separated form the true unit tests.
 
 \item[Les règles de Black.]
-\aconfirmer{Pour tout les tests du système, vous devriez être en mesure d'identifier une propriété pour laquelle le test renforce votre confiance. Il est évident qu'il ne devrait pas y avoir de propriété importante que vous ne testez pas. Cette règle établit le fait moins évident qu'il ne devrait pas y avoir de test sans valeur ajoutée de nature à accroître votre confiance envers une propriété utile.}
+\aconfirmer{Pour tout les tests du système, vous devriez être en mesure d'identifier une propriété pour laquelle le test renforce votre confiance. Il est évident qu'il ne devrait pas y avoir de propriété importante que vous ne testez pas. Cette règle établit le fait moins évident qu'il ne devrait pas y avoir de tests sans valeur ajoutée de nature à accroître votre confiance envers une propriété utile.}
 Par exemple, il n'est pas bon d'avoir plusieurs tests pour la même propriété. En fait, c'est nuisible~: ils rendent la compréhension de la classe plus difficile à déduire à la lecture des tests et un bug dans le code est susceptible de casser beaucoup de tests en même temps. Ne pensez qu'à une seule propriété quand vous écrivez un test.  
 % \item[Black's Rule of Testing.]
 %   For every test in the system, you should be able to identify some property for which
@@ -1603,7 +1605,7 @@ Par exemple, il n'est pas bon d'avoir plusieurs tests pour la même propriété.
 
 \aconfirmer{Ce chapitre a expliqué en quoi les tests constituent un investissement important pour le futur de votre code.
 Nous avons expliqué, étape par étape, comment spécifier quelques tests pour la classe \ct{Set}.
-Ensuite, nous avons décrit simplement le c\oe ur de l'environnement \sunit en présentant les classes \ct{TestCase}, \ct{TestResult}, \ct{TestSuite} et \lct{TestResources}. Finalement, nous avons détaillé \sunit en suivant l'exécution d'un test et d'une suite de tests.}
+Ensuite, nous avons décrit simplement le c{\oe}ur de l'environnement \sunit en présentant les classes \ct{TestCase}, \ct{TestResult}, \ct{TestSuite} et \ct{TestResources}. Finalement, nous avons détaillé \sunit en suivant l'exécution d'un test et d'une suite de tests.}
 % This chapter explained why tests are an important investment in 
 % the future of your code.  
 % We explained in a step-by-step fashion how

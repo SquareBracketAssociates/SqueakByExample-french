@@ -12,10 +12,11 @@
 %% reponse: c'est ce que j'ai mis aussi
 % problème de sens dans le SBE anglais: caption fig 12.3 : "The metaclasses of Translucent its superclasses"
 %   traduit par : "Les méta-classes de TranslucentColor ET ses super-classes"
-%% relecture : Rene Mages 21-12-2007
+% relecture : Rene Mages 21-12-2007
 % update: Tue Dec 25 22:32:45 CET 2007
 % martial: convertir ``mon texte'' en «~mon texte~» pour franciser +
 % j'ai mis des \ct{} au lieu de \lct{}
+% relecture : Rene Mages 10-01-2008
 \ifx\wholebook\relax\else
 % --------------------------------------------
 % Lulu:
@@ -155,14 +156,14 @@ Vous pouvez voir l'effet produit dans la \figref{translucentEllipse}.
 
 %%Par la \ref{rule:inheritance}, 
 D'apr\`es la \ref{rule:inheritance},
-tout classe possède une super-classe.
+toute classe possède une super-classe.
 La super-classe de \clsind{TranslucentColor} est \clsind{Color} et la super-classe de \ct{Color} est \clsind{Object}:
 \begin{code}{@TEST}
 TranslucentColor superclass --> Color
 Color superclass                   --> Object
 \end{code}
 
-Comme tout se produit par \ind{envoi de message}{}s (\ref{rule:message}), nous pouvons déduire que \mthind{Color class}{blue} est un message à destination de \ct{Color}; \mthind{Object}{class} et \mthind{Color}{alpha:} sont des messages à destination de la couleur bleue; \mthind{Morph}{openInWorld} est un message à destination d'une ellipse morph et \mthind{Behavior}{superclass} est un message à destination de \ct{TranslucentColor} et \ct{Color}.
+Comme tout se produit par \ind{envoi de message}{}s (\ref{rule:message}), nous pouvons en déduire que \mthind{Color class}{blue} est un message à destination de \ct{Color}; \mthind{Object}{class} et \mthind{Color}{alpha:} sont des messages à destination de la couleur bleue; \mthind{Morph}{openInWorld} est un message à destination d'une ellipse morph et \mthind{Behavior}{superclass} est un message à destination de \ct{TranslucentColor} et \ct{Color}.
 Dans chaque cas, le receveur est un objet puisque \mantra bien que certains de ces objets soient aussi des classes.
 
 La recherche de méthodes suit la chaîne d'héritage (\ref{rule:lookup}), donc quand nous envoyons le message \ct{class} au résultat de 

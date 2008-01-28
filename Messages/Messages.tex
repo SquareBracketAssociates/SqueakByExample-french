@@ -4,7 +4,8 @@
 % relecture par Martial Boniou: Thu Dec 13 22:40:00 CET 2007
 % Une instance de Pen est appele 'crayon' (et non plus, crayon ou
 % stylo...)
-% relecture par Rene Mages : Thu Dec 20 12:13:40 CET 2007
+% relecture par Rene Mages : Thu Dec 20 12:13:40 2007
+% relecture par Rene Mages : Thr Jan 10 12:11:33 2008
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -43,11 +44,11 @@ I would like to get feedback from students.}
 %=============================================================
 \section{Identifier les messages}
 
-En \st, exception faite des \'el\'ements syntaxiques rencontr\'es au
+En \st, exception faite des \'el\'ements syntaxiques rencontr\'es dans
 \charef{syntax} (\ct+:= ^ . ; # () {} [ : | ]+), tout se passe par envoi de messages.
 Comme en \ind{C++}, vous pouvez d\'efinir vos op\'erateurs comme \ct{+} pour vos propres classes, mais tous les op\'erateurs ont la m\^eme pr\'ec\'edence.
 De plus, il n'est pas possible de changer l'arit\'e d'une m\'ethode:
-\ct{-} est toujours un message binaire. De plus il n'est pas possible
+\ct{-} est toujours un message binaire, et il n'est pas possible
 d'avoir une forme unaire avec une surcharge diff\'erente.
 
 Avec \st, l'ordre dans lequel les messages sont envoy\'es est
@@ -222,21 +223,20 @@ Les messages binaires sont des messages qui n\'ecessitent exactement un argument
 (3/4) == (3/4) --> false  "!deux fractions \'egales ne sont pas le m\^eme objet!"
 \end{code}
 
-\important{Les messages binaires sont des messages qui n\'ecessite exactement un argument \emph{et} dont le s\'electeur est compos\'e d'une s\'equence de caract\`eres parmi : \ct{+}, \ct{-}, \ct{*}, \ct{/}, \ct{\&}, \ct{=}, \ct{>}, \ct{|}, \ct{<}, \ct{\~}, et \ct{@}. \ct{--} n'est pas possible.\\
-Ils suivent le mod\`ele syntaxique: \lct{receveur \textbf{s\'electeur} argument}}
+\important{Les messages binaires sont des messages qui n\'ecessitent exactement un argument \emph{et} dont le s\'electeur est compos\'e d'une s\'equence de caract\`eres parmi : \ct{+}, \ct{-}, \ct{*}, \ct{/}, \ct{\&}, \ct{=}, \ct{>}, \ct{|}, \ct{<}, \ct{\~}, et \ct{@}. \ct{--} n'est pas possible.\\
+Ils suivent le moule syntaxique: \lct{receveur \textbf{s\'electeur} argument}}
 
 %-------------------------------------------------------------
 \subsection{Messages \`a mots cl\'es}
 
-Les messages \`a mot-cl\'es sont des messages qui n\'ecessitent un ou plusieurs arguments et dont le s\'electeur consiste en un ou plusieurs mot-cl\'es se finissant par deux points \ct{:}.  Les messages \`a mot-cl\'es suivent le mod\`ele suivant: 
+Les messages \`a mot-cl\'es sont des messages qui n\'ecessitent un ou plusieurs arguments et dont le s\'electeur consiste en un ou plusieurs mot-cl\'es se finissant par deux points \ct{:}.  Les messages \`a mot-cl\'es suivent le moule syntaxique: 
 \lct{receveur \textbf{selecteurMotUn:} argument\-Un \textbf{motDeux:} argumentDeux}
 
 Chaque mot-cl\'e utilise un argument. Ainsi \ct{r:g:b:} est une
 m\'ethode avec 3 arguments, \ct{playFileNamed:} et \ct{at:} sont des
 m\'ethodes avec un argument, et \ct{at:put:} est une m\'ethode avec
 deux arguments. Pour cr\'eer une instance de la classe \ct{Color} on
-peut utiliser la m\'ethode \ct{r:g:b:} comme dans \ct{Color r: 1 g: 0 b: 0} cr\'eant ainsi la couleur rouge. Notez que les deux points ne
-font pas partie du s\'electeur.
+peut utiliser la m\'ethode \ct{r:g:b:} comme dans \ct{Color r: 1 g: 0 b: 0} cr\'eant ainsi la couleur rouge. Notez que les deux points ne font pas partie du s\'electeur.
 
 \important{En \ind{Java} ou \ind{C++}, l'invocation de m\'ethode \st \ct{Color r: 1 g: 0 b: 0} serait \'ecrite \ct{Color.rgb(1,0,0)}.}
 
@@ -252,12 +252,12 @@ nums --> #(6 2 3 4 5)
 \end{code}
 % ON: Changed to real examples that we can test
 
-\important{Les messages bas\'es sur les mot-cl\'es sont des messages qui n\'ecessitent un ou plusieurs arguments. Leurs s\'electeurs consistent en un ou plusieurs mot-cl\'es chacun se terminant par deux points (\ct{\:}). Ils suivent le sch\'ema suivant:\\
+\important{Les messages bas\'es sur les mot-cl\'es sont des messages qui n\'ecessitent un ou plusieurs arguments. Leurs s\'electeurs consistent en un ou plusieurs mot-cl\'es chacun se terminant par deux points (\ct{\:}). Ils suivent le moule syntaxique:\\
 \lct{receveur \textbf{selecteurMotUn:} argumentUn \textbf{motDeux:} argumentDeux}}
 
 %=============================================================
 \section{Composition de messages}
-Les trois formes d'envoi de message ont chacune des priorit\'es diff\'erentes, ce qui permet de les composer de mani\`ere \'el\'egante.
+Les trois formes d'envoi de messages ont chacune des priorit\'es diff\'erentes, ce qui permet de les composer de mani\`ere \'el\'egante.
 
 \begin{enumerate}
 \item Les messages unaires sont envoy\'es en premier, puis les messages binaires et enfin les messages \`a mot-cl\'es.
@@ -278,7 +278,7 @@ parenth\`eses sont envoy\'ees en premier, mettre des parenth\`eses
 le fait qu'elle
 %l'expression
 doit \^etre envoy\'ee en premier. Le reste de cette section illustre
-chacun de ses diff\'erents points.
+chacun de ces diff\'erents points.
 
 \begin{figure}[ht]
 \ifluluelse
@@ -703,7 +703,7 @@ fois).
 
 %=============================================================
 \section{S\'equences d'expression}
-Les expressions (\ie envois de message, affectations\ldots) s\'epar\'ees par des points sont \'evalu\'es en s\'equence.
+Les expressions (\ie envois de message, affectations\ldots) s\'epar\'ees par des points sont \'evalu\'ees en s\'equence.
 Notez qu'il n'y a pas de point entre la d\'efinition d'un variable et l'expression qui suit.
 La valeur d'une s\'equence est la valeur de la derni\`ere
 expression. Les valeurs retourn\'ees par toutes les expressions

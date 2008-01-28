@@ -1,6 +1,7 @@
 % $Author $
 % $Date: 2007-09-25 09:59:36 +0200 (Tue, 25 Sep 2007) $
 % $Revision: 12376 $
+% relecture : Rene Mages (Fri, 11 jan 2008) de la version #14909
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -43,26 +44,26 @@
 
 \on{I tried to be consistent in the use of the \button{button} and \menu{menu} macros, but maybe this is confusing.}
 
-Un syst\`eme de versionage est un outil qui vous aide \`a g\'erer les
+Un syst\`eme de versionnage est un outil qui vous aide \`a g\'erer les
 acc\`es concourants \`a un d\'ep\^ot commun de code source. Il vous
 aide \`a conserver des traces de votre travail et de toutes les
 modifications d'un ensemble de classes et permet \`a plusieurs
 d\'eveloppeurs de collaborer. \`A partir du moment o\`u la taille de
 votre logiciel d\'epasse le cadre de quelques classes, vous aurez
-probablement besoin d'un syst\`eme de versionage.
+probablement besoin d'un syst\`eme de versionnage.
 
-Plusieurs outiles de versionage sont
+Plusieurs outils de versionnage sont
 disponibles. CVS~\footnote{\url{http://www.nongnu.org/cvs}} et
 Subversion~\footnote{\url{http://subversion.tigris.org}} sont
 probablement les plus populaires.
 En principe, vous pouvez les utiliser pour g\'erer le d\'eveloppement
-de projets de logiciel en \sq mais, \sq en sera r\'eduit \`a un
+de projets de logiciels en \sq mais, \sq en sera r\'eduit \`a un
 langage sans \^ame bas\'e sur des fichiers.
  
 \ab{It woudl be better to say concretely why this would be a bad idea, rather than resorting to name-calling.  Many people think that files are good.  Let's tell the reader about the disadvantages!}
 
-\emph{Monticello} propose un syst\`eme de versionage pour \sq dans
-lequel les m\'ethodes remplace les lignes de texte en tant qu'unit\'e
+\emph{Monticello} propose un syst\`eme de versionnage pour \sq dans
+lequel les m\'ethodes remplacent les lignes de texte en tant qu'unit\'e
 de changements. % unit of change. 
 \emph{SqueakSource}  est un d\'ep\^ot central en ligne dans lequel
 vous pouvez stocker vos applications.
@@ -105,7 +106,7 @@ Browser sera disponible depuis le menu
 \subsection{Cr\'eer un paquetage}
 
 Vous devez tout d'abord commencer par dire \`a Monticello quels
-paquetages vous voulez suivre en versionage. Les paquetages Monticello
+paquetages vous voulez suivre en versionnage. Les paquetages Monticello
 correspondent aux cat\'egories-syst\`eme.
 The very first thing you need to do is to tell Monticello about the package you want to version. Monticello packages are mapped to system categories. For example, the two classes in Quinto, the first application you have seen, are contained in the category \scat{SBE-Quinto}. Press the \button{+Package} in the Monticello browser and enter \scat{SBE-Quinto}. \emph{Voil\`a!} You have just created the \pkg{SBE-Quinto} Monticello package. \ab{We need to refer back to the description of \ct{PackageInfo} packages.}
 

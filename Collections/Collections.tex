@@ -2,10 +2,8 @@
 % $Translation: martial $
 % $Date: Fri Oct 12 13:57:53 CEST 2007 $
 % $Revision: 12789 $
-%=================================================================
 % translated by Martial.Boniou@ifrance.com start: (Fri, 12 Oct 2007)
-%=================================================================
-% relecture par Rene Mages (Fri, 21 Dec 2007)
+% relecture : Rene Mages (9 jan 2008) de la version #14859
 \ifx\wholebook\relax\else
 % --------------------------------------------
 % Lulu:
@@ -40,7 +38,10 @@
 %=============================================================
 \section{Introduction}
 
-Les classes de collection forment un groupe de sous-classes de \clsindmain{Collection} et de \clsindmain{Streams} (pour flux de donn\'ees) faiblement coupl\'ees destin\'e \`a un usage g\'en\'erique.
+% Rene propose un pluriel sur collections
+% Martial s'était trompé en fait  (j'ai fait pareil pour les Streams)
+% voir http://csl.ensm-douai.fr/noury/uploads/15/tourDeSmalltalkEn100Diapos.pdf
+Les classes de collections forment un groupe de sous-classes de \clsindmain{Collection} et de \clsindmain{Stream} (pour flux de donn\'ees) faiblement coupl\'ees destin\'e \`a un usage g\'en\'erique.
 Ce groupe de classes mentionn\'e dans la bible de \st nomm\'ee ``\ind{Blue Book}''~\cite{Gold83a} (le fameux livre bleu) comprend 17 sous-classes de \ct{Collection} 
 et 9 issues de la classe \ct{Stream}. Formant un total de 28 classes, elles
 ont d\'ej\`a \'et\'e remodel\'ees maintes fois avant la sortie du syst\`eme \st-80. Ce groupe de classes est souvent consid\'er\'e comme un exemple pragmatique
@@ -50,13 +51,13 @@ En \sq, les classes abstraites \ct{Collection} et \ct{Stream}
 disposent respectivement de 98 et de 39 sous-classes mais beaucoup d'entre elles
 (comme \mbox{\clsind{Bitmap},} \clsind{FileStream} et \clsind{CompiledMethod})
 sont des classes d'usage sp\'ecifique d\'efinies pour \^etre employ\'ees
-dans d'autres parties du syst\`eme ou applications et ne sont par cons\'equent pas organis\'ees dans la cat\'egorie ``Collections''. 
+dans d'autres parties du syst\`eme ou dans des applications et ne sont par cons\'equent pas organis\'ees dans la cat\'egorie ``Collections''. 
 
 Dans ce chapitre, nous r\'eunirons \ct{Collection} et ses 37 sous-classes
 \emph{aussi} pr\'esentes dans les cat\'egories-syst\`eme de la forme \scat{Collections-*}
-sous le terme de ``hi\'erarchie de Collection''
+sous le terme de ``hi\'erarchie de Collections''
 %``Collection Hierarchy'' 
-et \ct{Stream} et ses 10 sous-classes de la cat\'egorie \scat{Collections-Streams} sous celui de ``hi\'erarchie de Stream''.
+et \ct{Stream} et ses 10 sous-classes de la cat\'egorie \scat{Collections-Streams} sous celui de ``hi\'erarchie de Streams''.
 La liste compl\`ete appara\^{\i}t sur \figref{CollClassesList}.
 Ces 49 classes r\'epondent \`a 794 messages d\'efinissant un total de 1236 m\'ethodes!
 
@@ -65,13 +66,13 @@ Ces 49 classes r\'epondent \`a 794 messages d\'efinissant un total de 1236 m\'et
 \ifluluelse
 	{\fbox{\includegraphics[height=0.9\textheight]{CollectionHierarchyList}}}
 	{\fbox{\includegraphics[width=3in]{CollectionHierarchyList}}}
-\caption{Les classes de collection dans \squeak. L'indentation indique la hi\'erarchie: Les classes \textit{\textsf{en italique}} sont abstraites.}
+\caption{Les classes de collections dans \squeak. L'indentation indique la hi\'erarchie: Les classes \textit{\textsf{en italique}} sont abstraites.}
 \label{fig:CollClassesList}
 \end{center}
 \end{figure}
 
 Dans ce chapitre, nous nous attarderons principalement sur le sous-ensemble
-de classes de collection montr\'e sur 
+de classes de collections montr\'e sur 
 \figref{CollClassesTree}.
 Les flux de donn\'ees ou \emph{streams} seront abord\'es séparément dans 
 \charef{streams}.
@@ -96,7 +97,7 @@ Les flux de donn\'ees ou \emph{streams} seront abord\'es séparément dans
 \section{Des collections très variées}
 \label{sec:varieties}
 
-Pour faire bon usage des classes de collection, le lecteur devra conna\^{\i}tre
+Pour faire bon usage des classes de collections, le lecteur devra conna\^{\i}tre
 au moins superficiellement l'immense vari\'et\'e de collections que celles-ci
 impl\'ementent ainsi que leurs similitudes et leurs diff\'erences.
 
@@ -163,8 +164,7 @@ si puissant.
 \Figref{protocols} r\'esume les protocoles standards support\'es par la
 plupart des classes de la hi\'erarchie de collections. 
 Ces m\'ethodes sont d\'efinies, red\'efinies, optimis\'ees ou parfois
-m\^eme interdites par les sous-classes de 
-\ct{Collection}.
+m\^eme interdites par les sous-classes de \ct{Collections}.
 
 %:FIGURE -- Standard collection protocols
 \begin{figure*}
@@ -190,7 +190,7 @@ m\^eme interdites par les sous-classes de
 \protind{creation}		&	\lct{with: \emph{anElement}}, \lct{with:with:}, \lct{with:with:with:}, \lct{ with:with:with:with:}, \lct{withAll:  \emph{aCollection}}	\\
 \hline
 \end{tabular}
-\caption{Les protocoles standards de collection\label{fig:protocols}}
+\caption{Les protocoles standards de collections\label{fig:protocols}}
 \end{center}
 \end{figure*}
 
@@ -212,8 +212,7 @@ Parcourons bri\`evement certaines de ces divergences essentielles:
   les instances de toutes les sous-classes de \clsind{SequenceableCollection} 
 d\'ebutent par un premier \'el\'ement dit \mthind{SequenceableCollection}{first} et progresse dans un ordre bien d\'efini jusqu'au
 dernier \'el\'ement dit \mthind{SequenceableCollection}{last}.
-Les instances de \clsind{Set}, \clsind{Bag} (ou multiensemble) et \clsind{Dictionary} ne sont pas
-des collections s\'equentielles.
+Les instances de \clsind{Set}, \clsind{Bag} (ou multiensemble) et \clsind{Dictionary} ne sont pas des collections s\'equentielles.
 
   \item {\bf Les tri\'ees ou \emph{Sortable}:}
 une \clsind{SortedCollection} maintient ses \'el\'ements dans un ordre de 
@@ -286,13 +285,13 @@ pouvoir contenir que des \'el\'ements qui sont conformes au protocole
 \begin{figure*}
 \begin{center}
 \includegraphics[width=\textwidth]{CollectionsByImpl}
-\caption{Certaines classes de collection rang\'ees selon leur technique d'impl\'ementation.
+\caption{Certaines classes de collections rang\'ees selon leur technique d'impl\'ementation.
     \label{fig:collsByImpl}}
 \end{center}
 \end{figure*}
 
 Consid\'erer ces cat\'egorisations par fonctionnalit\'e n'est pas 
-suffisant; nous devons aussi regarder les classes de collection selon
+suffisant; nous devons aussi regarder les classes de collections selon
 leur impl\'ementation. Comme nous le montre 
 % by functionality are not our only concern; we must also consider how the collection classes are implemented. 
 \figref{collsByImpl}, cinq techniques d'impl\'ementations majeures 
@@ -325,10 +324,7 @@ repr\'esentation standard simplement cha\^{\i}n\'ee.
 par trois entiers qui enregistrent les deux points extr\^emes et la taille de pas.
   \clsindex{Interval}
 \end{enumerate}
-En plus de ces classes, il y a aussi 
-les variantes de \mbox{\ct{Array},} de \ct{Set} et de plusieurs sortes de dictionnaires dites \`a liaisons faibles ou ``\subind{Collection}{weak}''. Ces collections
-maintiennent faiblement leurs \'el\'ements, \ie
-de mani\`ere \`a ce qu'elles n'emp\^echent pas ses \'el\'ements d'\^etre
+En plus de ces classes, il y a aussi les variantes de \mbox{\ct{Array},} de \ct{Set} et de plusieurs sortes de dictionnaires dites \`a liaisons faibles ou ``\subind{Collection}{weak}''. Ces collections maintiennent faiblement leurs \'el\'ements, \ie de mani\`ere \`a ce qu'elles n'emp\^echent pas ses \'el\'ements d'\^etre
 recycl\'es par le ramasse-miettes ou \emph{garbage collector}.
 La machine virtuelle \sq est consciente de ces classes et les g\`ere d'une
 fa\c{c}on particuli\`ere.
@@ -342,10 +338,10 @@ de \st sont renvoy\'es \`a la lecture de l'excellent livre de LaLonde et Pugh
 
 %=========================================================
 \section{Exemples de classes importantes}
-Nous pr\'esentons maintenant les classes de collection les plus communes et les plus importantes via des exemples de code simples.
+Nous pr\'esentons maintenant les classes de collections les plus communes et les plus importantes via des exemples de code simples.
 Les protocoles principaux de collections sont: \mthind{Collection}{at:}, \mthind{Collection}{at:put:} --- pour acc\'eder \`a un \'el\'ement, \mthind{Collection}{add:}, \mthind{Collection}{remove:} --- pour ajouter ou enlever un \'el\'ement, \mthind{Collection}{size}, \mthind{Collection}{isEmpty}, \mthind{Collection}{include:} --- pour obtenir des informations respectivement sur la taille, la virginit\'e (collection vide) et l'inclusion dans la collection, \mthind{Collection}{do:}, \mthind{Collection}{collect:}, \mthind{Collection}{select:} --- pour agir en it\'erations \`a travers la collection.
 Chaque collection impl\'emente ou non de tels protocoles et quand elle 
-le fait, elle les interpr\'ete pour \^etre en ad\'equation avec leurs \'emantiques.
+le fait, elle les interpr\'ete pour \^etre en ad\'equation avec leurs s\'emantiques.
 Nous vous sugg\'erons de naviguer dans les classes elles-m\^eme pour
 identifier par vous m\^eme les protocoles sp\'ecifiques et plus
 avanc\'es.
@@ -353,7 +349,7 @@ avanc\'es.
 \seeindex{at:@\ct{at:}}{Collection, \ct{at:}}
 \seeindex{at:put:@\ct{at:put:}}{Collection, \ct{at:put:}}
 
-Nous nous focaliserons sur les classes de collection les plus courantes:
+Nous nous focaliserons sur les classes de collections les plus courantes:
 \clsind{OrderedCollection}, \clsind{Set}, \clsind{SortedCollection}, \clsind{Dictionary}, \clsind{Interval} et \clsind{Array}.
 
 \paragraph{Les protocoles communs de cr\'eation.}
@@ -487,7 +483,7 @@ avec un unique \'el\'ement \ct{3} mais vous obtenez plut\^ot le tableau
 
 \noindent
 Ceci se produit parce que la construction \ct{#()} fait que
-le compilateur interpr\`ete lit\'erallement les expressions contenues dans
+le compilateur interpr\`ete litt\'erallement les expressions contenues dans
 le tableau. L'expression est analys\'ee et les \'el\'ements r\'esultants
 forment un nouveau tableau. Les tableaux litt\'eraux contiennent des
 nombres, l'\'el\'ement \ct{nil}, des bool\'eens \ct{true} et \ct{false},
@@ -540,8 +536,7 @@ ordCol add: 'Seaside'; add: 'SqueakSource'; addFirst: 'Monticello'.
 ordCol --> an OrderedCollection('Monticello' 'Seaside' 'SqueakSource')
 \end{code}
 
-\paragraph{Effacer des \'el\'ements.} La m\'ethode \mthind{OrderedCollection}{remove:} \ct{anObject} efface la premi\`ere occurence d'un objet dans la collection. Si la collection n'inclut pas l'objet, elle
-l\`eve une erreur.
+\paragraph{Effacer des \'el\'ements.} La m\'ethode \mthind{OrderedCollection}{remove:} \ct{anObject} efface la premi\`ere occurence d'un objet dans la collection. Si la collection n'inclut pas l'objet, elle l\`eve une erreur.
 
 \begin{code}{@TEST | ordCol | ordCol := OrderedCollection with: 'Monticello' with: 'Seaside' with: 'SqueakSource'.}
 ordCol add: 'Monticello'.
@@ -630,7 +625,7 @@ colors values       --> {Color blue . Color yellow . Color red}
 
 Les dictionnaires comparent les cl\'es par \'egalit\'e. Deux cl\'es sont
 consid\'er\'ees comme \'etant la m\^eme si elles retournent \emph{true}
-lorsqu'elles sont compar\'ees par \ct{=}. Un erreur commune et difficile \`a
+lorsqu'elles sont compar\'ees par \ct{=}. Une erreur commune et difficile \`a
 identifier est d'utiliser un objet dont la m\'ethode \ct{=} a \'et\'e
 red\'efinie mais pas sa m\'ethode de hachage \ct{hash}. Ces deux
 m\'ethodes sont utilis\'ees dans l'impl\'ementation du dictionnaire
@@ -639,7 +634,7 @@ et lorsque des objets sont compar\'es.
 \seeindex{Dictionary!surcharger \ct{=} et \ct{hash}}{dictionnaire!surcharger \ct{=} et \ct{hash}}
 
 La classe \clsindmain{Dictionary} illustre clairement que la hi\'erarchie
-de collection est bas\'ee sur l'h\'eritage et pas par du sous-typage.
+de collections \arevoir{est bas\'ee sur l'h\'eritage et non sur du sous-typage}.
 M\^eme si \ct{Dictionary} est une sous-classe de \clsind{Set}, nous
 ne voudrions normalement pas utiliser un \ct{Dictionary} l\`a o\`u
 un \ct{Set} est attendu. 
@@ -658,13 +653,9 @@ colors associations --> {#yellow->Color yellow . #red->Color red}
 \end{code}
 
 \paragraph{IdentityDictionary.}
-Alors qu'un dictionnaire utilise le r\'esultat des messages \ct{=} et \ct{hash} pour d\'eterminer si deux cl\'es sont la m\^eme, la classe \clsindmain{IdentityDictionary} utilise l'identit\'e (\cad le message \mthind{ProtoObject}{==}) de
-la cl\'e au lieu de celle de ses valeurs, \ie qu'il consid\`ere deux
-cl\'es comme \'egales \emph{seulement} si elles sont le m\^eme objet.
+Alors qu'un dictionnaire utilise le r\'esultat des messages \ct{=} et \ct{hash} pour d\'eterminer si deux cl\'es sont la m\^eme, la classe \clsindmain{IdentityDictionary} utilise l'identit\'e (\cad le message \mthind{ProtoObject}{==}) de la cl\'e au lieu de celle de ses valeurs, \ie qu'il consid\`ere deux cl\'es comme \'egales \emph{seulement} si elles sont le m\^eme objet.
 
-Souvent les symboles de classe \ct{Symbol} sont utilis\'es comme cl\'es, dans les cas o\`u le choix de \ct{IdentityDictionary} s'impose, car un symbole est
-toujours certain d'\^etre globalement unique.
-Si d'un autre c\^ot\'e, vos cl\'es sont des chaînes de caract\`eres 
+Souvent les symboles de classe \ct{Symbol} sont utilis\'es comme cl\'es, dans les cas o\`u le choix de \ct{IdentityDictionary} s'impose, car un symbole est toujours certain d'\^etre globalement unique. Si d'un autre c\^ot\'e, vos cl\'es sont des chaînes de caract\`eres 
 \ct{String}, il est pr\'ef\'erable d'utiliser un \ct{Dictionary} ou sinon vous pourriez avoir des ennuis:
 
 \begin{code}{@TEST | a b trouble |}
@@ -687,12 +678,9 @@ Un simple \ct{Dictionary} vous donnerait la m\^eme valeur pour n'importe quelle
 cl\'e \'egale \`a \ct{'foobar'}.
 
 %ajout
-Vous ne vous tromperez pas en utilisant
-seulement des \ct{Symbol}s comme cl\'e d'\ct{IdentityDictionary} et
-des \ct{String}s (ou d'autres objets) comme cl\'e de \ct{Dictionary} classique.
+Vous ne vous tromperez pas en utilisant seulement des \ct{Symbol}s comme cl\'e d'\ct{IdentityDictionary} et des \ct{String}s (ou d'autres objets) comme cl\'e de \ct{Dictionary} classique.
 
-Notez que l'objet global \glbind{Smalltalk} est une instance de \clsind{SystemDictionary} sous-classe de  \ct{IdentityDictionary}; de ce fait, toutes ses
-cl\'es sont des \ct{Symbol}s (en r\'ealit\'e, des symboles de la classe \ct{ByteSymbol} qui contiennent des caract\`eres de 8 bits).
+Notez que l'objet global \glbind{Smalltalk} est une instance de \clsind{SystemDictionary} sous-classe de  \ct{IdentityDictionary}; de ce fait, toutes ses cl\'es sont des \ct{Symbol}s (en r\'ealit\'e, des symboles de la classe \ct{ByteSymbol} qui contiennent des caract\`eres de 8 bits).
 
 \begin{code}{@TEST}
 Smalltalk keys collect: [ :each | each class ] --> a Set(ByteSymbol)
@@ -741,8 +729,7 @@ qui autorise le duplicata:
 Les op\'erations sur les ensembles telles que
 l'\emph{union}, l'\emph{intersection} et le test d'\emph{appartenance} 
 sont impl\'ement\'ees respectivement par les messages de \ct{Collection} \mthind{Collection}{union:}, \mthind{Collection}{intersection:} et \mthind{Collection}{includes:}.
-Le receveur est d'abord converti en un \ct{Set}, ainsi ces
-op\'erations fonctionnent pour toute sorte de collections!
+Le receveur est d'abord converti en un \ct{Set}, ainsi ces op\'erations fonctionnent pour toute sorte de collections!
 
 \seeindex{Set!union}{Collection, \ct{union:}}
 \seeindex{Set!intersection}{Collection, \ct{intersection:}}
@@ -787,6 +774,7 @@ Cet exemple r\'epond \`a la FAQ suivante:
 
 \important{FAQ: Comment trier une collection?\\
 {\sc R\'eponse}: En lui envoyant le message \ct{asSortedCollection}.}
+
 
 \begin{code}{@TEST}
 'hello' asSortedCollection --> a SortedCollection($e $h $l $l $o)
@@ -857,9 +845,9 @@ String newFrom: #($h $e $l $l $o) --> 'hello'
 En fait, \ct{String} est abstrait.
 Lorsque vous instanciez un \ct{String}, vous obtenez en r\'ealit\'e soit
 un \clsind{ByteString} en 8 bits ou un \clsind{WideString}~\footnote{\emph{Wide} a le sens: \'etendu} en 32 bits.
-Pour garder les choses simples, nous ignorons habituellement la diff\'erence
-et parlons simplement d'instances de  
- \ct{String}.
+% Martial: ou "Pour faire court" (il y a déjà 'simplement')
+\arevoir{Pour simplifier}, nous ignorons habituellement la diff\'erence
+et parlons simplement d'instances de \ct{String}.
 
 Deux instances de \ct{String} peuvent \^etre concat\'en\'ees avec une virgule (en anglais, \emph{comma}).
 \index{Collection!op\'erateur virgule}
@@ -903,8 +891,7 @@ s --> 'No worries'
 \end{code}
 
 D'une mani\`ere diff\'erente, \mthind{String}{copyReplaceAll:} cr\'ee 
-une nouvelle cha\^{\i}ne de caract\`eres
-(curieusement, les arguments dans ce cas sont des sous-cha\^{\i}nes et non des caract\`eres ind\'ependants et leur taille n'a pas \`a \^etre identique).
+une nouvelle cha\^{\i}ne de caract\`eres (curieusement, les arguments dans ce cas sont des sous-cha\^{\i}nes et non des caract\`eres ind\'ependants et leur taille n'a pas \`a \^etre identique).
 
 \begin{code}{@TEST |s| s:= 'No worries' copy.}
 s copyReplaceAll: 'rries' with: 'mbats' --> 'No wombats'
@@ -1017,8 +1004,7 @@ Voici un exemple de diff\'erence:
 Un symbole \ct{Symbol} est similaire \`a une cha\^{\i}ne de caract\`eres
 mais nous sommes garantis de son unicit\'e globale. Pour cette raison,
 les symboles sont pr\'ef\'er\'es aux \ct{String} comme cl\'e de dictionnaire,
-et particulier pour les instances de 
-\ct{IdentityDictionary}.
+en particulier pour les instances de \ct{IdentityDictionary}.
 Voyez aussi \charef{basic} pour plus d'informations sur \clsind{String} et \clsind{Symbol}.
 
 %=========================================================
@@ -1028,10 +1014,9 @@ Voyez aussi \charef{basic} pour plus d'informations sur \clsind{String} et \clsi
 En \st, les boucles et les clauses conditionnelles sont simplement
 des messages envoy\'es \`a des collections ou d'autres objets
 tels que des entiers ou des blocs (voir aussi \charef{syntax}).
-En plus des messages de bas niveau comme 
- \ct{to:do:} qui \'evalue un bloc avec un argument qui parcourt les valeurs entre un nombre initial et final,
+En plus des messages de bas niveau comme \ct{to:do:} qui \'evalue un bloc avec un argument qui parcourt les valeurs entre un nombre initial et final,
 %which evaluates a block with an argument ranging from an initial to a final number
-la hi\'erarchie de collection \st offre de nombreux it\'erateurs de haut niveau.
+la hi\'erarchie de collections \st offre de nombreux it\'erateurs de haut niveau.
 Ceci vous permet de faire un code plus robuste et plus compact.
 \index{Collection!it\'eration}
 
@@ -1112,13 +1097,8 @@ du message \ct{do:}.
 La plupart peuvent \^etre trouv\'es dans le protocole \protind{enumerating} 
 de la classe \ct{Collection} et de ses sous-classes.
 
-<<<<<<< .mine
 Imaginez que nous voulions qu'une collection contienne le double des \'el\'ements d'une autre collection. 
 En utilisant la m\'ethode \ct{do:}, nous devons \'ecrire le code suivant :
-=======
-Imaginez que nous voulions qu'une collection contienne le double des \'el\'ements d'une autre collection. 
-En utilisant la m\'ethode \ct{do:}, nous devons \'ecrire le code suivant:
->>>>>>> .r14469
 
 \begin{code}{@TEST | double |}
 double := OrderedCollection new.
@@ -1301,8 +1281,8 @@ range do: [:aNumber | aNumber isPrime ifFalse: [ range remove: aNumber ] ].
 range --> an OrderedCollection(2 3 5 7 9 11 13 15 17 19)
 \end{code}
 \noindent
-Ce r\'esultat est clairement incorrect puisque 9 et 15 devait avoir \'et\'e
-filtr\'e!
+Ce r\'esultat est clairement incorrect puisque 9 et 15 auraient du \'et\'e
+filtr\'es!
 
 La solution consiste \`a copier la collection avant de la parcourir.
 \begin{code}{@TEST |range|}
@@ -1346,8 +1326,7 @@ La hi\'erarchie des collections en \st offre un vocabulaire commun pour la manip
 \begin{itemize}
   \item Une distinction essentielle est faite entre les collections s\'equentielles ou 
 \ct{SequenceableCollection}s qui stockent leurs \'el\'ements dans un ordre
-donn\'e, 
-les dictionnaires de classe \ct{Dictionary} ou de ses sous-classes qui
+donn\'e, les dictionnaires de classe \ct{Dictionary} ou de ses sous-classes qui
 enregistrent des associations cl\'e--valeur et les ensembles 
 (\ct{Set}) ou multi-ensembles (\ct{Bag}) qui sont eux d\'esordonn\'es.
   \item Vous pouvez convertir la plupart des collections en d'autres sortes de 

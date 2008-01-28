@@ -3,6 +3,7 @@
 % $Revision: 12130 $
 % traduit par Martial 
 % relecture par Rene (Fri, 21 Dec 2007)
+% relecture par Rene (Sun, 13 Jan 2008)
 % update: Tue Dec 25 12:52:59 CET 2007
 %=================================================================
 \ifx\wholebook\relax\else
@@ -87,7 +88,7 @@ Apr\'es avoir lu un \'el\'ement avec le message \ct{next}, l'\'etat de votre \st
 
 \begin{figure}[h!t]
 \centerline{\includegraphics[scale=0.5]{ax_cdeStef}}
-\caption{Le m\^eme flux de donn\'ees apr\'es avoir \'ecrit un \ct{x}.}
+\caption{Le m\^eme flux de donn\'ees apr\`es avoir \'ecrit un \ct{x}.}
 \label{fig:ax_cde}
 \vspace{.2in}
 \end{figure}
@@ -97,7 +98,7 @@ Apr\'es avoir lu un \'el\'ement avec le message \ct{next}, l'\'etat de votre \st
 
 Le protocole des collections supporte le stockage, l'effacement et l'\'enum\'eration
 des \'el\'ements d'une collection mais il ne permet pas que ces op\'erations
-soient combin\'es ensemble. Par exemple, si les \'el\'ements d'une 
+soient combin\'ees ensemble. Par exemple, si les \'el\'ements d'une 
 \clsind{OrderedCollection} sont trait\'es par une m\'ethode \mthind{OrderedCollection}{do:}, il n'est pas possible d'ajouter ou d'enlever des \'el\'ements
 \`a l'int\'erieur du bloc \ct{do:}.
 Ce protocole ne permet pas non plus d'it\'erer dans deux collections
@@ -176,10 +177,10 @@ des \streams dans le cadre des collections.
 Cette section pr\'esente les propri\'et\'es utilis\'ees pour lire des collections. Utiliser les flux de donn\'ees pour lire une collection 
 repose essentiellement sur le fait de disposer d'un pointeur sur le contenu de la collection.
 Vous pouvez placer o\`u vous voulez ce pointeur qui avancera dans le contenu pour lire.
-La classe \clsindmain{ReadStream} devrait \^etre utilis\'e pour lire les \'el\'ements dans les collections.
+La classe \clsindmain{ReadStream} devrait \^etre utilis\'ee pour lire les \'el\'ements dans les collections.
 
 Les m\'ethodes \mthind{ReadStream}{next} et \mthind{ReadStream}{next:} 
-sont utilis\'es pour r\'ecup\'erer un ou plusieurs \'el\'ements dans
+sont utilis\'ees pour r\'ecup\'erer un ou plusieurs \'el\'ements dans
 la collection.
 
 \begin{code}{@TEST |stream|}
@@ -251,7 +252,7 @@ Si vous voulez aller au d\'ebut ou \`a la fin, vous pouvez utiliser
 Les messages \mthind{PositionableStream}{skip:} et \mthind{PositionableStream}{skipTo:} sont utilis\'es pour avancer d'une position relative \`a la
 position actuelle: la m\'ethode \ct{skip:} accepte un nombre comme
 argument et saute sur une distance de ce nombre d'\'el\'ements alors que
-\ct{skipTo:} saute tous les \'el\'ements dans la flux jusqu'\`a trouver
+\ct{skipTo:} saute tous les \'el\'ements dans le flux jusqu'\`a trouver
 un \'el\'ement \'egal \`a son argument. Notez que cette m\'ethode positionne
 le \stream apr\`es l'\'el\'ement identifi\'e.
 
@@ -358,7 +359,7 @@ Il existe aussi des m\'ethodes utiles pour imprimer diff\'erentes sortes
 de caract\`eres au \stream comme \mthind{WriteStream}{space} (pour un espace), 
    \mthind{WriteStream}{tab} (pour une tabulation) et
 \mthind{WriteStream}{cr} (pour \emph{Carriage Return} \cad le retour-chariot).
-Un autre m\'ethode s'av\`ere utile pour s'assurer que le dernier caract\`ere
+Une autre m\'ethode s'av\`ere utile pour s'assurer que le dernier caract\`ere
 dans le flux de donn\'ees est un espace: il s'agit de \mthind{WriteStream}{ensureASpace}; si le dernier caract\`ere n'est pas un espace, il en ajoute un.
 
 \paragraph{Au sujet de la concat\'enation.}
@@ -575,7 +576,7 @@ de cr\'eation d'instance suivantes mises \`a disposition par la classe
   \cmindex{FileStream class}{fileNamed:}
   
 \item[\lct{newFileNamed:}] cr\'ee un nouveau fichier avec le nom donn\'e
-	et r\'epond un \stream ouvert en \'ecriture pour ce fichier.
+	et retourne un \stream ouvert en \'ecriture pour ce fichier.
 	Si le fichier existe d\'ej\`a, il est demand\'e \`a l'utilisateur
 	de choisir la marche \`a suivre.
   \cmindex{FileStream class}{newFileNamed:}
@@ -717,7 +718,7 @@ Cela cr\'ee un \'echiquier 4 par 4 comme nous montre \figref{checkerboard4x4}.
 %=============================================================
 \section{R\'esum\'e du chapitre}
 
-Par rapport aux collections, les flux de donn\'ees ou \streams offre
+Par rapport aux collections, les flux de donn\'ees ou \streams offrent
 un bien meilleur moyen de lire et d'\'ecrire de mani\`ere
 incr\'ementale dans une s\'equence d'\'el\'ements.
 Il est tr\`es facile de passer par conversion de \streams \`a collections et vice-versa.

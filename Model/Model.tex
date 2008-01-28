@@ -4,14 +4,13 @@
 % $Revision: 12715 $
 %=================================================================
 % translated by Martial.Boniou@ifrance.com start: (Fri, 28 Sep 2007)
-% relecture par Rene Mages : Thu Dec 20 12:13:40 CET 2007
+% relecture par Rene Mages : Thu Dec 20 12:13:40 2007
 % relecture par Martial : Sat Dec 29 16:06:42 CET 2007
+% relecture par Rene Mages : Thr Jan 10 17:17:17 2008
 %% j'ai enleve les 'transmissions de messages': il ne reste que 'envoi
 %% de messages'; j'ai remplace 'envoi sur super/self' par 'envoi a
 %% ...'; j'ai remplace '\lct{}' par '\ct{}' quand possible
 %=================================================================
-
- 
 \ifx\wholebook\relax\else
 % --------------------------------------------
 % Lulu:
@@ -40,8 +39,7 @@
 \chapter{Le mod\`ele objet de \st}
 \label{cha:SqueakModel}\label{cha:model}
 
-Le mod\`ele de programmation de \st est simple et homog\`ene: \mantra et les objets communiquent les uns avec les autres uniquement
-via l'envoi de messages.
+Le mod\`ele de programmation de \st est simple et homog\`ene: \mantra et les objets communiquent les uns avec les autres uniquement via l'envoi de messages.
 Cependant, ces caract\'eristiques de simplicit\'e et d'homog\'en\'eit\'e peuvent \^etre source de quelques difficult\'es pour le programmeur habitu\'e \`a d'autres langages. Dans ce chapitre nous pr\'esenterons les concepts de base du mod\`ele objet de \st; en particulier nous discuterons des cons\'equences de repr\'esenter les classes comme des objets.
 
 %=========================================================
@@ -49,7 +47,7 @@ Cependant, ces caract\'eristiques de simplicit\'e et d'homog\'en\'eit\'e peuvent
 \label{sec:rules}
 
 Le mod\`ele objet de \st repose sur un ensemble de r\`egles simples 
-qui sont appliqu\'es de mani\`ere \emph{uniforme}. Les r\`egles s'\'enoncent comme suit:
+qui sont appliqu\'ees de mani\`ere \emph{uniforme}. Les r\`egles s'\'enoncent comme suit:
 
 \begin{enumerate}[label={\textbf{R\`egle \arabic{*}}.}, ref={R\`egle \arabic{*}}, leftmargin=*]
 \item{} \label{rule:everything}
@@ -79,8 +77,8 @@ Prenons le temps d'\'etudier ces r\`egles en d\'etail.
 %\ruleref{everything}
 
 Le mantra ``\mantra'' est hautement contagieux.
-Apr\`es seulement peu de temps pass\'e avec \st, vous serez progressivement surpris par comment cette r\`egle simplifie tout ce que vous faites.
-Par exemple, les entiers sont v\'eritablement des objets (de classe Integer). D\`es lors vous pouvez leur envoyer des messages, comme vous feriez avec n'importe quel autre objet.
+Apr\`es seulement peu de temps pass\'e avec \st, vous serez progressivement surpris par la fa\c{c}on dont cette r\`egle simplifie tout ce que vous faites.
+Par exemple, les entiers sont v\'eritablement des objets (de classe Integer). D\`es lors vous pouvez leur envoyer des messages, comme vous le feriez avec n'importe quel autre objet.
 
 \begin{code}{@TEST}
 3 + 4            --> 7    "!envoie '+ 4' \`a 3, donnant 7!"
@@ -101,7 +99,7 @@ aux développeurs.
 
 En regardant plus avant dans l'impl\'ementation de \st, nous trouvons
 trois sortes diff\'erentes d'objets. Il y a (1) les objets ordinaires
-avec des variables d'instance pass\'ees par r\'eference; il y a (2)
+avec des variables d'instance pass\'ees par r\'ef\'erence; il y a (2)
 \emph{les petits entiers}~\footnote{En anglais, \emph{small
     integers}.} qui sont pass\'es par valeur, et enfin, il y a (3) les
 objets 
@@ -132,7 +130,7 @@ et leur \emph{comportement} (\emph{behavior} en anglais) via les m\'ethodes.
 Chaque m\'ethode a un nom. C'est le \emphsubind{m\'ethode}{s\'electeur}. Il est unique pour chaque classe.
 
 Puisque \emph{les classes sont des objets} et que \emph{tout objet est une instance d'une classe}, nous en concluons que les classes doivent aussi \^etre des instances de classes.
-Une classe dont les instances sont des classes sont nomm\'ees des \emph{m\'eta-classes}.
+Les classes dont les instances sont des classes sont nomm\'ees des \emph{m\'eta-classes}.
 \`A chaque fois que vous cr\'eez une classe, le syst\`eme cr\'ee pour vous une m\'eta-classe
 automatiquement.
 La m\'eta-classe definit la structure et le comportement de la classe qui est son instance.
@@ -154,7 +152,7 @@ Nous disons que l'\emphind{espace d'encapsulation}~\footnote{En anglais, encapsu
 \index{variable d'instance}
 
 En \st, deux instances d'une m\^eme classe ne peuvent pas acc\`eder aux variables d'instance l'une de l'autre \`a moins que la classe ne d\'efinisse des ``m\'ethodes d'\ind{acc\`es}'' (en anglais, accessor methods).
-Aucun \'element de la syntaxe ne permet l'acc\`es direct \`a la variable d'instances de n'importe quel autre objet.
+Aucun \'el\'ement de la syntaxe ne permet l'acc\`es direct \`a la variable d'instances de n'importe quel autre objet.
 (En fait, un m\'ecanisme appel\'e \ind{r\'eflexivit\'e}
 %, discussed in \charef{metaprog},
 offre une v\'eritable possibilit\'e d'interroger un autre objet sur la valeur de ses variables d'instance; la m\'eta-programmation permet d'\'ecrire des outils tel que l'\ind{inspecteur} d'objets (nous utiliserons aussi le terme \ind{Inspector}). La seule vocation de ce dernier est de regarder le contenu des autres objets.)
@@ -189,7 +187,7 @@ Par exemple, la m\'ethode \ct{point>>>dist:} n'a besoin ni de surveiller, ni
 m\^eme de savoir si l'argument \ct{aPoint} est une instance de la m\^eme classe
 que le receveur.  L'argument objet pourrait \^etre repr\'esent\'e par des
 coordonn\'ees polaires, voire comme un enregistrement dans une base de donn\'ees ou sur une autre machine d'un r\'eseau distribu\'e; tant qu'il peut r\'epondre
-aux messages \ct{x} et \ct{y}, le code de \mthref{dist:} fonctionnera toujours.
+aux messages \ct{x} et \ct{y}, le code de la \mthref{dist:} fonctionnera toujours.
 
 %---------------------------------------------------------
 \subsection{Les m\'ethodes}
@@ -271,7 +269,7 @@ liste des noms des variables d'instance vous est propos\'ee pour une \'edition d
 
 Une fois que vous avez cr\'e\'e une classe, cliquer sur
 le bouton \button{instance} vous permet d'\'editer et de parcourir les
-m\'ethodes qui seront poss\'ed\'ees par les instances de cette classe (et de ses sous-classes). Par exemple, nous pouvons voir dans la \figref{Buttons} que 
+m\'ethodes qui seront poss\'ed\'ees par les instances de cette classe (et de ses sous-classes). Par exemple, nous pouvons voir dans \figref{Buttons} que 
 la m\'ethode \ct{hue} est d\'efinie pour les instances de la classe \ct{Color}.
 A contrario, le bouton \button{class} vous laisse parcourir et \'editer
 la m\'eta-classe (dans ce cas \ct{Color class}).
@@ -288,7 +286,7 @@ de classe utilis\'ees d'une autre mani\`ere.
 
 Il est coutumier de placer des m\'ethodes utilitaires dans le \subind{System Browser}{c\^ot\'e classe} parce qu'elles peuvent \^etre ex\'ecut\'ees
 sans avoir \`a cr\'eer un objet additionnel dans un premier temps.
-En fait, beaucoup d'entre elles contiennent un commentaire pour les rendre plus compr\'ehensible spour l'utilisateur qui les ex\'ecute.
+En fait, beaucoup d'entre elles contiennent un commentaire pour les rendre plus compr\'ehensibles pour l'utilisateur qui les ex\'ecute.
 
 \dothis{Naviguez dans la m\'ethode \ct{Color class>>>showColorCube}, double-cliquez \`a l'int\'erieur des guillements englobant le commentaire \ct{"Color showColorCube"} et tape au clavier \short{d}.}
 Vous verrez l'effet de l'ex\'ecution de cette m\'ethode.  (S\'electionnez \menu{World \go \ind{restore display}~(r)} pour annuler les effets.)
@@ -306,7 +304,7 @@ C'est exactement la m\^eme histoire avec les \subind{classe!variables d'instance
 Une sous-classe h\'eritera de ces  variables d'instance de classe, \emph{mais elle aura ses propres copies priv\'ees de ces variables}.
 Aussi vrai que les objets ne partagent pas les variables d'instance, les classes et leurs sous-classes ne partagent pas les variables d'instance de classe.
 
-Vous pouvez utiliser une variable d'instance de classe \ct{count}~\footnote{En fran\c{c}ais, compteur.} afin de suivre le nombre d'instances vous cr\'eez pour une classe donn\'ee.
+Vous pouvez utiliser une variable d'instance de classe \ct{count}~\footnote{En fran\c{c}ais, compteur.} afin de suivre le nombre d'instances que vous cr\'eez pour une classe donn\'ee.
 Cependant, les sous-classes ont leur propre variable \ct{count}, 
 les instances des sous-classes seront compt\'ees s\'epar\'ement.
 
@@ -420,11 +418,14 @@ La seconde fois, l'instance pr\'ec\'edemment cr\'e\'ee sera retourn\'ee au lieu 
 Remarquons que la clause conditionnelle \`a l'int\'erieur du code de cr\'eation
 de \tmthref{uniqueInstance} est \'ecrite \ct{self new} et non 
 \mbox{\ct{WebServer new}.}
-Quelle en-est la diff\'erence?   Comme la m\'ethode \ct{uniqueInstance} est d\'efinie dans \ct{WebServer class}, vous pouvez penser qu'elles sont identiques.    En fait, tant que personne ne cr\'ee une sous-classe de \ct{WebServer}, elles sont pareilles. Mais en supposant que \ct{ReliableWebServer} est une sous-classe de \ct{WebServer} et qu'elle h\'erite de la m\'ethode \ct{uniqueInstance},
+Quelle en est la diff\'erence?   Comme la m\'ethode \ct{uniqueInstance} est d\'efinie dans \ct{WebServer class}, vous pouvez penser qu'elles sont identiques.    En fait, tant que personne ne cr\'ee une sous-classe de \ct{WebServer}, elles sont pareilles. Mais en supposant que \ct{ReliableWebServer} est une sous-classe de \ct{WebServer} et qu'elle h\'erite de la m\'ethode \ct{uniqueInstance},
 nous devrions nous attendre \`a ce que \ct{ReliableWebServer uniqueInstance} r\'eponde un \ct{ReliableWebServer}. L'utilisation de \self assure que cela arrivera car il sera li\'e \`a la classe correspondante.
 Du reste, notez que \ct{WebServer} et \ct{ReliableWebServer} ont chacune
-leur propre variable d'instance de classe nomm\'ee \ct{uniqueInstance}.  Ces
-deux variables ont, bien entendu, diff\'erentes valeurs.
+leur propre variable d'instance de classe nomm\'ee \ct{uniqueInstance}.  
+
+% proposition de Rene :
+% Ces deux variables ont, bien entendu, des valeurs diff\'erentes.
+\arevoir{Ces deux variables ont, bien entendu, diff\'erentes valeurs.}
 
 %=========================================================
 \section{Toute classe a une super-classe}
@@ -479,7 +480,7 @@ Les \emph{traits} sont des collections de m\'ethodes qui peuvent \^etre r\'eutil
 
 Une classe \subind{classe}{abstraite} est une classe qui n'existe que pour \^etre h\'erit\'ee, au lieu d'\^etre instanci\'ee.
 Une classe abstraite est habituellement incompl\`ete, dans le sens qu'elle ne d\'efinit pas toutes les m\'ethodes qu'elle utilise.
-Les m\'ethodes ``manquantes''\,---\,celle que les autres m\'ethodes envoyent, mais qui ne sont pas d\'efinies elles-m\^eme\,---\,sont dites m\'e\-tho\-des \subind{m\'ethode}{abstraite}{s}.
+Les m\'ethodes ``manquantes''\,---\,celle que les autres m\'ethodes envoyent, mais qui ne sont pas d\'efinies elles-m\^emes\,---\,sont dites m\'e\-tho\-des \subind{m\'ethode}{abstraite}{s}.
 \seeindex{classe abstraite}{classe, abstraite}
 \seeindex{m\'ethode abstraite}{m\'ethode, abstraite}
 
@@ -573,7 +574,7 @@ BorderedMorph subclass: #SBEGame
 	category: 'SBE-Quinto'
 \end{classdef}
 
-Si nous instantions maintenant \ct{SBEGame}, l'instance r\'epondra comme pr\'evu au message \ct{author}.
+Si nous instancions maintenant \ct{SBEGame}, l'instance r\'epondra comme pr\'evu au message \ct{author}.
 
 \begin{code}{}
 SBEGame new author --> 'on'
@@ -1070,7 +1071,7 @@ Mais nous pouvons noter quelque chose de nouveau: \ct{ColorNames} et \ct{CachedC
 La capitalisation du nom de ces variables nous donne un indice sur le fait qu'elles sont partag\'ees.
 En fait, non seulement toutes les instances de \ct{Color} peuvent acc\'eder
 \`a ces variables partag\'ees, mais aussi la classe \ct{Color} elle-m\^eme, ainsi que \emph{toutes ses sous-classes}.
-Les m\'ethodes d'instance et de classe peuvent acc\'eder tous les deux
+Les m\'ethodes d'instance et de classe peuvent acc\'eder toutes les deux
 \`a ces variables partag\'ees.
 
 %\begin{figure}
@@ -1224,7 +1225,7 @@ en regroupant ces derni\`eres en \emph{traits}.
 	faisons des ``envois de messages''.
 Le receveur choisit alors sa propre m\'ethode pour r\'epondre au message.
 
-  \item La recherche de m\'ethode suit la cha\^{\i}ne d'h\'eritage;
+  \item La recherche de m\'ethodes suit la cha\^{\i}ne d'h\'eritage;
   Les envois \`a \self sont dynamiques et la recherche de m\'ethode
 d\'emarre dans le receveur de la classe, alors que
 celles \`a \super sont statiques

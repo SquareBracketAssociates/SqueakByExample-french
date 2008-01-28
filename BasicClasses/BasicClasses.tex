@@ -3,8 +3,8 @@
 % $Revision: 12130 $
 % traduction : Nicolas Petton 
 % relecture : Alain Plantec 
-% relecture : Rene Mages (sat, 22 dec 2007)
 % relecture: Martial Boniou (sun, 23 dec 2007) de la version #14626 
+% relecture : Rene Mages (sat, 9 jan 2008) de la version #14856
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -99,12 +99,12 @@ la classe pr\'ec\'ed\'ee par ``\ct{a}'' ou
 ``\ct{an}''. \ct{Object>>>printString} retourne la cha\^{\i}ne de
 caract\`eres (\ct{String}) qui est \'ecrite.
 
-Par exemple, la classe \clsind{Browser} ne red\'efinit pas le
+Par exemple, la classe \clsind{Browser} ne red\'efinit pas la
 m\'ethode \ct{printOn:} et, envoyer le message \ct{printString} \`a
 une %
 %ajout
 de ces instances %
-ex\'ecute la m\'ethode d\'efinie dans \ct{Object}. 
+ex\'ecute les m\'ethodes d\'efinies dans \ct{Object}. 
 \begin{code}{@TEST}
 Browser new printString --> 'a Browser'
 \end{code}
@@ -149,7 +149,7 @@ possible des collections dans leur forme auto-\'evalu\'ee. Ceci est particuli\`e
 {Browser new . 100@100}    --> an Array(a Browser 100@100)
 \end{code}
 
-Rappelez-vous que les tableaux \subind{Array}{litt\'eraux} ne peuvent contenir que des litt\'eraux. Ainsi le tableau suivant ne contient pas deux points mais six \'el\'ements litt\'eraux.
+Rappelez-vous que les tableaux \subind{Array}{litt\'eraux} ne peuvent contenir que des litt\'eraux. Ainsi le tableau suivant ne contient pas deux \'el\'ements mais six \'el\'ements litt\'eraux.
 \begin{code}{@TEST}
 #(10@10 100@100) --> #(10 #@ 10 100 #@ 100)
 \end{code}
@@ -377,7 +377,7 @@ vous pouvez surcharger \mthind{Object}{postCopy} pour copier une variable d'inst
 %-----------------------------------------------------------------
 \subsection{D\'ebogage}
 
-La m\'ethode la plus importante ici est \mthind{Object}{halt}. Pour placer un point d'arr\^et dans une m\'ethode, il suffit d'ins\'erer l'envoi de message \ct{self halt} \`a une certaine position dans le corps de la m\'ethode.  Quand ce message est envoy\'e, l'ex\'ecution est interrompue est un \ind{d\'ebogueur} s'ouvre \`a cet endroit de votre programme
+La m\'ethode la plus importante ici est \mthind{Object}{halt}. Pour placer un point d'arr\^et dans une m\'ethode, il suffit d'ins\'erer l'envoi de message \ct{self halt} \`a une certaine position dans le corps de la m\'ethode.  Quand ce message est envoy\'e, l'ex\'ecution est interrompue et un \ind{d\'ebogueur} s'ouvre \`a cet endroit de votre programme
 (voir \charef{env} pour plus de d\'etails sur le d\'ebogueur).
 
 \sd{in another chapter haltIf:, haltOnce, inspectOnce, flagging: isThisEverCalled, }
@@ -456,7 +456,7 @@ Object>>>subclassResponsibility
 %martial: traduction de commentaire
 %ajout d'une explication pour la methode suivante
 Son commentaire dit que ``ce message installe un cadre pour le
-comportement des sous-classes de la classe. Affirme que la sous-classe
+comportement des sous-classes de la classe. Il affirme que la sous-classe
 devrait avoir impl\'ement\'e ce message''. La phrase-argument de
 l'envoi du message d'erreur \ct{error:} vous pr\'evient que la
 m\'ethode devra \^etre surcharg\'ee dans une sous-classe concr\`ete.

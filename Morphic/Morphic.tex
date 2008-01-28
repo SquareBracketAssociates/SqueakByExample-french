@@ -13,6 +13,7 @@
 %% URL:
 %% https://www.iam.unibe.ch/scg/svn_repos/SqueakByExample/FrenchBook/Morphic/Morphic.tex
 %% Review: Rene Mages - Fri Dec 21 22:18:36 2007 (3600 CET)
+%% Review: Rene Mages - Sat Jan 12 18:55:44 2008 (3600 CET)
 %% Keywords: 
 %% Compatibility: 
 %% 
@@ -50,7 +51,7 @@
 %% 
 %%% Change log: 
 %%             - Traduction et figures par Martial
-%%             - Premiere relecture ?
+%%             - Premiere et deuxième relecture par Rene 
 %% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %=================================================================
@@ -107,7 +108,7 @@ moment par l'utilisateur.
 
 %martial: je prefere mettre la partie historique en intro car elle est
 %trop courte; de plus le paragraphe porte mal son nom
-Morphic a \'et\'e d\'evelopp\'e par John Maloney et Randy Smith pour
+Morphic a \'et\'e d\'evelopp\'ee par John Maloney et Randy Smith pour
 le langage de programmation orient\'e objet \ind{Self} d\'evelopp\'e
 chez Sun Microsystems:
 %ajout
@@ -195,7 +196,7 @@ La seconde ligne ouvre un \ind{visualiseur de commandes} (ou
 permettant la manipulation graphique de ce morph. Vous pouvez y voir
 ses attributs tels que ses coordonn\'ees \ct{x} et \ct{y} dans
 l'espace du \emph{world} dans lequel le morph est apparu.
-Cliquer sur un ic\^one de point d'exclamation jaune sur noir envoie un
+Cliquer sur une ic\^one de point d'exclamation jaune sur noir envoie un
 message au morph qui r\'epond promptement.
 \seeindex{Viewer}{visualiseur de commandes}
 \index{world}
@@ -354,7 +355,7 @@ bill position: (joe position + (100@0))
 \noindent
 
 Si vous d\'eplacez joe avec la souris et que vous ex\'ecutez ce code,
-bill se d\'eplacera pour se placer \`a 100 pixels \`a droite de joe.
+bill se d\'eplacera pour se positionner \`a 100 pixels \`a droite de joe.
 \ab{It would seem that this would be a good place to introduce the \ct{step} method}
 
 %=================================================================
@@ -384,8 +385,8 @@ star position: joe position.
 
 \noindent
 La derni\`ere ligne place l'\'etoile nomm\'ee star aux m\^emes
-coordonn\'ees que joe. Notez que les coordonn\'ees de la morph
-contenue est toujours \`a la position absolue d\'efinie par rapport
+coordonn\'ees que joe. Notez que les coordonn\'ees du morph
+contenu sont toujours \`a la position absolue d\'efinie par rapport
 \`a l'\'ecran, et non \`a la position relative d\'efinie par rapport
 au morph contenant.
 Plusieurs m\'ethodes sont disponibles pour positionner un morph;
@@ -525,11 +526,11 @@ surface de la croix sensible \`a la souris.
 %However, you will notice that the sensitive zone\,---\,where you can click to grab the morph\,---\,is still the whole bounding box.  Let's fix this.
 
 Lorsque la librairie Morphic a besoin de trouver quels morphs se
-trouve sous le curseur, elle envoie le message \ct{containsPoint:}
+trouvent sous le curseur, elle envoie le message \ct{containsPoint:}
  \`a tous les morphs qui ont leur bo\^{\i}te englobante sous le
 pointeur de la souris. 
 %ajout
-Cette m\'ethode r\'epond vrai lorsque le point-argument est contenue dans la
+Cette m\'ethode r\'epond vrai lorsque le point-argument est contenu dans la
 forme d\'efinie.
 Pour limiter la zone sensible du morph \`a la forme de la croix, vous
 devez surcharger la m\'ethode \ct{containsPoint:}.
@@ -560,12 +561,12 @@ nous avons profit\'e de la m\'ethode
 de la classe \ct{Rectangle} pour faire l'essentiel du travail.
 %Notice how we leverage the \mthind{Rectangle}{containsPoint:} method in class \ct{Rectangle} to do the hard work.
 
-Il reste tout de m\^eme deux probl\`emes avec ce code dans les m\'ethodes
+Il reste tout de m\^eme deux probl\`emes avec ce code dans les 
 \mthsref{firstDrawOn} et \ref{mth:firstContains}.
 Le plus remarquable est que nous avons du code dupliqu\'e.
 C'est une erreur fondamentale: si vous avez besoin de modifier la
 fa\c{c}on dont \ct{horizontalBar} ou \ct{verticalBar} sont
-calcul\'ees, nous risquons d'oublier de reporter les changements
+calcul\'ees, vous risquez d'oublier de reporter les changements
 effectu\'es d'une m\'ethode \`a l'autre.
 %reformulation
 La solution consiste \`a \'eliminer la redondance en refactorisant ces
@@ -944,7 +945,7 @@ mini-espace de travail situ\'e dans le bas de l'inspecteur et faites
 un \menu{do it}.
 %ajout
 Pour arr\^eter l'animation, vous n'avez qu'\`a \'evaluer \ct{self stopStepping} dans l'inspecteur. 
-Pour d\'emarrer et arr\^eter l'animation plus efficace, vous pouvez
+Pour d\'emarrer et arr\^eter l'animation de fa\c{c} plus efficace, vous pouvez
 ajouter des contr\^oles suppl\'ementaires au clavier. Par exemple,
 vous pouvez modifier la m\'ethode \ct{handleKeystroke:} pour que la
 touche $+$ d\'emarre le clignotement de la croix et que la touche $-$
@@ -1094,7 +1095,7 @@ ReceiverMorph new openInWorld.
 EllipseMorph new openInWorld.
 \end{code}
 \noindent
-Essayez de faire un glisser-d\'eposer de l'ellispe jaune
+Essayez de faire un glisser-d\'eposer de l'ellipse jaune
 \ct{EllipseMorph} sur le morph receveur rouge. Il sera rejet\'e et
 retournera \`a sa position initiale.
 
@@ -1295,7 +1296,7 @@ nous effectuons simplement un changement d'\'echelle.
 Enfin, pour dessiner la face du d\'e, nous d\'efinissons la m\'ethode
 \ct{drawOn:} qui fera d'abord un envoi sur \ct{super}, utilisant la m\'ethode
 d\'efinie dans une classe-m\`ere pour dessiner le fond de la face, et
-qui exploitera, dans un deuxi\`eme temps, les m\'ethodes cr\'e\'es
+qui exploitera, dans un deuxi\`eme temps, les m\'ethodes cr\'e\'ees
 pr\'ec\'edemment pour dessiner les points noirs.
 
 \begin{method}{Dessiner le d\'e}
@@ -1491,7 +1492,7 @@ Vous pouvez:
   \item composer des morphs en les embo\^{\i}tant les uns dans les autres,
     soit par glisser-d\'eposer, soit par envoi du message \ct{addMorph:};
   \item d\'eriver la classe d'un morph et red\'efinir ses
-    m\'ethodes-cl\'e telles que \ct{initialize} et \ct{drawOn:};
+    m\'ethodes-cl\'es telles que \ct{initialize} et \ct{drawOn:};
   \item contr\^oler la fa\c{c}on dont r\'eagit un morph avec les
     \'ev\'enements issus de la souris et du clavier en red\'efinissant les
     m\'ethodes comme, par exemple, \ct{handlesMouseDown:} et

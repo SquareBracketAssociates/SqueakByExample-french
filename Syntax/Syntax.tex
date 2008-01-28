@@ -2,6 +2,10 @@
 % $Date$
 % $Revision: 14633$
 % $Id$
+% %=================================================================
+% translated by Rene Mages squeak@rmages.com start: (Fri, 5 Oct 2007)
+% relecture par Rene Mages et Martial Boniou: (Fri, 20 Dec 2007)
+% relecture par Rene Mages : (Sun, 13 Jan 2008) de la version #14938
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -39,7 +43,7 @@
 
 \sq, comme la plupart des dialectes modernes de \st, adopte une syntaxe proche de celle de \st-80.
 La \ind{syntaxe} est con\c{c}ue de telle sorte que le texte d'un
-programme lu \`{a} haute voix ressemble \`{a} de l'\emph{English pidgin} ou ``Anglais \emph{petit-nègre}'':
+programme lu \arevoir{\`{a} haute voix ressemble \`{a} de l'\emph{English pidgin}}:
 
 \begin{code}{}
 (Smalltalk includes: Class) ifTrue: [ Transcript show: Class superclass ]
@@ -49,9 +53,10 @@ programme lu \`{a} haute voix ressemble \`{a} de l'\emph{English pidgin} ou ``An
 La syntaxe de \sq (\ie les expressions) est minimaliste; pour l'essentiel, con\c{c}ue uniquement pour \emph{envoyer des messages}.
 %% et  \emph{des d\'{e}clarations de m\'{e}thodes}.
 Les expressions sont construites \`{a} partir d'un nombre tr\`{e}s r\'{e}duit de primitives.
-\st dispose seulement de 6 mots cl\'{e}s et d'aucune syntaxe ni pour les structures de contr\^{o}le, ni pour les d\'{e}clarations de nouvelles classes.
+\st dispose seulement de 6 mots-cl\'{e}s et d'aucune syntaxe pour les structures de contr\^{o}le, ni pour les d\'{e}clarations de nouvelles classes.
 En revanche, tout ou presque est r\'{e}alisable en envoyant des messages \`{a} des objets.
-Par exemple, \`{a} la place de la structure de contr\^{o}le conditionnelle \emph{si-alors-sinon}, \st envoie des messages comme \ct{ifTrue:} \`{a} des objets booléens de classe \clsind{Boolean}.
+Par exemple, \`{a} la place de la structure de contr\^{o}le conditionnelle \emph{si-alors-sinon}, \st envoie des messages comme \ct{ifTrue:} \`{a} des \arevoir{objets bool\'eens}.
+% rene propose la suppresion de :  de la classe \clsind{Boolean} (ne figure pas dans le texte original).
 Les nouvelles \mbox{(sous-)classes} sont cr\'{e}\'{e}es en envoyant un message \`{a} leur super-classe.
 
 %=================================================================
@@ -97,8 +102,8 @@ Les expressions sont compos\'{e}es des blocs constructeurs suivants:
 		\lct{<primitive: 1>}		&	une primitive de la VM~\footnote{Machine Virtuelle.} ou annotation\\
 		\midrule
 		\lct{3 factorial}			&	un message unaire \\
-		\lct{3+4}					&	un message binaire \\
-		\lct{2 raisedTo: 6 modulo: 10}		&	un message \`a mot-cl\'e \\
+		\lct{3 + 4}					&	un message binaire \\
+		\lct{2 raisedTo: 6 modulo: 10}		&	un message \`a mots-cl\'es \\
 		\midrule
 		\lct{$\uparrow$ true}
  			&	retourne la valeur \lct{true} pour vrai \\
@@ -148,7 +153,7 @@ obtenues en envoyant des messages ad hoc \`{a} la classe
 \item[Les chaînes de caract\`{e}res.] Les apostrophes sont utilis\'{e}es pour d\'{e}finir un  litt\'{e}ral \subind{litt\'{e}ral}{chaîne}.
 Si vous d\'{e}sirez une chaine comportant une apostrophe, il suffira de doubler l'apostrophe, comme dans \ct{'aujourd''hui'}.
 
-\item[Les symboles.] Ce sont comme les chaînes de caract\`{e}res, en ce sens qu'ils comportent une suite de caract\`{e}res.  
+\item[Les symboles.] Ils ressemblent \`a des chaînes de caract\`{e}res, en ce sens qu'ils comportent une suite de caract\`{e}res.  
 Mais contrairement \`{a} une chaîne, un \subind{litt\'{e}ral}{symbole} doit \^{e}tre globalement unique.
 Il y a seulement un objet symbole \ct{#Bonjour} mais il peut y avoir plusieurs objets chaînes de caract\`{e}res ayant la valeur \ct{'Bonjour'}.
 \seeindex{\#@{\textsf{\#}}}{symbole litt\'{e}ral}
@@ -164,7 +169,7 @@ Par exemple,  \ct{#(27 #(true false) abc)} est un
   d\'{e}finissent un tableau (\subind{tableau}{dynamique}) \`{a} l'ex\'{e}cution.
 Ses \'{e}l\'{e}ments sont des expressions s\'epar\'{e}es par des points.
 Ainsi \ct|{ 1. 2. 1+2 }| d\'{e}finit un tableau dont les \'{e}l\'{e}ments sont 1, 2 et le r\'{e}sultat de l'\'{e}valuation de 1+2
-(La notation entre accolades est particuli\`{e}re \`{a} \sq.
+(la notation entre accolades est particuli\`{e}re \`{a} \sq.
 Dans d'autres \st{}s vous devez explicitement construire des tableaux dynamiques).
 
 \item[Les commentaires.] Ils sont encadr\'{e}s par des guillemets.
@@ -183,7 +188,7 @@ Les commentaires peuvent se r\'{e}partir sur plusieurs lignes.
 \item[L'affectation.]	\ct{:=} affecte un objet \`{a} une variable.
 Quelquefois vous verrez \`{a} la place une $\leftarrow$ .
 Malheureusement, tant qu'elle ne sera pas un caract\`{e}re
-\textsc{ASCII}, il apparaîtra sous la forme d'un signe souligné (en
+\textsc{ASCII}, elle apparaîtra sous la forme d'un signe souligné (en
 anglais, \emph{underscore} \`{a} moins que vous n'utilisiez une fonte 
 sp\'{e}ciale.
 Ainsi, \ct{x := 1} est identique \`{a} \ct{x _ 1} ou \ct{x UNDERSCORE 1}. Il est préférable d'utiliser  \ct{:=} puisque les autres repr\'{e}sentations ont \'{e}t\'{e} déclarées comme obsolètes depuis la version 3.9 de \sq.
@@ -276,7 +281,7 @@ Il y a trois types de messages dans \sq.
   \item Les messages \emph{binaires}: messages avec un seul argument.
   	\ct{1 + 2} envoie le message \ct{+} avec l'argument \ct{2} \`{a} l'objet \ct{1}.
   \item Les messages \`{a} \emph{mots-cl\'{e}s}: messages qui comportent un nombre arbitraire d'arguments.
-  	\ct{2 raisedTo: 6 modulo: 10} envoie le message comprenant les s\'{e}lecteurs 	\ct{raisedTo:modulo:} et les arguments \ct{6} et \ct{10} vers l'objet \ct{2}.
+  	\ct{2 raisedTo: 6 modulo: 10} envoie le message comprenant le s\'{e}lecteur 	\ct{raisedTo: modulo:} et les arguments \ct{6} et \ct{10} vers l'objet \ct{2}.
 \end{enumerate}
 
 Les s\'{e}lecteurs des messages unaires sont constitu\'{e}s de caract\`{e}res alphanum\'{e}riques et d\'{e}butent par une lettre minuscule. 
@@ -322,7 +327,7 @@ Transcript cr
 
 \noindent
 Ce code enverra \ct{cr} \`{a} l'objet \glbind{Transcript}, puis
-enverra  \ct{show: 'Bonjour le monde'}, et enfin, enverra un nouveau \ct{cr}.
+enverra  \ct{show: 'Bonjour le monde'}, et enfin enverra un nouveau \ct{cr}.
 
 Quand une succession de messages doit \^{e}tre envoy\'{e}e \`{a} un \emph{m\^{e}me} receveur, 
 ou pour dire les choses plus succinctement en \emphind{cascade}, le receveur est sp\'{e}cifi\'{e} une seule fois et la suite des messages est s\'{e}par\'{e}e par des points-virgules:
@@ -349,7 +354,7 @@ dans l'environnement d'une classe pr\'{e}cise (une classe est d\'{e}finie en env
 
 Voil\`{a} la m\'{e}thode \mthind{String}{lineCount} (pour compter le
 nombre de lignes) dans la classe  \clsind{String}.
-La convention habituelle consiste à se ref\'{e}rer aux m\'{e}thode
+La convention habituelle consiste à se ref\'{e}rer aux m\'{e}thodes
 comme suit: \ct{ClassName>>>methodName}; ainsi nous nommerons cette
 m\'{e}thode \ct{String>>>lineCount}~\footnote{Le commentaire de la
   m\'ethode dit: 
@@ -504,7 +509,7 @@ bool\'{e}enne. Pour plus de détails sur les booléens, lisez \charef{basic}.
 % ON: Not a test.
 % My regex approach cannot handle multi-line expressions :-(
 
-Les boucles (ou it\'{e}rations) sont obtenues typiquement par l'envoi de message \`{a} des blocs, des entiers ou des collections.
+Les boucles (ou it\'{e}rations) sont obtenues typiquement par l'envoi de messages \`{a} des blocs, des entiers ou des collections.
 Comme la condition de sortie d'une boucle peut \^{e}tre \'{e}valu\'{e}e de fa\c{c}on r\'{e}p\'{e}titive, elle se pr\'{e}sentera sous la forme d'un bloc plut\^{o}t que de celle d'une valeur bool\'{e}enne.
 Voici pr\'{e}cis\'{e}ment un exemple d'une boucle proc\'{e}durale:
 \index{itération}
@@ -559,7 +564,7 @@ sont
 \mthind{Collection}{do:}, \mthind{Collection}{collect:}, \mthind{Collection}{select:}, \mthind{Collection}{reject:}, \mthind{Collection}{detect:} ainsi que  \mthind{Collection}{inject:into:}.
 Ces messages d\'{e}finissent des it\'{e}rateurs d'ordre sup\'erieur qui nous permettent d'\'{e}crire du code tr\`{e}s compact.
 
-Une instance \clsind{Interval} (\ie un intervalle) est une collection qui d\'{e}finit un it\'{e}rateur sur une suite de nombre depuis un d\'{e}but jusqu'\`{a} une fin.
+Une instance \clsind{Interval} (\ie un intervalle) est une collection qui d\'{e}finit un it\'{e}rateur sur une suite de nombres depuis un d\'{e}but jusqu'\`{a} une fin.
 \ct{1 to: 10} repr\'{e}sente l'intervalle de 1 \`{a} 10.
 Comme il s'agit d'une collection, nous pouvons lui envoyer le message \ct{do:}.
 L'argument est un bloc qui est \'{e}valu\'{e} pour chaque \'{e}l\'{e}ment de la collection.
@@ -709,7 +714,7 @@ Depuis la version 3.9 de \sq, la syntaxe avec <....> est aussi utilis\'{e}e pour
 \item 		\emph{binaire}: \eg \ct{3 + 4}, \ct{'salut' , ' Squeak'};
 \item 		\emph{\`{a} mots-cl\'{e}s}: \eg \ct{'salue' at: 5 put: $t}%$
       \end{itemize}
-\item	Un envoi de message \emph{en cascade}  est une suite de messages envoy\'{e}e \`{a} la m\^{e}me cible, tous s\'{e}par\'{e}s par des \ct{;}:
+\item	Un envoi de messages \emph{en cascade}  est une suite de messages envoy\'{e}s \`{a} la m\^{e}me cible, tous s\'{e}par\'{e}s par des \ct{;}:
 \ct{OrderedCollection new add: #albert; add: #einstein; size --> 2}
 
 \item	Les variables locales sont d\'{e}clar\'{e}es à l'aide de barres verticales.
@@ -719,7 +724,7 @@ Depuis la version 3.9 de \sq, la syntaxe avec <....> est aussi utilis\'{e}e pour
 
 \item	Les expressions sont les messages envoy\'{e}s, les cascades et
   les affectations; parfois regroup\'{e}es avec des parenth\`{e}ses.
-		\emph{Les instructions} sont des expressions s\'{e}parat\'{e}es par des points.
+		\emph{Les instructions} sont des expressions s\'{e}par\'{e}es par des points.
 
 \item	Les blocs ou fermetures lexicales sont des expressions limit\'{e}es par des crochets.
 		Les blocs peuvent prendre des arguments et peuvent contenir
