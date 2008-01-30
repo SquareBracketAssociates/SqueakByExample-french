@@ -7,9 +7,9 @@
 % lecteurs francophones
 % j'ai fait aussi des ajouts destines pour l'essentiel a traduire les
 % methodes ou certains menus (inutile de les reprendre dans la VO)
-%=================================================================
 % relecture: Rene Mages (12/19/2007) + Martial -> Mon Dec 24 18:27:55 CET 2007
-%=================================================================
+% relecture: Rene Mages (01/10/2008) version 14902
+% relecture: Martial Boniou (01/30/2008) version 15374
 \ifx\wholebook\relax\else
 % --------------------------------------------
 % Lulu:
@@ -39,9 +39,9 @@
 \label{cha:firstApp}
 
 Dans ce chapitre, nous allons développer un jeu très simple, le jeu de \ind{Quinto}. 
-En cours de route, nous allons faire la démonstration de la plupart des outils que les développeurs \sq utilisent pour construire et déboguer leurs programmes et comment les programmes sont échangés entre les développeurs. Nous verrons notamment le navigateur de classes (System Browser), l'inspecteur d'objet, le d\'ebogueur et le navigateur de \ind{paquetage}{}s \ind{Monticello}. 
-Le développement avec Smalltalk est efficace: vous d\'ecouvrirez que vous passerez beaucoup plus de temps à écrire du code et beaucoup moins à gérer le processus de d\'eveloppement. 
-Ceci est en partie du au fait que Smalltalk est langage très simple, et d'autre part que les outils qui forment l'environnement de programmation sont tr\`es int\'egr\'es avec le langage.
+En cours de route, nous allons faire la démonstration de la plupart des outils que les développeurs \sq utilisent pour construire et déboguer leurs programmes et comment les programmes sont échangés entre les développeurs. Nous verrons notamment le navigateur de classes (System Browser), l'inspecteur d'objet, le débogueur et le navigateur de \ind{paquetage}{}s \ind{Monticello}. 
+Le développement avec Smalltalk est efficace: vous découvrirez que vous passerez beaucoup plus de temps à écrire du code et beaucoup moins à gérer le processus de développement. 
+Ceci est en partie du au fait que Smalltalk est langage très simple, et d'autre part que les outils qui forment l'environnement de programmation sont très intégrés avec le langage.
 
 %=================================================================
 \section{Le jeu de Quinto}
@@ -61,38 +61,38 @@ Ceci est en partie du au fait que Smalltalk est langage très simple, et d'autre
 	\label{fig:gameBoard}}
 \end{figure}
 
-Pour vous montrer comment utiliser les outils de d\'eveloppement de
-\sq, nous allons construire un jeu tr\`es simple nomm\'e
-\emph{Quinto}.  Le tableau de jeu est montr\'e dans
+Pour vous montrer comment utiliser les outils de développement de
+\sq, nous allons construire un jeu très simple nommé
+\emph{Quinto}.  Le tableau de jeu est montré dans
 \figref{gameBoard}; il consiste en un tableau rectangulaire de
 \emph{cellules} jaunes claires.  Lorsque l'on clique sur l'une de ces
 cellules avec la souris, les quatre qui l'entourent deviennent
 bleues. Cliquez de nouveau et elles repassent au jaune p\^ale. Le but du 
 jeu est de passer au bleu autant de cellules que possible.
 
-Le jeu de Quinto montr\'e dans \figref{gameBoard} est fait de deux types d'objets: le plateau de jeu lui-même et une centaine de cellule-objets individuelles. Le code \sq pour r\'ealiser ce jeu va contenir deux classes: une pour le jeu et une autre pour les cellules.
-Nous allons voir maintenant comment d\'efinir ces deux classes en utilisant les outils de programmation de \sq.
+Le jeu de Quinto montré dans \figref{gameBoard} est fait de deux types d'objets: le plateau de jeu lui-m\^eme et une centaine de cellule-objets individuelles. Le code \sq pour réaliser ce jeu va contenir deux classes: une pour le jeu et une autre pour les cellules.
+Nous allons voir maintenant comment définir ces deux classes en utilisant les outils de programmation de \sq.
 
 %=================================================================
 \section{Créer une nouvelle catégorie de classe}
 
 Nous avons déjà vu le \ind{navigateur de classes} (System Browser)
-dans \charef{quick}, où nous avons appris à naviguer dans les classes
-et m\'ethodes, et \`a d\'efinir de nouvelles m\'ethodes.
-Nous allons maintenant voir comment cr\'eer des cat\'egories syst\`emes et des classes.
-\seeindex{cat\'egorie syst\`eme}{cat\'egorie}
-\seeindex{cat\'egorie de classe}{cat\'egorie syst\`eme}
-\index{cat\'egorie!cr\'eation}
+dans \charef{quick}, o\`u nous avons appris à naviguer dans les classes
+et méthodes, et à définir de nouvelles méthodes.
+Nous allons maintenant voir comment créer des catégories systèmes et des classes.
+\seeindex{catégorie système}{catégorie}
+\seeindex{catégorie de classe}{catégorie système}
+\index{catégorie!création}
 
-\dothis{Ouvrir un navigateur de classes et cliquer avec le bouton jaune sur le panneau des cat\'egories.
-S\'electionner \menu{add item \ldots}.}
+\dothis{Ouvrez un navigateur de classes et cliquez avec le bouton jaune sur le panneau des catégories.
+Sélectionnez \menu{add item \ldots}.}
 
 \begin{figure}[htb]
 \begin{minipage}[b]{0.48\textwidth}
 \ifluluelse
 	{\centerline {\includegraphics[width=0.9\textwidth]{AddCategory}}}
 	{\centerline {\includegraphics[scale=0.7]{AddCategory}}}
-	\caption{Ajouter une cat\'egorie système.
+	\caption{Ajouter une catégorie système.
 	\label{fig:addCategory}}
 \end{minipage}
 \hfill
@@ -107,13 +107,15 @@ S\'electionner \menu{add item \ldots}.}
 
 Tapez le nom de la nouvelle catégorie (nous allons utiliser
 \scat{SBE-Quinto}) dans la boîte de dialogue et cliquez sur
-\menu{accept} (ou appuyer simplement sur la touche entrée); la nouvelle catégorie est créée et se positionne à la fin de la liste de catégories.
+\menu{accept} (ou appuyez simplement sur la touche entrée); la nouvelle catégorie est créée et se positionne à la fin de la liste de catégories.
 Si vous sélectionnez une catégorie existante, alors la nouvelle catégorie sera positionnée juste après celle sélectionnée.
 
 %=================================================================
 \section{Définir la classe SBECell}
 
-Pour l'instant, il n'y a aucune classe dans cette nouvelle catégorie. Néanmoins, la zone principale d'édition affiche un modèle afin de créer facilement une nouvelle classe (voir \figref{classTemplate}).
+Pour l'instant, il n'y a aucune classe dans cette nouvelle
+catégorie. Néanmoins, la zone principale d'édition affiche un
+patron ou modèle afin de créer facilement une nouvelle classe (voir \figref{classTemplate}).
 
 Ce modèle nous montre une expression \st qui envoie un message à la classe appelée \ct{Object}, lui demandant de créer une sous-classe appelée \ct{NameOfSubClass}.  La nouvelle classe n'a pas de variables et devrait appartenir à la catégorie \scat{SBE-Quinto}.
 
@@ -121,9 +123,9 @@ Nous modifions simplement le modèle afin de créer la classe que nous souhaiton
 
 \dothis{Modifiez le modèle de création d'une classe comme suit:}
 \begin{itemize}
-  \item Remplacer \clsind{Object} par \clsind{SimpleSwitchMorph}.
-  \item Remplacer \ct{NameOfSubClass} par \clsind{SBECell}.
-  \item Ajouter \ct{mouseAction} dans la liste de variables d'instances.
+  \item remplacez \clsind{Object} par \clsind{SimpleSwitchMorph};
+  \item remplacez \ct{NameOfSubClass} par \clsind{SBECell};
+  \item ajoutez \ct{mouseAction} dans la liste de variables d'instances.
 \end{itemize}
 Le résultat doit ressembler à \tclsref{firstClassDef}.
 
@@ -134,8 +136,8 @@ SimpleSwitchMorph subclass: #SBECell
    poolDictionaries: ''
    category: 'SBE-Quinto'
 \end{classdef}
-\index{System Browser!d\'efinir une classe}
-\index{classe!cr\`eation}
+\index{System Browser!définir une classe}
+\index{classe!création}
 \index{Morphic}
 
 Cette nouvelle définition consiste en une expression \st qui envoie un message à une classe existante \ct{SimpleSwitchMorph}, lui demandant de créer une sous-classe appelée \ct{SBECell}
@@ -143,7 +145,8 @@ Cette nouvelle définition consiste en une expression \st qui envoie un message 
 Nous indiquons également que les instances de cette nouvelle classe doivent avoir une variable d'instance \ct{mouseAction}, que nous utiliserons pour définir l'action que la cellule doit effectuer lorsque l'utilisateur clique dessus avec la souris.
 
 \emph{À ce point, nous n'avons encore rien construit.}
-Notez que le bord du panneau du modèle de la classe est passé en rouge (\figref{acceptClassDef}).
+Notez que le bord du panneau du modèle de la classe est passé en rouge
+(voir \figref{acceptClassDef}).
 Cela signifie qu'il y a des \emph{modifications non sauvegardées}.
 Pour effectivement envoyer ce message, vous devez faire \menu{accept}.
 
@@ -161,11 +164,12 @@ Utilisez le bouton jaune de la souris ou bien, sélectionnez
 ``save'' 
 %ajout
 \cad sauvegarder).
-Ce message sera envoyé à \ct{SimpleSwitchMorph}, ce qui compilera la nouvelle classe.
+Ce message sera envoyé à \ct{SimpleSwitchMorph}, ce qui aura pour
+effet de compiler la nouvelle classe.
 \index{bouton jaune}
 \index{raccourci-clavier!accept}
 
-Une fois la définition de classe acceptée, la classe va être créée et
+Une fois la définition de classe acceptée, la classe va \^etre créée et
 apparaîtra dans le panneau des classes du navigateur (voir \figref{SBECell}).
 Le panneau d'édition montre maintenant la définition de la classe et
 un petit panneau dessous vous invite à écrire quelques mots décrivant
@@ -177,7 +181,7 @@ globale de votre classe.
 Les Smalltalkiens accordent une grande valeur à la lisibilité de leur
 code et il n'est pas habituel de trouver des commentaires détaillés
 dans leurs méthodes; la philosophie est plutôt d'avoir un code qui
-parle de lui-même (si cela n'est pas le cas, vous devrez le
+parle de lui-m\^eme (si cela n'est pas le cas, vous devrez le
 refactoriser jusqu'à ce que \c{c}a le soit!). 
 Un \subind{classe}{commentaire} de classe ne nécessite pas une
 description détaillée de la classe, mais quelques mots la décrivant
@@ -194,7 +198,7 @@ passer un peu de temps sur votre classe.
 	{\centerline {\includegraphics[scale=0.7]{SBECell}}}
 %martial: description de la frame de commentaire ajoute pour les non-anglophones
 \caption{La classe nouvellement créée \ct{SBECell}. Le panneau
-  inf\'erieur est le panneau de commentaires; par d\'efaut, il dit:
+  inférieur est le panneau de commentaires; par défaut, il dit:
   ``CETTE CLASSE N'A PAS DE COMMENTAIRE!''.
 \label{fig:SBECell}}
 \end{figure}
@@ -210,8 +214,8 @@ des protocoles.}
 Vous voyez maintenant un modèle pour la création d'une méthode dans le panneau d'édition.
 Sélectionnez-le et remplacez-le par le texte de \tmthref{scbecellinitialize}.
 \protindex{all}
-\index{m\'ethode!cr\'eation}
-\index{System Browser!d\'efinir une m\'thode}
+\index{méthode!création}
+\index{System Browser!définir une m\'thode}
 
 \needlines{10}
 \begin{numMethod}[scbecellinitialize]{Initialiser les instances de \ct{SBECell}.}
@@ -243,8 +247,8 @@ allons vous en donner un bref aperçu. Reprenons le code ligne par ligne.
 Notons que la méthode s'appelle \mthind{SBECell}{initialize}.
 Ce nom dit bien ce qu'il veut dire~\footnote{En anglais, puisque c'est
   la langue conventionnelle en \st.}!
-Par convention, si une classe définit une méthode nommée \ct{initialize}, elle sera appelée d\`es que l'objet aura été créé.
-Ainsi d\`es que nous évaluons \ct{SBECell new}, le message \ct{initialize} sera envoyé automatiquement à cet objet nouvellement créé.
+Par convention, si une classe définit une méthode nommée \ct{initialize}, elle sera appelée dès que l'objet aura été créé.
+Ainsi dès que nous évaluons \ct{SBECell new}, le message \ct{initialize} sera envoyé automatiquement à cet objet nouvellement créé.
 Les méthodes d'initialisation sont utilisées pour définir l'état des objets, généralement pour donner une valeur à leurs variables d'instances; c'est exactement ce que nous faisons ici.
 %\seeindex{Object!initialization}{initialization}
 \seeindex{objet!initialisation}{initialisation}
@@ -266,7 +270,7 @@ Par exemple, envoyer \ct{self label: ''} affecte le label de cet objet avec la c
 \pvindex{self}
 
 L'expression \ct{0@0 corner: 16@16} nécessite probablement plus d'explications.
-\lct{0@0} représente un objet \clsind{Point} dont les coordonnées $x$ et $y$ ont été fixées à 0.
+\ct{0@0} représente un objet \clsind{Point} dont les coordonnées $x$ et $y$ ont été fixées à 0.
 En fait, \ct{0@0} envoie le message \ct{@}% Yuck... the following should be \mthind{Number}{@} 
 %%% THIS IS BROKEN -- don't do it! (on)
 %\def\atsign{\textsf{@}}%
@@ -279,17 +283,18 @@ En fait, \ct{0@0} envoie le message \ct{@}% Yuck... the following should be \mth
 au nombre \ct{0} avec l'argument \ct{0}.
 L'effet produit sera que le nombre \ct{0} va demander à la classe \ct{Point} de créer une nouvelle instance de coordonnées (0,0).
 Puis, nous envoyons à ce nouveau point le message \ct{corner: 16@16}, ce qui cause la création d'un \clsind{Rectangle} de coins \ct{0@0} et \ct{16@16}.
-Ce nouveau rectangle va être affecté à la variable \ct{bounds} héritée de la super-classe.
+Ce nouveau rectangle va \^etre affecté à la variable \ct{bounds} héritée de la super-classe.
 
-Notez que l'origine de l'écran \sq est en \emph{haut à gauche} et que les coordonnées en $y$ augmente \emph{vers le bas}.
+Notez que l'origine de l'écran \sq est en \emph{haut à gauche} et que les coordonnées en $y$ augmentent \emph{vers le bas}.
 
-Le reste de la méthode doit être compréhensible d'elle-même.
+Le reste de la méthode doit \^etre compréhensible d'elle-m\^eme.
 Une partie de l'art d'écrire du bon code \st est de choisir les bons
-noms de méthodes de telle sorte que le code \st peut être lu comme du
-\emph{pidgin} anglais (ou parler \textit{petit-n\`egre}).
-Vous devriez être capable d'imaginer l'objet se parlant à lui-même et
-dire:  ``Utilise des bords carr\'es!'' (d'o\`u \ct{useSquareCorners}),
-``\'Eteins les cellules!'' (en anglais, \ct{turnOff}).
+noms de méthodes de telle sorte que le code \st peut \^etre lu comme
+de l'anglais \emph{pidgin}.  
+% Rene prefere ne plus utiliser : (ou parler \textit{petit-nègre}).
+Vous devriez \^etre capable d'imaginer l'objet se parlant à lui-m\^eme et
+dire:  ``Utilise des bords carrés!'' (d'o\`u \ct{useSquareCorners}),
+``Éteins les cellules!'' (en anglais, \ct{turnOff}).
 % martial: note provisoire pour Serge: les phrases entre guillemets
 % etaient ecrites avec des \ct{} or ces balises sont pour le
 % code. Donc j'ai prefere laisser ta traduction mais mettre les noms
@@ -317,11 +322,11 @@ Le panneau en bas d'un inspecteur est un mini-espace de travail. C'est très uti
 
 \dothis{Tapez le texte \ct{self openInWorld} dans la zone du bas et
   choisissez \menu{do it} via le menu.}
-La cellule doit apparaître à l'angle haut à gauche de l'écran, en fait à l'endroit exact où sa variable \ct{bounds} dit qu'elle doit apparaître.
-Faites un clic avec le bouton bleu de la souris sur la cellule afin de faire apparaître son \subind{Morphic}{halo} morphique.
-Déplacer la cellule avec la poignée marron (à 
+La cellule doit apparaître à l'angle haut à gauche de l'écran, en fait à l'endroit exact o\`u sa variable \ct{bounds} dit qu'elle doit apparaître.
+Faites un clic avec le bouton bleu de la souris sur la cellule afin de faire apparaître son \subind{Morphic}{halo} Morphic.
+Déplacez la cellule avec la poignée marron (à 
 %côte de celle en haut à droite
-gauche de l'ic\^one du coin sup\'erieur droit) et redimensionnez-la avec la poignée jaune (en bas à droite).
+gauche de l'ic\^one du coin supérieur droit) et redimensionnez-la avec la poignée jaune (en bas à droite).
 Vérifiez que les limites indiquées par l'inspecteur sont modifiées en conséquence.
 
 \begin{figure}[htbp]
@@ -334,18 +339,18 @@ Vérifiez que les limites indiquées par l'inspecteur sont modifiées en conséq
 
 \dothis{Détruisez la cellule en cliquant sur le \ct{x} de la poignée 
 %mauve.
-rose p\^ale (en haut \`a gauche).}
+rose p\^ale (en haut à gauche).}
 
 %=================================================================
 \section{Définir la classe SBEGame}
 
-Crééons maintenant l'autre classe dont nous avons besoin dans le jeu; nous l'appellerons \clsind{SBEGame}.
+Créons maintenant l'autre classe dont nous avons besoin dans le jeu; nous l'appellerons \clsind{SBEGame}.
 
-\dothis{Faites apparaître le patron ou modèle de définition de classe dans la fenêtre principale du navigateur.}
+\dothis{Faites apparaître le modèle de définition de classe dans la fen\^etre principale du navigateur.}
 %Pour cela, re-sélectionnez le nom de la catégorie de classe ...
-Pour cela, cliquez deux fois sur le nom de la cat\'egorie de classe
-d\'ej\`a s\'electionn\'ee ou r\'eaffichez la définition de \ct{SBECell} en cliquant sur le bouton \button{instance}.
-Éditez le code de telle sorte qu'il puisse être lu comme suit puis faites \menu{accept}.
+Pour cela, cliquez deux fois sur le nom de la catégorie de classe
+déjà sélectionnée ou réaffichez la définition de \ct{SBECell} en cliquant sur le bouton \button{instance}.
+Éditez le code de telle sorte qu'il puisse \^etre lu comme suit puis faites \menu{accept}.
 
 \needlines{6}
 \begin{classdef}[sbegame]{Définition de la classe \ct{SBEGame}}
@@ -385,8 +390,8 @@ initialize
 \sq va se plaindre qu'il ne conna\^it pas la signification de
 certains termes.
 \sq vous indique qu'il ne conna\^it pas le message
-\ct{cellsPerSide} (en fran\c{c}ais, ``cellules par c\^ot\'e''), et
-vous suggère un certain nombre de propositions, dans le cas où il
+\ct{cellsPerSide} (en fran\c{c}ais, ``cellules par c\^oté''), et
+vous suggère un certain nombre de propositions, dans le cas o\`u il
 s'agirait d'une erreur de frappe.
 
 \begin{figure}[htb]
@@ -407,7 +412,7 @@ s'agirait d'une erreur de frappe.
 \end{minipage}
 \end{figure}
 
-Mais \ct{cellsPerSide} n'est pas une erreur \,---\, c'est juste le nom d'une méthode que nous n'avons pas encore définie\,---\,que nous allons \'ecrire dans une minute ou deux.
+Mais \ct{cellsPerSide} n'est pas une erreur \,---\, c'est juste le nom d'une méthode que nous n'avons pas encore définie\,---\,que nous allons écrire dans une minute ou deux.
 
 \dothis{Sélectionnez le premier élément du menu, afin de confirmer que nous parlons bien de \ct{cellsPerSide}.}
 
@@ -419,13 +424,13 @@ envoyé à la dernière ligne; ce n'est pas non plus une erreur,
 confirmez donc ce message aussi.
 %\index{on the fly variable definition}
 %\index{instance variable definition} 
-\index{d\'efinition de variable \`a la vol\'ee}
-\index{d\'efinition de variable d'instance}
+\index{définition de variable à la volée}
+\index{définition de variable d'instance}
 
 Si vous regardez maintenant de nouveau la définition de classe (en cliquant sur le bouton \button{instance}), vous allez voir que la définition a été modifiée pour inclure la variable d'instance \ct{cells}.
 
 Examinons plus précisemment cette méthode \ct{initialize}.
-La ligne \ct{| sampleCell width height n |} déclare 4 variables temporaires. Elles sont appelées variables temporaires car leur portée et leur durée de vie sont limitées à cette méthode. Des variables temporaires avec des noms explicites sont utiles afin de rendre le code plus lisible. \st n'a pas de syntaxe spéciale pour distinguer les constantes et les variables et en fait, ces 4 ``variables'' sont ici des constantes. Les lignes 4 à 7 définissent ces constantes.
+La ligne \mbox{\ct{| sampleCell width height n |}} déclare 4 variables temporaires. Elles sont appelées variables temporaires car leur portée et leur durée de vie sont limitées à cette méthode. Des variables temporaires avec des noms explicites sont utiles afin de rendre le code plus lisible. \st n'a pas de syntaxe spéciale pour distinguer les constantes et les variables et en fait, ces 4 ``variables'' sont ici des constantes. Les lignes 4 à 7 définissent ces constantes.
 
 Quelle doit \^etre la taille de notre plateau de jeu? Assez grande pour pouvoir contenir un certain nombre de cellules et pour pouvoir dessiner un bord autour d'elles.
 Quel est le bon nombre de cellules? 5? 10? 100? Nous ne le savons pas
@@ -437,29 +442,33 @@ bient\^ot.
 %martial: 'bientot' remplace 'dans une minute ou deux'. Trop repetitif!
 C'est parce que nous envoyons le message \ct{cellsPerSide} avant de
 définir une méthode avec ce nom que \sq nous demande ``confirm,
-correct, or cancel'' (\cad ``confirmez, corrigez ou annulez'') lorsque nous acceptons le corps de la méthode \ct{initialize}.
-Ne soyez pas inquiet par cela: c'est en fait une bonne pratique d'écrire en fonction d'autres méthodes qui ne sont pas encore définies.
+correct, or cancel'' (\cad ``confirmez, corrigez ou annulez'') lorsque
+nous acceptons le corps de la méthode \mbox{\ct{initialize}.}
+% Rene : s/Ne soyez pas inquiet par cela:/ 
+\arevoir{Que cela ne vous inqui\`{e}te pas:}
+c'est en fait une bonne pratique d'écrire en fonction d'autres méthodes qui ne sont pas encore définies.
 Pourquoi? En fait, ce n'est que quand nous avons commencé à écrire la
 méthode \ct{initialize} que nous nous sommes rendu compte que nous en
 avions besoin, et à ce point, nous lui avons donné un nom 
 %qui fait sens 
 significatif et nous avons poursuivi, sans nous interrompre.
  
-La quatrième ligne utilise cette méthode: le code Smalltalk \ct{self cellsPerSide} envoie le message \ct{cellsPerSide} à \pvind{self}, \cad à l'objet lui-même. La réponse, qui sera le nombre de cellules par côté du plateau de jeu, est affectée à \ct{n}.
+La quatrième ligne utilise cette méthode: le code Smalltalk \ct{self cellsPerSide} envoie le message \ct{cellsPerSide} à \pvind{self}, \cad à l'objet lui-m\^eme. La réponse, qui sera le nombre de cellules par côté du plateau de jeu, est affectée à \ct{n}.
 
 Les trois lignes suivantes créent un nouvel objet \ct{SBECell} et assignent sa largeur et sa hauteur aux variables temporaires appropriées.
 
 %The eighth line sends the message \ct{bounds:} to \self.
-%\ct{bounds:} is a method that we inherit from our superclass; it is used to define the space on the screen that this Morph will occupy.  
+%\ct{bounds:} is a method that we inherit from our superclass; it is
+%used to define the space on the screen that this Morph will occupy.  
 %The single colon (\ct{:}) at the end of the name says that \ct{bounds:} expects a single parameter, which should be a rectangle object.
-La ligne 8 fixe la valeur de \ct{bounds} (d\'efinissant les limites) du nouvel objet. Ne vous inquiétez pas trop sur les détails pour l'instant. Croyez-nous: l'expression entre parenthèses crée un carré avec comme origine (\ie son coin haut à gauche) le point (5,5) et son coin bas droit suffisamment loin afin d'avoir de l'espace pour le bon nombre de cellules.
+La ligne 8 fixe la valeur de \ct{bounds} (définissant les limites) du nouvel objet. Ne vous inquiétez pas trop sur les détails pour l'instant. Croyez-nous: l'expression entre parenthèses crée un carré avec comme origine (\ie son coin haut à gauche) le point (5,5) et son coin bas droit suffisamment loin afin d'avoir de l'espace pour le bon nombre de cellules.
 
 La dernière ligne affecte la variable d'instance \ct{cells} de l'objet
-\ct{SBEGame} \`a un nouvel objet \clsind{Matrix} avec le bon nombre de lignes et de colonnes.
+\ct{SBEGame} à un nouvel objet \clsind{Matrix} avec le bon nombre de lignes et de colonnes.
 Nous réalisons cela en envoyant le message \ct{new:tabulate:} à la classe \ct{Matrix} (les classes sont des objets aussi, nous pouvons leur envoyer des messages).
 Nous savons que \mthind{Matrix class}{new:tabulate:} prend deux arguments parce qu'il y a deux fois deux points (\ct{:}) dans son nom. Les arguments arrivent à droite après les deux points.
-Si vous êtes habitué à des langages de programmation où les arguments sont tous mis à l'intérieur de parenthèses, ceci peut sembler surprenant dans un premier temps. Ne vous inquiétez pas, c'est juste de la syntaxe!
-Cela s'avère être une excellente syntaxe car le nom de la méthode peut être utiliser pour expliquer le rôle des arguments. Par exemple, il est très clair que \ct{Matrix rows:5 columns:2} a 5 lignes et 2 colonnes et non pas 2 lignes et 5 colonnes.
+Si vous \^etes habitué à des langages de programmation o\`u les arguments sont tous mis à l'intérieur de parenthèses, ceci peut sembler surprenant dans un premier temps. Ne vous inquiétez pas, c'est juste de la syntaxe!
+Cela s'avère \^etre une excellente syntaxe car le nom de la méthode peut \^etre utiliser pour expliquer le rôle des arguments. Par exemple, il est très clair que \ct{Matrix rows:5 columns:2} a 5 lignes et 2 colonnes et non pas 2 lignes et 5 colonnes.
 \cmindex{Matrix class}{rows:columns:}
 
 \ct{Matrix new: n tabulate: [ :i :j | self newCellAt: i at: j ]} crée une nouvelle matrice de taille \ct{n}{$\times$}\ct{n} et initialise ses éléments. La valeur initiale de chaque élément dépend de ses coordonnées. L'élément \ct{(i,j)} sera initialisé avec le résultat de l'évaluation de \ct{self newCellAt: i at: j}.  
@@ -467,20 +476,20 @@ Cela s'avère être une excellente syntaxe car le nom de la méthode peut être 
 Voilà pour \ct{initialize}!  Lorsque vous acceptez cette méthode, vous
 pouvez également simultanément en profiter pour formater proprement
 votre code. Vous n'avez pas besoin de faire cela à la main: à partir
-du menu d\'eclench\'e par le bouton jaune de la souris, sélectionnez
+du menu déclenché par le bouton jaune de la souris, sélectionnez
 \menu{more \ldots \go prettyprint}, et le navigateur vous formatera
 le code pour vous. Vous n'avez qu'à faire \menu{accept} après avoir 
-choisi ce nouveau formatage en \subind{m\'ethode}{pretty-print} ou 
+choisi ce nouveau formatage en \subind{méthode}{pretty-print} ou 
 %martial: j'ai reformule les deux phrases suivantes (lourdes)
-bien, si le r\'esultat ne vous pla\^{\i}t pas, vous pouvez utiliser 
+bien, si le résultat ne vous pla\^{\i}t pas, vous pouvez utiliser 
 le raccourci-clavier \subind{raccourci-clavier}{cancel}
 (\short{l}\,---\, ceci est un \emph{L} en minuscule) pour annuler.
 Vous pouvez également configurer votre navigateur de code pour
-toujours formater \'el\'egamment le code chaque fois qu'il vous
+toujours formater élégamment le code chaque fois qu'il vous
 l'affiche:
 utilisez pour ce faire le bouton le plus à droite dans la barre de
 boutons de votre navigateur de classe afin d'ajuster la vue.
-\seeindex{pretty-print}{m\'ethode}
+\seeindex{pretty-print}{méthode}
 
 Si vous utilisez beaucoup le menu \menu{more\, \ldots}, sachez que
 vous pouvez appuyer sur la touche {\sc shift} lorsque vous cliquez
@@ -490,13 +499,13 @@ afin de le faire apparaître directement.
 \section{Organiser les méthodes en protocoles}
 
 Avant de définir de nouvelles méthodes, attardons-nous un peu sur le troisième panneau en haut du navigateur.
-De la même façon que le premier panneau du navigateur nous permet de catégoriser les classes de telle sorte que nous ne soyons pas submergés par une liste de noms de classes trop longue dans le second panneau, le troisième panneau nous permet de catégoriser les méthodes de telle sorte que n'ayons pas une liste de méthodes trop longue dans le quatrième panneau.
+De la m\^eme façon que le premier panneau du navigateur nous permet de catégoriser les classes de telle sorte que nous ne soyons pas submergés par une liste de noms de classes trop longue dans le second panneau, le troisième panneau nous permet de catégoriser les méthodes de telle sorte que n'ayons pas une liste de méthodes trop longue dans le quatrième panneau.
 Ces catégories de méthodes sont appelées ``protocoles''.
 \index{protocole}
 
 S'il n'y avait que quelques méthodes par classe, ce niveau hiérarchique supplémentaire ne serait pas vraiment nécessaire.
 C'est pour cela que le navigateur offre un protocole virtuel
-\prot{-{}-all-{}-} (\cad ``tout'' en fran\c{c}ais) qui, vous ne serez pas surpris d'apprendre, contient toutes les méthodes de la classe.
+\prot{-{}-all-{}-} (\cad ``tout'' en fran\c{c}ais) qui, vous ne serez pas surpris de l'apprendre, contient toutes les méthodes de la classe.
 \protindex{all}
 
 \begin{figure}[htbp]
@@ -507,11 +516,11 @@ C'est pour cela que le navigateur offre un protocole virtuel
 
 Si vous avez suivi l'exemple jusqu'à présent, le troisième panneau doit contenir le protocole \protind{as yet unclassified}~\footnote{NdT: non encore classifié.}.
 
-\dothis{Sélectionnez avec le \ind{button jaune} de la souris l'élément du menu \menu{categorize all uncategorized} afin de régler ce problème et déplacer les méthodes \ct{initialize} vers un nouveau protocole appelé \protind{initialization}.}
+\dothis{Sélectionnez avec le \ind{bouton jaune} de la souris l'élément du menu \menu{categorize all uncategorized} afin de régler ce problème et déplacer les méthodes \ct{initialize} vers un nouveau protocole appelé \protind{initialization}.}
 Comment \sq sait que c'est le bon protocole? En général,
-\sq ne peut pas le savoir mais dans notre cas, il y a aussi une méthode \ct{initialize} dans la super-classe et \sq suppose que notre méthode \ct{initialize} doit être rangée dans la même catégorie que celle qu'elle surcharge.
+\sq ne peut pas le savoir mais dans notre cas, il y a aussi une méthode \ct{initialize} dans la super-classe et \sq suppose que notre méthode \ct{initialize} doit \^etre rangée dans la m\^eme catégorie que celle qu'elle surcharge.
 %\index{method!categorize}
-\index{m\'ethode!cat\'egorisation}
+\index{méthode!catégorisation}
 
 Vous pouvez également vous rendre compte que \sq a déjà rangé votre
 méthode \ct{initialize} dans le protocole \protind{initialization}. Si
@@ -521,26 +530,26 @@ c'est le cas, c'est probablement que vous avez chargé un paquetage nommé \ct{A
 Afin d'indiquer que cela ne fait pas partie de la syntaxe de \st, nous utiliserons plutôt le symbole spécial \ct{>>>} de telle sorte que cette méthode apparaîtra dans le texte comme \ct{SBEGame>>>cellsPerSide}
 \cmindex{Behavior}{>>}
 
-\`A partir de maintenant, lorsque nous voudrons montrer une méthode dans ce livre, nous écrirons le nom de cette méthode sous cette forme. Bien s\^ur, lorsque vous tapez le code dans un navigateur, vous n'avez pas à taper le nom de la classe ou le \ct{>>>}; vous devrez juste vous assurez que la classe appropriée est sélectionnée dans le panneau des classes.
+À partir de maintenant, lorsque nous voudrons montrer une méthode dans ce livre, nous écrirons le nom de cette méthode sous cette forme. Bien s\^ur, lorsque vous tapez le code dans un navigateur, vous n'avez pas à taper le nom de la classe ou le \ct{>>>}; vous devrez juste vous assurez que la classe appropriée est sélectionnée dans le panneau des classes.
 
-Définissons maintenant les autres méthodes qui sont utilisées par la méthode \ct{SBEGame>>>initialize}. Les deux peuvent être mises dans le protocole \prot{initialization}.
+Définissons maintenant les autres méthodes qui sont utilisées par la méthode \ct{SBEGame>>>initialize}. Les deux peuvent \^etre mises dans le protocole \prot{initialization}.
 
 \begin{method}[sbegamecellsperside]{Une méthode constante}
 SBEGame>>>cellsPerSide
-   "Le nombre de cellules le long de chaque !c\^ot\'e! du jeu"
+   "Le nombre de cellules le long de chaque !c\^oté! du jeu"
    ^ 10
 \end{method}
 \cmindex{SBEGame}{cellsPerSide}
 % le commentaire "The number of cells along each side of the game"
-\index{m\'ethode constante}
+\index{méthode constante}
 
-Cette méthode ne peut pas être plus simple: elle retourne la constante
-10. Représenter les constantes comme des méthodes a comme avantage que si le programme évolue de telle sorte que la constante dépende d'autres propriétés, la méthode peut être modifiée pour calculer la valeur.
+Cette méthode ne peut pas \^etre plus simple: elle retourne la constante
+10. Représenter les constantes comme des méthodes a comme avantage que si le programme évolue de telle sorte que la constante dépende d'autres propriétés, la méthode peut \^etre modifiée pour calculer la valeur.
 
 \needlines{10}
 \begin{method}[newCellAt:at:]{Une méthode d'aide à l'initialisation}
 SBEGame>>>newCellAt: i at: j
-   "!Cr\'ee une cellule \`a la position (i,j) et l'ajoute dans ma repr\'esentation graphique \`a la position correcte. Retourne une nouvelle cellule!"
+   "!Crée une cellule à la position (i,j) et l'ajoute dans ma représentation graphique à la position correcte. Retourne une nouvelle cellule!"
    | c origin |
    c := SBECell new.
    origin := self innerBounds origin.
@@ -556,12 +565,12 @@ SBEGame>>>newCellAt: i at: j
 \dothis{Ajoutez les méthodes \ct{SBEGame>>>cellsPerSide} et \ct{SBEGame>>>newCellAt:at:}.}
 Confirmez que les sélecteurs \ct{toggleNeighboursOfCellAt:at:} et \ct{mouseAction:} s'épellent correctement.
 
-\Tmthref{newCellAt:at:} retourne une nouvelle cellule SBECell à la position \ct{(i,j)} dans la matrice (\clsind{Matrix}) de cellules.
+\Tmthref{newCellAt:at:} retourne une nouvelle cellule \ct{SBECell} à la position \ct{(i,j)} dans la matrice (\clsind{Matrix}) de cellules.
 La dernière ligne définit l'action de la souris (\ct{mouseAction}) associée à la cellule comme le \emph{bloc}
-\mbox{\lct{[self toggleNeighboursOfCellAt:i at:j]}.}
+\mbox{\ct{[self toggleNeighboursOfCellAt:i at:j]}.}
 %martial: callback = fonction de rappel ? (plus francais)
-En effet, ceci définit le comportement de rappel ou \callback à effectuer lorsque nous cliquons \`a la souris.
-La méthode correspondante doit être aussi définie.
+En effet, ceci définit le comportement de rappel ou \callback à effectuer lorsque nous cliquons à la souris.
+La méthode correspondante doit \^etre aussi définie.
 
 \begin{method}[toggleNeighboursOfCellAt:at:]{La méthode \callback}
 SBEGame>>>toggleNeighboursOfCellAt: i at: j
@@ -578,11 +587,11 @@ voisins de la cellule\ldots'') change l'état des 4 cellules au nord, sud, ouest
 \dothis{Placez cette méthode dans un nouveau protocole appelé
   \prot{game logic} (pour ``logique du jeu'')
 %ajout
-que vous aurez cr\'e\'e gr\^ace au menu contextuel accessible via le
+que vous aurez créé gr\^ace au menu contextuel accessible via le
 \ind{bouton jaune} de la souris dans le panneau des protocoles en
 cliquant sur \menu{create category\ldots}.}
 Pour déplacer cette méthode, vous devez simplement cliquer sur son nom
-puis la glisser-d\'eposer sur le nouveau protocole (voir \figref{dragMethod}).
+puis la glisser-déposer sur le nouveau protocole (voir \figref{dragMethod}).
 
 \begin{figure}[htbp]
    \centering
@@ -599,32 +608,32 @@ SBECell>>>mouseAction: aBlock
 \end{method}
 \cmindex{SBECell}{mouseAction:}
 
-La seule action de \tmthref{mouseAction:} consiste \`a donner comme
-valeur à la variable \ct{mouseAction} celle de l'argument puis, \`a en
+La seule action de \tmthref{mouseAction:} consiste à donner comme
+valeur à la variable \ct{mouseAction} celle de l'argument puis, à en
 retourner la nouvelle valeur. Toute méthode qui \emph{change} la
 valeur d'une variable d'instance de cette façon est appelée une
-\emph{méthode d'accès en \'ecriture} ou \emph{mutateur} (vous pourrez
-trouver dans la litt\'erature le terme anglais \emph{setter}); une
+\emph{méthode d'accès en écriture} ou \emph{mutateur} (vous pourrez
+trouver dans la littérature le terme anglais \emph{setter}); une
 méthode qui \emph{retourne} la valeur courante d'une variable
 d'instance est appelée une \emph{méthode d'accès en lecture} ou
-\emph{accesseur} (le mot anglais \'equivalent est \emph{getter}).
+\emph{accesseur} (le mot anglais équivalent est \emph{getter}).
 %\seeindex{setter method}{accessor}
 %\seeindex{getter method}{accessor}
-\seeindex{m\'ethode d'acc\`es en lecture}{m\'ethode d'acc\`es}
-\seeindex{m\'ethode d'acc\`es en \'ecriture}{m\'ethode d'acc\`es}
-\seeindex{accesseur}{m\'ethode d'acc\`es}
-\seeindex{mutateur}{m\'ethode d'acc\`es}
-\seeindex{m\'ethode!acc\`es}{m\'ethode d'acc\`es}
-\seeindex{m\'ethode!getter}{m\'ethode d'acc\`es}
-\seeindex{m\'ethode!setter}{m\'ethode d'acc\`es}
+\seeindex{méthode d'accès en lecture}{méthode d'accès}
+\seeindex{méthode d'accès en écriture}{méthode d'accès}
+\seeindex{accesseur}{méthode d'accès}
+\seeindex{mutateur}{méthode d'accès}
+\seeindex{méthode!accès}{méthode d'accès}
+\seeindex{méthode!getter}{méthode d'accès}
+\seeindex{méthode!setter}{méthode d'accès}
 
-Si vous êtes habitués aux méthodes d'accès en lecture (\emph{getter})
+Si vous \^etes habitués aux méthodes d'accès en lecture (\emph{getter})
 et écriture (\emph{setter}) dans d'autres langages de programmation,
 vous vous attendez à avoir deux méthodes nommées \ct{getmouseAction}
 et \ct{setmouseAction}.
 La convention en \st est différente.
-Une méthode d'accès en lecture a toujours le même nom que la variable
-correspondante et la méthode d'accès en écriture est nommée de la même
+Une méthode d'accès en lecture a toujours le m\^eme nom que la variable
+correspondante et la méthode d'accès en écriture est nommée de la m\^eme
 manière avec un ``\ct{:}'' à la fin; ici nous avons donc
 \ct{mouseAction} et \ct{mouseAction:}.
 
@@ -632,15 +641,15 @@ manière avec un ``\ct{:}'' à la fin; ici nous avons donc
 %les accesseurs sont des methodes d'acces en lecture et non pas des
 %equivalents de l'anglais 'accessors' d'apres toutes mes docs
 %j'ai reformule 
-%%Les méthodes d'accès en lecture et écriture sont appelés des méthodes \emphind{accesseurs} et par convention elles doivent être placées dans le protocole \protind{accessing}.
-Une m\'ethode d'acc\`es (en lecture ou en \'ecriture) est appel\'ee
+%%Les méthodes d'accès en lecture et écriture sont appelés des méthodes \emphind{accesseurs} et par convention elles doivent \^etre placées dans le protocole \protind{accessing}.
+Une méthode d'accès (en lecture ou en écriture) est appelée
 en anglais \emphind{accessor} et par convention, elle doit \^etre
-plac\'ee dans le protocole \protind{accessing}.
+placée dans le protocole \protind{accessing}.
 En Smalltalk, \emph{toutes} les variables d'instances sont privées à
 l'objet qui les possède, ainsi la seule façon pour un autre objet de
 lire ou de modifier ces variables en Smalltalk se fait au travers de
 ces méthodes d'accès comme ici~\footnote{En fait, les variables
-  d'instances peuvent être accédées également dans les sous-classes.}.
+  d'instances peuvent \^etre accédées également dans les sous-classes.}.
 
 \dothis{Allez à la classe \ct{SBECell}, définissez \ct{SBECell>>>mouseAction:} et mettez-la dans le protocole \prot{accessing}.}
 
@@ -657,10 +666,10 @@ SBECell>>>mouseUp: anEvent
 
 \dothis{Ajoutez la méthode \ct{SBECell>>>mouseUp:} 
 %ajout
-d\'efinissant l'action lorsque le bouton de la souris est relach\'e
+définissant l'action lorsque le bouton de la souris est relaché
 puis, faites \menu{categorize all uncategorized}.}
 %\index{method!categorize}
-\index{m\'ethode!cat\'egorisation}
+\index{méthode!catégorisation}
 
 Que fait cette méthode? Elle envoie le message \ct{value} à l'objet
 stocké dans la variable d'instance \ct{mouseAction}. 
@@ -681,7 +690,7 @@ conséquence, est responsable du changement d'état des cellules.
 %=================================================================
 \section{Essayons notre code}
 
-Voil\`a, le jeu de Quinto est complet!
+Voilà, le jeu de Quinto est complet!
 
 Si vous avez suivi toutes les étapes, vous devriez pouvoir jouer au jeu qui comprend 2 classes et 7 méthodes.
 
@@ -690,8 +699,8 @@ Si vous avez suivi toutes les étapes, vous devriez pouvoir jouer au jeu qui com
 Le jeu devrait s'ouvrir et vous devriez pouvoir cliquer sur les cellules et vérifier si le jeu fonctionne.
 
 Du moins en théorie\ldots{}
-Lorsque vous cliquez sur une cellule une fenêtre de \emphind{notification} appelée la fenêtre \clsind{PreDebugWindow} devrait apparaître avec un message d'erreur!
-Comme nous pouvons le voir sur la figure \figref{quintoError}, elle dit \ct{MessageNotUnderstood: SBEGame>>>toggleState}.
+Lorsque vous cliquez sur une cellule une fen\^etre de \emphind{notification} appelée la fen\^etre \clsind{PreDebugWindow} devrait apparaître avec un message d'erreur!
+Comme nous pouvons le voir sur \figref{quintoError}, elle dit \ct{MessageNotUnderstood: SBEGame>>>toggleState}.
 
 \begin{figure}[ht]
 \ifluluelse
@@ -704,18 +713,18 @@ Comme nous pouvons le voir sur la figure \figref{quintoError}, elle dit \ct{Mess
 \noindent
 Que se passe-t-il? Afin de le découvrir, utilisons l'un des outils les plus puissants de Smalltalk, le \ind{débogueur}.
 
-\dothis{Cliquez sur le bouton \menu{debug} de la fenêtre de notification.}
+\dothis{Cliquez sur le bouton \menu{debug} de la fen\^etre de notification.}
 Le débogueur devrait apparaître.
-Dans la partie sup\'erieure de la fenêtre du débogueur, nous pouvons
+Dans la partie supérieure de la fen\^etre du débogueur, nous pouvons
 voir la pile d'exécution, affichant toutes les méthodes actives; en
 sélectionnant l'une d'entre elles, nous voyons dans le panneau du
 milieu le code Smalltalk en cours d'exécution dans cette méthode, avec
-la partie qui a déclenchée l'erreur en caract\`ere gras.
+la partie qui a déclenchée l'erreur en caractère gras.
 
 \dothis{Cliquez sur la ligne nommée
 \ct{SBEGame>>>toggleNeighboursOfCellAt:at:} (près du haut).}
 Le débogueur vous montrera le \ind{contexte d'exécution} à l'intérieur
-de la méthode où l'erreur s'est déclenchée (voir \figref{debugToggle}).
+de la méthode o\`u l'erreur s'est déclenchée (voir \figref{debugToggle}).
 
 \begin{figure}[ht]
 \ifluluelse
@@ -725,8 +734,8 @@ de la méthode où l'erreur s'est déclenchée (voir \figref{debugToggle}).
 \label{fig:debugToggle}}
 \end{figure}
 
-Dans la partie inf\'erieure du débogueur, il y a deux petites fenêtres
-d'inspection. Sur la gauche, vous pouvez inspecter l'objet-receveur du message qui cause l'exécution de la méthode sélectionnée. Vous pouvez voir ici les valeurs des variables d'instances.
+Dans la partie inférieure du débogueur, il y a deux petites fen\^etres
+d'inspection. Sur la gauche, vous pouvez inspecter l'objet-receveur du message qui cause l'exécution de la méthode sélectionnée. Vous pouvez voir ici les valeurs des variables d'instance.
 Sur la droite, vous pouvez inspecter l'objet qui représente la méthode en cours d'exécution. Il est possible d'examiner ici les valeurs des paramètres et les variables temporaires.
 
 En utilisant le débogueur, vous pouvez exécuter du code pas à pas,
@@ -737,33 +746,32 @@ est possible de modifier le code en cours de déboguage!
 Certains Smalltalkiens programment la plupart du temps dans le
 débogueur, plutôt que dans le navigateur de classes.
 %martial: Tue Dec 25 10:30:52 CET 2007 modif' car trop lourd
-L'avantage est certain: la m\'ethode que vous \'ecrivez est telle
-qu'elle sera ex\'ecut\'ee \ie avec ses param\`etres dans son contexte
-actuel d'ex\'ecution.
+L'avantage est certain: la méthode que vous écrivez est telle
+qu'elle sera exécutée \ie avec ses paramètres dans son contexte
+actuel d'exécution.
 %: l'avantage en est
 %que vous voyez la méthode que vous écrivez telle qu'elle sera
 %exécutée, avec de paramètres dans son contexte actuel d'exécution.
 
-Dans notre cas, vous pouvez voir dans la première ligne du panneau du haut que le message \ct{toggleState} a été envoyé à une instance de \ct{SBEGame}, alors qu'il était clairement destiné à une instance de \lct{SBECell}.
+Dans notre cas, vous pouvez voir dans la première ligne du panneau du haut que le message \ct{toggleState} a été envoyé à une instance de \ct{SBEGame}, alors qu'il était clairement destiné à une instance de \ct{SBECell}.
 Le problème se situe vraisemblablement dans l'initialisation de la matrice \ct{cells}.
 En parcourant le code de \cmind{SBEGame}{initialize}, nous pouvons
 voir que \ct{cells} est rempli avec les valeurs retournées par
 \ct{newCellAt:at:}, mais lorsque nous regardons cette méthode, nous
 constatons qu'il n'y a pas de valeur retournée ici!
 Par défaut, une méthode retourne \ct{self}, ce qui dans le cas de \ct{newCellAt:at:} est effectivement une instance de \ct{SBEGame}.
-\index{m\'ethode!renvoi de self}
+\index{méthode!renvoi de self}
 
-\dothis{Fermez la fen\^etre du d\'ebogueur.
+\dothis{Fermez la fen\^etre du débogueur.
 Ajoutez l'expression ``\ct{^ c}'' à la fin de la méthode \ct{SBEGame>>>newCellAt:at:} de telle sorte qu'elle retourne \ct{c}
 % It should now look as shown in \mthref{newCellAt:at:nobug}.
-(voir \tmthref{newCellAt:at:nobug})}.
+(voir \tmthref{newCellAt:at:nobug}).}
 
 % \needlines{6}
 \begin{method}[newCellAt:at:nobug]{Corriger l'erreur}
 SBEGame>>>newCellAt: i at: j
-    "!Cr\'ee une cellule \`a la position (i,j) et l'ajoute dans ma
-    repr\'esentation graphique \`a la position correcte. Retourne une
-    nouvelle cellule!"
+    "!Crée une cellule à la position (i,j) et l'ajoute dans ma
+    représentation graphique à la position correcte. Retourne une nouvelle cellule!"
    | c origin |
    c := SBECell new.
    origin := self innerBounds origin.
@@ -778,7 +786,7 @@ SBEGame>>>newCellAt: i at: j
 %   representation at the appropriate screen position.  Answer the new cell"
 
 \noindent
-Rappelez-vous ce que nous avons vu dans le chapitre \charef{quick}:
+Rappelez-vous ce que nous avons vu dans \charef{quick}:
 pour renvoyer une valeur d'une méthode en Smalltalk, nous utilisons 
  \ct{^}, que nous pouvons obtenir en tapant \verb|^|.
 % \index{^@\verb|^|}
@@ -787,16 +795,16 @@ pour renvoyer une valeur d'une méthode en Smalltalk, nous utilisons
 
 %martial: j'ai retourne les prepositions car autrement c'est trop lourd
 Il est souvent possible de corriger le code directement dans la
-fenêtre du débogueur et de poursuivre l'application en cliquant sur
+fen\^etre du débogueur et de poursuivre l'application en cliquant sur
 \menu{Proceed}.
 Dans notre cas, la chose la plus simple à faire est de fermer la
-fenêtre du débogueur, détruire l'instance en cours d'exécution (avec
+fen\^etre du débogueur, détruire l'instance en cours d'exécution (avec
 le \subind{Morphic}{halo} Morphic) et d'en créer une nouvelle, parce que le bug
-ne se situe pas dans une m\'ethode erron\'ee mais dans
+ne se situe pas dans une méthode erronée mais dans
 l'initialisation de l'objet.
 
 %Indeed, even in this case it would be possible to \menu{do} \ct{self initialize} and then \menu{Proceed} the \ct{toggleNeighboursOfCellAt:at:} method.
-%\ab{St\'eph, did you try this?  It seems to me that it ought to work, but when I tried it, it messed up my image.}
+%\ab{Stéph, did you try this?  It seems to me that it ought to work, but when I tried it, it messed up my image.}
 % ON : It messed me up too!  Better not propose this.
 
 \dothis{Exécutez \ct{SBEGame new openInWorld} de nouveau.}
@@ -820,33 +828,33 @@ Nous avons donc besoin de pouvoir extraire le code source d'une image
 
 La façon la plus simple de le faire est d'effectuer une exportation ou
 sortie-fichier (\emph{filing out}) de votre code. Le menu activé par
-le bouton jaune dans le panneau de catégories-syst\`eme vous permet de
+le bouton jaune dans le panneau de catégories-système vous permet de
 générer un fichier correspondant à l'ensemble de la catégorie \scat{SBE-Quinto}.
-Le fichier résultant est plus lisible par tout un chacun, même si son
-contenu est plut\^ot destiné aux des machines qu'aux hommes.
+Le fichier résultant est plus lisible par tout un chacun, m\^eme si son
+contenu est plut\^ot destiné aux machines qu'aux hommes.
 Vous pouvez envoyer par email ce fichier à vos amis et ils peuvent le
 charger dans leurs propres images \sq en utilisant le navigateur
 de fichiers File List Browser.
-\seeindex{sauvegarde du code}{cat\'egorie}
-\seeindex{cat\'egorie!exportation de fichier}{fichier, exportation}
+\seeindex{sauvegarde du code}{catégorie}
+\seeindex{catégorie!exportation de fichier}{fichier, exportation}
 \seeindex{classe!exportation de fichier}{fichier, exportation}
-\seeindex{m\'ethode!exportation de fichier}{fichier, exportation}
+\seeindex{méthode!exportation de fichier}{fichier, exportation}
 % pour le sortie fichier utilise par Serge
 \seeindex{sortie-fichier}{fichier, exportation}
 \seeindex{fichier!filing-out}{fichier, exportation}
 \index{fichier!exportation}
 
-\dothis{Sélectionnez \`a l'aide du \ind{bouton jaune} la catégorie
+\dothis{Sélectionnez à l'aide du \ind{bouton jaune} la catégorie
   \scat{SBE-Quinto} et choisissez \menu{fileOut} pour exporter le contenu.}
-Vous devriez trouver maintenant un fichier SBE-Quinto.st dans le même
-répertoire où votre image a été sauvegardée.
+Vous devriez trouver maintenant un fichier SBE-Quinto.st dans le m\^eme
+répertoire o\`u votre image a été sauvegardée.
 Jetez un coup d'\oe il à ce fichier avec un éditeur de texte.
 
 \dothis{Ouvrez une nouvelle image \sq et utilisez l'outil File
   List Browser pour faire une importation de fichier via l'option de menu  \menu{file in} dans le fichier SBE-Quinto.st. Vérifiez que le jeu fonctionne maintenant dans une nouvelle image.}
-\seeindex{cat\'egorie!importation de fichier}{fichier, importation}
+\seeindex{catégorie!importation de fichier}{fichier, importation}
 \seeindex{classe!importation de fichier}{fichier, importation}
-\seeindex{m\'ethode!importation de fichier}{fichier, importation}
+\seeindex{méthode!importation de fichier}{fichier, importation}
 \seeindex{fichier!filing-in}{fichier, importation}
 \index{fichier!importation}
 
@@ -860,12 +868,12 @@ Jetez un coup d'\oe il à ce fichier avec un éditeur de texte.
 Bien que les exportations de fichiers soient une façon convenable de
 faire des sauvegardes du code que vous avez écrit, elles font
 maintenant partie du passé.
-Tout comme la plupart des d\'eveloppeurs de projets libres
+Tout comme la plupart des développeurs de projets libres
 \emph{Open-Source} qui trouvent plus utile de maintenir leur code dans
-des dépôts en utilisant \ind{CVS}~\footnote{\url{www.nongnu.org/cvs}}
-ou \ind{Subversion}~\footnote{\url{subversion.tigris.org}}, les
+des dépôts en utilisant \ind{CVS}~\footnote{\url{http://www.nongnu.org/cvs}}
+ou \ind{Subversion}~\footnote{\url{http://subversion.tigris.org}}, les
 programmeurs sur \sq gèrent maintenant leur code au moyen de
-paquetages \ind{Monticello}: 
+paquetages \ind{Monticello} (dit, en anglais, \emph{packages}): 
 ces paquetages sont représentés comme des fichiers dont le nom se
 termine en \ct{.mcz}; ce sont en fait des fichiers compressés en
 \emph{zip} qui contiennent le code complet de votre paquetage.
@@ -873,15 +881,15 @@ termine en \ct{.mcz}; ce sont en fait des fichiers compressés en
 En utilisant le navigateur de paquetages Monticello, vous pouvez sauver les paquetages dans des dépôts en utilisant de nombreux types de serveurs, notamment des serveurs FTP et HTTP; vous pouvez également écrire vos paquetages dans un dépôt qui se trouve dans un répertoire de votre système local de fichiers.
 Une copie de votre paquetage est toujours \emph{en cache} sur disque local dans le répertoire \emph{package-cache}. 
 Monticello vous permet de sauver de multiples versions de votre programme, fusionner des versions, revenir à une ancienne version et voir les différences entre plusieurs versions.
-En fait, nous retrouvons les mêmes types d'opérations auxquelles vous
-pourriez \^etre habitu\'es en utilisant CVS ou Subversion pour
+En fait, nous retrouvons les m\^emes types d'opérations auxquelles vous
+pourriez \^etre habitués en utilisant CVS ou Subversion pour
 partager votre travail.
 \seeindex{Package Browser}{Monticello}
 \seeindex{Monticello Browser}{Monticello}
 \seeindex{navigateur Monticello}{Monticello}
 
 %martial: IMPORTANT -- semble etre retire de l'original
-%% Une bonne astuce est de toujours développer dans le même
+%% Une bonne astuce est de toujours développer dans le m\^eme
 %% répertoire. De cette façon vous pouvez obtenir une copie de tout le
 %% code que vous avez publié sur \squeaksource sur votre machine
 %% locale. Vous pouvez  alors faire une sauvegarde et naviguer dans le code à votre convenance.
@@ -904,29 +912,29 @@ Dans la partie droite du navigateur (voir \figref{monticello1}), il y a une list
 
 En haut de la liste dans le navigateur Monticello, il y a un dépôt
 dans un répertoire local appelé \emphind{package cache}: il s'agit
-d'un r\'epertoire-cache pour des copies de paquetages que vous avez
+d'un répertoire-cache pour des copies de paquetages que vous avez
 chargé ou publié sur le réseau. Ce cache est vraiment utile car il
 vous permet de garder votre historique local. Il vous permet également
-de travailler là où vous n'avez pas d'accès Internet ou l'accès est si
-lent que vous n'avez pas envie de sauver fr\'equemment sur un dépôt
-distant.
+de travailler là o\`u vous n'avez pas d'accès Internet ou lorsque 
+l'accès est si lent que vous n'avez pas envie de sauver fréquemment 
+sur un dépôt distant.
 
-\subsection{Sauvegarder et charger du code avec Monticello.}
+\subsection{Sauvegarder et charger du code avec Monticello}
 Dans la partie gauche du navigateur Monticello, il y a une liste de
 paquetages dont vous avez une version chargée dans votre image; les
-paquetages qui ont été modifié depuis qu'ils ont été chargés sont
+paquetages qui ont été modifiés depuis qu'ils ont été chargés sont
 marqués d'une 
 %étoile; martial:  http://www.iam.unibe.ch/pipermail/sbe-discussion/2007-December/000102.html
-ast\'erisque
-(ils sont parfois appelés des \subind{paquetage}{dirty package}{}s). Si vous sélectionnez un paquetage, la liste des dépôts est restreinte à ceux qui contiennent une copie du paquetage sélectionné.
+astérisque
+(ils sont parfois appelés des \emphsubind{paquetage}{dirty package}{}\emph{s}). Si vous sélectionnez un paquetage, la liste des dépôts est restreinte à ceux qui contiennent une copie du paquetage sélectionné.
 \seeindex{*}{paquetage, dirty package}
 \seeindex{dirty package}{paquetage, dirty package}
 
-Qu'est-ce qu'un paquetage? Pour l'instant, vous pouvez penser le paquetage comme un groupe de classes et de catégories de méthodes qui partagent le même préfixe. Comme nous avons mis tout le code du jeu Quinto dans la catégorie de classes appelée \scat{SBE-Quinto}, nous pouvons le désigner comme le paquetage \ct{SBE-Quinto}.
+Qu'est-ce qu'un paquetage? Pour l'instant, vous pouvez penser le paquetage comme un groupe de classes et de catégories de méthodes qui partagent le m\^eme préfixe. Comme nous avons mis tout le code du jeu Quinto dans la catégorie de classes appelée \scat{SBE-Quinto}, nous pouvons le désigner comme le paquetage \ct{SBE-Quinto}.
 
 \dothis{Ajoutez le paquetage \ct{SBE-Quinto} à votre navigateur Monticello en utilisant le bouton \button{+Package}.}
 
-\subsection{\ind{\squeaksource}: un \ind{SourceForge} pour \sq.} 
+\subsection{\ind{\squeaksource}: un \ind{SourceForge} pour \sq} 
 Nous pensons que la meilleure façon de sauvegarder votre code et de le
 partager est de créer un compte sur un serveur
 \squeaksource. \squeaksource est similaire à
@@ -1013,27 +1021,27 @@ Monticello à l'adresse \url{http://www.wiresong.ca/Monticello/}.
 
 %=================================================================
 \section{Résumé du chapitre}
-Dans ce chapitre, nous avons vu comment créer des catégories, classes
-et méthodes. Nous avons vu aussi comment utiliser le navigateur de
+Dans ce chapitre, nous avons vu comment créer des catégories, des classes
+et des méthodes. Nous avons vu aussi comment utiliser le navigateur de
 classes (System Browser), l'inspecteur, le débogueur et le
 navigateur Monticello.
 
 \begin{itemize}
   \item Les catégories sont des groupes de classes connexes.
-%qui sont reli\'ees entre-elles.
+%qui sont reliées entre-elles.
   \item Une nouvelle classe est créée en envoyant un message à sa super-classe.
   \item Les protocoles sont des groupes de méthodes connexes.
   \item Une nouvelle méthode est créée ou modifiée en éditant la définition dans le navigateur de classes et en \emph{acceptant} les modifications.
   \item L'inspecteur offre une manière simple et générale pour inspecter et interagir avec des objets arbitraires.
   \item Le navigateur de classes détecte l'utilisation de méthodes et de variables non déclarées et propose d'éventuelles corrections.
-  \item La méthode \ct{initialize} est automatiquement ex\'ecutée après
+  \item La méthode \ct{initialize} est automatiquement exécutée après
     la création d'un objet dans \sq. Vous pouvez y mettre
     le code d'initialisation que vous voulez.
-  \item Le débogueur est une interface de haut niveau pour inspecter et modifier l'état d'un programme en cours d'ex\'ecution.
+  \item Le débogueur est une interface de haut niveau pour inspecter et modifier l'état d'un programme en cours d'exécution.
   \item Vous pouvez partager le code source en sauvegardant une
     catégorie sous forme d'un fichier d'exportation.
-  \item Une meilleure façon de partager le code consiste \`a faire
-    appel \`a Monticello afin de gérer un dépôt externe défini, par
+  \item Une meilleure façon de partager le code consiste à faire
+    appel à Monticello afin de gérer un dépôt externe défini, par
     exemple, comme un projet \squeaksource.
 \end{itemize}
 

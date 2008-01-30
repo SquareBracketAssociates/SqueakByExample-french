@@ -377,7 +377,11 @@ vous pouvez surcharger \mthind{Object}{postCopy} pour copier une variable d'inst
 %-----------------------------------------------------------------
 \subsection{D\'ebogage}
 
-La m\'ethode la plus importante ici est \mthind{Object}{halt}. Pour placer un point d'arr\^et dans une m\'ethode, il suffit d'ins\'erer l'envoi de message \ct{self halt} \`a une certaine position dans le corps de la m\'ethode.  Quand ce message est envoy\'e, l'ex\'ecution est interrompue et un \ind{d\'ebogueur} s'ouvre \`a cet endroit de votre programme
+La m\'ethode la plus importante ici est \mthind{Object}{halt}. Pour
+placer un point d'arr\^et dans une m\'ethode, il suffit d'ins\'erer
+l'envoi de message \ct{self halt} \`a une certaine position dans le
+corps de la m\'ethode.  Quand ce message est envoy\'e, l'ex\'ecution
+est interrompue et un \ind{débogueur} s'ouvre \`a cet endroit de votre programme
 (voir \charef{env} pour plus de d\'etails sur le d\'ebogueur).
 
 \sd{in another chapter haltIf:, haltOnce, inspectOnce, flagging: isThisEverCalled, }

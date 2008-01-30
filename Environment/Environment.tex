@@ -213,7 +213,8 @@ De ce fait, la fa\c{c}on dont vous cr\'eez une nouvelle cat\'egorie ou
 un nouveau protocole est diff\'erent de la mani\`ere avec laquelle
 vous cr\'eez une nouvelle classe ou une nouvelle m\'ethode. 
 Pour cr\'eer une nouvelle cat\'egorie, s\'electionnez 
- \menu{new category} via le menu contextuel accessible avec le bouton \ind{jaune}
+ \menu{new category} via le menu contextuel accessible avec le
+ \ind{bouton jaune} de la souris
  au panneau des cat\'egories; pour cr\'eer un nouveau protocole, 
 s\'electionnez \menu{new protocol} via 
 % Martial: pas a revoir mais je le mets quand même pour René
@@ -245,8 +246,7 @@ que vous avez choisi pour votre nouvelle classe (sous-classe de la premi\`ere) e
 La cat\'egorie pour la nouvelle classe est par d\'efaut la cat\'egorie actuellement s\'electionn\'ee mais vous pouvez changer celle-ci aussi si vous le d\'esirez.
 Si vous avez d\'ej\`a la classe \`a d\'eriver s\'electionn\'ee dans 
 le Browser, vous pouvez obtenir le m\^eme patron avec une initialisation
-quelque peu diff\'erente en utilisant le menu du bouton jaune
-% yellow
+quelque peu diff\'erente en utilisant le menu du \ind{bouton jaune}
 dans le panneau des classes et en s\'electionnant 
  \menu{more \ldots \go subclass template}.
 Vous pouvez aussi \'editer simplement la d\'efinition de la classe existante en changeant le nom de la classe en quelque chose d'autre.
@@ -344,8 +344,8 @@ au lieu de renvoyer une liste de senders d'un message (ou m\'ethodes-envoyeuses)
 classes qui impl\'ementent une m\'ethode avec le m\^eme s\'electeur.
 Pour le voir, s\'electionnez \lct{drawOn:} dans le panneau des m\'ethodes
 puis affichez le navigateur ``implementors of drawOn:'', 
-soit en utilisant le bouton \button{implementors}, soit via le bouton 
-\ind{jaune}, soit encore en tapant simplement \short{m} (pour {i\textbf{m}ple\textbf{m}entors}) avec la m\'ethode \menu{drawOn:} s\'electionn\'ee dans le panneau des m\'ethodes. 
+soit en utilisant le bouton \button{implementors}, soit via le 
+\ind{bouton jaune}, soit encore en tapant simplement \short{m} (pour {i\textbf{m}ple\textbf{m}entors}) avec la m\'ethode \menu{drawOn:} s\'electionn\'ee dans le panneau des m\'ethodes. 
 Vous devriez avoir une fen\^etre \`a ascenseur montrant une liste des 96
 classes impl\'ementant une m\'ethode \ct{drawOn:}.
 Il n'y a rien de surprenant \`a ce qu'autant de classes impl\'ementent cette
@@ -363,7 +363,7 @@ un navigateur d'implementors chaque fois que vous s\'electionnez un message
 % APB: commented-out because the same thought is expressed below.
 
 Si vous regardez l'envoi de \ct{drawOn:} dans \ct{AtomMorph>>>drawOn:}, vous
-verrez que c'est un \subind{super}{envoi} de super. Ainsi nous
+verrez que c'est un \subpvind{super}{envoi} de super. Ainsi nous
 savons que la m\'ethode ex\'ecut\'ee sera dans la super-classe de \ct{AtomMorph}. Quelle est cette classe? Cliquez sur le bouton \button{hierarchy} (pour hi\'erarchie) et vous saurez qu'il s'agit de \ct{EllipseMorph}.
 \index{System Browser!bouton hierarchy}
 
@@ -528,7 +528,7 @@ Les boutons \button{inst vars} et \button{class vars} vous aident \`a savoir
 dans quelles m\'ethodes sont utilis\'ees respectivement les variables d'instance
 et les variables de classe; cette information est aussi disponible depuis 
 \menu{inst var refs} et \menu{class var refs} du menu contextuel accessible via le 
-\ind{bouton jaune} dans le panneau de la classe.
+\ind{bouton jaune} de la souris dans le panneau de la classe.
 Le menu permet aussi d'afficher le jeu 
 %subset 
 des r\'ef\'erences aux variables d'instance qui affecte la variable choisie
@@ -863,7 +863,7 @@ La raison pour laquelle la casse~\footnote{La hauteur minuscule ou majuscule d'u
 % mots composants ces noms sont en capitales et forment les noms sans espaces comme
 % dans CamelCase (nom anglais de cette technique de formatage de nom).
 est que, conventionnellement les noms de protocoles sont tous en minuscules (et peuvent inclure des espaces); alors que les noms de cat\'egories utilisent un format d'\'ecriture en forme chameau comme par exemple AlanKay, LargePositiveInteger ou CamelCase (d'ailleurs CamelCase est le nom anglais de ce type de format de noms).
-\index{\`ecriture en chameau}
+\index{\'ecriture en chameau}
 \seeindex{CamelCase}{\'ecriture en chameau}
 %martial: au-dessus, dans la correction de rene, je n'ai mis
 %LargePositiveInteger a la place de SmallTalk parce que ce n'est pas
@@ -1326,12 +1326,12 @@ variables d'instance.}.
 Pour comprendre l'importance de l'explorateur, employons-le pour
 explorer une structure profonde imbriquant beaucoup d'objets.
 
-\dothis{Ouvrez un navigateur et cliquez deux fois avec le bouton droit
-de la souris ou \ind{bouton bleu} sur la colonne des m\'ethodes
-de mani\`ere \`a afficher le \emph{halo} morphique sur
+\dothis{Ouvrez un navigateur et cliquez deux fois avec le 
+\ind{bouton bleu} de la souris sur la colonne des m\'ethodes
+de mani\`ere \`a afficher le \emph{halo} Morphic sur
 le morph \ct{PluggableListMorph} qui est utilis\'e pour repr\'esenter
 la liste des messages.
-Cliquez avec le bouton gauche ou \ind{bouton rouge} sur l'ic\^one
+Cliquez avec le \ind{bouton rouge} sur l'ic\^one
 \emph{debug} \debugHandle{} et s\'electionnez dans le menu flottant
 \menu{explore morph}.  
 Ceci ouvrira un Explorer sur l'objet \clsind{PluggableListMorph} qui
@@ -1354,7 +1354,7 @@ reposent ce morph comme nous pouvons le voir sur
 \section{Debugger, le d\'ebogueur}
 \label{sec:debugger} % (fold)
 
-Le \ind{d\'ebogueur} \ind{Debugger} est sans conteste l'outil le plus
+Le \ind{débogueur} \ind{Debugger} est sans conteste l'outil le plus
 puissant dans la suite d'outils de \sq. 
 %is arguably the most powerful tool in the Squeak tool suite.
 Il est non seulement employ\'e pour d\'eboguer c'est-à-dire pour corriger les erreurs
@@ -2150,8 +2150,8 @@ programmatique en envoyant des messages \`a \ct{SystemNavigation default}.
   Un paquetage Monticello comprend une cat\'egorie-syst\`eme, des sous-cat\'egories et des protocoles de m\'ethodes associ\'es dans d'autres cat\'egories. 
   \item L'\emph{Inspector} et l'\emph{Explorer} sont deux outils utiles
 pour explorer et interagir avec les objets vivants dans votre image.
-Vous pouvez m\^eme inspecter des outils en cliquant via le bouton bleu 
-(bouton de droite) de la souris pour afficher leur \emph{halo}
+Vous pouvez m\^eme inspecter des outils en cliquant via le
+\ind{bouton bleu} de la souris pour afficher leur \emph{halo}
 et en s\'electionnant l'ic\^one
 % blue-clicking  
 \emph{debug}

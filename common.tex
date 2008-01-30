@@ -371,7 +371,7 @@ pdfsubject={Informatique, Computer Science}
 
 % [squeak-fr] Modification de \lct suivant les indications de Martial Boniou
 \newcommand{\lct}[1]{\textsf{\textup{\NoAutoSpaceBeforeFDP #1
-\AutoSpaceBeforeFDP}}\xspace}
+\AutoSpaceBeforeFDP}}} %\xspace
 
 % Use these for system categories and protocols:
 \newcommand{\scat}[1]{\emph{\textsf{#1}}\xspace}
@@ -472,6 +472,11 @@ pdfsubject={Informatique, Computer Science}
 \newcommand{\glbind}[1]{\index{#1@\textsf{#1} (globale)}\ct{#1}\xspace} % global
 \newcommand{\patind}[1]{\index{#1@#1 (patron)}\ct{#1}\xspace} % pattern
 \newcommand{\pvind}[1]{\index{#1@\textsf{#1} (pseudo-variable)}\ct{#1}\xspace} % pseudo variable
+% [squeak - fr]Martial: I found the following cleaner (should be
+% merged in SBE for self and super)
+\newcommand{\subpvindex}[2]{\index{#1@\textsf{#1} (pseudo-variable)!#2}}
+\newcommand{\subpvind}[2]{\index{#1@\textsf{#1} (pseudo-variable)!#2}#2\xspace}
+% used in Model.tex
 \newcommand{\mthind}[2]{\index{#1!#2@\ct{#2}}\ct{#2}\xspace} % show method name only
 \newcommand{\lmthind}[2]{\index{#1!#2@\ct{#2}}\lct{#2}\xspace} % show method name only
 \newcommand{\cmind}[2]{\index{#1!#2@\ct{#2}}\ct{#1>>>#2}\xspace} % show class>>method
@@ -518,9 +523,9 @@ pdfsubject={Informatique, Computer Science}
 %:Smalltalk macros
 %\newcommand{\sep}{{$\gg$}}
 \newcommand{\sep}{\mbox{>>}}
-\newcommand{\self}{\lct{self}\xspace}
-\newcommand{\super}{\lct{super}\xspace}
-\newcommand{\nil}{\lct{nil}\xspace}
+\newcommand{\self}{\ct{self}\xspace}
+\newcommand{\super}{\ct{super}\xspace}
+\newcommand{\nil}{\ct{nil}\xspace}
 %=============================================================
 % be less conservative about float placement
 % these commands are from http://www.tex.ac.uk/cgi-bin/texfaq2html?label=floats

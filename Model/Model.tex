@@ -800,7 +800,8 @@ n\'ecessaire.
 La sous-classe n'a pas \`a s'occuper d'initialiser les variables d'instance h\'erit\'ees!
 
 C'est une bonne pratique d'envoyer \ct{super initialize} avant tout autre consid\'eration lorsque nous cr\'eons une m\'ethode d'\ind{initialisation}:
-\index{super!initialize}
+\arevoir{}% subpvindex
+\subpvindex{super}{\ct{initialize}}
 
 \needlines{6}
 \begin{method}[morphinit]{Super initialize. Le commentaire dit: ``initialise l'\'etat du receveur''}
@@ -815,11 +816,11 @@ BorderedMorph>>>initialize
 %---------------------------------------------------------
 \subsection{Self et super}
 
-Nous avons besoin des \subind{super}{envoi}{}s sur \super pour 
+Nous avons besoin des \subpvind{super}{envoi}{}s sur \super pour 
 r\'eutiliser le comportement h\'erit\'e qui pourrait sinon \^etre
 surcharg\'e.
 Cependant, la technique habituelle de composition de m\'ethodes,
-h\'erit\'ees ou non, est bas\'ee sur l'\subind{self}{envoi} \`a
+h\'erit\'ees ou non, est bas\'ee sur l'\subpvind{self}{envoi} \`a
 \self.
 
 Comment l'envoi \`a \self diff\`ere de celle avec \super?
