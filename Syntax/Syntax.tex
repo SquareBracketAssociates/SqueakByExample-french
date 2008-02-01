@@ -43,8 +43,12 @@
 
 \sq, comme la plupart des dialectes modernes de \st, adopte une syntaxe proche de celle de \st-80.
 La \ind{syntaxe} est con\c{c}ue de telle sorte que le texte d'un
+<<<<<<< .mine
+programme lu \`{a} haute voix ressemble \`{a} de l'\emph{English pidgin} ou ``Anglais simplifié'':
+=======
 programme lu \`{a} haute voix ressemble \`{a} de l'anglais
   \emph{pidgin}:
+>>>>>>> .r15394
 
 \begin{code}{}
 (Smalltalk includes: Class) ifTrue: [ Transcript show: Class superclass ]
@@ -232,8 +236,8 @@ Dans l'expression \ct{2 raisedTo: 6 modulo: 10}, le \emphind{sélecteur
 \item[Les séquences d'instructions.]	Un point (\ct{.}) est le
   \emphsubind{instruction}{s\'{e}parateur} \emph{d'instructions}. Placer un point entre deux expressions les transforme en deux instructions ind\'{e}pendantes.	
 \seeindex{point}{s\'{e}parateur d'instructions}
-	\seeindex{point}{s\`{e}parateur d'instructions}
-	\seeindex{\ct{.}}{s\`{e}parateur d'instructions}
+	\seeindex{point}{s\'{e}parateur d'instructions}
+	\seeindex{\ct{.}}{s\'{e}parateur d'instructions}
 
 \item[Les cascades.] un point virgule peut \^{e}tre utilis\'{e} pour envoyer une \emphind{cascade} de messages \`{a} un receveur unique. Dans \ct{Transcript show: 'bonjour'; cr}, nous envoyons d'abord le message mot-cl\'{e} \ct{show: 'bonjour'} au receveur  \ct{Transcript}, puis nous envoyons au m\^{e}me receveur le message unaire \ct{cr}.
 	\seeindex{;}{cascade}
