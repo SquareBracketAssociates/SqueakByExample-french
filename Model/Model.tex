@@ -740,10 +740,10 @@ Morph>>>openInWorld
 
 Remarquez que \ct{EllipseMorph>>>defaultColor} (\mthref{defaultColor}) renvoie explicitement \ct{Color yellow} alors que \ct{Morph>>>openInWorld} (\mthref{openInWorld}) semble ne rien retourner.
 
-En r\'ealit\'e une m\'ethode renvoie \emph{toujours} un message avec une valeur\,---\,qui est, bien entendu, un objet.
-La r\'eponse peut \^etre d\'efinit par la construction en \ct{^} dans la m\'ethode, mais si l'ex\'ecution atteint la fin de la m\'ethode sans ex\'ecuter un \ct{^}, la m\'ethode retournera toujours une valeur: l'objet receveur lui-m\^eme.
-Nous disons habituellement que la m\'ethode ``renvoie \self'', parce qu'en
-\st la pseudo-variable \self repr\'esente le receveur du message. En \ind{Java}, nous utilisons \ct{this}.
+En r\'ealit\'e une m\'ethode renvoie \emph{toujours} une valeur\,---\,qui est, bien entendu, un objet.
+La r\'eponse peut \^etre explicitement d\'efinie par l'utilisation du symbole \ct{^} dans la m\'ethode. Si lors de l'ex\'ecution, on atteint la fin de la m\'ethode sans avoir rencontr\'e de \ct{^}, la m\'ethode retournera toujours une valeur: l'objet receveur lui-m\^eme.
+On dit habituellement que la m\'ethode ``renvoie \self'', parce qu'en
+\st la pseudo-variable \self repr\'esente le receveur du message. En \ind{Java}, on utilise le mot-cl\'e \ct{this}.
 \index{variable!pseudo}
 %\index{return}
 \index{renvoi}
