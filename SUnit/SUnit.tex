@@ -6,6 +6,7 @@
 % relu par Rene Mages (Fri Dec 21 8:57;55 CET 2007)
 % $Revision: 14579 $ (fusion le: Wed Dec 26 18:15:25 CET 2007)
 % relu par Rene Mages (Sun Jan 13 11:22:33 CET 2008)
+% relu par Martial Boniou (Mon Feb  4 17:35:46 CET 2008)
 %=================================================================
 \ifx\wholebook\relax\else
 % --------------------------------------------
@@ -431,8 +432,8 @@ Notez l'utilisation de la méthode \mthind{TestCase}{deny:} pour garantir que qu
 %---------------------------------------------------------
 %\subsection{Step 4: run the tests}
 \subsection{\'Etape 4: exécuter les tests}
-\aconfirmer{Le plus facile pour exécuter les tests est d'utiliser \emphind{l'évaluateur de tests} \sunit (\emph{TestRunner}), que vous pouvez ouvrir depuis le menu \menu{World \go open\,\ldots} ou en glissant le \menu{TestRunner} depuis la barre d'outils (\toolsflap).}
-L'évaluateur de tests, montré dans la \figref{test-runner}, est conçu pour faciliter l'exécution de groupes de tests.
+\aconfirmer{Le plus facile pour exécuter les tests est d'utiliser l'\emphind{exécuteur de tests} \sunit (\emph{TestRunner}), que vous pouvez ouvrir depuis le menu \menu{World \go open\,\ldots} ou en glissant le \menu{TestRunner} depuis la barre d'outils (\toolsflap).}
+L'exécuteur de tests, montré dans la \figref{test-runner}, est conçu pour faciliter l'exécution de groupes de tests.
 Le panneau le plus à gauche présente toutes les catégories système qui contiennent des classes de test (\ie  sous-classes de \ct{TestCase}). Lorsque certaines de ces catégories sont sélectionnées, les classes de test qu'elles contiennent apparaissent dans le panneau de droite. Les classes abstraites sont en italique et la hiérarchie des classes de test est visible par l'indentation, ainsi les sous-classes de  \ct{ClassTestCase} sont plus indentées que les sous-classes de \ct{TestCase}.
 % The easiest way to execute the tests is with the \sunit \emphind{Test Runner}, 
 % which you can open from the \menu{World \go open\,\ldots} menu, or by dragging the \menu{TestRunner} from the \toolsflap.
@@ -443,7 +444,7 @@ Le panneau le plus à gauche présente toutes les catégories système qui conti
 \begin{figure}[tbh]
   \begin{center}
 	\includegraphics[width=\linewidth]{test-runner}
-	\caption{\sunit, l'évaluateur de test de \sq.}
+	\caption{\sunit, l'exécuteur de test de \sq.}
 	\label{fig:test-runner}
   \end{center}
 \end{figure}
@@ -455,7 +456,7 @@ Le panneau le plus à gauche présente toutes les catégories système qui conti
 %   \end{center}
 % \end{figure}
 
-\dothis{Ouvrez un évaluateur de test, sélectionnez la catégorie \menu{MyTest} et cliquez le bouton \button{Run Selected}.}
+\dothis{Ouvrez un exécuteur de test, sélectionnez la catégorie \menu{MyTest} et cliquez le bouton \button{Run Selected}.}
 %\dothis{Open a Test Runner, select the category \menu{MyTest}, and click the \button{Run Selected} button.}
 
 Vous pouvez aussi exécuter votre test en évaluant un \menu{print it} sur le code suivant~: \ct{(ExampleSetTest selector: #testRemove) run}. L'expression suivante est équivalente mais plus concise~: \ct{ExampleSetTest run: #testRemove}. Il nous est habituel d'inclure un commentaire exécutable à notre méthode de test ce qui nous permet de les exécuter avec un \menu{do it} depuis le \ct{System Browser}, comme il est montré dans \mthref{ExampleSetTestTestRemoveii}.
@@ -517,7 +518,7 @@ test est réussi; quand cet argument est à faux (\ct{false}), le test échoue.
 
 Il y a actuellement trois résultats possibles pour un test. Le
 résultat espéré est que toutes les assertions du test soient vraies,
-dans ce cas le test réussit. Dans l'évaluateur de tests
+dans ce cas le test réussit. Dans l'exécuteur de tests
 (\ct{TestRunner}), quand tous les tests réussissent, la barre du haut
 devient verte. Pourtant, il reste deux possibilités pour que quelque
 chose se passe mal quand vous évaluez le test. Le plus évident est
@@ -530,7 +531,7 @@ d'\emph{indice hors limites}.
 
 Si une erreur survient, les assertions de la méthode de test peuvent ne pas avoir été exécutées du tout, ainsi nous ne pouvons pas dire que le test a échoué. 
 Toutefois, quelque chose est clairement faux~!
-Dans l'évaluateur de tests (\ct{TestRunner}), la barre du haut devient jaune pour les tests en échec et ces tests sont listés dans le panneau du milieu à droite, alors que pour les tests erronés, la barre devient rouge et ces tests sont listés dans le panneau en bas à droite.
+Dans l'exécuteur de tests (\ct{TestRunner}), la barre du haut devient jaune pour les tests en échec et ces tests sont listés dans le panneau du milieu à droite, alors que pour les tests erronés, la barre devient rouge et ces tests sont listés dans le panneau en bas à droite.
 % There are actually three possible outcomes of a test.
 % The outcome that we hope for is that all of the assertions in the test are true, in which case the test passes.
 % In the test runner, when all of the tests pass, the bar at the top turns green.
@@ -607,7 +608,7 @@ ExampleSetTest>>>testIllegal
 %---------------------------------------------------------
 %\subsection{Running a single test}
 \subsection{Exécuter un test simple}
-Normalement, vous exécuterez vos tests avec l'évaluateur de tests (\ct{TestRunner}). Si vous ne voulez pas lancer l'évaluateur de tests depuis le menu \menu{open\,\ldots} ou depuis \toolsflap, vous pouvez évaluer  \ct{TestRunner open} à l'aide d'un \menu{print it}.
+Normalement, vous exécuterez vos tests avec l'exécuteur de tests (\ct{TestRunner}). Si vous ne voulez pas lancer l'exécuteur de tests depuis le menu \menu{open\,\ldots} ou depuis \toolsflap, vous pouvez évaluer  \ct{TestRunner open} à l'aide d'un \menu{print it}.
 \index{Tools flap}
 
 Vous pouvez exécuter un simple test de la façon suivante:
@@ -731,7 +732,9 @@ réalisable
 % plutôt que praticable 
 de le faire avant l'exécution de chaque test. De plus, si nous savons que les tests n'altèrent pas les ressources qu'ils utilisent, alors il est prohibitif de les initialiser pour chaque test; il est suffisant de les initialiser une seule fois pour chaque suite de tests. Supposez, par exemple, qu'une suite de tests ait besoin d'interroger une base de données ou d'effectuer certaines analyses sur du code compilé.
 % rene : elle est censée (car c'est la suite de tests)
-Pour ces situations, elle est censée initialiser et ouvrir une connexion vers la base de données ou compiler du code source avant l'évaluation des tests.
+Pour ces situations, elle est censée initialiser et ouvrir une
+connexion vers la base de données ou compiler du code source avant
+l'exécution des tests.
 % However, there are occasions where setting up the necessary context is just too time-consuming for it to be practical to do it once before the execution of each test.
 % Moreover, if it is known that the test cases do not disrupt the resources used by the tests, then it is wasteful to set them up afresh for each test; it is sufficient to set them up once for each suite of tests.
 % Suppose, for example, that a suite of tests need to query a database, or do some analysis on some compiled code.
@@ -822,7 +825,7 @@ En plus de \ct{TestResource}, la version courante de \sunit dispose de la descri
 %\subsection{Assertion description strings}
 \label{sec:descriptionStrings}
 
-Le protocole des assertions de \ct{TestCase} comprend un certain nombre de méthodes permettant au programmeur de fournir une description de l'assertion. La description est une chaîne de caractères; si le test échoue, cette chaîne est affichée par l'évaluateur de tests. Bien sûr, cette chaîne peut être construite dynamiquement.
+Le protocole des assertions de \ct{TestCase} comprend un certain nombre de méthodes permettant au programmeur de fournir une description de l'assertion. La description est une chaîne de caractères; si le test échoue, cette chaîne est affichée par l'exécuteur de tests. Bien sûr, cette chaîne peut être construite dynamiquement.
 % The \ct{TestCase} assertion protocol includes a
 % number of methods that allow the programmer to supply a description of the assertion.  The description is a \ct{String}; if the test case
 % fails, this string will be displayed by the test runner.  Of
@@ -1621,7 +1624,7 @@ Ensuite, nous avons décrit simplement le c{\oe}ur de l'environnement \sunit en 
 \item Initialisez vos données de test dans une méthode \ct{setUp}.
 \item Chaque méthode de test devrait commencer par le mot ``\ct{test}''.
 \item Utilisez les méthodes de \ct{TestCase} comme \ct{assert:}, \ct{deny:} et autres, pour établir vos assertions.
-\item Exécutez les tests en utilisant l'évaluateur de tests \sunit (dans \toolsflap).
+\item Exécutez les tests en utilisant l'exécuteur de tests \sunit (dans \toolsflap).
 %   \item To maximize their potential, unit tests should be fast, repeatable, independent of any direct human interaction and cover a single unit of functionality.
 %   \item Tests for a class called \ct{MyClass} belong in a class classed \ct{MyClassTest}, which should be introduced as a subclass of \lct{TestCase}.
 %   \item Initialize your test data in a \ct{setUp} method.
