@@ -7,9 +7,9 @@
 %% Maintainer: Martial Boniou
 %% Created: 2007-11-09 08:07:45 +0100 (Fri, 09 Nov 2007)
 %% Version: 13642
-%% Last-Updated: Tue Dec 25 12:34:19 2007 (3600 CET)
+%% Last-Updated: Tue Feb  5 14:53:54 2008 (3600 CET)
 %%           By: Martial Boniou
-%%     Update #: 756
+%%     Update #: 760
 %% URL:
 %% https://www.iam.unibe.ch/scg/svn_repos/SqueakByExample/FrenchBook/Morphic/Morphic.tex
 %% Review: Rene Mages - Fri Dec 21 22:18:36 2007 (3600 CET)
@@ -368,6 +368,7 @@ appelons la \emph{composition}; les morphs peuvent \^etre compos\'es
 Pour ce faire, vous pouvez envoyer au morph contenant le message
 \mthind{Morph}{addMorph:}. %container
 \index{morph!composer}
+\seeindex{morph!sous-morph}{sous-morph}
 %
 %To create new morphs, there are two main techniques that you can combine:
 %\begin{enumerate}
@@ -797,11 +798,12 @@ Ce message assure que Morphic envoie \ct{drawOn:}
 %in a timely fashion
 de fa\c{c}on assez rapide.
 \ab{However, the \ct{self changed} message seems to be entirely unnecessary; the colour changes instantly without it.}
-Notez aussi qu'une fois qu'un morph g\`ere les \ind{\'ev\'enements souris}, vous ne pouvez plus l'attraper avec la souris pour le d\'eplacer.
+Notez aussi qu'une fois qu'un morph g\`ere les événements \subind{événement}{souris}, vous ne pouvez plus l'attraper avec la souris pour le d\'eplacer.
 D\`es lors, vous devez utiliser le halo Morphic en cliquant dessus avec le
 bouton bleu: les poign\'ees sup\'erieurs noir \grabHandle{}
 et marron \moveHandle{} 
 vous permettent respectivement de prendre et d\'eplacer ce morph.
+\seeindex{souris!événement}{événement, souris}
 
 L'argument \ct{anEvent} de \ct{mouseDown:} est une instance de
 \mbox{\clsind{MouseEvent},} sous-classe de \ct{MorphicEvent}.
@@ -815,7 +817,7 @@ des \'ev\'enements souris.
 
 \subsection{Les \'ev\'enements clavier}
 
-La capture des \ind{\'ev\'enements clavier} se d\'eroule en trois
+La capture des événements \subind{événement}{clavier} se d\'eroule en trois
 \'etapes. Morphic devra:
 
 %modification
@@ -1321,7 +1323,7 @@ envoie le message construit \`a partir d'une cha\^{\i}ne de
 caract\`eres \ct{('face', dieValue asString) asSymbol}.
 Cet usage de la m\'ethode \ct{perform:} est tr\`es fr\'equent.
 
-\index{r\'efl\'ectivit\'e}
+\index{réfléctivité}
 \begin{method}{Dessiner un simple point noir sur une face}
 DieMorph>>>drawDotOn: aCanvas at: aPoint
 	aCanvas

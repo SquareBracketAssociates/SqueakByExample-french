@@ -117,7 +117,7 @@ toutes les modifications apportées au code source; elles y sont journalisées.
 \end{enumerate}
 
 \dothis{Téléchargez et installez \sq sur votre ordinateur.}
-\index{t\'el\'echargement}
+\index{téléchargement}
 
 %The version of \sq that we have used for developing the examples in this book is \emphind{Squeak-dev}, available from \url{http://damien.cassou.free.fr/squeak-dev}.
 %\label{sec:squeakDev}
@@ -147,7 +147,7 @@ Faire une copie de sauvegarde de vos images téléchargées et de vos
 fichiers \emph{changes} est une bonne id\'ee; vous pourrez ainsi
 toujours démarrer à partir d'une image propre et y recharger votre code.
 
-Les fichiers \emphind{sources} et l'exécutable de la VM peuvent être
+Les fichiers \emphind{source}{}\emph{s} et l'exécutable de la VM peuvent être
 en lecture seule\,---\,il est donc possible de les partager entre plusieurs utilisateurs.
 Ces quatre fichiers peuvent résider dans le même dossier, mais vous pouvez également placer la machine virtuelle et les fichiers sources dans un dossier partagé distinct.
 Vous pouvez adapter l'installation de \sq à vos habitudes de travail
@@ -317,10 +317,8 @@ rendre une pression sur \ct{alt} \'equivalente à une pression sur \ct{ctrl}.
 
 \dothis{Cliquez avec le bouton rouge dans l'arrière plan de \sq.}
 Le menu \menu{World} apparaît à nouveau.
-La plupart des menus de \sq ne sont pas modaux, tout comme, par
-%ajout par mathieu; correct
-exemple, une fenêtre de dialogue pour la sauvegarde d'un fichier que
-vous devez soit compléter, soit annuler, sans pouvoir travailler en même temps dans l'application. 
+La plupart des menus de \sq ne sont pas modaux; ils ne bloquent pas
+le système dans l'attente d'une réponse.
 Avec \sq vous pouvez maintenir ces menus sur l'écran en cliquant sur
 l'icône en forme d'épingle au coin supérieur droit. Essayez! Vous
 remarquerez que les menus apparaissent  quand  vous cliquez  mais ne
@@ -434,11 +432,11 @@ peut-être avoir besoin de faire plusieurs tentatives car le \blobmorph
 se déplace et peut fuir votre souris et vous empêcher de cliquer à
 l'endroit attendu).
 %(index Morphic vs halo) a revoir?
-\seeindex{poign\'ee}{halo, poign\'ee}
-\seeindex{Morphic!poign\'ee}{halo, poign\'ee}
-\seeindex{ic\^one}{halo, ic\^one}
-\seeindex{halo!ic\^one}{halo, poign\'ee}
-\seeindex{Morphic!ic\^one}{halo, ic\^one}
+\seeindex{poignée}{halo, poignée}
+\seeindex{Morphic!poignée}{halo, poignée}
+\seeindex{icône}{halo, icône}
+\seeindex{halo!icône}{halo, poignée}
+\seeindex{Morphic!icône}{halo, icône}
 \seeindex{halo}{Morphic, halo}
 
 \begin{figure}[htb]
@@ -564,12 +562,16 @@ pour r\'epondre \`a votre message.
 
 Si vous voulez \'evaluer une expression, vous n'avez pas besoin de
 toujours passer par le menu accessible via le bouton jaune: les
-\ind{raccourcis-clavier} sont l\`a pour vous. Ils sont mentionn\'es
+raccourcis-clavier sont l\`a pour vous. Ils sont mentionn\'es
 dans les expressions parenth\'es\'ees des options des menus. Selon
 votre plateforme, vous pouvez \^etre amen\'e \`a presser l'une des
 touches de modifications soit \texttt{Control}, \texttt{Alt},
 \texttt{Command} ou \texttt{Meta} (nous les indiquerons de mani\`ere
 g\'en\'erique par \short{\emph{touche}}).
+\index{raccourci-clavier}
+\seeindex{clavier!raccourci-clavier}{raccourci-clavier}
+\seeindex{clavier!événement}{événement, clavier} % martial: pour
+                                % Morphic surtout
 
 \dothis{R\'e\'evaluez l'expression dans le Workspace en utilisant
   cette fois-ci le raccourci-clavier: \short{d}.}
@@ -685,11 +687,11 @@ cette classe et naviguer facilement dans toutes ses parties.
 \index{SqueakMap}
 
 %web-based catalogue
-\sqmap est un catalogue web des ``\ind{package}{}s'' ou
-paquetages\,---\,applications et biblioth\`eques de programmes (dites
+\sqmap est un catalogue web des ``packages'' ou
+\ind{paquetage}{}s\,---\,applications et biblioth\`eques de programmes (dites
 aussi librairies)\,---\,que vous pouvez t\'el\'echarger dans votre
 image.
-Les \ind{paquetage}{}s sont h\'eberg\'es sur de nombreux serveurs de
+Les paquetages sont h\'eberg\'es sur de nombreux serveurs de
 par le monde et sont maintenus par un grand nombre de personnes. Certains de ces paquetages ne fonctionnent que sur une version spécifique de \sq.
 \lr{Maybe mention Package Universes (SqueakMap is not maintained anymore)}
 
@@ -753,12 +755,15 @@ outils-cl\'e pour programmer.
 Comme nous le verrons bient\^ot, il y a plusieurs navigateurs ou
 \emph{browsers} int\'eressants disponibles pour \sq, mais c'est le
 plus simple que vous pourrez trouver dans n'importe quelle image, que nous allons utiliser ici.
-\seeindex{navigateur de classe}{System Browser}
-\seeindex{Class Browser}{System Browser}
+\seeindex{navigateur de classes}{System Browser}
 \seeindex{browser}{System Browser}
 
 \dothis{Ouvrir un navigateur de classes en s\'electionnant \menu{World
-    \go{} open\ldots \go Class Browser} ou en faisant un
+    \go{} open\ldots \go class browser}~\footnote{NdT: suivant les
+    versions de Squeak, vous pouvez aussi lire: ``browser'' ou
+    ``system browser''. L'option ``class browser'' (\ie navigateur de
+    classes) pointe par défaut vers le modèle de navigateur nommé
+    System Browser.} ou en faisant un
   gliss\'e-d\'epos\'e de l'ic\^one Browser depuis \toolsflapind.}
 
 \begin{figure}[htb]
@@ -778,7 +783,7 @@ classe \clsind{Object}.
 le premier \`a gauche.
 Ce premier panneau liste toutes les \emph{cat\'egories-syst\`eme}
 connues; elles groupent des classes qui ont à voir entre elles.
-\index{cat\'egorie}
+\index{catégorie}
 
 \dothis{Cliquez sur la cat\'egorie \scatind{Kernel-Objects}.}
 Cette manipulation permet l'affichage de toutes les
@@ -951,9 +956,9 @@ est l'anglais et que \emph{maintenant} se dit ``now'', une m\'ethode
 contenant le mot ``now'' a de forte chance d'exister.
 Mais o\`u pourrait-elle \^etre?
 L'outil \emphind{Method Finder} peut vous aider \`a la trouver.
-\seeindex{System Browser!trouver une m\'ethode}{m\'ethode, recherche}
-\index{m\'ethode!recherche}
-\seeindex{m\'ethode!trouver}{m\'ethode, recherche}
+\seeindex{System Browser!trouver une méthode}{méthode, recherche}
+\index{méthode!recherche}
+\seeindex{méthode!trouver}{méthode, recherche}
 
 \dothis{Faites un gliss\'e-d\'epos\'e de l'ic\^one \menu{Method
     Finder} depuis  \toolsflapind.
@@ -1024,7 +1029,7 @@ panneau inf\'erieure vous en apprendra plus.
 
 %=================================================================
 \section{D\'efinir une nouvelle m\'ethode}
-\seeindex{d\'eveloppement orient\'e tests}{Test Driven Development}
+\seeindex{développement orienté tests}{Test Driven Development}
 L'av\`enement de la m\'ethodologie de d\'eveloppement orient\'e tests
 ou \emphind{Test Driven Development}\cite{Beck03a} a chang\'e la
 fa\c{c}on d'\'ecrire du code.
@@ -1035,7 +1040,7 @@ du test qui d\'efini le comportement d\'esir\'e de notre
 code \emph{avant} celle du code proprement dit.
 \`A partir de l\`a seulement, nous \'ecrivons le code qui satisfait au
 test.
-\seeindex{mod\`ele centr\'e sur le comportement}{Test Driven Development} 
+\seeindex{développement dirigé par le comportement}{Test Driven Development} 
 \seeindex{Behavior Driven Development}{Test Driven Development}
 \orla{describe the technique where we write a test hat
   ... subsequently we write ...}
@@ -1062,7 +1067,7 @@ devrait \^etre ``PAS DE PANIQUE!''.
 Pour faire de cet exemple quelque chose que le syst\`eme peut
 utiliser, nous le transformons en m\'ethode de test:
 \index{test}
-\seeindex{testing}{test}
+%\seeindex{testing}{test}
 \index{SUnit}
 
 \needlines{3}
@@ -1109,7 +1114,7 @@ s\'electionnez \menu{accept (s)} via le menu activ\'e par le
 \index{raccourci-clavier!accept}
 \seeindex{accept it}{raccourci-clavier, accept}
 %ajout
-\seeindex{m\'ethode!accepter}{raccourci-clavier, accept}
+\seeindex{méthode!accepter}{raccourci-clavier, accept}
 
 Puisqu'il n'y a pas encore de m\'ethode nomm\'ee \ct{shout}, le System
 Browser vous demandera confirmation que c'est bien le nom que vous
@@ -1231,8 +1236,8 @@ envoy\'e.
 Le $\uparrow$ dit \`a \sq que l'expression qui suit est la r\'eponse
 que la m\'ethode doit retourner; dans notre cas, il s'agit de la
 nouvelle cha\^{\i}ne concat\'en\'ee.
-\seeindex{virgule}{Collection, op\'erateur virgule}
-\index{Collection!op\'erateur virgule}
+\seeindex{virgule}{Collection, opérateur virgule}
+\index{Collection!opérateur virgule}
 
 Est-ce que cette m\'ethode fonctionne? Lan\c{c}ons tout simplement
 notre test afin de le savoir.
@@ -1294,9 +1299,12 @@ syntaxe sans que vous puissiez encore la comprendre suffisamment \`a ce stade.
   \item Un \emph{Workspace} ou espace de travail est un outil
     destin\'e \`a \'ecrire et \'evaluer des fragments de code. Vous
     pouvez aussi l'utiliser pour y stocker un texte quelconque.
-  \item Vous pouvez utiliser des \ind{raccourcis-clavier} sur du texte
+  \item Vous pouvez utiliser des raccourcis-clavier sur du texte
     dans un Workspace ou tout autre outil pour en
-    \'evaluer le code. Les plus importants sont \menu{do it} (\short{d}), \menu{print it} (\short{p}), \menu{inspect it} (\short{i}) et \menu{explore it} (\short{I}).
+    \'evaluer le code. Les plus importants sont \menu{do it}
+    (\short{d}), \menu{print it} (\short{p}), \menu{inspect it}
+    (\short{i}) et \menu{explore it} (\short{I}).
+\index{raccourci-clavier}
   \item \sqmap est un outil pour t\'el\'echarger des paquetages utiles
     depuis Internet.
   \item Le navigateur de classes \emph{System Browser} est le

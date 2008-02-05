@@ -163,7 +163,7 @@ TranslucentColor superclass --> Color
 Color superclass                   --> Object
 \end{code}
 
-Comme tout se produit par \ind{envoi de message}{}s (\ref{rule:message}), nous pouvons en déduire que \mthind{Color class}{blue} est un message à destination de \ct{Color}; \mthind{Object}{class} et \mthind{Color}{alpha:} sont des messages à destination de la couleur bleue; \mthind{Morph}{openInWorld} est un message à destination d'une ellipse morph et \mthind{Behavior}{superclass} est un message à destination de \ct{TranslucentColor} et \ct{Color}.
+Comme tout se produit par \subind{message}{envoi} de messages (\ref{rule:message}), nous pouvons en déduire que \mthind{Color class}{blue} est un message à destination de \ct{Color}; \mthind{Object}{class} et \mthind{Color}{alpha:} sont des messages à destination de la couleur bleue; \mthind{Morph}{openInWorld} est un message à destination d'une ellipse morph et \mthind{Behavior}{superclass} est un message à destination de \ct{TranslucentColor} et \ct{Color}.
 Dans chaque cas, le receveur est un objet puisque \mantra bien que certains de ces objets soient aussi des classes.
 
 La recherche de méthodes suit la chaîne d'héritage (\ref{rule:lookup}), donc quand nous envoyons le message \ct{class} au résultat de 
@@ -178,7 +178,7 @@ La recherche de méthodes suit la chaîne d'héritage (\ref{rule:lookup}), donc 
 \end{figure}
 \end{center}
 
-Cette figure capture l'essence de la relation \emphind{est-un}{}(e).
+Cette figure capture l'essence de la relation \emphind{est un}{}(e).
 Notre objet bleu translucide \emphind{est un}{}e instance de
 \ct{TranslucentColor}, mais nous pouvons aussi dire qu'il
 \emph{est un}{}e  \ct{Color} et qu'il \emph{est un} \ct{Object}, puisqu'il répond aux messages définis dans toutes ces classes.
@@ -331,9 +331,9 @@ de  la classe \ct{Color}, comme indiqu\'e dans \figref{inspectingColor}.
 \section{Toute m{\'e}ta-classe h{\'e}rite de \ct{Class} et de \ct{Behavior}}
 % \ruleref{behavior}
 
-Toute \ind{méta-classe} \emphind{est-un}{}e classe, donc hérite de \clsind{Class}.
+Toute \ind{méta-classe} \emphind{est un}{}e classe, donc hérite de \clsind{Class}.
 À son tour, \ct{Class} hérite de ses super-classes, \clsind{ClassDescription} et \clsind{Behavior}.
-En \st, puisque tout \emph{est-un} objet, ces classes héritent finalement toutes de \ct{Object}.
+En \st, puisque tout \emph{est un} objet, ces classes héritent finalement toutes de \ct{Object}.
 Nous pouvons voir le schéma complet dans \figref{inheritbehavior}.
 
 \begin{center}

@@ -85,7 +85,7 @@ Si nous naviguons dans les cat\'egories des m\'ethodes d'instance de \ct{Object}
 %-----------------------------------------------------------------
 %titre de sous-section = mot-cle sans article
 \subsection{Impression}
-Tout objet en \st peut renvoyer une forme imprim\'ee de lui-m\^eme. Vous pouvez s\'electionner n'importe quelle expression dans un Workspace et s\'electionner le menu \menu{print it}: ceci ex\'ecute l'expression et demande \`a l'objet renvoy\'e de s'imprimer. En r\'ealit\'e le message \ct{printString} est envoy\'e \`a l'objet retourn\'e. La m\'ethode \mthind{Object}{printString}, qui est une \ind{m\'ethode g\'en\'erique}, envoie le message \mthind{Object}{printOn:} \`a son receveur. Le message \ct{printOn:} est un point d'entr\'ee qui peut \^etre sp\'ecialis\'e. 
+Tout objet en \st peut renvoyer une forme imprim\'ee de lui-m\^eme. Vous pouvez s\'electionner n'importe quelle expression dans un Workspace et s\'electionner le menu \menu{print it}: ceci ex\'ecute l'expression et demande \`a l'objet renvoy\'e de s'imprimer. En r\'ealit\'e le message \ct{printString} est envoy\'e \`a l'objet retourn\'e. La m\'ethode \mthind{Object}{printString}, qui est une \ind{méthode générique}, envoie le message \mthind{Object}{printOn:} \`a son receveur. Le message \ct{printOn:} est un point d'entr\'ee qui peut \^etre sp\'ecialis\'e. 
 
 %martial: il faudra peut-etre ajouter une remarque et un lien pour
 %expliquer pourquoi 'a' ou 'an' (article indefini). Dans le chapitre
@@ -129,7 +129,14 @@ TTCFont allInstances anyOne printString --> 'TTCFont(BitstreamVeraSans 6 Bold)'
 Notez que le message \ct{printOn:} n'est pas le m\^eme que \mthind{Object}{storeOn:}. Le message \ct{storeOn:} ajoute au flux pass\'e en argument une expression pouvant \^etre utilis\'ee pour recr\'eer le receveur. Cette expression est \'evalu\'ee quand le flux est lu avec le message \ct{readFrom:}. \ct{printOn:} retourne simplement une version textuelle du receveur. Bien s\^ur, il peut arriver que cette repr\'esentation textuelle puisse repr\'esenter le receveur sous la forme d'une expression auto-\'evalu\'ee.
 
 \paragraph{Un mot \`a propos de la repr\'esentation et de la repr\'esentation auto-\'evalu\'ee.}
-En programmation fonctionnelle, les expressions retournent des valeurs quand elles sont \'evalu\'ees. En \st, les messages (expressions) retournent des objets (valeurs). Certains objets ont la propri\'et\'e sympathique d'\^etre eux-m\^emes leur propre valeur. Par exemple, la valeur de l'objet \ct{true} est lui-m\^eme, \ie l'objet \ct{true}. Nous appelons de tels objets des \emphind{objets auto-\'evalu\'es}. Vous pouvez voir une version  \emph{imprim\'ee} de la valeur d'un objet quand vous imprimez l'objet dans un \ct{Workspace}. Voici quelques exemples de telles expressions auto-\'evalu\'ees. 
+En programmation fonctionnelle, les expressions retournent des valeurs
+quand elles sont \'evalu\'ees. En \st, les messages (expressions)
+retournent des objets (valeurs). Certains objets ont la propri\'et\'e
+sympathique d'\^etre eux-m\^emes leur propre valeur. Par exemple, la
+valeur de l'objet \ct{true} est lui-m\^eme, \ie l'objet
+\ct{true}. Nous appelons de tels objets des \emph{objets}
+\emphsubind{objet}{auto-évalué}{}\emph{s}. 
+Vous pouvez voir une version  \emph{imprimée} de la valeur d'un objet quand vous imprimez l'objet dans un \ct{Workspace}. Voici quelques exemples de telles expressions auto-\'evalu\'ees. 
 
 \begin{code}{@TEST}
 true     --> true
@@ -143,13 +150,17 @@ non suivant les objets qu'ils contiennent. Par exemple, un tableau de
 bool\'eens est auto-\'evalu\'e alors qu'un tableau de personnes ne
 l'est pas. Dans \sq 3.9, un m\'ecanisme a \'et\'e introduit (via le
 message \mthind{Object}{isSelfEvaluating}) pour imprimer autant que
-possible des collections dans leur forme auto-\'evalu\'ee. Ceci est particuli\`erement vrai pour les tableaux dynamiques. L'exemple suivant montre qu'un tableau \subind{Array}{dynamique} est auto-\'evalu\'e seulement si ses \'el\'ements le sont:
+possible des collections dans leur forme auto-\'evalu\'ee. Ceci est
+particuli\`erement vrai pour les tableaux dynamiques. L'exemple
+suivant montre qu'un tableau \subind{tableau}{dynamique} est auto-\'evalu\'e seulement si ses \'el\'ements le sont:
 \begin{code}{@TEST}
 {10@10. 100@100}          --> {10@10. 100@100}
 {Browser new . 100@100}    --> an Array(a Browser 100@100)
 \end{code}
 
-Rappelez-vous que les tableaux \subind{Array}{litt\'eraux} ne peuvent contenir que des litt\'eraux. Ainsi le tableau suivant ne contient pas deux \'el\'ements mais six \'el\'ements litt\'eraux.
+Rappelez-vous que les tableaux littéraux ne peuvent contenir que des litt\'eraux. Ainsi le tableau suivant ne contient pas deux \'el\'ements mais six \'el\'ements litt\'eraux.
+\index{littéral!tableau}
+\seeindex{tableau!littéral}{littéral, tableau}
 \begin{code}{@TEST}
 #(10@10 100@100) --> #(10 #@ 10 100 #@ 100)
 \end{code}
@@ -527,7 +538,7 @@ Behavior>>>new
 \end{method}
 \cmindex{Behavior}{new}
 
-Ceci signifie qu'en surchargeant simplement la \ind{m\'ethode g\'en\'erique} \ct{initialize}, les nouvelles instances de votre classe seront automatiquement initialis\'ees. La m\'ethode \ct{initialize} devrait normalement ex\'ecuter \ct{super initialize} pour \'etablir les \subind{class}{invariants} de la classe pour toutes les variables d'instance h\'erit\'ees.
+Ceci signifie qu'en surchargeant simplement la méthode \subind{méthode}{générique} \ct{initialize}, les nouvelles instances de votre classe seront automatiquement initialis\'ees. La m\'ethode \ct{initialize} devrait normalement ex\'ecuter \ct{super initialize} pour \'etablir les \subind{classe}{invariant}{}s de la classe pour toutes les variables d'instance h\'erit\'ees.
 Notons que ceci n'est \emph{pas} le comportement standard dans les autres \st{}s.
 
 %=================================================================
@@ -890,7 +901,7 @@ Bien que \ct{String} n'h\'erite pas de \clsind{Magnitude}, la classe supporte le
 
 Si vous avez besoin d'un meilleur support pour les expressions r\'eguli\`eres, plusieurs impl\'ementations sont disponibles, comme le paquetage Regex de  Vassili Bykov.
 \index{Bykov, Vassili}
-\index{paquetage pour les expressions r\'eguli\`eres}
+\index{paquetage!expressions régulières}
 
 Les cha\^{\i}nes de caract\`eres supportent un grand nombre de
 m\'ethodes de conversion. Beaucoup sont des constructeurs-raccourci
@@ -924,7 +935,7 @@ collections, rendez-vous au chapitre \ref{cha:collections}.
 La classe \clsindmain{Boolean} offre un aper\c{c}u fascinant de la
 mani\`ere dont \st est construit autour de la biblioth\`eque de classes. 
 %how much of the \st language has been pushed into the class library. 
-\ct{Boolean} est la super-classe \subind{class}{abstraite} des classes
+\ct{Boolean} est la super-classe \subind{classe}{abstraite} des classes
 singletons (de patron \patind{Singleton}): \clsindmain{True} et \clsindmain{False}.
 
 \begin{figure}[ht]

@@ -192,7 +192,7 @@ aux messages \ct{x} et \ct{y}, le code de la \mthref{dist:} fonctionnera toujour
 %---------------------------------------------------------
 \subsection{Les m\'ethodes}
 
-Toutes les m\'ethodes sont \subind{m\'ethodes}{publiques}~\footnote{En fait, presque toute.  En \squeak, des m\'ethodes dont les s\'electeurs commencent par
+Toutes les m\'ethodes sont \subind{m\'ethode}{publique}{}s~\footnote{En fait, presque toute.  En \squeak, des m\'ethodes dont les s\'electeurs commencent par
 la cha\^{\i}ne de caract\`eres \ct{pvt} sont priv\'ees: un message \ct{pvt}
 ne peut \^etre envoy\'e qu'\`a \self \emph{uniquement}.  N'importe comment, les m\'ethodes \ct{pvt} sont tr\`es peu utilis\'ees.}.
 Les m\'ethodes sont regroup\'ees en protocoles qui indique leur objectif.
@@ -823,10 +823,11 @@ h\'erit\'ees ou non, est bas\'ee sur l'\subpvind{self}{envoi} \`a
 
 Comment l'envoi \`a \self diff\`ere de celle avec \super?
 Comme \self, \super repr\'esente le receveur du message.
-La seule diff\'erence est dans la \subind{recherche}{m\'ethode} de recherche.
+La seule diff\'erence est dans la méthode de \subind{méthode}{recherche}.
 Au lieu de faire partir la recherche depuis la classe du receveur,
 celle-ci d\'emarre dans la super-classe de la m\'ethode dans laquelle
 l'envoi \`a \super se produit. 
+\seeindex{recherche!méthode}{méthode, recherche}
 
 Remarquez que \super n'est \emph{pas} la super-classe!
 C'est une erreur courante et normale que de le penser.
@@ -947,7 +948,7 @@ de lever une erreur lui-m\^eme!
 \section{Les variables partag\'ees}
 
 Maintenant, int\'eressons-nous \`a un aspect de \st que nous n'avons pas couvert
-par nos cinq r\`egles: les variables \subind{variable}{partag\'ee}{}s.
+par nos cinq r\`egles: les variables \subind{variable}{partagée}{}s.
 
 \st offre trois sortes de variables partag\'ees: (1) les variables \emph{globales}; (2) les \emph{variables de classe} partag\'ees entre les instances et les classes, et (3) les variables partag\'ees parmi un groupe de classes ou \emph{variables de pool}.  Les noms de toutes ces variables partag\'ees commencent par une lettre capitale (majuscule), pour nous informer qu'elles sont partag\'ees entre plusieurs objets.
 \index{variable!globale}

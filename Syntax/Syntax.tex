@@ -66,13 +66,15 @@ Les expressions sont compos\'{e}es des blocs constructeurs suivants:
 \begin{enumerate}[label=(\small\itshape\roman{*}), ref=(\small\itshape\roman{*})]
 \item six mots-cl\'{e}s r\'{e}serv\'{e}s ou \emph{pseudo-variables}:
 \pvind{self}, \pvind{super}, \pvind{nil}, \pvind{true}, \pvind{false}, and \pvind{thisContext};
-\item des expressions constantes pour des \emphind{objets litt\'{e}raux} comprenant les nombres, les caract\`{e}res, les chaînes de caract\`{e}res, les symboles et les tableaux;
+\item des expressions constantes pour des \emph{objets littéraux} comprenant les nombres, les caract\`{e}res, les chaînes de caract\`{e}res, les symboles et les tableaux;
 \item des d\'{e}clarations de variables;
 \item des affectations;
-\item des \ind{bloc}{}s ou fermetures lexicales -- \ind{closures} en anglais -- et;
+\item des \ind{bloc}{}s ou fermetures lexicales -- \emph{block closures} en anglais -- et;
 \item des messages.
 \end{enumerate}
+\index{littéral!objet}
 \seeindex{pseudo-variable}{variable, pseudo}
+\seeindex{objet!littéral}{littéral, objet}
 
 %:FIGURE -- Squeak Syntax in a Nutshell
 \begin{table}\centering
@@ -119,7 +121,9 @@ Les expressions sont compos\'{e}es des blocs constructeurs suivants:
 Dans \tabref{syntax}, nous pouvons voir des exemples divers d'\'{e}l\'{e}ments syntaxiques.
 \begin{description}
 \item[Les variables locales.] \ct{startPoint} est un nom de variable ou identifiant.
-Par convention, les identifiants sont compos\'{e}s de mots au format d'écriture \emph{casse chameau} (``\ind{camelCase}'') (\ie chaque mot except\'{e} le premier d\'{e}bute par une lettre majuscule).
+Par convention, les identifiants sont compos\'{e}s de mots au format
+d'écriture \emph{casse chameau} (``\ind{camelCase}''): chaque mot
+except\'{e} le premier d\'{e}bute par une lettre majuscule.
 La premi\`{e}re lettre d'une variable d'instance, d'une m\'{e}thode ou d'un bloc argument ou d'une variable temporaire doit \^{e}tre en minuscule.
 Ce qui indique au lecteur que la port\'{e}e de la variable est priv\'{e}e .
 
@@ -139,31 +143,33 @@ Ce qui indique au lecteur que la port\'{e}e de la variable est priv\'{e}e .
   \ct{42}, \sq propose aussi une \ind{notation en base num\'{e}rique}
   ou \emph{radix}.
 \ct{2r101} est \ct{101} en base 2 (\ie en binaire), qui est \'{e}gal \`{a} l'entier d\'{e}cimal 5.
-\index{litt\'{e}ral}
-\index{litt\'{e}ral!nombre}
+\index{littéral}
+\index{littéral!nombre}
 
 \item[Les nombres flottants.] Ils peuvent \^{e}tre sp\'{e}cifi\'{e}s avec leur \ind{exposant} en base dix: \mbox{\ct{2.4e7}} est $2.4 \times 10^7$.
 \index{nombres flottants}
 
-\item[Les caract\`{e}res.] Un signe dollar d\'{e}finit un \subind{littéral}{caract\`{e}re}: \ct{$a}\ignoredollar$ est le litt\'{e}ral pour `a'.
+\item[Les caract\`{e}res.] Un signe dollar d\'{e}finit un \subind{littéral}{caractère}: \ct{$a}\ignoredollar$ est le litt\'{e}ral pour `a'.
 Des instances de caract\`{e}res non-imprimables peuvent \^{e}tre
 obtenues en envoyant des messages ad hoc \`{a} la classe
 \clsind{Character}, tel que \ct{Character space} \cmindex{Character class}{space} et \ct{Character tab}\cmindex{Character class}{tab}.
 		
-\item[Les chaînes de caract\`{e}res.] Les apostrophes sont utilis\'{e}es pour d\'{e}finir un  litt\'{e}ral \subind{litt\'{e}ral}{chaîne}.
+\item[Les chaînes de caract\`{e}res.] Les apostrophes sont utilis\'{e}es pour d\'{e}finir un  litt\'{e}ral \subind{littéral}{chaîne}.
 Si vous d\'{e}sirez une chaine comportant une apostrophe, il suffira de doubler l'apostrophe, comme dans \ct{'aujourd''hui'}.
 
 \item[Les symboles.] Ils ressemblent \`a des chaînes de caract\`{e}res, en ce sens qu'ils comportent une suite de caract\`{e}res.  
-Mais contrairement \`{a} une chaîne, un \subind{litt\'{e}ral}{symbole} doit \^{e}tre globalement unique.
+Mais contrairement \`{a} une chaîne, un \subind{littéral}{symbole} doit \^{e}tre globalement unique.
 Il y a seulement un objet symbole \ct{#Bonjour} mais il peut y avoir plusieurs objets chaînes de caract\`{e}res ayant la valeur \ct{'Bonjour'}.
-\seeindex{\#@{\textsf{\#}}}{symbole litt\'{e}ral}
+\seeindex{\#@{\textsf{\#}}}{littéral, symbole}
+\seeindex{symbole!littéral}{littéral, symbole}
 
 % martial (25 dec 2007): nous avons dit 'tableaux \`a la compilation'
 % dans d'autres chapitres? 
 \item[Les tableaux définis \`{a} la compilation.] Ils sont d\'{e}finis par \ct{#( )}, les objets litt\'{e}raux sont s\'{e}par\'{e}s par des espaces.
 À l'int\'{e}rieur des parenth\`{e}ses, tout doit \^{e}tre constant durant la compilation.
 Par exemple,  \ct{#(27 #(true false) abc)} est un
-\subind{littéral}{tableau} \subind{tableau}{litt\'{e}ral} de trois \'{e}l\'{e}ments: l'entier \ct{27}, le tableau \`{a} la compilation contenant deux bool\'{e}ens et le symbole \ct{#abc}.
+\subind{littéral}{tableau} litt\'{e}ral de trois \'{e}l\'{e}ments: l'entier \ct{27}, le tableau \`{a} la compilation contenant deux bool\'{e}ens et le symbole \ct{#abc}.
+\seeindex{tableau!littéral}{littéral, tableau}
 
 \item[Les tableaux définis \`{a} l'ex\'{e}cution.] Les accolades \ct|{ }|
   d\'{e}finissent un tableau (\subind{tableau}{dynamique}) \`{a} l'ex\'{e}cution.
@@ -179,11 +185,11 @@ Les commentaires peuvent se r\'{e}partir sur plusieurs lignes.
 		
 \item[Les d\'{e}finitions des variables locales.] Des barres
   verticales \ct{| |} limitent les
-  \subind{variable}{d\'{e}claration}{s} d'une ou plusieurs variables
+  \subind{variable}{déclaration}{}s d'une ou plusieurs variables
   locales dans une m\'{e}thode (ainsi que dans un bloc).
 % \seeindex{\|@{\textsf{\|\|}}}{assignment}
 % Can't seem to index or-bars! (special char for index macro)
-\seeindex{d\'{e}claration}{d\'{e}claration de variable}
+\seeindex{déclaration de variable}{variable!déclaration}
 
 \item[L'affectation.]	\ct{:=} affecte un objet \`{a} une variable.
 Quelquefois vous verrez \`{a} la place une $\leftarrow$ .
@@ -211,17 +217,17 @@ Tout code suivant la primitive est ex\'{e}cut\'{e} seulement si la primitive \'{
 
 \item[Les messages unaires.] Ce sont des simples mots (comme \ct{factorial}) envoy\'{e}s \`{a} un receveur (comme \ct{3}).
 \index{message!unaire}
-\seeindex{message unaire}{message, unaire}
+%\seeindex{message unaire}{message, unaire}
 
 \item[Les messages binaires.] Ce sont des op\'{e}rateurs (comme \ct{+}) envoy\'{e}s \`{a} un receveur et ayant un seul argument. Dans \ct{3+4}, le receveur est \ct{3} et l'argument est \ct{4}.
 \index{message!binaire}
-\seeindex{message binaire}{message, binaire}
+%\seeindex{message binaire}{message, binaire}
 
 \item[Les messages \`{a} mots-cl\'{e}s.] Ce sont des mots-cl\'{e}s multiples (comme \ct{raisedTo:modulo:}), chacun se terminant par un deux-points (:) et ayant un seul argument. 
-Dans l'expression \ct{2 raisedTo: 6 modulo: 10}, le \emphind{sélecteur
-  de message} \ct{raisedTo:modulo:} prend les deux arguments \ct{6} et \ct{10}, chacun suivant le \lct{:}. Nous envoyons le message au receveur \ct{2}.
-\index{message!mot-cl\'{e}}
-\seeindex{message de mot-cl\'{e}}{message, mot-cl\'{e}}
+Dans l'expression \ct{2 raisedTo: 6 modulo: 10}, le \emph{sélecteur de message} \ct{raisedTo:modulo:} prend les deux arguments \ct{6} et \ct{10}, chacun suivant le \lct{:}. Nous envoyons le message au receveur \ct{2}.
+\index{message!sélecteur}
+\index{message!à mots-clés}
+%\seeindex{message de mot-cl\'{e}}{message, mot-cl\'{e}}
 
 \item[Le retour d'une m\'{e}thode.] \ct{^} est employ\'{e} pour
   obtenir le \emphind{retour} ou \emph{renvoi} d'une m\'{e}thode.  Il
@@ -229,12 +235,16 @@ Dans l'expression \ct{2 raisedTo: 6 modulo: 10}, le \emphind{sélecteur
 \md{\ct{^} donne toujours un retour de la m\'{e}thode, m\^{e}me s'il est utilis\'{e} dans un bloc, il donnera le retour de la m\'{e}thode inser\'{e}e dans le bloc.}
 
 \item[Les séquences d'instructions.]	Un point (\ct{.}) est le
-  \emphsubind{instruction}{s\'{e}parateur} \emph{d'instructions}. Placer un point entre deux expressions les transforme en deux instructions ind\'{e}pendantes.	
-\seeindex{point}{s\'{e}parateur d'instructions}
-	\seeindex{point}{s\'{e}parateur d'instructions}
-	\seeindex{\ct{.}}{s\'{e}parateur d'instructions}
+  \emphsubind{instruction}{séparateur} \emph{d'instructions}. Placer un point entre deux expressions les transforme en deux instructions ind\'{e}pendantes.	
+\index{instruction!séquence}
+\seeindex{instruction!séparateur}{expression, séparateur}
+\seeindex{point}{expression, séparateur}
+\seeindex{\ct{.}}{expression, séparateur}
 
-\item[Les cascades.] un point virgule peut \^{e}tre utilis\'{e} pour envoyer une \emphind{cascade} de messages \`{a} un receveur unique. Dans \ct{Transcript show: 'bonjour'; cr}, nous envoyons d'abord le message mot-cl\'{e} \ct{show: 'bonjour'} au receveur  \ct{Transcript}, puis nous envoyons au m\^{e}me receveur le message unaire \ct{cr}.
+\item[Les cascades.] un point virgule peut \^{e}tre utilis\'{e} pour
+  envoyer une \emphind{cascade} de messages \`{a} un receveur
+  unique. Dans \ct{Transcript show: 'bonjour'; cr}, nous envoyons
+  d'abord le message à mots-cl\'{e}s \ct{show: 'bonjour'} au receveur  \ct{Transcript}, puis nous envoyons au m\^{e}me receveur le message unaire \ct{cr}.
 	\seeindex{;}{cascade}
 
 \end{description}
@@ -298,7 +308,7 @@ Les s\'{e}lecteurs des messages binaires sont constitu\'{e}s par un ou plusieurs
 \ab{Bon; $-$ est \'{e}trange .}
 
 Les s\'{e}lecteurs des messages \`{a} mots-cl\'{e}s sont form\'{e}s d'une suite de mots-cl\'{e}s alphanum\'{e}riques qui commencent par une lettre minuscule et se terminent par \lct{:}.
-\index{message!mot-cl\'{e}}
+\index{message!à mots-clés}
 
 Les messages unaires ont la plus haute priorit\'{e}, puis viennent les messages binaires et, pour finir, les messages \`{a} mots-cl\'{e}s; ainsi:
 \begin{code}{@TEST}
@@ -317,7 +327,8 @@ Les parenth\`{e}ses permettent de modifier l'ordre d'une \'{e}valuation:
 1 + (2 * 3) --> 7
 \end{code}
 Les envois de message peuvent \^{e}tre compos\'{e}s gr\^{a}ce \`{a} des points et des points-virgules. Une suite d'expressions s\'{e}par\'{e}es par des points provoque  l'\'{e}valuation de chaque expression dans la suite comme une \emphind{instruction}, une apr\`{e}s l'autre. 
-\index{s\'{e}parateur!instruction}
+%\index{s\'{e}parateur!instruction}
+\index{expression!séparateur}
 
 \begin{code}{}
 Transcript cr.
@@ -424,13 +435,13 @@ Un bloc \`{a} deux param\`etres doit recevoir  \mthind{BlockClosure}{value:value
 \end{code}
 
 Si vous avez un bloc comportant plus de quatre param\`{e}tres, vous devez utiliser
-\mthind{Block Closure}{valueWithArguments:} et passer les arguments à
+\mthind{BlockClosure}{valueWithArguments:} et passer les arguments à
 l'aide d'un tableau (un bloc comportant un grand nombre de param\`{e}tres étant souvent r\'{e}v\'{e}lateur d'un probl\`{e}me au niveau de sa conception).
 
 Des blocs peuvent aussi d\'{e}clarer des variables locales, lesquelles seront entour\'{e}es par des barres verticales, tout comme des d\'{e}clarations de variables locales dans une m\'{e}thode.
 Les variables locales sont d\'{e}clar\'{e}es apr\`{e}s les éventuels
 arguments:
-\index{variable!declaration}
+\index{variable!déclaration}
 
 \begin{code}{@TEST}
 [ :x :y | | z | z := x+ y. z ] value: 1 value: 2 --> 3
@@ -514,11 +525,11 @@ Comme la condition de sortie d'une boucle peut \^{e}tre \'{e}valu\'{e}e de fa\c{
 Voici pr\'{e}cis\'{e}ment un exemple d'une boucle proc\'{e}durale:
 \index{itération}
 %\index{itération|voir{Collection, itération}}
-\seeindex{it\'eration}{Collection, it\'eration}
+\seeindex{Collection, itération}{itération}
 %seealso
 \seeindex{boucle}{itération}
-\seeindex{\'enum\'eration}{itération}
-\seeindex{clause conditionnelle}{itération}
+\seeindex{énumération}{itération}
+\index{clause conditionnelle}
 
 \begin{code}{@TEST | n |}
 n := 1.

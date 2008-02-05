@@ -215,7 +215,7 @@ Vous voyez maintenant un modèle pour la création d'une méthode dans le pannea
 Sélectionnez-le et remplacez-le par le texte de \tmthref{scbecellinitialize}.
 \protindex{all}
 \index{méthode!création}
-\index{System Browser!définir une m\'thode}
+\index{System Browser!définir une méthode}
 
 \needlines{10}
 \begin{numMethod}[scbecellinitialize]{Initialiser les instances de \ct{SBECell}.}
@@ -229,7 +229,8 @@ initialize
    self useSquareCorners.
    self turnOff
 \end{numMethod}
-\index{initialization}
+\seeindex{méthode!d'initialisation}{initialisation}
+\index{initialisation}
 
 \noindent
 Notez que les caractères \ct{''} de la ligne 3 sont deux
@@ -253,7 +254,7 @@ Les méthodes d'initialisation sont utilisées pour définir l'état des objets,
 %\seeindex{Object!initialization}{initialization}
 \seeindex{objet!initialisation}{initialisation}
 \seeindex{Object!initialize}{initialisation}
-\index{initialization}
+\index{initialisation}
 
 La première action de cette méthode (ligne 2) est d'exécuter la méthode \ct{initialize} de sa super-classe, \ct{SimpleSwitchMorph}.
 L'idée est que tout état hérité sera initialisé correctement par la méthode \ct{initialize} de la super-classe.
@@ -541,7 +542,7 @@ SBEGame>>>cellsPerSide
 \end{method}
 \cmindex{SBEGame}{cellsPerSide}
 % le commentaire "The number of cells along each side of the game"
-\index{méthode constante}
+\index{méthode!constante}
 
 Cette méthode ne peut pas \^etre plus simple: elle retourne la constante
 10. Représenter les constantes comme des méthodes a comme avantage que si le programme évolue de telle sorte que la constante dépende d'autres propriétés, la méthode peut \^etre modifiée pour calculer la valeur.

@@ -130,8 +130,8 @@ students select: [ :each | each gpa < threshold ]
 ce qui donnera une nouvelle collection contenant pr\'ecisement les
 \'el\'ements de \ct{students} (\'etudiants) pour lesquels la
 fonction entre crochets renvoie une r\'eponse positive \cad \ct{true}~\footnote{L'expression entre crochets (brackets en anglais) peut \^etre vue comme une 
-$\lambda$ expression d\'efinissant une fonction anonyme $\lambda x. x~{\sf gpa} < {\sf threshold}$.
-\index{lambda expression}}.
+expression $\lambda$ d\'efinissant une fonction anonyme $\lambda x. x~{\sf gpa} < {\sf threshold}$.
+\index{expression lambda}}.
 Le code \st a la simplicit\'e et l'\'el\'egance des langages d\'edi\'es ou \emph{Domain-Specific Language} souvent abr\'eg\'es en DSL. 
 
 Le message \ct{select:} est compris par \emph{toutes} les collections de \st.
@@ -261,7 +261,7 @@ classes (\ct{IdentityDictionary}, \ct{IdentitySet} et \ct{IdentityBag})
 utilisent la m\'ethode \ct{==} qui teste si les arguments sont 
 le m\^eme objet et les variantes \ct{Pluggable} emploient une \'equivalence
 arbitraire d\'efinie par le cr\'eateur de la collection.
-	\index{collection dite Pluggable}
+	\index{Collection!Pluggable}
 
   \item {\bf Les collections h\'et\'erog\`enes:}
 %Heterogeneous:}
@@ -328,7 +328,7 @@ En plus de ces classes, il y a aussi les variantes de \mbox{\ct{Array},} de \ct{
 recycl\'es par le ramasse-miettes ou \emph{garbage collector}.
 La machine virtuelle \sq est consciente de ces classes et les g\`ere d'une
 fa\c{c}on particuli\`ere.
-\index{collection!\`a liaison faible}
+\index{Collection!à liaison faible}
 \seeindex{weak collections}{collection!\`a liaison faible}
 
 Les lecteurs int\'eress\'es dans l'apprentissage avanc\'e des collections
@@ -457,16 +457,19 @@ Array with: 4 with: 3/2 with: 'lulu' -->  {4 . (3/2) . 'lulu'}
 \end{code}
 
 \paragraph{Cr\'eation litt\'eral avec \ct|\#()|.}
-\ct{#()} cr\'ee des \ind{tableaux litt\'eraux} avec des \'el\'ements
-statiques (ou ``\subind{Array}{literal}{s}'') qui doivent \^etre connus
+\index{littéral!tableau}
+\seeindex{Array!littéral}{littéral, tableau}
+\ct{#()} cr\'ee des tableaux littéraux avec des \'el\'ements
+statiques qui doivent \^etre connus
 quand l'expression est compil\'ee et non lorsqu'elle est ex\'ecut\'ee.
 Le code suivant cr\'ee un tableau de taille 2
 dans lequel le premier \'el\'ement est le nombre \ct{1}
 et le second la cha\^{\i}ne de caract\`eres \ct{'here'}: tous deux sont des litt\'eraux.
 
-\seeindex{\#@{\textsf{\#( )}}}{Array, literal}
+\seeindex{\#@{\textsf{\#( )}}}{littéral, tableau}
 \seeindex{\{@{\textsf{\{ \}}}}{tableau, dynamique}
-\seeindex{Array, dynamique}{tableau, dynamique}
+\seeindex{dynamique!tableau}{tableau, dynamique}
+\seeindex{Array!dynamique}{tableau, dynamique}
 
 \begin{code}{@TEST | anArray |}
 #(1 'here') size --> 2
@@ -513,7 +516,7 @@ anArray at: 3 put: 33.
 anArray at: 3 --> 33
 \end{code}
 \cmindex{Array}{copy}
-\seeindex{tableau, copie}{Array, copy}
+\seeindex{tableau!copie}{Array, \ct{copy}}
 
 \noindent
 Soyez attentif au fait que le code modifie les tableaux litt\'eraux!
@@ -608,10 +611,10 @@ Les dictionnaires sont des collections importantes dont les \'el\'ements
 sont accessibles via des cl\'es.
 Parmi les messages de dictionnaire les plus couramment utilis\'es, vous trouverez  
 \mthind{Dictionary}{at:}, \mthind{Dictionary}{at:put:}, \mthind{Dictionary}{at:ifAbsent:}, \mthind{Dictionary}{keys} et \mthind{Dictionary}{values} (\emph{keys} et \emph{values} sont les mots anglais pour cl\'es et valeurs respectivement).
-\seeindex{keys}{Dictionary, keys}
-\seeindex{values}{Dictionary, values}
-\seeindex{dictionnaire, cl\'e}{Dictionary, keys}
-\seeindex{dictionnaire, valeur}{Dictionary, values}
+\seeindex{keys}{Dictionary, \ct{keys}}
+\seeindex{values}{Dictionary, \ct{values}}
+\seeindex{dictionnaire!clé}{Dictionary, \ct{keys}}
+\seeindex{dictionnaire!valeur}{Dictionary, \ct{values}}
 
 \begin{code}{@TEST | colors |}
 colors := Dictionary new.
@@ -797,7 +800,7 @@ le message de conversion g\'en\'erique \ct{Object>>>as:}:
 String newFrom: ('hello' asSortedCollection) --> 'ehllo'
 String withAll: ('hello' asSortedCollection)     --> 'ehllo'
 \end{code}
-\seeindex{Collection!sorting}{Collection, \ct{asSortedCollection}}
+\seeindex{Collection!tri}{Collection, \ct{asSortedCollection}}
 
 Avoir diff\'erents types d'\'el\'ements dans une \ct{SortedCollection} est
 possible tant qu'ils sont comparables.
@@ -850,7 +853,7 @@ un \clsind{ByteString} en 8 bits ou un \clsind{WideString}~\footnote{\emph{Wide}
 et parlons simplement d'instances de \ct{String}.
 
 Deux instances de \ct{String} peuvent \^etre concat\'en\'ees avec une virgule (en anglais, \emph{comma}).
-\index{Collection!op\'erateur virgule}
+\index{Collection!opérateur virgule}
 \begin{code}{@TEST |s|}
 s := 'no', ' ', 'worries'.
 s -->  'no worries'
@@ -869,9 +872,9 @@ Elle marche donc pour n'importe quelle sorte de collections!
 \begin{code}{@TEST}
 (1 to: 3) , '45' --> #(1 2 3 $4 $5)
 \end{code}
-\seeindex{String!concat\'enation}{Collection, op\'erateur virgule}
-\seeindex{String!virgule}{Collection, op\'erateur virgule}
-\index{Collection!op\'erateur virgule}
+\seeindex{String!concaténation}{Collection, opérateur virgule}
+\seeindex{String!virgule}{Collection, opérateur virgule}
+\index{Collection!opérateur virgule}
 
 Nous pouvons aussi modifier une cha\^{\i}ne de caract\`eres existante
 en utilisant les m\'ethodes \mthind{String}{replaceAll:with:} 
@@ -908,9 +911,9 @@ fonctionne aussi:
 \end{code}
 
 \paragraph{Appariement de cha\^{\i}nes de caractères}
-\index{String!appariement de cha\^{\i}nes}
-\seeindex{String!pattern matching}{String!appariement de cha\^{\i}nes}
-\seeindex{String!filtrage}{String!appariement de cha\^{\i}nes}
+\index{String!appariement de chaînes}
+\seeindex{String!pattern matching}{String, appariement de chaînes}
+\seeindex{String!filtrage}{String, appariement de chaînes}
 
 Il est possible de demander si une cha\^{\i}ne de caract\`eres
 s'apparie \`a  une expression-filtre ou \emph{pattern} en
@@ -935,9 +938,11 @@ de caract\`eres \`a apparier.
 Il existe aussi des techniques d'appariements plus avanc\'ees par filtre 
 offrant les m\^eme possibilit\'es que Perl mais elles ne sont pas incluses
 par d\'efaut dans l'image standard~\footnote{Nous vous recommandons fortement
-le \ind{paquetage d'expressions r\'eguli\`eres} ou \emph{regular expression package} de Vassili Bykov, disponible \`a \url{www.squeaksource.com/Regex.html}.
+le paquetage pour les expressions r\'eguli\`eres ou \emph{regular expression package} de Vassili Bykov, disponible \`a \url{www.squeaksource.com/Regex.html}.
 \index{Bykov, Vassili}}.
-\seeindex{regular expression package}{paquetage d'expressions r\'eguli\`eres}
+\index{paquetage!expressions régulières}
+\seeindex{regular expression package}{paquetage, expressions régulières}
+
 
 \paragraph{Quelques essais avec les cha\^{\i}nes de caract\`eres.} 
 L'exemple suivant illustre l'utilisation de \mthind{String}{isEmpty}, \mthind{String}{includes:} et \mthind{String}{anySatisfy:} 
@@ -955,7 +960,7 @@ ces messages ne sont pas seulement d\'efinis pour \ct{String} mais plus g\'en\'e
 \paragraph{Les gabarits ou \emph{String templating}.}
 Il y a 3 messages utiles pour g\'erer les \emph{gabarits} ou \subind{String}{templating}: \mthind{String}{format:}, \mthind{String}{expandMacros} et \mthind{String}{expandMacrosWith:}.
 \seeindex{gabarit}{String!templating}
-\seeindex{cha\^{\i}ne de caract\`eres!gabarit}{String!templating}
+\seeindex{chaîne de caractères!gabarit}{String!templating}
 
 \begin{code}{@TEST}
 '{1} est {2}' format: {'Squeak' . 'extra'}  --> 'Squeak est extra'
@@ -1018,7 +1023,7 @@ En plus des messages de bas niveau comme \ct{to:do:} qui \'evalue un bloc avec u
 %which evaluates a block with an argument ranging from an initial to a final number
 la hi\'erarchie de collections \st offre de nombreux it\'erateurs de haut niveau.
 Ceci vous permet de faire un code plus robuste et plus compact.
-\index{Collection!it\'eration}
+\index{Collection!itération}
 
 %---------------------------------------------------------
 \subsection{L'it\'eration par (\lct{do:})}
