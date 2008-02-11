@@ -103,12 +103,13 @@ constituent une installation courante de \sq; voir \figref{download})
 
 %  \item The current \emph{system \ind{image}} is a snapshot of a running \sq system, frozen in time.  It consists of two files: an \emph{.}\emphind{image} file, which contains the state of all of the objects in the system (including classes and methods, since they are objects too), and a \emph{.}\emphind{changes} file, which contains a log of all of the changes to the source code of the system.
 
-\item Le fichier \emph{\ind{image}} est un cliché d'un système en fonctionnement, figé à un instant donné. 
+\item Le \emph{système} \emphind{image} est un cliché d'un système en fonctionnement, figé à un instant donné. 
 Il est composé de deux fichiers: le premier nommé avec l'extension
 \emph{.}\emphind{image} contient l'état de tous les objets du système
-ainsi que les classes et les méthodes puisque ce sont aussi des
-objets. Le second avec l'extension \emph{.}\emphind{changes} contient
-toutes les modifications apportées au code source; elles y sont journalisées.
+dont les classes et les méthodes (qui sont aussi des
+objets). Le second avec l'extension \emph{.}\emphind{changes} contient
+le journal de toutes les modifications apportées au code source du
+système (contenu dans le fichier source).
 %ajout fr index
 \index{fichier!image}
 \index{fichier!changes}
@@ -122,9 +123,8 @@ toutes les modifications apportées au code source; elles y sont journalisées.
 %The version of \sq that we have used for developing the examples in this book is \emphind{Squeak-dev}, available from \url{http://damien.cassou.free.fr/squeak-dev}.
 %\label{sec:squeakDev}
 
-Dans ce livre, nous avons utilisé pour d\'evelopper tous les exemples
-la version \emphind{Squeak-dev} de \sq; cette image est disponible sur
-\squeakdev. 
+Dans ce livre, nous avons utilisé la version \emphind{Squeak-dev} de
+\sq pour d\'evelopper tous les exemples. Cette image est disponible sur \squeakdev. 
 %\url{http://damien.cassou.free.fr/squeak-dev}.
 \label{sec:squeakDev}
 %We chose this image because it has a wider variety of programming tools pre-installed, and because additional packages can be loaded with a single click.  
@@ -175,7 +175,9 @@ avez installé plusieurs machines virtuelles, le système ne choisira
 pas forcément celle qui convient, il sera préférable de
 glisser-déposer l'image sur la VM ou d'utiliser la ligne de commande).
 
-Une fois lancé, \sq vous présente une large fenêtre qui contient des espaces de travail (voir \figref{startup}). Notez qu'il n'y a pas de barre de menu, à la place \sq utilise des menus contextuels. 
+Une fois lancé, \sq vous présente une large fenêtre qui contient des
+espaces de travail nommés \emphind{Workspace} (voir \figref{startup}).
+Notez qu'il n'y a pas de barre de menu; \sq la remplace par des menus contextuels. 
 
 %martial: j'ai mis 'normalement les reduit' parce que si la barre des
 %taches est chargee, la fenetre est minimisee a la OS/2
@@ -235,13 +237,10 @@ bouton avec lequel vous obtenez le menu World est intitulé le
 s\'electionner du texte, des \'el\'ements de listes ou des choix de
 menus et pour déplacer des fenêtres.
 
- 
-Lors de vos premiers pas avec \sq, il vous sera sûrement utile de
-marquer votre souris avec des couleurs, comme vous pouvez le voir sur \figref{colouredMouse}.
 
 %martial: il faut regler a la main la position et la hauteur de
 %l'encart avec la souris 
-\begin{wrapfigure}[13]{r}{0.25\linewidth}
+\begin{wrapfigure}[15]{r}{0.25\linewidth}
 % The parameters are the number of narrow lines to the right of the figure [19],
 % the placement {r} for right, and the width of the figure. Capital R will allow some float.
 % Inside the wrapfig environment, linewidth is special --- the width of the figure.
@@ -249,13 +248,15 @@ marquer votre souris avec des couleurs, comme vous pouvez le voir sur \figref{co
 \caption{La souris de l'auteur. Le clic avec la molette correspond au bouton bleu.\label{fig:colouredMouse}}
 \end{wrapfigure}
 
+Lors de vos premiers pas avec \sq, il vous sera sûrement utile de
+marquer votre souris avec des couleurs, comme vous pouvez le voir sur \figref{colouredMouse}.
 
 Le \emphind{bouton jaune} est l'autre bouton le plus employé dans \sq, vous l'utiliserez pour afficher les menus contextuels qui présentent des options selon le contexte ou plus précisement selon l'endroit et les objets sur lesquels vous cliquez. Voyez \figref{threeButtons:yellow}.
 
 
 \dothis{Saisissez \ct{Time now}
 %ajout 
-(expression retournant le temps pr\'esent) dans le Workspace.
+(expression retournant l'heure actuelle) dans le Workspace.
 Puis cliquez avec le bouton jaune dans le Workspace et sélectionnez
 \menu{print it} 
 %ajout
@@ -280,7 +281,7 @@ Déplacez la poignée
 %\raisebox{-0.4ex}{\includegraphics[width=1em]{morphicRotate}}
 située à proximité du coin inférieur gauche pour faire pivoter le Workspace.}
 
-Nous recommandons aux personnes gauchères de configurer leur souris et d'affecter le \ind{button rouge} à la gauche de leur souris, le \ind{bouton jaune} à droite et d'utiliser la molette de défilement (si elle est disponible) comme \ind{bouton bleu}.
+Nous recommandons aux droitiers de configurer leur souris et d'affecter le \ind{bouton rouge} à la gauche de leur souris, le \ind{bouton jaune} à droite et d'utiliser la molette de défilement (si elle est disponible) comme \ind{bouton bleu}.
 Avec une souris sans molette il est possible d'invoquer le menu halo
 en maintenant \ct{alt}, \ct{ctrl}
 ou \ct{option} pendant que vous cliquez sur le \ind{bouton rouge}.
@@ -535,7 +536,7 @@ programmation; celle-ci veut que le premier programme
 dans un nouveau langage consiste \`a afficher la phrase ``hello
 world''.}
 expression \st!
-Vous avez seulement envoyer le message \ct{show: 'bonjour squeak'} \`a
+Vous avez seulement envoyé le message \ct{show: 'bonjour squeak'} \`a
 l'objet \ct{Transcript} (\ct{show:} veut dire: afficher), suivi du
 message \ct{cr} 
 %ajout
@@ -554,7 +555,7 @@ Cette formule refl\`ete l'id\'ee que les objets sont responsables de
 leurs propres actions. Vous ne pourrez jamais \emph{dire} \`a un objet
 ce qu'il doit faire\,---\,vous devrez lui \emph{demander} de mani\`ere
 courtoise de faire quelque chose en lui envoyant un message.
-C'est l'objet, et non vous, qui choisissez la m\'ethode appropri\'ee
+Ce n'est pas vous mais l'objet qui choisit la m\'ethode appropri\'ee
 pour r\'epondre \`a votre message.
 
 %=================================================================
@@ -728,7 +729,7 @@ marqu\'e d'une ast\'erisque dans la liste du \sqmap Package Loader.
 \caption{Utiliser \sqmap pour installer le jeu Sokoban.\label{fig:sokoban}}
 \end{figure}
 
-\dothis{Apr\`es avoir installer ce paquetage, d\'emarrez \ct{Sokoban}
+\dothis{Apr\`es avoir installé ce paquetage, d\'emarrez \ct{Sokoban}
   en \'evaluant \ct{SokobanMorph random openInWorld} dans un Workspace
 %ajout
 (souvenez-vous de faire \menu{do it} sur toute la s\'election).}
@@ -782,7 +783,9 @@ classe \clsind{Object}.
 \`A l'ouverture du Browser, tous les panneaux sont vides except\'e
 le premier \`a gauche.
 Ce premier panneau liste toutes les \emph{cat\'egories-syst\`eme}
-connues; elles groupent des classes qui ont à voir entre elles.
+connues; 
+% martial: je trouve lourd le "qui ont à voir..."
+\arevoir{elles groupent des classes qui ont à voir entre elles}.
 \index{catégorie}
 
 \dothis{Cliquez sur la cat\'egorie \scatind{Kernel-Objects}.}
@@ -1179,7 +1182,7 @@ voyez l'erreur surgir:
 \seeindex{\ct{>>}}{Behavior, \ct{>>}}
 \cmindex{Behavior}{>>}
 
-Le fen\^etre qui s'ouvre avec le message d'erreur est le d\'ebogueur \st (voir \figref{predebugger}).
+La fen\^etre qui s'ouvre avec le message d'erreur est le d\'ebogueur \st (voir \figref{predebugger}).
 \ab{Well, it's actually the \emph{pre-}debugger.  Does this matter?}\damien{I don't think it's important at this point.}
 Nous verrons le d\'ebogueur nomm\'e \ind{Debugger} et ses
 fonctionnalit\'es dans \charef{env}.
@@ -1197,7 +1200,7 @@ L'erreur \'etait bien s\^ur attendue; lancer le test g\'en\`ere une
 erreur parce que nous n'avons pas encore \'ecrit la m\'ethode qui dit
 aux cha\^{\i}nes de caract\`eres comment hurler 
 %ajout pour le francais
-\cad comme r\'epondre au message \ct{shout}.
+\cad comment r\'epondre au message \ct{shout}.
 De toutes fa\c{c}ons, c'est une bonne pratique de s'assurer que le test
 \'echoue; cela confirme que nous avons correctement
 configur\'e notre machine \`a tests % testing machinery
@@ -1284,8 +1287,8 @@ syntaxe sans que vous puissiez encore la comprendre suffisamment \`a ce stade.
     du syst\`eme actif.
   \item Quand vous restorez une image \sq, vous vous retrouvez
     exactement dans le m\^eme \'etat\,---\,avec les m\^emes objets
-    lanc\'es\,---\,que vous l'avez laiss\'e lors de votre derni\`ere
-    sauvegarde de cette image.
+    lanc\'es\,---\,\arevoir{que lorsque vous l'avez laiss\'ee au moment de votre derni\`ere
+    sauvegarde de cette image}.
   \item \sq est destin\'e \`a fonctionner avec une souris \`a trois
     boutons. Par convention, nous disons qu'il y a un bouton \emph{rouge}, un bouton
     \emph{jaune} et un bouton \emph{bleu}. Si vous n'avez pas de

@@ -41,7 +41,7 @@
 Dans ce chapitre, nous allons développer un jeu très simple, le jeu de \ind{Quinto}. 
 En cours de route, nous allons faire la démonstration de la plupart des outils que les développeurs \sq utilisent pour construire et déboguer leurs programmes et comment les programmes sont échangés entre les développeurs. Nous verrons notamment le navigateur de classes (System Browser), l'inspecteur d'objet, le débogueur et le navigateur de \ind{paquetage}{}s \ind{Monticello}. 
 Le développement avec Smalltalk est efficace: vous découvrirez que vous passerez beaucoup plus de temps à écrire du code et beaucoup moins à gérer le processus de développement. 
-Ceci est en partie du au fait que Smalltalk est langage très simple, et d'autre part que les outils qui forment l'environnement de programmation sont très intégrés avec le langage.
+Ceci est en partie du au fait que Smalltalk est un langage très simple, et d'autre part que les outils qui forment l'environnement de programmation sont très intégrés avec le langage.
 
 %=================================================================
 \section{Le jeu de Quinto}
@@ -248,7 +248,8 @@ allons vous en donner un bref aperçu. Reprenons le code ligne par ligne.
 Notons que la méthode s'appelle \mthind{SBECell}{initialize}.
 Ce nom dit bien ce qu'il veut dire~\footnote{En anglais, puisque c'est
   la langue conventionnelle en \st.}!
-Par convention, si une classe définit une méthode nommée \ct{initialize}, elle sera appelée dès que l'objet aura été créé.
+Par convention, si une classe définit une méthode nommée
+\ct{initialize}, cette méthode sera appelée dès que l'objet aura été créé.
 Ainsi dès que nous évaluons \ct{SBECell new}, le message \ct{initialize} sera envoyé automatiquement à cet objet nouvellement créé.
 Les méthodes d'initialisation sont utilisées pour définir l'état des objets, généralement pour donner une valeur à leurs variables d'instances; c'est exactement ce que nous faisons ici.
 %\seeindex{Object!initialization}{initialization}
@@ -323,7 +324,7 @@ Le panneau en bas d'un inspecteur est un mini-espace de travail. C'est très uti
 
 \dothis{Tapez le texte \ct{self openInWorld} dans la zone du bas et
   choisissez \menu{do it} via le menu.}
-La cellule doit apparaître à l'angle haut à gauche de l'écran, en fait à l'endroit exact o\`u sa variable \ct{bounds} dit qu'elle doit apparaître.
+La cellule doit apparaître en haut à gauche de l'écran; en fait, à l'endroit exact o\`u sa variable \ct{bounds} dit qu'elle doit apparaître.
 Faites un clic avec le bouton bleu de la souris sur la cellule afin de faire apparaître son \subind{Morphic}{halo} Morphic.
 Déplacez la cellule avec la poignée marron (à 
 %côte de celle en haut à droite
@@ -390,8 +391,8 @@ initialize
 
 \sq va se plaindre qu'il ne conna\^it pas la signification de
 certains termes.
-\sq vous indique qu'il ne conna\^it pas le message
-\ct{cellsPerSide} (en fran\c{c}ais, ``cellules par c\^oté''), et
+Il vous indique alors qu'il ne conna\^it pas le message
+\ct{cellsPerSide} (en fran\c{c}ais, ``cellules par c\^oté'') et
 vous suggère un certain nombre de propositions, dans le cas o\`u il
 s'agirait d'une erreur de frappe.
 
@@ -602,7 +603,7 @@ puis la glisser-déposer sur le nouveau protocole (voir \figref{dragMethod}).
    \caption{Faire un glisser-déposer de la méthode dans un protocole.\label{fig:dragMethod}}
 \end{figure}
 
-Afin de compléter le jeu de Quinto, nous avons besoin de définir encore deux méthodes dans la classe \ct{SBECell} afin de gérer les événements souris.
+Afin de compléter le jeu de Quinto, nous avons besoin de définir encore deux méthodes dans la classe \ct{SBECell} pour de gérer les événements souris.
 \begin{method}[mouseAction:]{Un mutateur typique}
 SBECell>>>mouseAction: aBlock
    ^ mouseAction := aBlock
@@ -630,8 +631,8 @@ d'instance est appelée une \emph{méthode d'accès en lecture} ou
 
 Si vous \^etes habitués aux méthodes d'accès en lecture (\emph{getter})
 et écriture (\emph{setter}) dans d'autres langages de programmation,
-vous vous attendez à avoir deux méthodes nommées \ct{getmouseAction}
-et \ct{setmouseAction}.
+vous vous attendez à avoir deux méthodes nommées \ct{getMouseAction}
+et \ct{setMouseAction}.
 La convention en \st est différente.
 Une méthode d'accès en lecture a toujours le m\^eme nom que la variable
 correspondante et la méthode d'accès en écriture est nommée de la m\^eme
