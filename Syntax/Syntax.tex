@@ -455,7 +455,7 @@ imm\'ediat. Le bloc suivant fait r\'ef\'erence \`a la variable \ct{x} voisine:
 %qu'ils peuvent se r\'{e}f\'{e}rer \`{a} des variables de
 %l'environnement qui l'entoure.
 %Le bloc suivant concerne la variable \ct{x} de son environnement englobant:
-
+\newpage
 \begin{code}{@TEST}
 | x |
 x := 1.
@@ -472,7 +472,6 @@ l'instar de tout autre objet.
 % However, the ability to refer (``capture'') non-local variables can be very powerful when it is needed. 
 
 %martial: je crois bien que un \{important} serait mieux que Avertissement 
-\newpage
 %rene: 'Mise en garde' au lieu d''Avertissement'
 \emph{Mise en garde:} Dans l'actuelle version (la version 3.9), \sq ne supporte pas en r\'{e}alit\'{e} les vraies fermetures lexicales, puisque les arguments des blocs sont en fait simul\'{e}s comme variables temporaires de la m\'{e}thode qu'ils contiennent. Il existe un nouveau compilateur qui supporte compl\`{e}tement les fermetures lexicales, mais il est encore en d\'{e}veloppement et non utilis\'{e} par d\'{e}faut.
 Dans certaines situations, ce probl\`{e}me peut entraîner des conflits de nommage. Cela se produit car \sq est construit sur une des premi\`{e}res impl\'{e}mentations de \st.
