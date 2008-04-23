@@ -1450,7 +1450,7 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 		</dict>
 	</array>
 	<key>ModificationDate</key>
-	<string>2008-04-23 17:01:43 +0200</string>
+	<string>2008-04-23 17:03:50 +0200</string>
 	<key>Modifier</key>
 	<string>Serge Stinckwich</string>
 	<key>NotesVisible</key>
@@ -1548,7 +1548,7 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 		<key>DrawerWidth</key>
 		<real>209</real>
 		<key>Frame</key>
-		<string>{{265, 62}, {1010, 784}}</string>
+		<string>{{305, 62}, {1010, 784}}</string>
 		<key>ShowRuler</key>
 		<true/>
 		<key>VisibleRegion</key>
