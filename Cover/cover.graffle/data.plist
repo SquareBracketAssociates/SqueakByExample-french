@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ActiveLayerIndex</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>ApplicationVersion</key>
 	<array>
 		<string>com.omnigroup.OmniGrafflePro</string>
@@ -671,8 +671,6 @@
 			<integer>114</integer>
 			<key>ImageID</key>
 			<integer>33</integer>
-			<key>IsLocked</key>
-			<string>YES</string>
 			<key>Layer</key>
 			<integer>1</integer>
 			<key>Shape</key>
@@ -1450,7 +1448,7 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 		</dict>
 	</array>
 	<key>ModificationDate</key>
-	<string>2008-04-23 09:29:57 +0200</string>
+	<string>2008-04-23 14:08:02 +0200</string>
 	<key>Modifier</key>
 	<string>Serge Stinckwich</string>
 	<key>NotesVisible</key>
@@ -1491,12 +1489,12 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 		<key>NSPaperName</key>
 		<array>
 			<string>string</string>
-			<string>333EB3E8-EB11-4414-8FA2-CACC0953D012</string>
+			<string>Untitled</string>
 		</array>
 		<key>NSPaperSize</key>
 		<array>
 			<string>size</string>
-			<string>{930.614, 666.142}</string>
+			<string>{943.937, 666.142}</string>
 		</array>
 		<key>NSPrintAllPages</key>
 		<array>
@@ -1548,13 +1546,13 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 		<key>DrawerWidth</key>
 		<real>209</real>
 		<key>Frame</key>
-		<string>{{318, 65}, {985, 779}}</string>
+		<string>{{258, 59}, {1010, 787}}</string>
 		<key>ShowRuler</key>
 		<true/>
 		<key>VisibleRegion</key>
-		<string>{{-11, 38}, {954, 619}}</string>
+		<string>{{-72, -9.99998}, {1077.83, 691}}</string>
 		<key>Zoom</key>
-		<real>1</real>
+		<real>0.90738058090209961</real>
 	</dict>
 </dict>
 </plist>
