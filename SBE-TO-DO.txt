@@ -19,8 +19,6 @@ Traducteurs :
 
 TODO :
 - Expliquer un peu mieux le role des méthodes hash pour les collections ? clés.
-- Parler de la version francisée de Squeak
-- Ajouter un paragraphe et le nom des traducteurs en préface
 
 -----------------------------------------------------------------------------
 L'etat des chapitres

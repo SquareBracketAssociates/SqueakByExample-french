@@ -42,7 +42,6 @@
 	{SUnit/figures/}
 	{Streams/figures/}
 	{Syntax/figures/}
-	{Monticello/figures/}
 }
 %=================================================================
 \let\wholebook=\relax
@@ -74,12 +73,14 @@ Traduit en fran\c{c}ais par :\\[2ex]
 		Ren\'e Mages\\[1ex]
 		Nicolas Petton\quad
 		Alain Plantec\\[1ex]
-		Beno\^it Tuduri\quad
-		Serge Stinckwich\\[1ex]
+		Serge Stinckwich\quad
+        Beno\^it Tuduri\\[1ex]
 	}
 % (to be updated at the end)
 \title{\Huge\bf Squeak par l'Exemple}
-\isodate
+%\isodate
+\numdate
+\selectlanguage{french}
 \date{\emph{Version du \today}}
 \maketitle
 %=================================================================
@@ -94,8 +95,8 @@ disponible depuis \url{http://scg.unibe.ch/SBE/Book} sous le titre
 \emph{Squeak par l'exemple}, ISBN 978-3-9523341-3-3. La première édition
 a été publié en Avril 2008 par 
 \emph{Square Bracket Associates}, Suisse
-(\url{SquareBracketAssociates.org}). Vous pouvez vous procurer une
-copie à l'adresse: \url{http://squeakbyexample.org/}.\\[1cm]
+(\sba). Vous pouvez vous procurer une
+copie à l'adresse: \spe.\\[1cm]
 
 Copyright \copyright~2007 by Andrew Black, St\'ephane Ducasse, Oscar Nierstrasz and Damien Pollet.\\[1cm]
 
@@ -127,6 +128,7 @@ Paternit\'e Version 3.0 de la licence g\'en\'erique - Partage des Conditions Ini
 \vfill
 %=================================================================
 %:TOC
+\pagestyle{newheadings}
 \tableofcontents
 % \listoffigures
 % \listoftables
@@ -139,6 +141,7 @@ Paternit\'e Version 3.0 de la licence g\'en\'erique - Partage des Conditions Ini
 %=================================================================
 %:PART 1 -- Getting Started
 \part{Comment démarrer}
+\pagestyle{headings}
 %:Quick Tour
 \input{QuickTour/QuickTour.tex}
 %:First Application
@@ -169,8 +172,6 @@ Paternit\'e Version 3.0 de la licence g\'en\'erique - Partage des Conditions Ini
 \part{Squeak avanc\'e}
 %:Metaclasses
 \input{Metaclasses/Metaclasses.tex}
-%:Monticello
-%%%\input{Monticello/Monticello.tex}
 %:Final Material
 \appendix
 \part{Annexes}
@@ -179,18 +180,21 @@ Paternit\'e Version 3.0 de la licence g\'en\'erique - Partage des Conditions Ini
 %=================================================================
 %:BIBLIOGRAPHY
 % \printglossary
+\pagestyle{newheadings}
 \bibliographystyle{jurabib}
 \bibliography{scg}
+\cleardoublepage
 %=================================================================
 %:INDEX
 {\small\raggedright\printindex}
 %\printindex
 %=================================================================
 % Round out to multiple of 4 pages
-\cleardoublepage
+\newcommand{\pagefinale}{\cleardoublepage\thispagestyle{empty}
 ~ % Force some space
-\cleardoublepage
-~ % Force some space
+}
+\pagefinale % une seule feuille blanche
+%\pagefinale
 \cleardoublepage
 %=================================================================
 \end{document}

@@ -103,7 +103,7 @@
 %\newcommand{\sbe}{\url{squeakbyexample.org}\xspace}
 \newcommand{\sbe}{\url{SqueakByExample.org}\xspace}
 % squeak-fr: adresse de la version francaise
-\newcommand{\spe}{\url{SqueakByExample.org}\xspace} % ?/FR
+\newcommand{\spe}{\url{SqueakByExample.org/fr}\xspace}
 \newcommand{\sba}{\url{SquareBracketAssociates.org}\xspace}
 
 % squeak-fr: ajout de la \squeakdev pour eviter les problemes de
@@ -280,12 +280,18 @@ pdfsubject={Informatique, Computer Science}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 \renewpagestyle{plain}[\small\itshape]{%
 	\setheadrule{0pt}%
-	\sethead[\thepage][][]{}{}{\thepage}%
+	\sethead[][][]{}{}{}%
 	\setfoot[][][]{}{}{}}
 \renewpagestyle{headings}[\small\itshape]{%
 	\setheadrule{0pt}%
 	\setmarks{chapter}{section}%
 	\sethead[\thepage][][\chaptertitle]{\sectiontitle}{}{\thepage}%
+	\setfoot[][][]{}{}{}}
+% pagestyle for tableofcontents + index (martial: 2008/04/23)
+\newpagestyle{newheadings}[\small\itshape]{%
+	\setheadrule{0pt}%
+	\setmarks{chapter}{section}%
+	\sethead[\thepage][][\chaptertitle]{\chaptertitle}{}{\thepage}%
 	\setfoot[][][]{}{}{}}
 %=============================================================
 %:Title section setup and TOC numbering depth
