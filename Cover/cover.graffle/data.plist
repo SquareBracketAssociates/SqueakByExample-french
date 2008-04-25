@@ -36,6 +36,38 @@
 	<array>
 		<dict>
 			<key>Bounds</key>
+			<string>{{457.709, 448}, {20.0146, 13.76}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>357</integer>
+			<key>ImageID</key>
+			<integer>54</integer>
+			<key>Layer</key>
+			<integer>0</integer>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>Bounds</key>
 			<string>{{43.265, 551.839}, {124, 96}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
@@ -490,7 +522,7 @@ Nicolas Petton, Alain Plantec, Serge Stinckwich et Beno\'eet Tuduri}</string>
 {\colortbl;\red255\green255\blue255;\red0\green21\blue126;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc\pardirnatural
 
-\f0\fs20 \cf2 Version du 2008-04-23}</string>
+\f0\fs20 \cf2 Version du 25 avril 2008}</string>
 					</dict>
 				</dict>
 				<dict>
@@ -1279,9 +1311,10 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 	<key>HPages</key>
 	<integer>1</integer>
 	<key>ImageCounter</key>
-	<integer>54</integer>
+	<integer>55</integer>
 	<key>ImageLinkBack</key>
 	<array>
+		<dict/>
 		<dict/>
 		<dict/>
 		<dict/>
@@ -1293,6 +1326,7 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 	</array>
 	<key>ImageList</key>
 	<array>
+		<string>image54.png</string>
 		<string>image53.pdf</string>
 		<string>image46.jpg</string>
 		<string>image45.png</string>
@@ -1326,7 +1360,7 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 			<key>Print</key>
 			<string>YES</string>
 			<key>View</key>
-			<string>NO</string>
+			<string>YES</string>
 		</dict>
 	</array>
 	<key>LayoutInfo</key>
@@ -1414,7 +1448,7 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 		</dict>
 	</array>
 	<key>ModificationDate</key>
-	<string>2008-04-23 20:14:10 +0200</string>
+	<string>2008-04-25 13:43:59 +0200</string>
 	<key>Modifier</key>
 	<string>Serge Stinckwich</string>
 	<key>NotesVisible</key>
@@ -1455,7 +1489,7 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 		<key>NSPaperName</key>
 		<array>
 			<string>string</string>
-			<string>Untitled</string>
+			<string>AC9F1C67-33CC-42ED-99F2-8F6B25881C59</string>
 		</array>
 		<key>NSPaperSize</key>
 		<array>
@@ -1512,11 +1546,11 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 		<key>DrawerWidth</key>
 		<real>209</real>
 		<key>Frame</key>
-		<string>{{353, 69}, {988, 777}}</string>
+		<string>{{298, 69}, {988, 777}}</string>
 		<key>ShowRuler</key>
 		<true/>
 		<key>VisibleRegion</key>
-		<string>{{-10, -10}, {957, 617}}</string>
+		<string>{{-10, 64}, {957, 617}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 	</dict>
