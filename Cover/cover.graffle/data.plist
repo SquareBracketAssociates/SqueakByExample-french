@@ -1360,7 +1360,7 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 			<key>Print</key>
 			<string>YES</string>
 			<key>View</key>
-			<string>YES</string>
+			<string>NO</string>
 		</dict>
 	</array>
 	<key>LayoutInfo</key>
@@ -1448,7 +1448,7 @@ Ce livre est disponible sous les conditions de la licence Creative Commons Attri
 		</dict>
 	</array>
 	<key>ModificationDate</key>
-	<string>2008-04-25 13:43:59 +0200</string>
+	<string>2008-04-25 13:44:48 +0200</string>
 	<key>Modifier</key>
 	<string>Serge Stinckwich</string>
 	<key>NotesVisible</key>
