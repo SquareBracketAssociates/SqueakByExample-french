@@ -772,14 +772,13 @@ Ajoutez l'expression ``\ct{^ c}'' à la fin de la méthode \ct{SBEGame>>>newCell
 % \needlines{6}
 \begin{method}[newCellAt:at:nobug]{Corriger l'erreur}
 SBEGame>>>newCellAt: i at: j
-    "!Crée une cellule à la position (i,j) et l'ajoute dans ma
-    représentation graphique à la position correcte. Retourne une nouvelle cellule!"
+    "!Crée une cellule à la position (i,j) et l'ajoute dans ma représentation graphique à la position correcte. Retourne une nouvelle cellule!"
    | c origin |
    c := SBECell new.
    origin := self innerBounds origin.
    self addMorph: c.
    c position: ((i - 1) * c width) @ ((j - 1) * c height) + origin.
-   c mouseAction: [self toggleNeighboursOfCellAt: i at: j]
+   c mouseAction: [self toggleNeighboursOfCellAt: i at: j].
    ^ c
 \end{method}
 \cmindex{SBEGame}{newCellAt:at:}
