@@ -5,6 +5,10 @@
 Les choses qu'il reste a faire pour "Squeak par l'exemple" et le statut d'avancement de chacun des chapitres.
 
 -----------------------------------------------------------------------------
+- NB: Send a copy of each edition to:
+Schweizerische Nationalbibliothek, Erwerbungsdienst, Hallwylstr. 15, 3003 Bern
+[Done. 2008-12-02 (on)]
+-----------------------------------------------------------------------------
 
 Traducteurs :
 
